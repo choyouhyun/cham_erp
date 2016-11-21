@@ -12,18 +12,6 @@
 		</attributes>
 	</classpathentry>
 	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.module.container"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery-1.11.0.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery-1.11.0.min.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery-loading.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery-ui-1.10.4.custom.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery-ui-1.10.4.custom.min.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery.fancybox.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery.fancybox.pack.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery.form.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery.json-2.4.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery.MultiFile.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/jquery.simpletip-1.3.1.min.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/threeLayerTree.js"/>
-	<classpathentry kind="lib" path="WebContent/resources/script/jquery/zoomsl-3.0.min.js"/>
+	<classpathentry kind="con" path="org.eclipse.jst.j2ee.internal.web.container"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>
