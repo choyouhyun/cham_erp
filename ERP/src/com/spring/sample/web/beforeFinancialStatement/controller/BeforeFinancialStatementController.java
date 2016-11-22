@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BeforeFinancialStatementController {
-	@RequestMapping(value="/test")
+	@RequestMapping(value="/test2")
 	public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
 		modelAndView.setViewName("test/test");
 		return modelAndView;

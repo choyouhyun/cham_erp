@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BasicManagementController {
-	   @RequestMapping(value="/test")
+	   @RequestMapping(value="/test6")
 	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
 		   
 	      modelAndView.setViewName("basicManagement/basicManagement");

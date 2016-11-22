@@ -8,7 +8,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class ChitManagementController {
-	@RequestMapping(value="/test")
+	@RequestMapping(value="/test4")
 	public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
 		modelAndView.setViewName("test/test");
 		return modelAndView;
