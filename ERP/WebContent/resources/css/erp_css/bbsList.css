@@ -1,0 +1,113 @@
+@CHARSET "UTF-8";
+/* 정렬 부분 */
+.bbsInfo_d {
+	display: table-row;
+	height: 100px;
+}
+.bbsSearch_d {
+	display: table-row;
+	height: 60px;
+}
+.bbs_d {
+	display: table-row;
+	height: 600px;
+}
+.bbsControll_d {
+	display: table-row;
+	height: 50px;
+}
+/* contents 게시판 전체 부분 */
+.con_bbs {
+	display: inline-block;
+	width: 1024px;
+	height: 820px;
+	background-color: #ccfaee;
+	font-size: 0pt;
+}
+/* 게시판 이름 (부서) */
+.bbsInfo {
+	display: inline-block;
+	width: 1024px;
+	height: 100px;
+	background-color: #eada99;
+	font-size: 12pt;
+	text-align: left;
+}
+/* 검색창 부분 */
+.bbsSearch {
+	display: inline-block;
+	width: 1024px;
+	height: 60px;
+	background-color: #d9dc99;
+	text-align: center;
+}
+.bbsSearch_Body {
+	display: inline-block;
+	width: 500px;
+	height: 30px;
+
+}
+.SearchText {
+	display: inline-block;
+	width: 450px;
+	height: 30px;
+	vertical-align: top;
+}
+.SearchBtn {
+	display: inline-block;
+	width: 50px;
+	height: 30px;
+
+}
+/* 게시글 목록(테이블) */
+.bbs {
+	display: inline-block;
+	width: 1024px;
+	height: 630px;
+	background-color: #ffffff;
+	font-size: 11pt;
+}
+td {
+	width: 100px;
+	height: 30px;
+}
+.title {
+	width: 400px;
+}
+/* 하단에 페이징, 글쓰기 버튼 */
+.bbsControll {
+	display: inline-block;
+	width: 1024px;
+	height: 50px;
+	background-color: #dd88c7;
+}
+.controll_blank {
+	display: inline-block;
+	width: 250px;
+	height: 50px;
+	background-color: #dd88c7;
+}
+.paging {
+	display: inline-block;
+	width: 524px;
+	height: 50px;
+	background-color: #dc18c0;
+	vertical-align: top;
+}
+.pagingArea {
+	display: inline-block;
+	width: 300px;
+	height: 30px;
+	background-color: #aa18f0;
+	font-size: 11pt;
+	color: #ffffff;
+}
+.writeBtn {
+	display: inline-block;
+	width: 250px;
+	height: 50px;
+	background-color: #ccdf00;
+	vertical-align: top;
+}
+
+
