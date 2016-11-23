@@ -1,0 +1,185 @@
+@CHARSET "UTF-8";
+body {
+	margin: 0px;
+}
+.bg {
+	display: inline-block;
+	width: 100%;
+	height: 100%;
+	background-color: #ff0000;
+	font-size: 0px;
+	margin: 0px;
+	vertical-align: top;
+		text-align: center;
+}
+.range {
+	display: inline-block;
+	width: 1280px;
+	height: 100%;
+	background-color: #ff0000;
+}
+.b {
+	width: 100%;
+	margin: 0 auto;
+	border: 1px solid #000000;
+	text-align: center;
+}
+
+.c {
+	display: inline-block;
+}
+
+.e {
+	display: table-cell;;
+	vertical-align: middle; /* table cell(td)에서 밖에 사용 못함 */
+}
+
+.d {
+	display: table-row;
+	height: 48px;
+}
+
+/* 주 메뉴 */
+.depth1_Body {
+	display: inline-block;
+	width: 1280px;
+	height: 48px;
+	background-color: #cc99ff;
+	font-size: 20px;
+	text-align: center;
+}
+.menu {
+	display: inline-block;
+	width: 1280px;
+	height: 48px;
+	background-color: #ffffff;
+}
+/* 주 메뉴 상세 */
+.menu_1 {
+	display: inline-block;
+	width: 192px;
+	height: 48px;
+	background-color: #aa55cf;
+}
+.menu_2 {
+	display: inline-block;
+	width: 192px;
+	height: 48px;
+	background-color: #bb55cf;
+}
+.menu_3 {
+	display: inline-block;
+	width: 192px;
+	height: 48px;
+	background-color: #cc55cf;
+}
+.menu_4 {
+	display: inline-block;
+	width: 192px;
+	height: 48px;
+	background-color: #dd55cf;
+}
+.menu_5 {
+	display: inline-block;
+	width: 192px;
+	height: 48px;
+	background-color: #ee55cf;
+}
+.menu_6 {
+	display: inline-block;
+	width: 192px;
+	height: 48px;
+	background-color: #ff55cf;
+}
+
+
+
+/* 서브메뉴 */
+.depth2 {
+	display: none;
+	width: 1280px;
+	height: 48px;
+	background-color: #eeffcc;
+	font-size: 20px;
+	text-align: center;
+}
+/* 내용부분 */
+.contents {
+	display: inline-block;
+	width: 1280px;
+	min-height: 820px;
+	background-color: #ddff00; 
+	font-size: 20px;
+	text-align: center;
+}
+/* 상단 탑 */
+.top {
+	display: inline-block;
+	width: 1280px;
+	height: 96px;
+	background-color: #000000; 
+}
+.logo {
+	display: inline-block;
+	width: 192px;
+	height: 96px;
+	background-color: #ffffff;
+	font-size: 20px;
+	text-align: center;
+}
+/* 유저 로그인정보 */
+.loginInfo {
+	display: inline-block;
+	width: 1088px;
+	height: 96px;
+	background-color: #000000; 
+	vertical-align: top;
+}
+
+.login {
+	display: inline-block;
+	width: 1088px;
+	height: 48px;
+	background-color: #cacffe;
+	
+}
+.blank {
+	display: inline-block;
+	width: 890px;
+	height: 48px;
+	background-color: #eecc99;
+}
+.user {
+	display: inline-block;
+	width: 198px;
+	height: 48px;
+	background-color: #999999;
+	font-size: 20px;
+	text-align: right;
+		vertical-align: top;
+}
+/* 공지사항 */
+.noticeInfo {
+	display: inline-block;
+	width: 1088px;
+	height: 48px;
+	background-color: #000000;
+
+}
+.notice {
+	display: inline-block;
+	width: 890px;
+	height: 48px;
+	background-color: #ffeedd;
+	font-size: 20px;
+	text-align: center;
+		vertical-align: top;
+
+}
+
+.blank2 {
+	display: inline-block;
+	width: 198px;
+	height: 48px;
+	background-color: #00ff99;
+}
