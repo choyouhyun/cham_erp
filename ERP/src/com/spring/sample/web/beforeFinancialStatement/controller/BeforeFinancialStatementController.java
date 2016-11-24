@@ -20,7 +20,7 @@ public class BeforeFinancialStatementController {
 		modelAndView.setViewName("test/JeonJaeMu");
 		return modelAndView;
 	}
-	@RequestMapping(value="/JeonSonIk")
+	@RequestMapping(value="/JeonSonIk")//따닥
 	public ModelAndView JeonSonIk(HttpServletRequest request, 
 								ModelAndView modelAndView) throws Throwable {
 		
