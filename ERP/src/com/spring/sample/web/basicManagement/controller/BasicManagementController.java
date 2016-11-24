@@ -8,10 +8,119 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BasicManagementController {
-	   @RequestMapping(value="/test6")
+	   /*@RequestMapping(value="/test6")
 	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
 		   
 	      modelAndView.setViewName("basicManagement/basicManagement");
 	      return modelAndView;
 	   } //컨트롤러의 가장 기본적인 형태
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }
+	   @RequestMapping(value="/test6")
+	   public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/basicManagement");
+	      return modelAndView;
+	   }*/
+	   @RequestMapping(value="/SubjectList")
+	   public ModelAndView SubjectSearchList(HttpServletRequest request, ModelAndView modelAndView) {
+		   
+	      modelAndView.setViewName("basicManagement/Subject/SubjectList");
+	      return modelAndView;
+	   }
+	   
 }

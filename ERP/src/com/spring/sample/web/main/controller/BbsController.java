@@ -8,9 +8,9 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BbsController {
-	@RequestMapping(value="/test7")
+/*	@RequestMapping(value="/test7")
 	public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
 		modelAndView.setViewName("test/test");
 		return modelAndView;
 	} //컨트롤러의 가장 기본적인 형태
-}
+*/}
