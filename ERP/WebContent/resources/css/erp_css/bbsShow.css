@@ -1,0 +1,137 @@
+@CHARSET "UTF-8";
+/* 정렬 부분 */
+.file_d, .btns_d, .writer_d, .date_d, .hits_d{
+	display: table-row;
+	height: 40px;
+}
+.title_d {
+	display: table-row;
+	height: 60px;
+} 
+.showContents_d {
+	display: table-row;
+	height: 500px;
+}
+/* 글 상세보기 몸체 */
+.showBody {
+	display: inline-block;
+	width: 750px;
+	height: 580px;
+	background: #ffccdd;
+}
+/* 게시글 이름 */
+.showTitle {
+	display: inline-block;
+	width: 750px;
+	height: 60px;
+	background: #998899;
+}
+/*  게시글 이름 글씨부분 */
+.titleText {
+	width: 700px;
+	height: 40px;
+	background: #998899;
+	border: 0px;
+}
+/* 글 정보 (작성자, 등록일 등..) */
+.showInfo {
+	display: inline-block;
+	width: 750px;
+	height: 40px;
+	background: #ff8899;
+	text-align: left;
+	vertical-align: top;
+}
+.writer {
+	display: inline-block;
+	width: 450px;
+	height: 40px;
+	background: #ffcc11;
+}
+.date {
+	display: inline-block;
+	width: 200px;
+	height: 40px;
+	background: #000000;
+	color: #ffffff;
+}
+.hits {
+	display: inline-block;
+	width: 100px;
+	height: 40px;
+	background: #ffffff;
+}
+.writerText {
+	display: inline-block;
+	width: 400px;
+	height: 30px;
+	font-size: 11pt;
+}
+.dateText {
+	display: inline-block;
+	width: 200px;
+	height: 30px;
+	font-size: 11pt;
+	color: #ffffff;
+}
+.hitsText {
+	display: inline-block;
+	width: 100px;
+	height: 30px;
+	font-size: 11pt;
+}
+/* 내용 부분 */
+.showContents {
+	display: inline-block;
+	width: 750px;
+	height: 500px;
+	background: #777777;
+}
+.contentsText {
+	width: 723px;
+	height: 456px;
+	background-color: #ffffff;
+}
+/* 업로드 된 파일 */
+.showFile {
+	display: inline-block;
+	width: 750px;
+	height: 40px;
+	background: #ffbb00;
+	text-align: left;
+	font-size: 11pt;
+}
+/* 수정, 목록, 삭제등 버튼 부분 */
+.showBtns {
+	display: inline-block;
+	width: 750px;
+	height: 40px;
+	background: #cccccc;
+}
+.btnsBody {
+	display: inline-block;
+	width: 750px;
+	height: 25px;
+	background: #cbcb00;
+	text-align: center;
+}
+.btnPart1 {
+	display: inline-block;
+	width: 50px;
+	height: 25px;
+	background: #cbcb00;
+	
+}
+.btnPart2 {
+	display: inline-block;
+	width: 600px;
+	height: 25px;
+	background: #eeeeff;
+	text-align: left;
+}
+.btnPart3 {
+	display: inline-block;
+	width: 100px;
+	height: 25px;
+	background: #ffffff;
+}
