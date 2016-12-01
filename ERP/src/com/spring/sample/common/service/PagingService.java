@@ -14,8 +14,7 @@ public class PagingService implements IPagingService{
 	@Override
 	public int getStartCount(int page) {
 		int startCount = 0;
-		int viewCount = CommonProperties.VIEWCOUNT;
-		startCount = (page - 1) * viewCount + 1;
+		startCount = page*CommonProperties.VIEWCOUNT - CommonProperties.VIEWCOUNT + 1;
 		return startCount;
 	}
 	
@@ -50,11 +49,7 @@ public class PagingService implements IPagingService{
 	public int getStartPcount(int page) {
 		int startPcount = 0;
 		
-		if(page % CommonProperties.PAGECOUNT == 0 ) {
-			startPcount = page - CommonProperties.PAGECOUNT + 1;
-		} else {
-			startPcount = ((page / CommonProperties.PAGECOUNT) * CommonProperties.PAGECOUNT) + 1;
-		}
+		startPcount = ((page - 1) / CommonProperties.PAGECOUNT) * CommonProperties.PAGECOUNT + 1;
 		
 		return startPcount;
 	}
@@ -65,11 +60,7 @@ public class PagingService implements IPagingService{
 		int endPcount = 0;
 		int maxPcount = getMaxPcount(maxCount);
 		
-		if(page % CommonProperties.PAGECOUNT == 0 ) {
-			endPcount = page;
-		} else {
-			endPcount = ((page / CommonProperties.PAGECOUNT) * CommonProperties.PAGECOUNT) + CommonProperties.PAGECOUNT;
-		}
+		endPcount = ((page - 1) / CommonProperties.PAGECOUNT) * CommonProperties.PAGECOUNT + CommonProperties.PAGECOUNT;
 		
 		if(endPcount >= maxPcount){
 			endPcount = maxPcount;
@@ -92,3 +83,4 @@ public class PagingService implements IPagingService{
 		return pb;
 	}
 }
+
