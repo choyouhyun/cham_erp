@@ -14,8 +14,6 @@
 	<!-- AjaxBoard쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/ajaxBoard/AjaxBoardSQL.xml" />
 	<!-- AjaxBoard쿼리 -->
-	<sqlMap resource="/com/spring/sample/sqlMap/test/TestSQL.xml" />
-	
 	<sqlMap resource="/com/spring/sample/sqlMap/BasicManagement/BasicManagementSQL.xml" />
 </sqlMapConfig>
  
