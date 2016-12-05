@@ -43,4 +43,34 @@ public class BasicManagementService implements IBasicManagementService{
 		return iBasicManagementDao.updateCus(params);
 	}
 
+	@Override
+	public ArrayList<HashMap<String, String>> deptAjax(HashMap<String, String> params) throws Throwable{
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.deptAjax(params);
+	}
+
+	@Override
+	public int getDeptCount(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.getDeptCount(params);
+	}
+
+	@Override
+	public String insertDept(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.insertDept(params);
+	}
+
+	@Override
+	public HashMap<String, String> getDeptCon(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.getDeptCon(params);
+	}
+
+	@Override
+	public int updateDept(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.updateDept(params);
+	}
+
 }

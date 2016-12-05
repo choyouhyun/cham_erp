@@ -55,6 +55,10 @@
 
 <script type="text/javascript">
 $(document).ready(function() {
+	if($("#cusNo").val() != ""){
+		getCus();
+		$("#saveBtn").val("수정");
+	}
 	//이메일 주소 선택 입력
 	$("#ddlEmail").on("change", function() {
 		$("#textEmail").val($(this).val());
@@ -66,6 +70,9 @@ $(document).ready(function() {
 	
 	//저장버튼
 	$("#saveBtn").on("click", function() {
+		if($("#cusNo").val() != ""){
+			editCus();
+		}
 		insertCus();
 	});
 	
@@ -77,11 +84,55 @@ $(document).ready(function() {
 });
 
 function insertCus() {
-	var params = $("#insertForm").serialize();
+	var params = $("#actionForm").serialize();
 	
 	$.ajax({
 		type : "post",
 		url : "insertCus",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+
+function getCus() {
+	var params = $("#actionForm").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "getCus",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			$("#textName").val(result.list.NAME);
+			$("#textCEO").val(result.list.CEO);
+			$("#textTel").val(result.list.TEL);
+			$("#textCell").val(result.list.CELL);
+			$("#postcode").val(result.list.POST);
+			$("#address").val(result.list.ADDRESS);
+			$("#address2").val(result.list.ADDRESS2);
+			var email = result.list.EMAIL;
+ 			var emailArray = email.split("@");
+			$("#textEmailId").val(emailArray[0]);
+			$("#textEmail").val(emailArray[1]);
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+
+function editCus() {
+	var params = $("#actionForm").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "updateCus",
 		dataType : "json",
 		data : params,
 		success : function() {
@@ -100,7 +151,8 @@ function insertCus() {
 		<center>거래처 등록</center>
 	</h1>
 	<center>
-		<form action="#" id="insertForm" method="post">
+		<form action="#" id="actionForm" method="post">
+			<input type="hidden" id="cusNo" name="cusNo" value="${param.cusNo}" />
 			<table border=1 cellspacing="0">
 				</center>
 				<caption></caption>

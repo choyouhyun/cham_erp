@@ -14,4 +14,14 @@ public interface IBasicManagementService {
 	public HashMap<String, String> getCus(HashMap<String, String> params) throws Throwable;
 
 	public int updateCus(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> deptAjax(HashMap<String, String> params) throws Throwable;
+
+	public int getDeptCount(HashMap<String, String> params) throws Throwable;
+
+	public String insertDept(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getDeptCon(HashMap<String, String> params) throws Throwable;
+
+	public int updateDept(HashMap<String, String> params) throws Throwable;
 }
