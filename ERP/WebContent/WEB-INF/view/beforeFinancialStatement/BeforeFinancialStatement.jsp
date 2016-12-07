@@ -78,7 +78,7 @@ table.ass, table.debt{
 					</th>
 				</tr>
 				<tr>     
-					<td>123
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -86,7 +86,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>123
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -94,7 +94,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>123
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -102,7 +102,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>123
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -110,7 +110,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -118,7 +118,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -126,7 +126,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -134,7 +134,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -142,7 +142,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -150,7 +150,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -158,7 +158,15 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
+					<td>&nbsp;
+					</td>
 					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>     
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -186,7 +194,7 @@ table.ass, table.debt{
 					</th>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -194,7 +202,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -202,7 +210,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -210,7 +218,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -218,7 +226,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -226,7 +234,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -234,7 +242,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -242,7 +250,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -250,7 +258,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -258,7 +266,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -266,7 +274,15 @@ table.ass, table.debt{
 					</td>
 				</tr>
 				<tr>     
+					<td>&nbsp;
+					</td>
 					<td>
+					</td>
+					<td>
+					</td>
+				</tr>
+				<tr>     
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -288,85 +304,85 @@ table.ass, table.debt{
 				<tr>
 					<th>1.유동자산
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>2.비유동자산
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>자산총계(1+2)
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>3.유동부채
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>4.비유동부채
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>부채총계(3+4)
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>5.자본금
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>6.자본잉여금
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>7.자본조정
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>8.기타 포괄 손익 누계액
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>자본총계(5+6+7+8+9)
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>부채 및 자본총계
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>
 					<th>대차차액
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 				<tr>     
 					<th>대변합계
 					</th>
-					<td>
+					<td>&nbsp;
 					</td>
 				</tr>
 			</table>
@@ -375,4 +391,4 @@ table.ass, table.debt{
 </div>
 </body>
 
-</html>
+</html><!-- 따닥 -->

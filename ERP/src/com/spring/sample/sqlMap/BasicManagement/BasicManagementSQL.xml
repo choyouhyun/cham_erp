@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="BasicManagement">
+	<select id="cusCon" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT A.NO, A.NAME, A.CEO, A.TEL, A.CELL,A.POST, A.ADDRESS, A.EMAIL
+		FROM(
+				SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO, NAME, CEO, TEL, CELL, POST, ADDRESS || ' ' || ADDRESS2 AS ADDRESS, EMAIL
+				FROM CUS
+				WHERE 1=1
+			) A
+		WHERE A.RNUM BETWEEN #start# AND #end#
+	</select>
+	
+	<select id="getCusCount" parameterClass="java.util.HashMap" resultClass="integer">
+		SELECT COUNT(*) AS CUSCNT
+		FROM CUS
+	</select>
+	
+	<insert id="insertCus" parameterClass="java.util.HashMap">
+		INSERT INTO CUS (NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL)
+		VALUES (CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#, #textPostCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' || #textEmail#)
+	</insert>
+	
+	<select id="getCus" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL
+		FROM CUS
+		WHERE NO = #cusNo#
+	</select>
+	
+	<update id="updateCus" parameterClass="java.util.HashMap">
+		UPDATE CUS SET NAME = #textName#,
+							CEO = #textCEO#,
+							TEL = #textTel#,
+							CELL = #textCell#,
+							POST = #textPostCode#,
+							ADDRESS = #textAddress#,
+							ADDRESS2 = #textAddress2#,
+							EMAIL = #textEmailId# || '@' || #textEmail#
+		WHERE NO = #cusNo#
+	</update>
+</sqlMap>

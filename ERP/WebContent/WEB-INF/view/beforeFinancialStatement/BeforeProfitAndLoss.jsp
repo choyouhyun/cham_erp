@@ -10,7 +10,7 @@
 table{
 	overflow: auto;
 	display: inline-block;
-}
+}/* 따닥 */
 table.sub th, table.code th {
     font-weight: bold;
     vertical-align: top;
@@ -76,7 +76,7 @@ table.code{
 					</th>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -84,7 +84,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -92,7 +92,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -100,7 +100,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -108,7 +108,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -116,7 +116,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -124,7 +124,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -132,7 +132,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -140,7 +140,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -148,7 +148,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -156,7 +156,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -164,7 +164,7 @@ table.code{
 					</td>
 				</tr>
 				<tr>     
-					<td>
+					<td>&nbsp;
 					</td>
 					<td>
 					</td>
@@ -242,5 +242,4 @@ table.code{
 	</div>
 </div>
 </body>
-
 </html>

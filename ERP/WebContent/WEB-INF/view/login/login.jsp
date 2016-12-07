@@ -6,62 +6,100 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Login Sample</title>
-<!-- jQuery Script -->
-<script type="text/javascript" 
-		src="resources/script/jquery/jquery-1.11.0.min.js"></script>
-<script type="text/javascript" 
-		src="resources/script/jquery/jquery-ui-1.10.4.custom.min.js"></script>
-<script type="text/javascript" 
-		src="resources/script/jquery/jquery.form.js"></script>
-
+<style type="text/css">
+.loginPop{
+	display:inline-block;
+	width: 250px;
+	height: 190px;
+	background-color: #FFFFFF;
+	border: 1px solid #000000;
+	border-radius: 20px;
+	position: absolute;
+	top: calc(50% - 50px);
+	left: calc(50% - 100px);
+	text-align: center;
+}
+.loginTitle{
+	position: absolute;
+	left: calc(50% - 100px);
+	border-bottom: 1px solid #000000;
+	font-size: 20pt;
+	width: 200px;
+}
+.loginBtn{
+	width: 204px;
+	height: 30px;
+}
+#ID, #PW{
+	width: 200px;
+	height: 30px;
+}
+.o{
+	diplay: inline-block;
+	height: 5px;
+}
+.p{
+	font-size: 9pt;
+}
+</style>
+<script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <script type="text/javascript">
 $(document).ready(function(){
+	$("#ID").on("click", function(){
+		$("#ID").val("");
+	});
+	$("#memPw").on("click", function(){
+		$("#PW").val("");
+	});
 	$("#loginBtn").on("click", function(){
-		/*
-		 * Ajax로 화면 로딩시 or 조회 버튼 클릭시 목록 조회
-		*/
-		var params =  $("#loginForm").serialize();
-		
-		$.ajax({
-			type : "post",
-			url : "loginResult",
-			dataType : "json",
-			data : params,
-			success : function(result) {
-				alert(result.message);
-			},
-			error : function(result) {
-				alert(result.errorMessage);
-			}
-		});
+		if($.trim($("#ID").val())==""){
+		      alert(                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 "아이디를 입력하세요.");
+		                  //┌화면에 있는 객체가 활성화 되면
+		      $("#ID").focus();
+		   }else if($.trim($("#PW").val())==""){
+		      alert("비밀번호 입력하세요.");
+		      $("#PW").focus();
+		   }else{
+		      var params= $("#loginForm").serialize();
+		      
+		      $.ajax({
+		         type:"post",
+		         url:"LoginCheckAjax",
+		         dataType:"json",
+		         data : params,
+		         success:function(result){
+		            if(result.res=="sucess"){
+		               location.href="main";
+		            }else{
+		               alert("아이디나 비번을 확인해라"+result.res);
+		               $("#ID").focus();
+		            }
+		         },
+		         error: function(result) {
+		            alert("ERROR!!");
+		         }
+			});
+		}
 	});
 });
+
 </script>
 </head>
 <body>
-	<form method="post" id="loginForm">
-		<table>
-			<tr>
-				<td>ID</td>
-				<td>
-					<input type="text" name="userId" />
-				</td>
-				<td rowspan="2">
-					<input type="button" value="Login" id="loginBtn"/>
-				</td>
-			</tr>
-			<tr>
-				<td>PW</td>
-				<td>
-					<input type="password" name="userPw" />
-				</td>
-			</tr>
-			<c:if test="${not empty msg}">
-				<tr>
-					<td colspan="2">${msg}</td>
-				</tr>
-			</c:if>
-		</table>
-	</form>
+	<div class="loginPop">
+		<form action="#" id="loginForm" method="post">
+		<div class="loginTitle">순실미르재단</div><br/>
+			<br/>
+		   &nbsp;<input type="text" name="ID" id="ID" value="사원번호를 입력 해 주세요."/>
+		   <br/>
+		   <div class="o"></div>
+		   &nbsp;<input type="password" name="PW" id="PW" placeholder="***********************"/>
+		   <br/>
+		   <div class="o"></div>
+		   <input type="Button" value="로그인" class="loginBtn" id="loginBtn">
+		   <div class="o"></div>
+		   <div class="p">로그인 문제 발생 시 관리자에게 문의하세요</div>
+		</form>
+	</div>
 </body>
 </html>

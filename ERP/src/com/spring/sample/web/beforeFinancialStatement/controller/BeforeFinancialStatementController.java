@@ -8,23 +8,18 @@ import org.springframework.web.servlet.ModelAndView;
 
 @Controller
 public class BeforeFinancialStatementController {
-	@RequestMapping(value="/test2")
-	public ModelAndView Test(HttpServletRequest request, ModelAndView modelAndView) {
-		modelAndView.setViewName("test/test");
-		return modelAndView;
-	} //컨트롤러의 가장 기본적인 형태
-	@RequestMapping(value="/JeonJaeMu")
-	public ModelAndView JeonJaeMu(HttpServletRequest request, 
+	@RequestMapping(value="/BeforeFinancialStatement")
+	public ModelAndView BeforeFinancialStatement(HttpServletRequest request, 
 								ModelAndView modelAndView) throws Throwable {
 		
-		modelAndView.setViewName("test/JeonJaeMu");
+		modelAndView.setViewName("beforeFinancialStatement/BeforeFinancialStatement");
 		return modelAndView;
 	}
-	@RequestMapping(value="/JeonSonIk")//따닥
-	public ModelAndView JeonSonIk(HttpServletRequest request, 
+	@RequestMapping(value="/BeforeProfitAndLoss")//따닥
+	public ModelAndView BeforeProfitAndLoss(HttpServletRequest request, 
 								ModelAndView modelAndView) throws Throwable {
 		
-		modelAndView.setViewName("test/JeonSonIk");
+		modelAndView.setViewName("beforeFinancialStatement/BeforeProfitAndLoss");
 		return modelAndView;
 	}
 }
