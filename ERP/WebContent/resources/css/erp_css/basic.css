@@ -2,11 +2,13 @@
 body {
 	margin: 0px;
 }
+div {
+	margin: 0px;
+}
 .bg {
 	display: inline-block;
 	width: 100%;
 	height: 100%;
-	background-color: #ff0000;
 	font-size: 0px;
 	margin: 0px;
 	vertical-align: top;
@@ -43,63 +45,8 @@ body {
 .depth1_Body {
 	display: inline-block;
 	width: 1280px;
-	height: 48px;
-	background-color: #cc99ff;
-	font-size: 20px;
-	text-align: center;
-}
-.menu {
-	display: inline-block;
-	width: 1280px;
-	height: 48px;
-	background-color: #ffffff;
-}
-/* 주 메뉴 상세 */
-.menu_1 {
-	display: inline-block;
-	width: 192px;
-	height: 48px;
-	background-color: #aa55cf;
-}
-.menu_2 {
-	display: inline-block;
-	width: 192px;
-	height: 48px;
-	background-color: #bb55cf;
-}
-.menu_3 {
-	display: inline-block;
-	width: 192px;
-	height: 48px;
-	background-color: #cc55cf;
-}
-.menu_4 {
-	display: inline-block;
-	width: 192px;
-	height: 48px;
-	background-color: #dd55cf;
-}
-.menu_5 {
-	display: inline-block;
-	width: 192px;
-	height: 48px;
-	background-color: #ee55cf;
-}
-.menu_6 {
-	display: inline-block;
-	width: 192px;
-	height: 48px;
-	background-color: #ff55cf;
-}
-
-
-
-/* 서브메뉴 */
-.depth2 {
-	display: none;
-	width: 1280px;
-	height: 48px;
-	background-color: #eeffcc;
+	height: 50px;
+	background: rgb(109,109,109);
 	font-size: 20px;
 	text-align: center;
 }
@@ -111,6 +58,7 @@ body {
 	background-color: #ddff00; 
 	font-size: 20px;
 	text-align: center;
+	
 }
 /* 상단 탑 */
 .top {
@@ -126,6 +74,7 @@ body {
 	background-color: #ffffff;
 	font-size: 20px;
 	text-align: center;
+	background-image: url("../../images/ERP/logo.png");
 }
 /* 유저 로그인정보 */
 .loginInfo {
@@ -140,20 +89,20 @@ body {
 	display: inline-block;
 	width: 1088px;
 	height: 48px;
-	background-color: #cacffe;
+	background-color: rgb(109,109,109);
 	
 }
 .blank {
 	display: inline-block;
 	width: 890px;
 	height: 48px;
-	background-color: #eecc99;
+	background-color: rgb(71,71,71);
 }
 .user {
 	display: inline-block;
 	width: 198px;
 	height: 48px;
-	background-color: #999999;
+	background-color: rgb(71,71,71);
 	font-size: 20px;
 	text-align: right;
 		vertical-align: top;
@@ -163,17 +112,19 @@ body {
 	display: inline-block;
 	width: 1088px;
 	height: 48px;
-	background-color: #000000;
+	background-color: #ffffff;
+	text-align: center;
 
 }
 .notice {
 	display: inline-block;
 	width: 890px;
 	height: 48px;
-	background-color: #ffeedd;
+	background-color: #ffffff;
 	font-size: 20px;
 	text-align: center;
-		vertical-align: top;
+	vertical-align: top;
+	color:#22222;
 
 }
 
@@ -181,5 +132,129 @@ body {
 	display: inline-block;
 	width: 198px;
 	height: 48px;
-	background-color: #00ff99;
+	background-color: #ffffff;
+}
+/* 메뉴 바 */
+.menubar{ 
+border:none;
+border:0px;
+margin:0px;
+padding:0px;
+font: 67.5% "Lucida Sans Unicode", "Bitstream Vera Sans", "Trebuchet Unicode MS", "Lucida Grande", Verdana, Helvetica, sans-serif;
+font-size:14px;
+font-weight:bold;
+text-align: center;
+}
+.menuRange{
+display: inline-block;
+width: 1152px;
+border:none;
+border:0px;
+margin:0px;
+padding:0px;
+text-align: center;
+}
+.menubar ul{
+background: rgb(109,109,109);
+height:50px;
+list-style:none;
+margin:0;
+padding:0;
+}
+
+.menubar li{
+float:left;
+padding:0px;
+}
+
+.menubar li a{
+background: rgb(109,109,109);
+color:#cccccc;
+display:block;
+font-weight:normal;
+width: 142px;
+line-height:50px;
+margin:0px;
+padding:0px 25px;
+text-align:center;
+text-decoration:none;
+}
+
+.menubar li a:hover, .menubar ul li:hover a{
+background: rgb(71,71,71);
+color:#FFFFFF;
+text-decoration:none;
+}
+
+.menubar li ul{
+background: rgb(109,109,109);
+display:none; /* 평상시에는 드랍메뉴가 안보이게 하기 */
+height:auto;
+padding:0px;
+margin:0px;
+border:0px;
+position:absolute;
+width:192px;
+z-index:200;
+/*top:1em;
+/*left:0;*/
+}
+
+.menubar li:hover ul{
+display:block; /* 마우스 커서 올리면 드랍메뉴 보이게 하기 */
+}
+/* 서브 몸체 */
+.menubar li li { 
+background: rgb(109,109,109);
+display:block;
+float:none;
+margin:0px;
+padding:0px;
+width:217px;
+}
+
+.menubar li:hover li a{
+background:none;
+}
+
+.menubar li ul a{
+display:block;
+height:50px;
+width:192px;
+font-size:12px;
+font-style:normal;
+margin:0px;
+padding:0px 10px 0px 15px;
+text-align:left;
+}
+
+.menubar li ul a:hover, .menubar li ul li:hover a{
+background: rgb(71,71,71);
+border:0px;
+color:#ffffff;
+text-decoration:none;
+}
+
+.menubar p{
+clear:left;
+}
+/* 로그인 정보 추가 */
+.img1{
+   margin-bottom:-7px;
+   width: 25px;
+   height: 25px;
+   margin-right:10px;
+}
+
+.img2{
+   margin-bottom:-7px;
+   margin-right: 7px;
+   width: 25px;
+   height: 25px;
+   
+}
+.userName{
+   margin-right:10px;
+   font-size: 11pt;
+   color: #ffffff;
 }
