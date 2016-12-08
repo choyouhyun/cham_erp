@@ -17,7 +17,7 @@ public class BbsDao implements IBbsDao {
 	@Override
 	public int getBbsCount(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return (int) sqlMapClient.queryForObject("test.getBbsCount",params);
+		return (int) sqlMapClient.queryForObject("bbs.getBbsCount",params);
 	}
 
 	@SuppressWarnings("unchecked")
@@ -25,7 +25,7 @@ public class BbsDao implements IBbsDao {
 	public ArrayList<HashMap<String, String>> getBbs(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return (ArrayList<HashMap<String, String>>) 
-				sqlMapClient.queryForList("test.getBbs",params);
+				sqlMapClient.queryForList("bbs.getBbs",params);
 	}
 
 	@Override
@@ -34,7 +34,7 @@ public class BbsDao implements IBbsDao {
 		sqlMapClient.startTransaction();
 		
 		try {
-			sqlMapClient.insert("test.insertBbs", params);
+			sqlMapClient.insert("bbs.insertBbs", params);
 			
 			sqlMapClient.executeBatch();
 			sqlMapClient.commitTransaction();
@@ -54,19 +54,19 @@ public class BbsDao implements IBbsDao {
 	public HashMap<String, String> getBbsCon(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return (HashMap<String, String>)
-				sqlMapClient.queryForObject("test.getBbsCon",params);
+				sqlMapClient.queryForObject("bbs.getBbsCon",params);
 	}
 
 	@Override
 	public int deleteBbs(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return  sqlMapClient.delete("test.deleteBbs",params);
+		return  sqlMapClient.delete("bbs.deleteBbs",params);
 	}
 
 	@Override
 	public int updateBbs(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return sqlMapClient.update("test.updateBbs",params);
+		return sqlMapClient.update("bbs.updateBbs",params);
 	}
 
 	@Override
@@ -74,7 +74,7 @@ public class BbsDao implements IBbsDao {
 		// TODO Auto-generated method stub
 		int res = 0;
 		try{
-			sqlMapClient.update("test.hitUp", params);
+			sqlMapClient.update("bbs.hitUp", params);
 			res = 1;
 		}catch (Exception e){
 			res = 0;

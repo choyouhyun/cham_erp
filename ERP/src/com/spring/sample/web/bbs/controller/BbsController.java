@@ -24,7 +24,7 @@ import com.spring.sample.web.bbs.service.IBbsService;
 @Controller
 public class BbsController {
 	 @Autowired
-	 public IBbsService iTestService;
+	 public IBbsService iBbsService;
 	 
 	 @Autowired
 	 public IPagingService iPagingService;
@@ -40,7 +40,7 @@ public class BbsController {
 			
 			modelAndView.addObject("list", list);
 			*/
-			modelAndView.setViewName("test/bbsList");
+			modelAndView.setViewName("bbs/bbsList");
 			
 			return modelAndView;
 		}
@@ -55,13 +55,13 @@ public class BbsController {
 			
 			PagingBean pb = iPagingService.getPageingBean(
 					Integer.parseInt(params.get("page")), 
-					iTestService.getBbsCount(params));
+					iBbsService.getBbsCount(params));
 			
 			params.put("start", Integer.toString(pb.getStartCount()));
 			params.put("end", Integer.toString(pb.getEndCount()));
 			
 			ArrayList<HashMap<String, String>> list
-										= iTestService.getBbs(params);
+										= iBbsService.getBbs(params);
 			
 			modelMap.put("list", list);
 			modelMap.put("pb", pb);
@@ -76,7 +76,7 @@ public class BbsController {
 		@RequestMapping("/bbsWrite")
 		public ModelAndView bbsWrite(HttpServletRequest request,
 								  ModelAndView modelAndView) {
-			modelAndView.setViewName("test/bbsWrite");
+			modelAndView.setViewName("bbs/bbsWrite");
 			
 			return modelAndView;
 		}
@@ -89,7 +89,7 @@ public class BbsController {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			String res = iTestService.insertBbs(params);
+			String res = iBbsService.insertBbs(params);
 			
 			modelMap.put("res", res);
 			
@@ -103,14 +103,14 @@ public class BbsController {
 		public ModelAndView bbsShow(HttpServletRequest request,
 								  @RequestParam HashMap<String, String> params,
 								  ModelAndView modelAndView) throws Throwable {
-			int res = iTestService.hitUp(params);
+			int res = iBbsService.hitUp(params);
 			HashMap<String, String> con
-						= iTestService.getBbsCon(params);
+						= iBbsService.getBbsCon(params);
 
 
 			modelAndView.addObject("con", con); //데이토 가져오기
 			
-			modelAndView.setViewName("test/bbsShow"); 
+			modelAndView.setViewName("bbs/bbsShow"); 
 			
 			return modelAndView;
 		}
@@ -122,7 +122,7 @@ public class BbsController {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			int res = iTestService.deleteBbs(params);
+			int res = iBbsService.deleteBbs(params);
 			
 			modelMap.put("res", res);
 			
@@ -138,7 +138,7 @@ public class BbsController {
 								  ModelAndView modelAndView) throws Throwable {
 			
 			HashMap<String, String> con
-						= iTestService.getBbsCon(params);
+						= iBbsService.getBbsCon(params);
 			
 			modelAndView.addObject("con", con); //데이터 가져오기
 			
@@ -154,7 +154,7 @@ public class BbsController {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			int res = iTestService.updateBbs(params);
+			int res = iBbsService.updateBbs(params);
 			
 			modelMap.put("res", res);
 			
@@ -173,7 +173,7 @@ public class BbsController {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
 			
-			int res = iTestService.hitUp(params);
+			int res = iBbsService.hitUp(params);
 			
 			modelMap.put("res", res);
 			
