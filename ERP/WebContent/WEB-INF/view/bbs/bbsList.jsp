@@ -1,53 +1,220 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="../../../resources/css/erp_css/basic.css" />
-<link rel="stylesheet" type="text/css" href="../../../resources/css/erp_css/bbsList.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
+<link rel="stylesheet" type="text/css" href="resources/css/erp_css/bbsList.css" /><!-- bbsList -->
+<script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript">
+$(document).ready(function() {
+	refreshList();
+
+	$("#searchBtn").on("click", function() {
+		$("input[name='searchText']").val($("#searchText").val());
+		$("input[name='page']").val("1");
+		
+		refreshList();
+	});
+	
+	$("#insertBtn").on("click", function() {
+		$("#actionForm").attr("action", "bbsWrite");
+		$("#actionForm").submit();
+	});
+	
+	$("#pagingArea").on("click", "span", function() {
+		$("input[name='page']").val($(this).attr("name"));
+		refreshList();
+	});
+
+	$("#tb").on("click", "tr", function(){
+		$("input[name='No']").val($(this).attr("name"));
+		$("#actionForm").attr("action", "bbsShow");
+		$("#actionForm").submit();
+	});
+});
+
+function refreshList() {
+	var params = $("#actionForm").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "refreshList",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			var html = "";
+			html += "<span>" + result.list[0].NAME + "</span>";
+			$("input[name='bbsName']").val(result.list[0].NAME)
+			$("#bbsName").html(html);
+			
+			html = "";
+			
+			for(var i = 0; i < result.list.length ; i++) {
+				html += "<tr name='" + result.list[i].NO + "'>";
+				html += "<td>" + result.list[i].TITLE + "</td>";
+				html += "<td>" + result.list[i].JOINDT + "</td>";
+				html += "<td>" + result.list[i].MEMNAME + "</td>";
+				html += "<td>" + result.list[i].HITS + "</td>";
+				html += "</tr>";
+			}
+
+			$("#tb").html(html);
+			
+			html = "";
+			
+			
+			html += "<span name='1'>처음</span>";
+			
+			if($("input[name='page']").val() == 1) {
+				html += "<span name='1'>이전</span>";
+			} else {
+				html += "<span name='"
+							+ ($("input[name='page']").val() - 1)
+						+ "'>이전</span>";
+			}
+			for(var i = result.pb.startPcount ; i <= result.pb.endPcount ; i++) {
+				if(i == $("input[name='page']").val()) {
+					html += "<span name='" + i + "'><b>" + i + "</b></span>";
+				} else {
+					html += "<span name='" + i + "'>" + i + "</span>";
+				}
+			}
+			
+			if($("input[name='page']").val() == result.pb.maxPcount) {
+				html += "<span name='" + result.pb.maxPcount + "'>다음</span>";
+			} else {
+				html += "<span name='"
+							+($("input[name='page']").val() * 1 + 1)
+						+ "'>다음</span>";
+			}
+			html 
+			+= "<span name='" + result.pb.maxPcount + "'>마지막</span>";
+			
+			$("#pagingArea").html(html);
+			
+		},
+		error : function(result) {
+			alert("error!!");
+		}
+	});
+}
+</script>
+
 </head>
 <body>
+<form action="#" method="post" id="actionForm">
+	<c:choose>
+	<c:when test= "${empty param.page}">
+		<input type="hidden" name="page" value="1" />
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" name="page" value="${param.page}" />
+	</c:otherwise>
+	</c:choose>
+	<input type="hidden" name="searchText" value="${param.searchText}"/>
+	<input type="hidden" name="No" />
+	<input type="hidden" name="bbsNo" value="2"/>
+	<input type="hidden" name="userName" value="한ㅈ우"/>
+	<input type="hidden" name="bbsName" value=""/>
+</form>
 <div class="bg">
 
 	<div class="range">
 		<div class="top">
-			<div class="logo">로곳</div>
+			<div class="logo"></div>
 			<div class="loginInfo">
 				<div class="login">
 					<div class="blank"></div>
-					<div class="user">로그인 정보</div>
+					<div class="user">
+						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
+						  <span id="logout">
+						  	<span class="userName">홍주완님</span>
+						  	<input type="image" src="resources/images/ERP/logout.png" class="img2" border="0" />
+						  </span>
+					</div>
 				</div>
 				<div class="noticeInfo">
 					<div class= "notice">
 						<div class="c">
 							<div class="d">
-								<div class="e">공지사항</div>
+								<div class="e">
+									<div><font size=4>공지사항</font>
+									<marquee id=pf 
+									 width="500" height="20" behavior="loop" direction="up" scrolldelay="1.5" scrollamount="1.0">
+									<FONT size=3pt> 
+									 <UL>※농부 후안은 바리스타 입니다.※</UL>
+									 <UL>※로스팅하는 엠마도 바리스타입니다.※</UL>
+									 <UL>※추출하는 폴도 바리스타입니다.※</UL>
+									</FONT>
+									</marquee>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="blank2"></div>
 				</div>
 			</div>
 		</div>	
 		<div class="depth1_Body">
-			<div class="menu">
-				<div class="menu_1"></div>
-				<div class="menu_2"></div>
-				<div class="menu_3"></div>
-				<div class="menu_4"></div>
-				<div class="menu_5"></div>
-				<div class="menu_6"></div>
+			<div class="menubar">
+				<div class="menuRange">
+					<ul>
+					 <li><a href="#" id="current">전표입력</a>
+					    <ul>
+					     <li><a href="#">서브메뉴1</a></li>
+					     <li><a href="#">서브메뉴2</a></li>
+					     <li><a href="#">서브메뉴3</a></li>
+					     <li><a href="#">서브메뉴4</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">장부관리</a>
+					   <ul>
+					     <li><a href="#">서브메뉴1</a></li>
+					     <li><a href="#">서브메뉴2</a></li>
+					     <li><a href="#">서브메뉴3</a></li>
+					     <li><a href="#">서브메뉴4</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">재무재표</a><ul>
+					     <li><a href="#">서브메뉴1</a></li>
+					     <li><a href="#">서브메뉴2</a></li>
+					     <li><a href="#">서브메뉴3</a></li>
+					     <li><a href="#">서브메뉴4</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">전기재무재표</a><ul>
+					     <li><a href="#">서브메뉴1</a></li>
+					     <li><a href="#">서브메뉴2</a></li>
+					     <li><a href="#">서브메뉴3</a></li>
+					     <li><a href="#">서브메뉴4</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">게시판</a><ul>
+					     <li><a href="#" >공지사항</a></li>
+					     <li><a href="#">부서게시판</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">기본관리</a><ul>
+					     <li><a href="#">서브메뉴1</a></li>
+					     <li><a href="#">서브메뉴2</a></li>
+					     <li><a href="#">서브메뉴3</a></li>
+					     <li><a href="#">서브메뉴4</a></li>
+					    </ul>
+					 </li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="depth2">서브 메뉴</div>
 		<div class="contents">
 			<div class="con_bbs">
 				<div class="bbsInfo">
 					<div class="c">
 						<div class="bbsInfo_d">
-							<div class="e">게시판 이름</div>
+							<div class="e" id="bbsName"></div>
 						</div>
 					</div>
 				</div>
@@ -64,97 +231,7 @@
 											<th>조회수</th>
 										</tr>
 									</thead>
-									<tbody>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>
-										<tr>
-											<td></td>
-											<td></td>
-											<td></td>
-											<td></td>
-										</tr>										
+									<tbody id="tb">
 									</tbody>
 								</table>
 							</div>
@@ -167,10 +244,10 @@
 						<div class="e">
 							<div class="bbsSearch_Body">
 								<div class="SearchText" >
-									<input type="text" style="width: 430px" /> 
+									<input type="text" id="searchText" style="width: 430px" /> 
 								</div>
 								<div class="SearchBtn">
-									<input type="button" value="검색"/>
+									<input type="button" id="searchBtn" value="검색"/>
 								</div>
 							</div>
 						</div>
@@ -184,7 +261,7 @@
 						<div class="c">
 							<div class="bbsControll_d">
 								<div class="e">
-									<div class="pagingArea">페이징</div>
+									<div class="pagingArea" id="pagingArea">페이징</div>
 								</div>
 							</div>
 						</div>
@@ -193,7 +270,7 @@
 						<div class="c">
 							<div class="bbsControll_d">
 								<div class="e">
-									<input type="button" value="글 쓰기" style="width: 80px; height: 30px;" />
+									<input type="button" id="insertBtn" value="글 쓰기" style="width: 80px; height: 30px;" />
 								</div>
 							</div>
 						</div>

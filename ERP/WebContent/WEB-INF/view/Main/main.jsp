@@ -6,13 +6,21 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
-
+<script type="text/javascript">
+$(document).ready(function () {
+/* 공지사항페이지 */
+ 	$("#noticePage").on("click", function(){ 
+		  location.href="bbsList";
+	});
+/* 부서게시판 페이지 */
+	$("#bbsPage").on("click", function(){
+		  location.href="bbsList";
+	});
+});
+</script>
 <title>Insert title here</title>
 </head>
 <body>
-<form action="#" method="post" id="actionForm">
-
-</form>
 <div class="bg">
 
 	<div class="range">
@@ -86,8 +94,8 @@
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">게시판</a><ul>
-					     <li><a href="#">공지사항</a></li>
-					     <li><a href="#">부서게시판</a></li>
+					     <li id="noticePage"><a href="#">공지사항</a></li>
+					     <li id="bbsPage"><a href="#">부서게시판</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
