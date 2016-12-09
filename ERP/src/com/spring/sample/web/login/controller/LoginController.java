@@ -59,6 +59,7 @@ public class LoginController {
 	         session.setAttribute("sMemNo", mem.get("NO"));
 	         session.setAttribute("sMemId", mem.get("ID"));
 	         session.setAttribute("sMemNm", mem.get("NAME"));
+	         session.setAttribute("sMemDn", mem.get("DEPT_NO"));
 	                  //└임시공간에 집어넣는다.
 	         modelMap.put("res","sucess");
 	      }else{

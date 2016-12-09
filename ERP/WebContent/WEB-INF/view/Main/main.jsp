@@ -6,26 +6,17 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
-<script type="text/javascript">
-$(document).ready(function () {
-/* 공지사항페이지 */
- 	$("#noticePage").on("click", function(){ 
-		  location.href="bbsList";
-	});
-/* 부서게시판 페이지 */
-	$("#bbsPage").on("click", function(){
-		  location.href="bbsList";
-	});
-});
-</script>
+<script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <title>Insert title here</title>
 </head>
 <body>
 <div class="bg">
-
+<form action="#" method="post" id="actionForm">
+	<input type="hidden" name="noticeCC" />
+</form>
 	<div class="range">
 		<div class="top">
-			<div class="logo"></div>
+			<div class="logo" id="mainBtn"></div>
 			<div class="loginInfo">
 				<div class="login">
 					<div class="blank"></div>
@@ -33,7 +24,7 @@ $(document).ready(function () {
 						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
 						  <span id="logout">
 						  	<span class="userName">${sMemNm}</span>
-						  	<input type="image" src="resources/images/ERP/logout.png" class="img2" border="0" />
+						  	<input type="image" id="logoutBtn" src="resources/images/ERP/logout.png" class="img2" border="0" />
 						  </span>
 					</div>
 				</div>
@@ -93,7 +84,7 @@ $(document).ready(function () {
 					     <li><a href="#">서브메뉴4</a></li>
 					    </ul>
 					 </li>
-					 <li><a href="#" id="current">게시판</a><ul>
+					 <li ><a href="#" id="current">게시판</a><ul>
 					     <li id="noticePage"><a href="#">공지사항</a></li>
 					     <li id="bbsPage"><a href="#">부서게시판</a></li>
 					    </ul>
