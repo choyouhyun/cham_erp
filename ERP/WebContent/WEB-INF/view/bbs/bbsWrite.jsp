@@ -217,7 +217,7 @@ function removePre(data) {
 				<input type="hidden" name="textFile" id="textFile" />
 				<input type="hidden" name="bbsNo" value="${param.bbsNo}"/>
 	      		<input type="hidden" name="userName" value="${param.userName}"/>
-	      		<input type="text" name="cap" value="${param.cap}">
+	      		<input type="hidden" name="cap" value="${param.cap}">
 			</form>
 					<div class="writeBtns">
 						<div class="c">
