@@ -17,15 +17,15 @@ $(document).ready(function() {
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('../SampleSpring/customerRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
+		window.open('../customerRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
 	});
 	
 	$("#tb").on("click", "tr", function() {
 		var cusNo = new Object(); 
  		$("input[name='cusNo']").val($(this).attr("name"));
-		$("#actionForm").attr("action", "customerRegister");
+		$("#actionForm").attr("action", "customerEdit");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../customerRegister', 'Edit', 'width=100, height=100');");
+		$("#actionForm").attr("onsubmit", "window.open('../customerEdit', 'Edit', 'width=100, height=100');");
 		$("#actionForm").submit(); 
 	});
 });

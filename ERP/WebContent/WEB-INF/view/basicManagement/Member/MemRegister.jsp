@@ -8,7 +8,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/erp_css/basic.css" />
+	href="resources/css/erp_css/basic.css" />
 <title>Insert title here</title>
 
 <!-- <script type="text/javascript">
