@@ -6,7 +6,7 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <link rel="stylesheet" type="text/css"
-	href="../resources/css/erp_css/basic.css" />
+	href="resources/css/erp_css/basic.css" />
 <script type="text/javascript">
 var cnt=1;
 function addBtn(){
