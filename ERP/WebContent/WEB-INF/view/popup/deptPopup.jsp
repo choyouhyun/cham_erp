@@ -8,7 +8,22 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" />
+<style type="text/css">
+.outSide {
+	text-align: center;
+	display: inline-block;
+	width: 500px;
+	height: 800px;
+}
+</style>
 <script type="text/javascript">
+
+// 부모창에다 넣어줄 코딩
+/* $("#testBtn").click(function() {
+	var newWindow;
+	newWindow = window.open("deptPopup","deptPopup","width=500, height=600");
+}); */
+
 $(document).ready(function() {
 	deptAjax();
 	$("#pagingArea").on("click", "span", function() {
@@ -16,17 +31,11 @@ $(document).ready(function() {
 		deptAjax();
 	});
 	
-	$("#registBtn").on("click", function() {
-		window.open('../SampleSpring/deptRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
-	});
-	
 	$("#tb").on("click", "tr", function() {
-		var cusNo = new Object(); 
  		$("input[name='deptNo']").val($(this).attr("name"));
-		$("#actionForm").attr("action", "deptRegister");
-		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../deptRegister', 'Edit', 'width=100, height=100');");
-		$("#actionForm").submit(); 
+		$("#deptNameText", opener.document).val($("#deptName_"+$(this).attr("name")).text());
+		$("#deptNoText", opener.document).val($(this).attr("name"));
+		window.close();
 	});
 });
 
@@ -42,9 +51,8 @@ function deptAjax() {
 			var html = "";
 			for(var i = 0; i < result.list.length; i++){
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td><input type = 'checkbox' id='check_"+i+"'/></td>";
 				html += "<td>"+result.list[i].NO+"</td>";
-				html += "<td>"+result.list[i].NAME+"</td>";
+				html += "<td id='deptName_" + result.list[i].NO + "'>"+result.list[i].NAME+"</td>";
 				html += "<td>"+result.list[i].ETC+"</td>";
 				html += "</tr>";
 			}
@@ -84,74 +92,29 @@ function deptAjax() {
 </script>
 </head>
 <body>
-<div class="bg">
-
-	<div class="range">
-		<div class="top">
-			<div class="logo">로곳</div>
-			<div class="loginInfo">
-				<div class="login">
-					<div class="blank"></div>
-					<div class="user">로그인 정보</div>
-				</div>
-				<div class="noticeInfo">
-					<div class= "notice">
-						<div class="c">
-							<div class="d">
-								<div class="e">공지사항</div>
-							</div>
-						</div>
-					</div>
-					<div class="blank2"></div>
-				</div>
-			</div>
-		</div>	
-		<div class="depth1_Body">
-			<div class="menu">
-				<div class="menu_1"></div>
-				<div class="menu_2"></div>
-				<div class="menu_3"></div>
-				<div class="menu_4"></div>
-				<div class="menu_5"></div>
-				<div class="menu_6"></div>
-			</div>
-		</div>
-		<div class="depth2">서브 메뉴</div>
-		<div class="contents">
-			<div>거래처 리스트 
-				<input type ="text" id="searchText" value=""/>
-				<input type="button" value="검색" id="searchBtn"/>
-			</div>
-			<br/>
-			<div id = "">페이지 순서</div>
-			<br/>
-			<form action="#" id="actionForm" method="post">
-				<input type="hidden" name="page" value="1" />
-				<input type="hidden" name="deptNo" vlaue="0"/>
-			</form>
-			<table border="1" cellspacing="0" align="center">
-				<thead>
-					<tr>
-						<th><input type = "checkbox" id = "checkAll"/></th>
-						<th>부서코드 ▼</th>
-						<th>부서명 ▼</th>
-						<th>적요 ▼</th>
-					</tr>
-				</thead>
-				<tbody id="tb">
-				</tbody>
-			</table>
-			<div id="pagingArea">
-			</div>
-			<br/>
-			<input type="button" value="등록" id="registBtn" />
-			<input type="button" value="선택삭제" onclick="clearBtn();" />
-			<br/>
-		
-		</div>
+<div class="outSide">
+	<div>
+		거래처 리스트 <input type="text" id="searchText" value="" /> <input
+			type="button" value="검색" id="searchBtn" />
 	</div>
+	<br />
+	<form action="#" id="actionForm" method="post">
+		<input type="hidden" name="page" value="1" /> 
+		<input type="hidden" id="deptNo" name="deptNo" vlaue="0" />
+		<input type="hidden" id="deptName" name="deptName" />
+	</form>
+	<table border="1" cellspacing="0" align="center">
+		<thead>
+			<tr>
+				<th>부서코드 ▼</th>
+				<th>부서명 ▼</th>
+				<th>적요 ▼</th>
+			</tr>
+		</thead>
+		<tbody id="tb">
+		</tbody>
+	</table>
+	<div id="pagingArea"></div>
 </div>
-
-
 </body>
 </html>

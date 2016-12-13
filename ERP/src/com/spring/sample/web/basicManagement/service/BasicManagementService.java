@@ -73,4 +73,64 @@ public class BasicManagementService implements IBasicManagementService{
 		return iBasicManagementDao.updateDept(params);
 	}
 
+	@Override
+	public int getRankCount(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.getRankCount(params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> rankAjax(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.rankAjax(params);
+	}
+
+	@Override
+	public String insertRank(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.insertAjax(params);
+	}
+
+	@Override
+	public int deleteCus(String string) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.deleteCus(string);
+	}
+
+	@Override
+	public int deleteDept(String string) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.deleteDept(string);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getSub() throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.getSub();
+	}
+
+	@Override
+	public HashMap<String, String> regSub(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.regSub(params);
+	}
+
+	@Override
+	public String subInsert(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.subInsert(params);
+	}
+
+	@Override
+	public int subUpdate(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.subUpdate(params);
+	}
+
+	@Override
+	public int subDelete(String string) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.subDelete(string);
+	}
+
 }

@@ -39,4 +39,86 @@
 							EMAIL = #textEmailId# || '@' || #textEmail#
 		WHERE NO = #cusNo#
 	</update>
+	
+	<select id="getDeptCount" parameterClass="java.util.HashMap" resultClass="integer">
+		SELECT COUNT(*) AS CUSCNT
+		FROM DEPT
+	</select>
+	
+	<select id="deptAjax" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT A.NO, A.NAME, A.ETC
+		FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO, NAME, ETC
+		      FROM DEPT) A
+		WHERE A.RNUM BETWEEN #start# AND #end#
+	</select>
+	
+	<insert id="insertDept" parameterClass="java.util.HashMap">
+		INSERT INTO DEPT (NO, NAME, ETC)
+		VALUES (DEPT_SEQ.NEXTVAL, #textName#, #textEtc#)
+	</insert>
+	
+	<select id="getDeptCon" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT NO, NAME, ETC
+		FROM DEPT
+		WHERE NO = #deptNo#
+	</select>
+	
+	<update id="updateDept" parameterClass="java.util.HashMap">
+		UPDATE DEPT SET NAME = #textName#,
+						ETC = #textEtc#
+		WHERE NO = #deptNo#
+	</update>
+	
+	<select id="rankAjax" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+		SELECT A.NO, A.NAME
+		FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO, NAME
+		      FROM RANK) A
+		WHERE A.RNUM BETWEEN #start# AND #end#	
+	</select>
+	
+	<select id="getRankCount" parameterClass="java.util.HashMap" resultClass="integer">
+		SELECT COUNT(*) AS CUSCNT
+		FROM RANK
+	</select>
+	
+	<insert id="insertRank" parameterClass="java.util.HashMap">
+		INSERT INTO RANK (NO, NAME)
+		VALUES (RANK_SEQ.NEXTVAL, #textName#)
+	</insert>
+	
+	<delete id="deleteCus" parameterClass="String">
+		DELETE FROM CUS
+		WHERE NO=#NO#
+	</delete>
+	
+	<delete id="deleteDept" parameterClass="String">
+		DELETE FROM DEPT
+		WHERE NO=#NO#
+	</delete>
+	
+	<select id="getSub" resultClass="java.util.HashMap">
+	SELECT A.NO NO,A.DEPTH DEPTH,A.NAME NAME,A.DECHA DECHA,A.ETC ETC,B.NO SUB_NO,B.NAME SUB_NAME, A.SUBSEC SUBSEC,A.DEPTH FROM SUB A LEFT OUTER JOIN SUB B
+	ON A.SUB_NO=B.NO
+	Start with A.DEPTh=0
+  	connect by A.SUB_NO=prior A.NO
+    ORDER siblings by A.SUBSEC NULLS FIRST,B.NO
+	</select>
+	<select id="regSub" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	SELECT DEPTH, SUBSEC FROM SUB
+	where NO= #subNo#
+	</select>
+	<insert id="subInsert" parameterClass="java.util.HashMap">
+	Insert Into SUB(NO,DEPTH,NAME,DECHA,ETC,SUB_NO,SUBSEC) values(SUB_SEQ.NEXTVAL,#depth#+1,#subName#,#dechaSec#,#etc#,#subNo#,#subSec#)
+	</insert>
+	<update id="subUpdate" parameterClass="java.util.HashMap" >
+	UPDATE SUB SET  NAME=#subName# ,DECHA=#dechaSec#,ETC=#etc#
+	WHERE NO = #NO2#
+	</update>
+	<delete id="subDelete" parameterClass="String">
+	DELETE FROM SUB WHERE NO = #NO#
+	</delete>
+	<select id="getBank" resultClass="java.util.HashMap">
+	SELECT to_char(NO, 'FM000') NO,NAME
+	FROM BANK
+	</select>
 </sqlMap>
