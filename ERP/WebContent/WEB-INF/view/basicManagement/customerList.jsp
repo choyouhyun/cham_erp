@@ -17,16 +17,20 @@ $(document).ready(function() {
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('../customerRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
+		window.open('customerRegister','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
-	$("#tb").on("click", "tr", function() {
+	$("#tb").on("click", "td", function() {
 		var cusNo = new Object(); 
- 		$("input[name='cusNo']").val($(this).attr("name"));
-		$("#actionForm").attr("action", "customerEdit");
+ 		$("input[name='cusNo']").val($(this).parents("tr").attr("name"));
+		$("#actionForm").attr("action", "customerRegister");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../customerEdit', 'Edit', 'width=100, height=100');");
+		$("#actionForm").attr("onsubmit", "window.open('../customerRegister', 'Edit', 'width=400, height=600');");
 		$("#actionForm").submit(); 
+	});
+	
+	$("#deleteBtn").click(function() {
+		deleteCus();
 	});
 });
 
@@ -42,7 +46,7 @@ function cusAjax() {
 			var html = "";
 			for(var i = 0; i < result.list.length; i++){
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td><input type = 'checkbox' id='check_"+i+"'/></td>";
+				html += "<th><input type = 'checkbox' name='deleteCheck' value='"+ result.list[i].NO +"'/></th>";
 				html += "<td>"+result.list[i].NO+"</td>";
 				html += "<td>"+result.list[i].NAME+"</td>";
 				html += "<td>"+result.list[i].CEO+"</td>";
@@ -80,6 +84,23 @@ function cusAjax() {
 			html += "<span name='" + result.pb.maxPcount + "'>마지막</span>";
 			
 			$("#pagingArea").html(html);
+		},
+		error : function() {
+			alert("error!!!");
+		}
+	});
+}
+
+function deleteCus() {
+	var params = $("#actionForm").serializeArray();
+	
+	$.ajax({
+		type : "post",
+		url : "deleteCus",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			cusAjax();
 		},
 		error : function() {
 			alert("error!!!");
@@ -133,7 +154,6 @@ function cusAjax() {
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
 				<input type="hidden" name="cusNo" />
-			</form>
 			<table border="1" cellspacing="0" align="center">
 				<thead>
 					<tr>
@@ -151,11 +171,13 @@ function cusAjax() {
 				<tbody id="tb">
 				</tbody>
 			</table>
+			</form>
+			
 			<div id="pagingArea">
 			</div>
 			<br/>
 			<input type="button" value="등록" id="registBtn" />
-			<input type="button" value="선택삭제" onclick="clearBtn();" />
+			<input type="button" value="선택삭제" id="deleteBtn" />
 			<br/>
 		
 		</div>

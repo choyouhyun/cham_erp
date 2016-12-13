@@ -24,4 +24,24 @@ public interface IBasicManagementService {
 	public HashMap<String, String> getDeptCon(HashMap<String, String> params) throws Throwable;
 
 	public int updateDept(HashMap<String, String> params) throws Throwable;
+
+	public int getRankCount(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> rankAjax(HashMap<String, String> params) throws Throwable;
+
+	public String insertRank(HashMap<String, String> params) throws Throwable;
+
+	public int deleteCus(String string) throws Throwable;
+
+	public int deleteDept(String string) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getSub() throws Throwable;
+
+	public HashMap<String, String> regSub(HashMap<String, String> params) throws Throwable;
+
+	public String subInsert(HashMap<String, String> params) throws Throwable;
+
+	public int subUpdate(HashMap<String, String> params) throws Throwable;
+
+	public int subDelete(String string) throws Throwable;
 }

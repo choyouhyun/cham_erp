@@ -10,17 +10,10 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" />
 <script type="text/javascript">
 $(document).ready(function() {
-	if($("#deptNo").val() != ""){
-		getDeptCon();
-		$("#saveBtn").val("수정");
-	}
+	
 	//저장버튼
 	$("#saveBtn").on("click", function() {
-		if($("#deptNo").val() != ""){
-			updateDept();
-		}else {
-			insertDept();
-		}
+		insertDept();
 	});
 	
 	
@@ -35,7 +28,7 @@ function insertDept() {
 	
 	$.ajax({
 		type : "post",
-		url : "insertDept",
+		url : "insertRank",
 		dataType : "json",
 		data : params,
 		success : function() {
@@ -46,46 +39,12 @@ function insertDept() {
 		}
 	});
 }
-
-function getDeptCon() {
-	var params = $("#actionForm").serialize();
-	
-	$.ajax({
-		type : "post",
-		url : "getDeptCon",
-		dataType : "json",
-		data : params,
-		success : function(result) {
-			$("#textName").val(result.list.NAME);
-			$("#textEtc").val(result.list.ETC);
-		},
-		error : function() {
-			alert("error!");
-		}
-	});
-}
-
-function updateDept() {
-	var params = $("#actionForm").serialize();
-	
-	$.ajax({
-		type : "post",
-		url : "updateDept",
-		dataType : "json",
-		data : params,
-		success : function() {
-			window.close();
-		},
-		error : function() {
-			alert("error!");
-		}
-	});
-}
 </script>
 </head>
-<body>
+<body onresize="parent.resizeTo(800,600)"
+	onload="parent.resizeTo(800,600)">
 	<h1>
-		<center>부서 등록</center>
+		<center>직급 등록</center>
 	</h1>
 	<center>
 		<form action="#" id="actionForm" method="post">
@@ -95,7 +54,7 @@ function updateDept() {
 				<caption></caption>
 				<tbody>
 					<tr>
-						<th scope="row">부서 명</th>
+						<th scope="row">직급명</th>
 						<td scope="row">
 							<input type="text" maxlength="" id="textName" name="textName"/>
 						</td>

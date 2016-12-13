@@ -17,16 +17,18 @@ $(document).ready(function() {
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('../SampleSpring/deptRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
+		window.open('deptRegister','','width=400, height=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
-	$("#tb").on("click", "tr", function() {
-		var cusNo = new Object(); 
- 		$("input[name='deptNo']").val($(this).attr("name"));
+	$("#tb").on("click", "td", function() {
+ 		$("input[name='deptNo']").val($(this).parents("tr").attr("name"));
 		$("#actionForm").attr("action", "deptRegister");
-		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../deptRegister', 'Edit', 'width=100, height=100');");
+		$("#actionForm").attr("target", "deptRegister");
+		$("#actionForm").attr("onsubmit", "window.open('../deptRegister', 'deptRegister', 'width=300, height=300');");
 		$("#actionForm").submit(); 
+	});
+	$("#deleteBtn").click(function() {
+		deleteDept();
 	});
 });
 
@@ -42,7 +44,7 @@ function deptAjax() {
 			var html = "";
 			for(var i = 0; i < result.list.length; i++){
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td><input type = 'checkbox' id='check_"+i+"'/></td>";
+				html += "<th><input type = 'checkbox' name='deleteCheck' value='"+ result.list[i].NO +"'/></th>";
 				html += "<td>"+result.list[i].NO+"</td>";
 				html += "<td>"+result.list[i].NAME+"</td>";
 				html += "<td>"+result.list[i].ETC+"</td>";
@@ -75,6 +77,23 @@ function deptAjax() {
 			html += "<span name='" + result.pb.maxPcount + "'>마지막</span>";
 			
 			$("#pagingArea").html(html);
+		},
+		error : function() {
+			alert("error!!!");
+		}
+	});
+}
+
+function deleteDept() {
+	var params = $("#actionForm").serializeArray();
+	
+	$.ajax({
+		type : "post",
+		url : "deleteDept",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			deptAjax();
 		},
 		error : function() {
 			alert("error!!!");
@@ -127,8 +146,7 @@ function deptAjax() {
 			<br/>
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
-				<input type="hidden" name="deptNo" vlaue="0"/>
-			</form>
+				<input type="hidden" name="deptNo"/>
 			<table border="1" cellspacing="0" align="center">
 				<thead>
 					<tr>
@@ -141,11 +159,12 @@ function deptAjax() {
 				<tbody id="tb">
 				</tbody>
 			</table>
+			</form>
 			<div id="pagingArea">
 			</div>
 			<br/>
 			<input type="button" value="등록" id="registBtn" />
-			<input type="button" value="선택삭제" onclick="clearBtn();" />
+			<input type="button" value="선택삭제" id="deleteBtn" />
 			<br/>
 		
 		</div>
