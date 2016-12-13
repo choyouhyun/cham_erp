@@ -33,7 +33,7 @@ public class BasicManagementController {
 	@RequestMapping(value="/customerList")
 	public ModelAndView CustomerList(HttpServletRequest request, @RequestParam HashMap<String, String> params, ModelAndView modelAndView) {
 
-		modelAndView.setViewName("Customer/CustomerList");
+		modelAndView.setViewName("basicManagement/customerList");
 		return modelAndView;
 	}
 
@@ -302,7 +302,7 @@ public class BasicManagementController {
 		if(params.get("NO2")!=null){
 			modelAndView.addObject("params", params);
 		}
-		modelAndView.setViewName("Subject/SubjectRegister");
+		modelAndView.setViewName("basicManagement/SubjectRegister");
 		return modelAndView;
 	}
 	@RequestMapping(value="/subInput") 
