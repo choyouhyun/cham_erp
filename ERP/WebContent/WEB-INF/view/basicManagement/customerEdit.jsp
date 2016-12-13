@@ -125,7 +125,7 @@ function editCus() {
 <body onresize="parent.resizeTo(800,600)"
 	onload="parent.resizeTo(800,600)">
 	<h1>
-		<center>거래처 등록</center>
+		<center>거래처 등록</center>4
 	</h1>
 	<center>
 		<form action="#" id="editForm"method="post">
