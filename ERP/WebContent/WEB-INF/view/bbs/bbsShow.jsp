@@ -36,7 +36,8 @@ $(document).ready(function(){
 				data : params,
 				success : function(result) {
 					if(result.res > 0) {
-						location.href = "bbsList";
+						var cap=$('[name="cap"]').val();
+						location.href = "bbsList?cap="+cap+"";
 					} else {
 						alert ("삭제가 안된다.");
 					}

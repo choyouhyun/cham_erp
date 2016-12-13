@@ -101,7 +101,42 @@
 			</div>
 		</div>
 		<div class="contents">
-
+			<div class="memInfo">
+				<div class="pictureBody">
+					<div class="c">
+						<div class="memPicture_d">
+							<div class="e">
+								<div class="memPicture"><img alt="memImg" src="resources/images/memImg/${sMemImg}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="infoBody">
+					<div class="c">
+						<div class="memInfo_d">
+							<div class="e">
+								<div class="memInfo_range">
+									<div class="memNo">사원번호 : ${sMemNo}</div>
+									<div class="memNameNRank"><b>${sMemNm}</b>${sMemRname}</div>
+									<div class="memDept">부서 : ${sMemDname}</div>
+									<div class="memCell">H.P : ${sMemCell}</div>
+									<div class="memEmail">E-mail : ${sMemEmail} </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="boards">
+				<div class="noticeBody">
+					<div class="boardName">공지사항</div>
+					<div class="bbsNotice"></div>
+				</div>
+				<div class="deptBbsBody">
+					<div class="boardName">부서게시판</div>
+					<div class="bbsDept"></div>
+				</div>
+			</div>
 		
 		</div>
 	</div>

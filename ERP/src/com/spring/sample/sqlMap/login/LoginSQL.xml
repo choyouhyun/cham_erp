@@ -6,8 +6,10 @@
 	<typeAlias alias="loginBean" 
 			   type="com.spring.sample.web.login.bean.LoginBean" />
 	<select id="getMem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-	   Select NO,ID,NAME,DEPT_NO
-	   FROM MEMBER
+	   Select A.NO,ID,A.NAME,DEPT_NO,CELL,EMAIL,B.NAME AS RANKNAME,C.NAME AS DEPTNAME, IMG
+	   FROM MEMBER A
+     INNER JOIN RANK B ON A.RANK_NO = B.NO
+     INNER JOIN DEPT C ON A.DEPT_NO = C.NO
 	   WHERE ID= #ID#
 	   AND PW= #PW#
    </select>
