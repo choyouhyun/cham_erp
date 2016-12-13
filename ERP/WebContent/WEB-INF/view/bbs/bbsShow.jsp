@@ -10,6 +10,7 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/bbsList.css" /><!-- bbsList -->
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/bbsShows.css" /><!-- bbsShow -->
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <script type="text/javascript">
 $(document).ready(function(){
 	var html = "";
@@ -58,18 +59,19 @@ $(document).ready(function(){
 	<input type="hidden" name="bbsNo" value="${param.bbsNo}"/>
 	<input type="hidden" name="bbsName" value="${param.bbsName}"/>
 	<input type="hidden" name="No" value="${param.No}" />
+	<input type="text" name="cap" value="${param.cap}">
 </form>
 	<div class="range">
 		<div class="top">
-			<div class="logo"></div>
+			<div class="logo" id="mainBtn"></div>
 			<div class="loginInfo">
 				<div class="login">
 					<div class="blank"></div>
 					<div class="user">
 						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
 						  <span id="logout">
-						  	<span class="userName">홍주완님</span>
-						  	<input type="image" src="resources/images/ERP/logout.png" class="img2" border="0" />
+						  	<span class="userName">${sMemNm}</span>
+						  	<input type="image" id="logoutBtn" src="resources/images/ERP/logout.png" class="img2" border="0" />
 						  </span>
 					</div>
 				</div>
@@ -130,8 +132,8 @@ $(document).ready(function(){
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">게시판</a><ul>
-					     <li><a href="#">공지사항</a></li>
-					     <li><a href="#">부서게시판</a></li>
+					     <li id="noticePage"><a href="#">공지사항</a></li>
+					     <li id="bbsPage"><a href="#">부서게시판</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
@@ -146,6 +148,7 @@ $(document).ready(function(){
 			</div>
 		</div>
 		<div class="contents">
+
 			<div class="con_bbs">
 			<div class="con_bbs">
 				<div class="bbsInfo">
@@ -239,6 +242,5 @@ $(document).ready(function(){
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

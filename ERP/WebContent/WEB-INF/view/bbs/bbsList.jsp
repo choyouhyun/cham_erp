@@ -9,9 +9,13 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/bbsList.css" /><!-- bbsList -->
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
+<script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <script type="text/javascript">
+
+
 $(document).ready(function() {
 	refreshList();
+	console.log($("input[name='noticeCC']").val());
 
 	$("#searchBtn").on("click", function() {
 		$("input[name='searchText']").val($("#searchText").val());
@@ -107,6 +111,7 @@ function refreshList() {
 </head>
 <body>
 <form action="#" method="post" id="actionForm">
+<input type="hidden" value="${param.cap}" name="cap">
 	<c:choose>
 	<c:when test= "${empty param.page}">
 		<input type="hidden" name="page" value="1" />
@@ -117,23 +122,23 @@ function refreshList() {
 	</c:choose>
 	<input type="hidden" name="searchText" value="${param.searchText}"/>
 	<input type="hidden" name="No" />
-	<input type="hidden" name="bbsNo" value="2"/>
-	<input type="hidden" name="userName" value="한ㅈ우"/>
+	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
+	<input type="hidden" name="userName" value="${sMemNm}"/>
+	<input type="hidden" name="noticeCC" value="1"/>
 	<input type="hidden" name="bbsName" value=""/>
 </form>
 <div class="bg">
-
 	<div class="range">
 		<div class="top">
-			<div class="logo"></div>
+			<div class="logo" id="mainBtn"></div>
 			<div class="loginInfo">
 				<div class="login">
 					<div class="blank"></div>
 					<div class="user">
 						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
 						  <span id="logout">
-						  	<span class="userName">홍주완님</span>
-						  	<input type="image" src="resources/images/ERP/logout.png" class="img2" border="0" />
+						  	<span class="userName">${sMemNm}</span>
+						  	<input type="image" id="logoutBtn" src="resources/images/ERP/logout.png" class="img2" border="0" />
 						  </span>
 					</div>
 				</div>
@@ -194,8 +199,8 @@ function refreshList() {
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">게시판</a><ul>
-					     <li><a href="#" >공지사항</a></li>
-					     <li><a href="#">부서게시판</a></li>
+					     <li id="noticePage"><a href="#">공지사항</a></li>
+					     <li id="bbsPage"><a href="#">부서게시판</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
@@ -281,6 +286,5 @@ function refreshList() {
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

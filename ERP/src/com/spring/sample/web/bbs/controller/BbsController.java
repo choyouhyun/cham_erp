@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,8 +31,10 @@ public class BbsController {
 	 public IPagingService iPagingService;
 		@RequestMapping(value="/bbsList")
 		public ModelAndView bbsList(HttpServletRequest request,
-								  ModelAndView modelAndView)
+									HttpSession session,
+									ModelAndView modelAndView)
 									throws Throwable {
+
 			
 	/*		String searchText = request.getParameter("searchText");
 			
@@ -40,7 +43,12 @@ public class BbsController {
 			
 			modelAndView.addObject("list", list);
 			*/
-			modelAndView.setViewName("bbs/bbsList");
+		      if(session.getAttribute("sMemNo")!=null){
+					modelAndView.setViewName("bbs/bbsList");
+			      }else{
+			         modelAndView.setViewName("redirect:login");
+			      }
+
 			
 			return modelAndView;
 		}
@@ -56,7 +64,11 @@ public class BbsController {
 			PagingBean pb = iPagingService.getPageingBean(
 					Integer.parseInt(params.get("page")), 
 					iBbsService.getBbsCount(params));
-			
+			if(params.get("cap")==null||params.get("cap")==""){
+				params.put("bbsNo", "80");
+				
+			}
+			System.out.println(params);
 			params.put("start", Integer.toString(pb.getStartCount()));
 			params.put("end", Integer.toString(pb.getEndCount()));
 			
@@ -75,8 +87,14 @@ public class BbsController {
 		}
 		@RequestMapping("/bbsWrite")
 		public ModelAndView bbsWrite(HttpServletRequest request,
-								  ModelAndView modelAndView) {
-			modelAndView.setViewName("bbs/bbsWrite");
+									HttpSession session,
+									ModelAndView modelAndView) {
+		      if(session.getAttribute("sMemNo")!=null){
+					modelAndView.setViewName("bbs/bbsWrite");
+			      }else{
+			         modelAndView.setViewName("redirect:login");
+			      }
+
 			
 			return modelAndView;
 		}
@@ -88,7 +106,9 @@ public class BbsController {
 				ModelAndView modelAndView) throws Throwable {
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
-			
+			if(params.get("cap")==null||params.get("cap")==""){
+				params.put("bbsNo", "80");
+			}
 			String res = iBbsService.insertBbs(params);
 			
 			modelMap.put("res", res);
@@ -101,16 +121,23 @@ public class BbsController {
 		}
 		@RequestMapping(value="/bbsShow")
 		public ModelAndView bbsShow(HttpServletRequest request,
-								  @RequestParam HashMap<String, String> params,
-								  ModelAndView modelAndView) throws Throwable {
+									HttpSession session,
+									@RequestParam HashMap<String, String> params,
+									ModelAndView modelAndView) throws Throwable {
 			int res = iBbsService.hitUp(params);
 			HashMap<String, String> con
 						= iBbsService.getBbsCon(params);
 
 
 			modelAndView.addObject("con", con); //데이토 가져오기
-			
-			modelAndView.setViewName("bbs/bbsShow"); 
+
+		      if(session.getAttribute("sMemNo")!=null){
+					modelAndView.setViewName("bbs/bbsShow"); 
+			      }else{
+			         modelAndView.setViewName("redirect:login");
+			      }
+
+
 			
 			return modelAndView;
 		}
@@ -134,16 +161,21 @@ public class BbsController {
 		}
 		@RequestMapping(value="/bbsUpdate")
 		public ModelAndView bbsUpdate(HttpServletRequest request,
-								  @RequestParam HashMap<String, String> params,
-								  ModelAndView modelAndView) throws Throwable {
+										HttpSession session,
+										@RequestParam HashMap<String, String> params,
+										ModelAndView modelAndView) throws Throwable {
 			
 			HashMap<String, String> con
 						= iBbsService.getBbsCon(params);
 			
 			modelAndView.addObject("con", con); //데이터 가져오기
 			
-			modelAndView.setViewName("test/bbsUpdate"); 
-			
+		      if(session.getAttribute("sMemNo")!=null){
+					modelAndView.setViewName("bbs/bbsUpdate"); 
+			      }else{
+			         modelAndView.setViewName("redirect:login");
+			      }
+
 			return modelAndView;
 		}
 		@RequestMapping(value = "/updateBbs")
