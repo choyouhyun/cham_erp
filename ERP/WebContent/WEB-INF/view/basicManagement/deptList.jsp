@@ -10,32 +10,32 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" />
 <script type="text/javascript">
 $(document).ready(function() {
-	cusAjax();
+	deptAjax();
 	$("#pagingArea").on("click", "span", function() {
 		$("input[name='page']").val($(this).attr("name"));
-		cusAjax();
+		deptAjax();
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('../SampleSpring/customerRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
+		window.open('../SampleSpring/deptRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
 	});
 	
 	$("#tb").on("click", "tr", function() {
 		var cusNo = new Object(); 
- 		$("input[name='cusNo']").val($(this).attr("name"));
-		$("#actionForm").attr("action", "customerRegister");
+ 		$("input[name='deptNo']").val($(this).attr("name"));
+		$("#actionForm").attr("action", "deptRegister");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../customerRegister', 'Edit', 'width=100, height=100');");
+		$("#actionForm").attr("onsubmit", "window.open('../deptRegister', 'Edit', 'width=100, height=100');");
 		$("#actionForm").submit(); 
 	});
 });
 
-function cusAjax() {
+function deptAjax() {
 	var params = $("#actionForm").serialize();
 	
 	$.ajax({
 		type : "post",
-		url : "cusAjax",
+		url : "deptAjax",
 		dataType : "json",
 		data : params,
 		success : function(result) {
@@ -45,12 +45,7 @@ function cusAjax() {
 				html += "<td><input type = 'checkbox' id='check_"+i+"'/></td>";
 				html += "<td>"+result.list[i].NO+"</td>";
 				html += "<td>"+result.list[i].NAME+"</td>";
-				html += "<td>"+result.list[i].CEO+"</td>";
-				html += "<td>"+result.list[i].TEL+"</td>";
-				html += "<td>"+result.list[i].CELL+"</td>";
-				html += "<td>"+result.list[i].POST+"</td>";
-				html += "<td>"+result.list[i].ADDRESS+"</td>";
-				html += "<td>"+result.list[i].EMAIL+"</td>";
+				html += "<td>"+result.list[i].ETC+"</td>";
 				html += "</tr>";
 			}
 			$("#tb").html(html);
@@ -132,20 +127,15 @@ function cusAjax() {
 			<br/>
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
-				<input type="hidden" name="cusNo" />
+				<input type="hidden" name="deptNo" vlaue="0"/>
 			</form>
 			<table border="1" cellspacing="0" align="center">
 				<thead>
 					<tr>
 						<th><input type = "checkbox" id = "checkAll"/></th>
-						<th>거래처코드 ▼</th>
-						<th>거래처명 ▼</th>
-						<th>대표자명 ▼</th>
-						<th>전화번호 ▼</th>
-						<th>핸드폰번호 ▼</th>
-						<th>우편번호 ▼</th>
-						<th>주소 ▼</th>
-						<th>이메일 ▼</th>
+						<th>부서코드 ▼</th>
+						<th>부서명 ▼</th>
+						<th>적요 ▼</th>
 					</tr>
 				</thead>
 				<tbody id="tb">

@@ -88,9 +88,14 @@
 	background: #777777;
 }
 .contentsText {
+	display: inline-block;
 	width: 723px;
 	height: 456px;
 	background-color: #ffffff;
+	font-size: 11pt;
+	color: #000000;
+	text-align: left;
+	padding: 3px;
 }
 /* 업로드 된 파일 */
 .showFile {

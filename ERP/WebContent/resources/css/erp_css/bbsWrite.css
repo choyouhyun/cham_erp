@@ -1,5 +1,5 @@
 @CHARSET "UTF-8";
-.title_d, .file_d, .btns_d {
+.file_d,.title_d, .file_d, .btns_d {
 	display: table-row;
 	height: 40px;
 }
@@ -13,6 +13,7 @@
 	width: 750px;
 	height: 580px;
 	background: #ffccdd;
+	font-size: 0pt;
 }
 .writeTitle {
 	display: inline-block;
@@ -60,6 +61,33 @@
 .btnPart2 {
 	display: inline-block;
 	width: 50px;
+	height: 25px;
+	background: #eeeeff;
+}
+.showFile {
+	display: inline-block;
+	width: 750px;
+	height: 40px;
+	background: #ffbb00;
+	text-align: left;
+	font-size: 11pt;
+}
+.btnsBodyU {
+	display: inline-block;
+	width: 140px;
+	height: 25px;
+	background: #cbcb00;
+	text-align: center;
+}
+.btnPart3 {
+	display: inline-block;
+	width: 70px;
+	height: 25px;
+	background: #cbcb00;
+}
+.btnPart4 {
+	display: inline-block;
+	width: 70px;
 	height: 25px;
 	background: #eeeeff;
 }

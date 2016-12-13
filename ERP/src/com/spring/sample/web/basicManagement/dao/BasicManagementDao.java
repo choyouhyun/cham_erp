@@ -1,3 +1,4 @@
+
 package com.spring.sample.web.basicManagement.dao;
 
 import java.sql.SQLException;
@@ -59,5 +60,52 @@ public class BasicManagementDao implements IBasicManagementDao{
 	public int updateCus(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return sqlMapClient.update("BasicManagement.updateCus", params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> deptAjax(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("BasicManagement.deptAjax", params);
+	}
+
+	@Override
+	public int getDeptCount(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (int) sqlMapClient.queryForObject("BasicManagement.getDeptCount", params);
+	}
+
+	@Override
+	public String insertDept(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		String res = "false";
+		
+		sqlMapClient.startTransaction();// 여기서부터 트렌젝션을 시작하겠다
+		sqlMapClient.startBatch();
+		try {
+			sqlMapClient.insert("BasicManagement.insertDept", params);
+			
+			sqlMapClient.executeBatch();
+			sqlMapClient.commitTransaction(); // 적용을 해준다
+			
+			res = "true";
+		} catch (Exception e) {
+			res = "false";
+			e.printStackTrace();
+		}
+		
+		sqlMapClient.endTransaction();
+		return res;
+	}
+
+	@Override
+	public HashMap<String, String> getDeptCon(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (HashMap<String, String>) sqlMapClient.queryForObject("BasicManagement.getDeptCon", params);
+	}
+
+	@Override
+	public int updateDept(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlMapClient.update("BasicManagement.updateDept", params);
 	}
 }

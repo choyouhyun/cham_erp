@@ -21,7 +21,7 @@
 	display: inline-block;
 	width: 1024px;
 	height: 820px;
-	background-color: #ccfaee;
+	background-color: #ccfa00;
 	font-size: 0pt;
 }
 /* 게시판 이름 (부서) */
@@ -32,6 +32,7 @@
 	background-color: #eada99;
 	font-size: 12pt;
 	text-align: left;
+	vertical-align: top;
 }
 /* 검색창 부분 */
 .bbsSearch {
@@ -40,12 +41,14 @@
 	height: 60px;
 	background-color: #d9dc99;
 	text-align: center;
+	vertical-align: top;
 }
 .bbsSearch_Body {
 	display: inline-block;
 	width: 500px;
 	height: 30px;
-
+	text-align: left;
+	font-size: 0pt;
 }
 .SearchText {
 	display: inline-block;
@@ -66,6 +69,7 @@
 	height: 630px;
 	background-color: #ffffff;
 	font-size: 11pt;
+	vertical-align: top;
 }
 td {
 	width: 100px;
@@ -80,6 +84,8 @@ td {
 	width: 1024px;
 	height: 50px;
 	background-color: #dd88c7;
+	text-align: left;
+	font-size: 0pt;
 }
 .controll_blank {
 	display: inline-block;
@@ -93,6 +99,7 @@ td {
 	height: 50px;
 	background-color: #dc18c0;
 	vertical-align: top;
+	text-align: center;
 }
 .pagingArea {
 	display: inline-block;
@@ -108,6 +115,7 @@ td {
 	height: 50px;
 	background-color: #ccdf00;
 	vertical-align: top;
+	text-align: center;
 }
 
 

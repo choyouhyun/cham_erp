@@ -5,15 +5,10 @@
 <sqlMap namespace="login">
 	<typeAlias alias="loginBean" 
 			   type="com.spring.sample.web.login.bean.LoginBean" />
-	<select id="getUserInfo" 
-			parameterClass="loginBean" 
-			resultClass="loginBean">
-		SELECT USER_NO AS userNo, 
-			   USER_ID AS userId, 
-			   USER_NM AS userNm, 
-			   USER_PW AS userPw
-		FROM USER_INFO
-		WHERE USER_ID = #userId#
-		AND USER_PW = #userPw#
-	</select>
+	<select id="getMem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	   Select NO,ID,NAME,DEPT_NO
+	   FROM MEMBER
+	   WHERE ID= #ID#
+	   AND PW= #PW#
+   </select>
 </sqlMap>

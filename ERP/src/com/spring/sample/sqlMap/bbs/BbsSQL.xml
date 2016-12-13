@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="bbs">
+	<select id="getBbsCount" parameterClass="java.util.HashMap"
+				  resultClass="Integer">
+		SELECT COUNT(*) AS CNT
+		FROM BBS
+		WHERE 1 = 1
+		<isNotEmpty property="searchText">
+			AND TITLE LIKE '%' || #searchText# || '%'
+		</isNotEmpty>
+			AND BOARD_NO = (SELECT NO FROM BOARD WHERE DEPT = #bbsNo# )	
+	</select>
+	
+	<select id="getBbs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	SELECT A.NO,A.TITLE, A.JOINDT, A.MEMNAME, A.HITS,A.NAME
+	FROM (SELECT ROW_NUMBER() OVER(ORDER BY A.NO DESC) AS RNUM, A.NO,B.NAME, TITLE,TO_CHAR(A.UP_DATE, 'YYYY-MM-DD') AS JOINDT,
+ 		C.NAME AS MEMNAME,A.HITS FROM BBS A
+    	INNER JOIN BOARD B ON A.BOARD_NO = B.NO
+      	INNER JOIN MEMBER C ON A.MEM_NO = C.NO
+   		WHERE 1=1
+		<isNotEmpty property="searchText">
+			AND TITLE LIKE '%' || #searchText# || '%'
+		</isNotEmpty>
+			AND BOARD_NO = (SELECT NO FROM BOARD WHERE DEPT = #bbsNo# )	
+
+	)A
+	WHERE A.RNUM BETWEEN #start# AND #end#
+	</select>
+	<insert id="insertBbs"
+			parameterClass="java.util.HashMap">
+		INSERT INTO BBS(NO, MEM_NO, BOARD_NO, TITLE, CON, UPLOAD, HITS)
+		VALUES(BBS_SEQ.NEXTVAL, (SELECT NO FROM MEMBER WHERE NAME LIKE #userName#),(SELECT NO FROM BOARD WHERE DEPT = #bbsNo#), #bbsTitle#, #bbsCon#, #textFile#, 0)		
+	</insert>
+	<select id="getBbsCon"
+			parameterClass="java.util.HashMap"
+			resultClass="java.util.HashMap">
+    	SELECT A.NO, B.NAME AS MEMNAME, TITLE, CON,TO_CHAR(UP_DATE, 'YYYY-MM-DD') AS JOINDT, HITS, UPLOAD,
+		       SUBSTR(UPLOAD, INSTR(UPLOAD, '.', -1) + 1) AS FILE_EXT
+		FROM BBS A
+    	INNER JOIN MEMBER B ON A.MEM_NO = B.NO
+		WHERE A.NO = #No#
+	</select>
+	<delete id="deleteBbs"
+		parameterClass="java.util.HashMap">
+		DELETE FROM BBS
+		WHERE NO = #No#
+	</delete>
+	<update id="updateBbs"
+			parameterClass="java.util.HashMap">
+			
+			UPDATE BBS SET 	TITLE = #bbsTitle#,
+							UPLOAD = #textFile#,
+							CON = #bbsCon#		
+			WHERE NO = #No#
+	</update>
+	
+	<update id="hitUp"
+			parameterClass="java.util.HashMap">
+			UPDATE BBS SET HITS = HITS + 1
+			WHERE NO = #No#
+	</update>
+</sqlMap>

@@ -12,7 +12,6 @@
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <script type="text/javascript" src="resources/script/jquery/jquery.form.js"></script>
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
-
 <script type="text/javascript">
 $(document).ready(function() {
 	var html = "";
@@ -21,38 +20,42 @@ $(document).ready(function() {
 	$("#bbsName").html(html);
 	
 	html = "";
-	$("#listBtn").on("click", function(){
-		$("#actionForm").attr("action", "bbsList");
+	$("#backBtn").on("click", function(){
+		$("#actionForm").attr("action", "bbsShow");
 		$("#actionForm").submit();
 	});
-	$("#saveBtn").on("click", function() {
-		var insertForm = $("#insertForm");
+	$("#updateBtn").on("click", function() {
+		var updateForm = $("#updateForm");
 		
-		insertForm.ajaxForm(uploadResultCallBack);
-		insertForm.submit();
-	
+		updateForm.ajaxForm(uploadResultCallBack);
+		updateForm.submit();
+		
+	});
+	$("#fileDelBtn").on("click", function() {
+		$("#showFile").empty();
+		$("#uploadFile").val("");
 	});
 });
 
 function uploadResultCallBack(data, result) {   
 	if(result =="success") {
 		var resData = eval("(" + removePre(data) + ")");
-		console.log(resData.fileName[0]);
-		$("#textFile").val(resData.fileName[0]);
-		var params = $("#insertForm").serialize();
+		if(resData.fileName[0] != null) {
+			$("#textFile").val(resData.fileName[0]);	
+		}
+		var params = $("#updateForm").serialize();
 		
 		$.ajax({
 			type : "post",
-			url : "insertBbs",
+			url : "updateBbs",
 			dataType : "json",
 			data : params,
 			success : function(result) {
-				if(result.res == "true") {
-					var cap=$('[name="cap"]').val();
-					location.href = "bbsList?cap="+cap+"";
-				
+				if(result.res > 0) {
+					$("#actionForm").attr("action", "bbsShow");
+					$("#actionForm").submit();
 				} else {
-					alert("저장 중 문제 발생했습니다.");
+					alert("수정 중 문제 발생했읐요.")
 				}
 			},
 			error : function(result) {
@@ -78,14 +81,17 @@ function removePre(data) {
 </head>
 <body>
 <div class="bg">
-<form action="#" id="actionForm" method="post">
+<form action="#" id="actionForm" method="post" >
+	<input type="hidden" name="No" value="${param.No}" />	
 	<input type="hidden" name="page" value="${param.page}" />
 	<input type="hidden" name="searchText" value="${param.searchText}" />
 		<input type="hidden" name="bbsNo" value="${param.bbsNo}"/>
 	<input type="hidden" name="userName" value="${param.userName}"/>
 	<input type="hidden" name="bbsName" value="${param.bbsName}"/>
-	<input type="hidden" name="cap" value="${param.cap}">
+	<input type="hidden" value="${param.cap}" name="cap">
 </form>
+
+
 	<div class="range">
 		<div class="top">
 			<div class="logo" id="mainBtn"></div>
@@ -182,7 +188,7 @@ function removePre(data) {
 					</div>
 				</div>
 <!-- ajax --><form action="fileUploadAjax" 
-				id="insertForm" 
+				id="updateForm" 
 				method="post" 
 				enctype="multipart/form-data">
 				<div class="writeBody">
@@ -190,7 +196,7 @@ function removePre(data) {
 						<div class="c">
 							<div class="title_d">
 								<div class="e">
-									<input type="text" class="titleText" name="bbsTitle" />
+									<input type="text" class="titleText" name="bbsTitle" value="${con.TITLE}" />
 								</div>
 							</div>
 						</div>
@@ -199,6 +205,8 @@ function removePre(data) {
 						<div class="c">
 							<div class="file_d">
 								<div class="e">
+									기존파일
+									<input type="button" value="파일삭제" id="fileDelBtn" />
 									<input type="file" name="att1" />
 								</div>
 							</div>
@@ -208,8 +216,17 @@ function removePre(data) {
 						<div class="c">
 							<div class="writeContents_d">
 								<div class="e">
-									<textarea rows="30" cols="100" name="bbsCon"></textarea>
+									<textarea rows="30" cols="100" name="bbsCon">${con.CON}</textarea>
 								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="showFile" id="showFile">
+					<div class="c">
+						<div class="file_d">
+							<div class="e" id="uploadFile">
+								<a href="resources/upload/${con.UPLOAD}"download>${con.UPLOAD}</a>
 							</div>
 						</div>
 					</div>
@@ -217,28 +234,29 @@ function removePre(data) {
 				<input type="hidden" name="textFile" id="textFile" />
 				<input type="hidden" name="bbsNo" value="${param.bbsNo}"/>
 	      		<input type="hidden" name="userName" value="${param.userName}"/>
-	      		<input type="hidden" name="cap" value="${param.cap}">
+				<input type="hidden" name="No" value="${param.No}" />	
 			</form>
 					<div class="writeBtns">
 						<div class="c">
 							<div class="btns_d">
 								<div class="e">
-									<div class="btnsBody">
-										<div class="btnPart1">
-											<input type="button" value="등록" id="saveBtn" />
+									<div class="btnsBodyU">
+										<div class="btnPart3">
+											<input type="button" value="수정" id="updateBtn" />
 										</div>
-										<div class="btnPart2">
-											<input type="button" value="목록" id="listBtn" />
+										<div class="btnPart4">
+											<input type="button" value="뒤로가기" id="backBtn" />
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div>						
 					</div>
 			</div>
 		
 		</div>
 	</div>
 </div>
+
 </body>
 </html>

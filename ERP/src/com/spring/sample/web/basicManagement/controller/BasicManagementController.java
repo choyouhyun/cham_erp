@@ -55,9 +55,6 @@ public class BasicManagementController {
 
 		modelMap.put("list", list);
 		modelMap.put("pb", pb);
-
-		modelMap.put("list", list);
-
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
 
@@ -115,6 +112,84 @@ public class BasicManagementController {
 		ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
 		Map<String, Object> modelMap = new HashMap<String, Object>();
 		int res = iBasicManagementService.updateCus(params);
+
+		modelMap.put("res", res);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+
+	}
+	
+	//부서 리스트
+	@RequestMapping(value="/deptList")
+	public ModelAndView deptList(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
+		
+		modelAndView.setViewName("basicManagement/deptList");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/deptAjax")
+	public @ResponseBody ResponseEntity<String> deptAjax (
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String, Object> modelMap = new HashMap<String, Object>();
+		PagingBean pb = iPagingService.getPageingBean(Integer.parseInt(params.get("page")),iBasicManagementService.getDeptCount(params)); 
+		params.put("start", Integer.toString(pb.getStartCount()));                        
+		params.put("end", Integer.toString(pb.getEndCount()));
+		ArrayList<HashMap<String, String>> list = iBasicManagementService.deptAjax(params);
+		modelMap.put("list", list);
+		modelMap.put("pb", pb);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	@RequestMapping(value="/deptRegister")
+	public ModelAndView deptRegister(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
+		
+		modelAndView.setViewName("basicManagement/deptRegister");
+		return modelAndView;
+	}
+	
+	//부서 등록 ajax
+	@RequestMapping(value="/insertDept") 
+	public @ResponseBody ResponseEntity<String> insertDept( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
+			HttpServletRequest request,@RequestParam HashMap<String, String>params,  ModelAndView modelAndView) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+		Map<String, Object> modelMap = new HashMap<String, Object>();
+		String res = iBasicManagementService.insertDept(params);
+
+		modelMap.put("res", res);
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	//부서 수정 가져오기 Ajax
+	@RequestMapping(value="/getDeptCon")
+	public @ResponseBody ResponseEntity<String> getDeptCon(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String, Object> modelMap = new HashMap<String, Object>();
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+		HashMap<String, String> list = iBasicManagementService.getDeptCon(params);
+
+		modelMap.put("list", list);
+		
+		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	}
+	
+	
+	//부서 수정 완료 Ajax
+	@RequestMapping(value="/updateDept")
+	public @ResponseBody ResponseEntity<String> updateDept(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params ) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+		HashMap<String, Object> modelMap = new HashMap<String, Object>();
+		int res = iBasicManagementService.updateDept(params);
 
 		modelMap.put("res", res);
 		HttpHeaders responseHeaders = new HttpHeaders();
