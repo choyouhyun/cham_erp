@@ -10,5 +10,5 @@
 	   FROM MEMBER
 	   WHERE ID= #ID#
 	   AND PW= #PW#
-   </select
+   </select>
 </sqlMap>
