@@ -6,7 +6,7 @@
 	<typeAlias alias="loginBean" 
 			   type="com.spring.sample.web.login.bean.LoginBean" />
 	<select id="getMem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-	   Select NO,ID,NAME
+	   Select NO,ID,NAME,DEPT_NO
 	   FROM MEMBER
 	   WHERE ID= #ID#
 	   AND PW= #PW#
