@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -282,7 +283,7 @@ public class BasicManagementController {
 	@RequestMapping(value="/SubjectList")
 	public ModelAndView NewFile(HttpServletRequest request,@RequestParam HashMap<String, String> params, ModelAndView modelAndView)
 			throws Throwable{
-		modelAndView.setViewName("Subject/SubjectList");
+		modelAndView.setViewName("basicManagement/SubjectList");
 		return modelAndView;
 	}
 	@RequestMapping(value="/subList") 
@@ -361,4 +362,122 @@ public class BasicManagementController {
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
+
+	   @RequestMapping(value="/MemRegister")
+	      public ModelAndView MemRegister(HttpServletRequest request, ModelAndView modelAndView) {
+	         
+	         modelAndView.setViewName("basicManagement/Member/MemRegister");
+	         return modelAndView;
+	      }
+	      @RequestMapping(value="/MemList")
+	      public ModelAndView MemList(HttpServletRequest request, ModelAndView modelAndView) {
+	         
+	         modelAndView.setViewName("basicManagement/Member/MemList");
+	         return modelAndView;
+	      }
+	      @RequestMapping(value = "/MemberCheck")
+	         public @ResponseBody ResponseEntity<String> MemberCheck(
+	               HttpServletRequest request, //우리가 만든 것을 body에 두겠다.
+	               @RequestParam HashMap<String, String> params, HttpSession session, ModelAndView modelAndView) throws Throwable{
+	            ObjectMapper mapper = new ObjectMapper();
+	            Map<String, Object> modelMap = new HashMap<String, Object>();
+	             
+	            String res = iBasicManagementService.getIdCheck(params);
+	            modelMap.put("res", res);
+	            HttpHeaders responseHeaders = new HttpHeaders(); 
+	            responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+	             
+	            return new ResponseEntity<String>(mapper.writeValueAsString(modelMap),
+	                                       responseHeaders, HttpStatus.CREATED);
+	         }
+	    //멤버 리스트 Ajax
+	         @RequestMapping(value="/memAjax")
+	         public @ResponseBody ResponseEntity<String> memAjax(
+	               HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+	            ObjectMapper mapper = new ObjectMapper();
+	            HashMap<String, Object> modelMap = new HashMap<String, Object>();
+
+	            HttpHeaders responseHeaders = new HttpHeaders();
+	            responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+	            PagingBean pb = iPagingService.getPageingBean(Integer.parseInt(params.get("page")),iBasicManagementService.getMemCount(params)); 
+	            params.put("start", Integer.toString(pb.getStartCount()));                        
+	            params.put("end", Integer.toString(pb.getEndCount()));
+	            ArrayList<HashMap<String, String>> list = iBasicManagementService.memCon(params);
+
+	            modelMap.put("list", list);
+	            modelMap.put("pb", pb);
+
+	            modelMap.put("list", list);
+
+	            return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	         }
+
+	        //사원관리 부분
+	        @RequestMapping(value="/Meminsert") 
+	      public @ResponseBody ResponseEntity<String> Meminsert(
+	            HttpServletRequest request, 
+	            @RequestParam HashMap<String, String> params, 
+	            ModelAndView modelAndView) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         System.out.println(params);
+	         String res = iBasicManagementService.Meminsert(params);
+	         
+	         modelMap.put("res", res);
+	         
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	         
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	      }
+	        
+	        @RequestMapping(value="/updateMem")
+	      public @ResponseBody ResponseEntity<String> updateMem(
+	            HttpServletRequest request, ModelAndView modelAndView, 
+	            @RequestParam HashMap<String, String> params ) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         int res = iBasicManagementService.updateMem(params);
+
+	         modelMap.put("res", res);
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+
+	      }
+	        @RequestMapping(value="/getMemList")
+	        public @ResponseBody ResponseEntity<String> getMemList(
+	              HttpServletRequest request, ModelAndView modelAndView, 
+	              @RequestParam HashMap<String, String> params ) throws Throwable {
+	           ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+	           Map<String, Object> modelMap = new HashMap<String, Object>();
+	           HashMap<String, String> con = iBasicManagementService.getMemList(params);
+	           
+	           modelMap.put("con", con);
+	           
+	           HttpHeaders responseHeaders = new HttpHeaders();
+	           responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	           return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	           
+	        }
+	        @RequestMapping(value="/delMem") 
+	      public @ResponseBody ResponseEntity<String> delMem( 
+	            HttpServletRequest request, 
+	            @RequestParam(value="check") List<String> check,
+	            ModelAndView modelAndView) throws Throwable {
+	           System.out.println(check);
+	         ObjectMapper mapper = new ObjectMapper();
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         int res=0;
+	         for(int i=0;i<check.size();i++){
+	            res += iBasicManagementService.delMem(check.get(i));
+	         }
+	         
+	         modelMap.put("res", res);
+	         
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	         
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	      }
 }

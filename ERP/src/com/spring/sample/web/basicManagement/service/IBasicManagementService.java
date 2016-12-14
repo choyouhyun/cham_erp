@@ -44,4 +44,17 @@ public interface IBasicManagementService {
 	public int subUpdate(HashMap<String, String> params) throws Throwable;
 
 	public int subDelete(String string) throws Throwable;
+	public String getIdCheck(HashMap<String, String> params) throws Throwable;
+
+	public int getMemCount(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> memCon(HashMap<String, String> params) throws Throwable;
+
+	public String Meminsert(HashMap<String, String> params)throws Throwable;
+
+	public int updateMem(HashMap<String, String> params)throws Throwable;
+
+	public HashMap<String, String> getMemList(HashMap<String, String> params) throws Throwable;
+
+	public int delMem(String string) throws Throwable;
 }

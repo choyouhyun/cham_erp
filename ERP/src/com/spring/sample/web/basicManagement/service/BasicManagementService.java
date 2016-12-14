@@ -132,5 +132,46 @@ public class BasicManagementService implements IBasicManagementService{
 		// TODO Auto-generated method stub
 		return iBasicManagementDao.subDelete(string);
 	}
+	@Override
+	   public String getIdCheck(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return iBasicManagementDao.getIdCheck(params);
+	      
+	   }
+	   //
+	   @Override
+	   public int getMemCount(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return iBasicManagementDao.getMemCount(params);
+	   }
+	   @Override
+	   public ArrayList<HashMap<String, String>> memCon(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return iBasicManagementDao.memCon(params);
+	   }
+
+	   @Override
+	   public String Meminsert(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return iBasicManagementDao.Meminsert(params);
+	   }
+
+	   @Override
+	   public int updateMem(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	       return iBasicManagementDao.updateMem(params);
+	   }
+
+	   @Override
+	   public HashMap<String, String> getMemList(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return iBasicManagementDao.getMemList(params);
+	   }
+
+	   @Override
+	   public int delMem(String string) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return iBasicManagementDao.delMem(string);
+	   }
 
 }
