@@ -190,4 +190,7 @@ public class BasicManagementService implements IBasicManagementService{
 			// TODO Auto-generated method stub
 			iBasicManagementDao.ComUpdate(params);
 		}
+
+	
+
 }

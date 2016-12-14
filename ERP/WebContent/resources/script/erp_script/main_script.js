@@ -2,24 +2,68 @@ $(document).ready(function(){
 	noticeList();
 	deptBbsList();
 /*	메뉴 링크*/
-	/* 공지사항페이지 */
+	/*게시판*/
 	$("#noticePage").on("click", function(){ 
 		location.href="bbsList";
-		
 	});
-	/* 부서게시판 페이지 */
 	$("#bbsPage").on("click", function(){
 		location.href="bbsList?cap=dept";
 	});
-	
+	/*전기재무재표*/
 	$("#beforeFinancialStatement").on("click", function(){
 		location.href="BeforeFinancialStatement";
 	});
 	$("#beforeProfitAndLoss").on("click", function(){
 		location.href="BeforeProfitAndLoss";
 	});
-	$("#cusLedSearch").on("click", function(){
-		location.href="cusLedSearch";
+	/*장부관리*/
+	$("#customerLedger").on("click", function(){
+		location.href="customerLedger";
+	});
+	$("#subjectLedger").on("click", function(){
+		location.href="subjectLedger";
+	});
+	/*전표입력*/
+	$("#incChitInput").on("click", function(){
+		location.href="incChitInput";
+	});
+	$("#salChitInput").on("click", function(){
+		location.href="salChitInput";
+	});
+	$("#othSalChitInput").on("click", function(){
+		location.href="othSalChitInput";
+	});
+	$("#othIncsalChitInput").on("click", function(){
+		location.href="othIncsalChitInput";
+	});
+	$("#salReList").on("click", function(){
+		location.href="salReList";
+	});
+	/*재무재표*/
+/*	$("#statementOfPosition").on("click", function(){
+		location.href="statementOfPosition";
+	});
+	$("#totalTrialBalance").on("click", function(){
+		location.href="totalTrialBalance";
+	});*/
+	/*기본관리*/
+	$("#companyRegister").on("click", function(){
+		location.href="companyRegister";
+	});
+	$("#customerList").on("click", function(){
+		location.href="customerList";
+	});
+	$("#memList").on("click", function(){
+		location.href="MemList";
+	});
+	$("#deptList").on("click", function(){
+		location.href="deptList";
+	});
+	$("#bankList").on("click", function(){
+		location.href="bankList";
+	});
+	$("#subjectList").on("click", function(){
+		location.href="SubjectList";
 	});
 	/* 로그아웃 */
 	$("#logoutBtn").on("click", function() {
@@ -29,6 +73,7 @@ $(document).ready(function(){
 	$("#mainBtn").on("click", function() {
 		location.href="main";
 	});
+	/*메인 아래 게시판*/
 	$("#noticeTb").on("click", "tr", function(){
 		$("input[name='No']").val($(this).attr("name"));
 		$("#actionForm").attr("action", "bbsShow");

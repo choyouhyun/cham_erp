@@ -80,25 +80,26 @@
 					<ul>
 					 <li><a href="#" id="current">전표입력</a>
 					    <ul>
-					     <li><a href="#">매입매출전표</a></li>
-					     <li><a href="#">일반전표</a></li>
-					     <li><a href="#">자금전표</a></li>
+					     <li id="incChitInput"><a href="#">매입전표</a></li>
+					     <li id="salChitInput"><a href="#">매출전표</a></li>
+					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
+					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
+					     <li id="salReList"><a href="#">지출결의서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">장부관리</a>
 					   <ul>
-					     <li id="cusLedSearch"><a href="#">거래처 원장</a></li>
-					     <li><a href="#">계정별 원장</a></li>
-					     <li><a href="#">매입매출장</a></li>
-					     <li><a href="#">거래처별 매입매출장</a></li>
+					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
+					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
+					     <li id="incSal"><a href="#">매입매출장</a></li>
+					     <li id="chitManagement"><a href="#">전표관리</a></li>
+					     <li id="chitSign"><a href="#">전표결재</a></li>					     
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li><a href="#">합계잔액시산표</a></li>
-					     <li><a href="#">재무상태표</a></li>
-					     <li><a href="#">손익계산서</a></li>
-					     <li><a href="#">제조원가명세서</a></li>
-					     <li><a href="#">기간별손익계산서</a></li>
+					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
+					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
+					     <li id="incStatement"><a href="#">손익계산서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">전기재무재표</a><ul>
@@ -112,11 +113,12 @@
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
-					     <li><a href="#">회사등록/회계연도</a></li>
-					     <li><a href="#">거래처 관리</a></li>
-					     <li><a href="#">사원관리</a></li>
-					     <li><a href="#">부서관리</a></li>
-					     <li><a href="#">계정과목</a></li>
+					     <li id="companyRegister"><a href="#">회사등록/회계연도</a></li>
+					     <li id="customerList"><a href="#">거래처 관리</a></li>
+					     <li id="memList"><a href="#">사원관리</a></li>
+					     <li id="deptList"><a href="#">부서관리</a></li>
+					     <li id="bankList"><a href="#">계좌관리</a></li>
+					     <li id="subjectList"><a href="#">계정과목관리</a></li>
 					    </ul>
 					 </li>
 					</ul>
