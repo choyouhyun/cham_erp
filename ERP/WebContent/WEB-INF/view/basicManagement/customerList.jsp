@@ -25,7 +25,7 @@ $(document).ready(function() {
  		$("input[name='cusNo']").val($(this).parents("tr").attr("name"));
 		$("#actionForm").attr("action", "customerRegister");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../customerRegister', 'Edit', 'width=400, height=600');");
+		$("#actionForm").attr("onsubmit", "window.open('customerRegister', 'Edit', 'width=400, height=600');");
 		$("#actionForm").submit(); 
 	});
 	

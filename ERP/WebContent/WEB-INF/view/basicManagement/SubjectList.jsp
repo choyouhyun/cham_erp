@@ -53,14 +53,8 @@ function subList() {
           var NAME="";
           
           for(var i = 0; i < result.list.length ; i++) {
-        	  /* for(var j=0; j<result.list.length; j++){
-         			if(result.list[i].NUM==result.list[j].NO){
-         				NAME=result.list[j].NAME
-         				break;
-         			}
-         		} */
            html += "<tr>";
-     		html += "<td><input type=\"checkbox\" name=\"checkBox\" value=\""+result.list[i].NO+"\"></td>";
+     		html += "<td><input type=\"text\" name=\"text\" value=\""+result.list[i].NO+"\"></td>";
      		html += "<td>" ;
      		for(var j=0; j<result.list[i].DEPTH;j++)
      			{html += "&nbsp;&nbsp;&nbsp;&nbsp;";}

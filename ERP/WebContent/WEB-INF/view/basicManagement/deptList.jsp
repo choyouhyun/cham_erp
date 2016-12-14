@@ -24,7 +24,7 @@ $(document).ready(function() {
  		$("input[name='deptNo']").val($(this).parents("tr").attr("name"));
 		$("#actionForm").attr("action", "deptRegister");
 		$("#actionForm").attr("target", "deptRegister");
-		$("#actionForm").attr("onsubmit", "window.open('../deptRegister', 'deptRegister', 'width=300, height=300');");
+		$("#actionForm").attr("onsubmit", "window.open('deptRegister', 'deptRegister', 'width=300, height=300');");
 		$("#actionForm").submit(); 
 	});
 	$("#deleteBtn").click(function() {

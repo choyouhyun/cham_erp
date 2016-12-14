@@ -60,7 +60,7 @@ public class BasicManagementController {
 	@RequestMapping(value="/customerRegister")
 	public ModelAndView CustomerRegister(HttpServletRequest request, @RequestParam HashMap<String, String> params, ModelAndView modelAndView) {
 
-		modelAndView.setViewName("Customer/CustomerRegister");
+		modelAndView.setViewName("basicManagement/customerRegister");
 		return modelAndView;
 	}
 
@@ -123,7 +123,7 @@ public class BasicManagementController {
 	public ModelAndView deptList(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
 
-		modelAndView.setViewName("basicManagement/DeptList");
+		modelAndView.setViewName("basicManagement/deptList");
 		return modelAndView;
 	}
 
@@ -150,7 +150,7 @@ public class BasicManagementController {
 	public ModelAndView deptRegister(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
 
-		modelAndView.setViewName("basicManagement/DeptRegister");
+		modelAndView.setViewName("basicManagement/deptRegister");
 		return modelAndView;
 	}
 

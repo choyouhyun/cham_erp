@@ -67,18 +67,8 @@ $(function() {
 		</div>
 		<div class="depth2">서브 메뉴</div>
 		<div class="contents">거래처별/계정별 원장<br/>
+			<form action="#" id="ledgerForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">
-				<tr>
-					<th>구분
-					</th>
-					<td>
-						<input type="radio" name="a" checked="checked"/>건별
-						<input type="radio" name="a"/>일별
-						<input type="radio" name="a"/>월별
-						<input type="radio" name="a"/>거래처별 집계
-						<input type="radio" name="a"/>번호별 집계
-					</td>
-				</tr>
 				<tr>
 					<th>기준일자
 					</th>
@@ -91,32 +81,29 @@ $(function() {
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptsearch" />
+						<input type="button" id="deptsearchBtn" />
+						<input type ="text" id="deptText" value=""/>
 					</td>
 				</tr>
 				<tr>
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subsearch" />
+						<input type="button" id="subsearchBtn" />
+						<input type ="text" id="subText" value=""/>
 					</td>
 				</tr>
 				<tr>
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cussearch"/>
-					</td>
-				</tr>
-				<tr>
-					<th>거래처 관리 담당자
-					</th>
-					<td align="left">
-						<input type="button" id="ceosearch"/>
+						<input type="button" id="cussearchBtn"/>
+						<input type ="text" id="cusText" value=""/>
 					</td>
 				</tr>
 			</table><br/><br/>
-			<input type="button" id="ledsearch" value="검색"/>
+			</form>
+			<input type="button" id="ledsearchBtn" value="조회"/>
 		</div>
 	</div>
 </div>

@@ -12,14 +12,14 @@ public class LedgerManagementController {
 	public ModelAndView customerLedger(HttpServletRequest request, 
 								ModelAndView modelAndView) throws Throwable {
 		
-		modelAndView.setViewName("test/customerLedger");
+		modelAndView.setViewName("ledgerManagement/customerLedger");
 		return modelAndView;
 	}
 	@RequestMapping(value="/subjectLedger")
 	public ModelAndView subjectLedger(HttpServletRequest request, 
 								ModelAndView modelAndView) throws Throwable {
 		
-		modelAndView.setViewName("test/subjectLedger");
+		modelAndView.setViewName("ledgerManagement/subjectLedger");
 		return modelAndView;
 	}
 }

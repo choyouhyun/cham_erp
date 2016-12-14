@@ -26,9 +26,52 @@ table.th{
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
+$(document).ready(function() {
+	$("#deptsearchBtn").on("click", function() {
+		window.open('deptPopup','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	$("#subsearchBtn").on("click", function() {
+		window.open('subjectPopup','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	$("#cussearchBtn").on("click", function() {
+		window.open('customerPopup','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	$("#ledsearchBtn").on("click", function() {
+		lookupList();
+	});
+});
+function lookupList() {
+	var params = $("ledgerform").serialize();
+	var cusledger = $("cusledger");
+		$.ajax({
+			type : "post",
+			url : "subList",
+			dataType : "json",
+			data : params,
+			success : function(result) {
+				cusledger.style.display = 'none';
+				var html = "";
+				var NAME="";	          
+				for(var i = 0; i < result.list.length ; i++) {
+					html += "<tr>";
+					html += "<td><input type=\"text\" name=\"\" value=\""+result.list[i].NO+"\"></td>";
+					html += "<td>" ;
+					html += "<td>"+ result.list[i].ETC +"</td>";
+					html += "<td>"+ result.list[i].chaSub +"</td>";
+					html += "<td>"+result.list[i].deSub+"</td>";
+					html += "<td>"+result.list[i].BALANCE +"</td>";
+					html += "</tr>";
+				}
+				$("#tb").html(html); 
+			},
+			error : function(result) {
+   				alert("error!!");
+			}
+	});
+}
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
-	dateFormat: 'yy-mm-dd'
+		dateFormat: 'yy-mm-dd'
 	});
 });
 </script>
@@ -67,17 +110,8 @@ $(function() {
 		</div>
 		<div class="depth2">서브 메뉴</div>
 		<div class="contents">거래처별/계정별 원장<br/>
+			<form action="#" id="ledgerForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">
-				<tr>
-					<th>구분
-					</th>
-					<td>
-						<input type="radio" name="a" checked="checked"/>건별
-						<input type="radio" name="a"/>일별
-						<input type="radio" name="a"/>월별
-						<input type="radio" name="a"/>계정별 집계
-					</td>
-				</tr>
 				<tr>
 					<th>기준일자
 					</th>
@@ -90,25 +124,33 @@ $(function() {
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptsearch" />
+						<input type="button" id="deptsearchBtn" />
+						<input type ="text" id="deptNameText" value="" readonly/>
+						<input type="hidden" id="deptNoText">
 					</td>
 				</tr>
 				<tr>
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subsearch" />
+						<input type="button" id="subsearchBtn" />
+						<input type ="text" id="NameText" value="" readonly/>
+						<input type="hidden" id="NoText">
 					</td>
 				</tr>
 				<tr>
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cussearch"/>
+						<input type="button" id="cussearchBtn"/>
+						<input type ="text" id="cusNameText" value="" readonly/>
+						<input type="hidden" id="cusNoText">
 					</td>
 				</tr>
 			</table><br/><br/>
-			<input type="button" id="ledsearch" value="검색"/>
+			</form>
+			<input type="button" id="ledsearchBtn" value="조회"/>
+
 		</div>
 	</div>
 </div>
