@@ -173,5 +173,21 @@ public class BasicManagementService implements IBasicManagementService{
 	      // TODO Auto-generated method stub
 	      return iBasicManagementDao.delMem(string);
 	   }
+		@Override
+		public HashMap<String, String> ComInfoGet() throws Throwable {
+			// TODO Auto-generated method stub
+			return iBasicManagementDao.ComInfoGet();
+		}
 
+		@Override
+		public String ComInsert(HashMap<String, String> params) throws Throwable {
+			// TODO Auto-generated method stub
+			return iBasicManagementDao.ComInsert(params);
+		}
+
+		@Override
+		public void ComUpdate(HashMap<String, String> params) throws Throwable {
+			// TODO Auto-generated method stub
+			iBasicManagementDao.ComUpdate(params);
+		}
 }

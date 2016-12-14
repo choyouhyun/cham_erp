@@ -57,4 +57,9 @@ public interface IBasicManagementService {
 	public HashMap<String, String> getMemList(HashMap<String, String> params) throws Throwable;
 
 	public int delMem(String string) throws Throwable;
+	public HashMap<String, String> ComInfoGet() throws Throwable;
+
+	public String ComInsert(HashMap<String, String> params) throws Throwable;
+
+	public void ComUpdate(HashMap<String, String> params) throws Throwable;
 }
