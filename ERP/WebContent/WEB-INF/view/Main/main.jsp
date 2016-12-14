@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,11 +10,111 @@
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <title>Insert title here</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function () {
+	noticeList();
+	deptBbsList();
+	
+});
+function noticeList() {
+	var params = $("#actionForm").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "noticeList",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			var html = "";
+			
+			for(var i = 0; i < result.list.length ; i++) {
+				html += "<UL id='" + "noticeMar" + "' name='" + result.list[i].NO + "'>" + result.list[i].TITLE + "</UL>";
+			}
+			$("#topNotice").html(html);
+			
+			html = "";
+			
+			for(var i = 0; i < result.list.length ; i++) {
+				html += "<tr name='" + result.list[i].NO + "'>";
+				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" + result.list[i].TITLE + "</td>";
+				html += "<td class='" + "mainTd" + "' width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
+				html += "<td class='" + "mainTd" + "'>" + result.list[i].MEMNAME + "</td>";
+				html += "</tr>";
+			}
+
+			$("#noticeTb").html(html);
+			
+			html = "";
+			
+			
+		},
+		error : function(result) {
+			alert("error!!");
+		}
+	});
+}
+function deptBbsList() {
+	var params = $("#actionForm2").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "deptBbsList",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			var html = "";
+			
+			for(var i = 0; i < result.list.length ; i++) {
+				html += "<tr name='" + result.list[i].NO + "'>";
+				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" + result.list[i].TITLE + "</td>";
+				html += "<td class='" + "mainTd" + "' width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
+				html += "<td class='" + "mainTd" + "'>" + result.list[i].MEMNAME + "</td>";
+				html += "</tr>";
+			}
+
+			$("#deptBbsTb").html(html);
+			
+			html = "";
+			
+			
+		},
+		error : function(result) {
+			alert("error!!");
+		}
+	});
+}
+</script>
 <body>
-<div class="bg">
 <form action="#" method="post" id="actionForm">
-	<input type="hidden" name="noticeCC" />
+	<c:choose>
+	<c:when test= "${empty param.page}">
+		<input type="hidden" name="page" value="1" />
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" name="page" value="${param.page}" />
+	</c:otherwise>
+	</c:choose>
+	<input type="hidden" name="No" />
+	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
+	<input type="hidden" name="userName" value="${sMemNm}"/>
+	<input type="hidden" name="bbsName" value=""/>
 </form>
+<form action="#" method="post" id="actionForm2">
+<input type="hidden" value="${param.cap}" name="cap">
+	<c:choose>
+	<c:when test= "${empty param.page}">
+		<input type="hidden" name="page" value="1" />
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" name="page" value="${param.page}" />
+	</c:otherwise>
+	</c:choose>
+	<input type="hidden" name="No" />
+	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
+	<input type="hidden" name="userName" value="${sMemNm}"/>
+	<input type="hidden" name="bbsName" value=""/>
+</form>
+<div class="bg">
 	<div class="range">
 		<div class="top">
 			<div class="logo" id="mainBtn"></div>
@@ -36,10 +137,7 @@
 									<div><font size=4>공지사항</font>
 									<marquee id=pf 
 									 width="500" height="20" behavior="loop" direction="up" scrolldelay="1.5" scrollamount="1.0">
-									<FONT size=3pt> 
-									 <UL>※농부 후안은 바리스타 입니다.※</UL>
-									 <UL>※로스팅하는 엠마도 바리스타입니다.※</UL>
-									 <UL>※추출하는 폴도 바리스타입니다.※</UL>
+									<FONT id="topNotice" size=3pt> 
 									</FONT>
 									</marquee>
 									</div>
@@ -117,7 +215,7 @@
 							<div class="e">
 								<div class="memInfo_range">
 									<div class="memNo">사원번호 : ${sMemNo}</div>
-									<div class="memNameNRank"><b>${sMemNm}</b>${sMemRname}</div>
+									<div class="memNameNRank"><b>${sMemNm}</b>&nbsp<font size=1pt>${sMemRname}</font></div>
 									<div class="memDept">부서 : ${sMemDname}</div>
 									<div class="memCell">H.P : ${sMemCell}</div>
 									<div class="memEmail">E-mail : ${sMemEmail} </div>
@@ -130,11 +228,21 @@
 			<div class="boards">
 				<div class="noticeBody">
 					<div class="boardName">공지사항</div>
-					<div class="bbsNotice"></div>
+					<div class="bbsNotice">
+						<table class="mainTb">
+							<tbody class="mainTb" id="noticeTb">
+							</tbody>
+						</table>
+					</div>
 				</div>
 				<div class="deptBbsBody">
 					<div class="boardName">부서게시판</div>
-					<div class="bbsDept"></div>
+					<div class="bbsDept">
+						<table>
+							<tbody class="mainTb" id="deptBbsTb">
+							</tbody>
+						</table>
+					</div>
 				</div>
 			</div>
 		

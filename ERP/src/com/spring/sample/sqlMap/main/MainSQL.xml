@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://www.ibatis.com/dtd/sql-map-2.dtd">
+
+<sqlMap namespace="main">
+	<typeAlias alias="mainBean" 
+			   type="com.spring.sample.web.main.bean.MainBean" />
+	<select id="getDeptBbs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	SELECT A.NO,A.TITLE, A.JOINDT, A.MEMNAME
+	FROM (SELECT ROW_NUMBER() OVER(ORDER BY A.NO DESC) AS RNUM, A.NO,B.NAME, TITLE,TO_CHAR(A.UP_DATE, 'YYYY-MM-DD') AS JOINDT,
+ 		C.NAME AS MEMNAME,A.HITS FROM BBS A
+    	INNER JOIN BOARD B ON A.BOARD_NO = B.NO
+      	INNER JOIN MEMBER C ON A.MEM_NO = C.NO
+   		WHERE 1=1
+
+			AND BOARD_NO = (SELECT NO FROM BOARD WHERE DEPT = #bbsNo# )	
+
+	)A
+	WHERE A.RNUM BETWEEN 1 AND 5
+	</select>
+	<select id="getNoticeBbs" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+	SELECT A.NO,A.TITLE, A.JOINDT, A.MEMNAME
+	FROM (SELECT ROW_NUMBER() OVER(ORDER BY A.NO DESC) AS RNUM, A.NO,B.NAME, TITLE,TO_CHAR(A.UP_DATE, 'YYYY-MM-DD') AS JOINDT,
+ 		C.NAME AS MEMNAME,A.HITS FROM BBS A
+    	INNER JOIN BOARD B ON A.BOARD_NO = B.NO
+      	INNER JOIN MEMBER C ON A.MEM_NO = C.NO
+   		WHERE 1=1
+
+			AND BOARD_NO = 7	
+
+	)A
+	WHERE A.RNUM BETWEEN 1 AND 5
+	</select>
+</sqlMap>

@@ -124,7 +124,6 @@ function refreshList() {
 	<input type="hidden" name="No" />
 	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
 	<input type="hidden" name="userName" value="${sMemNm}"/>
-	<input type="hidden" name="noticeCC" value="1"/>
 	<input type="hidden" name="bbsName" value=""/>
 </form>
 <div class="bg">

@@ -5,6 +5,10 @@ body {
 div {
 	margin: 0px;
 }
+tr:HOVER {
+	cursor: pointer;
+}
+
 .bg {
 	display: inline-block;
 	width: 100%;
@@ -332,6 +336,15 @@ clear:left;
 	width: 638px;
 	height: 298px;
 	background: #ffffff;
-	border: 1px solid;
-	border-color: #000000;
+	border: 5px solid;
+	border-color: #ededed;
+	font-size: 11pt;
+	text-align: left;
+}
+.mainTb {
+	border-collapse: collapse;
+}
+.mainTd {
+	border-bottom: 3px solid #ededed;
+	padding-top: 10px;
 }
