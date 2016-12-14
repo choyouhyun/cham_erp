@@ -10,80 +10,6 @@
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <title>Insert title here</title>
 </head>
-<script type="text/javascript">
-$(document).ready(function () {
-	noticeList();
-	deptBbsList();
-	
-});
-function noticeList() {
-	var params = $("#actionForm").serialize();
-	
-	$.ajax({
-		type : "post",
-		url : "noticeList",
-		dataType : "json",
-		data : params,
-		success : function(result) {
-			var html = "";
-			
-			for(var i = 0; i < result.list.length ; i++) {
-				html += "<UL id='" + "noticeMar" + "' name='" + result.list[i].NO + "'>" + result.list[i].TITLE + "</UL>";
-			}
-			$("#topNotice").html(html);
-			
-			html = "";
-			
-			for(var i = 0; i < result.list.length ; i++) {
-				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" + result.list[i].TITLE + "</td>";
-				html += "<td class='" + "mainTd" + "' width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
-				html += "<td class='" + "mainTd" + "'>" + result.list[i].MEMNAME + "</td>";
-				html += "</tr>";
-			}
-
-			$("#noticeTb").html(html);
-			
-			html = "";
-			
-			
-		},
-		error : function(result) {
-			alert("error!!");
-		}
-	});
-}
-function deptBbsList() {
-	var params = $("#actionForm2").serialize();
-	
-	$.ajax({
-		type : "post",
-		url : "deptBbsList",
-		dataType : "json",
-		data : params,
-		success : function(result) {
-			var html = "";
-			
-			for(var i = 0; i < result.list.length ; i++) {
-				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" + result.list[i].TITLE + "</td>";
-				html += "<td class='" + "mainTd" + "' width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
-				html += "<td class='" + "mainTd" + "'>" + result.list[i].MEMNAME + "</td>";
-				html += "</tr>";
-			}
-
-			$("#deptBbsTb").html(html);
-			
-			html = "";
-			
-			
-		},
-		error : function(result) {
-			alert("error!!");
-		}
-	});
-}
-</script>
 <body>
 <form action="#" method="post" id="actionForm">
 	<c:choose>
@@ -154,32 +80,30 @@ function deptBbsList() {
 					<ul>
 					 <li><a href="#" id="current">전표입력</a>
 					    <ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li><a href="#">매입매출전표</a></li>
+					     <li><a href="#">일반전표</a></li>
+					     <li><a href="#">자금전표</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">장부관리</a>
 					   <ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="cusLedSearch"><a href="#">거래처 원장</a></li>
+					     <li><a href="#">계정별 원장</a></li>
+					     <li><a href="#">매입매출장</a></li>
+					     <li><a href="#">거래처별 매입매출장</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li><a href="#">합계잔액시산표</a></li>
+					     <li><a href="#">재무상태표</a></li>
+					     <li><a href="#">손익계산서</a></li>
+					     <li><a href="#">제조원가명세서</a></li>
+					     <li><a href="#">기간별손익계산서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">전기재무재표</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="beforeFinancialStatement"><a href="#">전기분 재무재표</a></li>
+					     <li id="beforeProfitAndLoss"><a href="#">전기분 손익 계산서</a></li>
 					    </ul>
 					 </li>
 					 <li ><a href="#" id="current">게시판</a><ul>
@@ -188,10 +112,11 @@ function deptBbsList() {
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li><a href="#">회사등록/회계연도</a></li>
+					     <li><a href="#">거래처 관리</a></li>
+					     <li><a href="#">사원관리</a></li>
+					     <li><a href="#">부서관리</a></li>
+					     <li><a href="#">계정과목</a></li>
 					    </ul>
 					 </li>
 					</ul>
@@ -238,7 +163,7 @@ function deptBbsList() {
 				<div class="deptBbsBody">
 					<div class="boardName">부서게시판</div>
 					<div class="bbsDept">
-						<table>
+						<table class="mainTb">
 							<tbody class="mainTb" id="deptBbsTb">
 							</tbody>
 						</table>
