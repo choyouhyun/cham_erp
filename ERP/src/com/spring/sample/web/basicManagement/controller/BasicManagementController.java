@@ -30,7 +30,7 @@ public class BasicManagementController {
 	@Autowired
 	public IPagingService iPagingService;
 
-	//거래처 리스트
+	//거래처 리스트//주완이
 	@RequestMapping(value="/customerList")
 	public ModelAndView CustomerList(HttpServletRequest request, @RequestParam HashMap<String, String> params, ModelAndView modelAndView) {
 
@@ -195,6 +195,14 @@ public class BasicManagementController {
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
-
+	}
+	
+	
+	@RequestMapping(value="/deptPopup")
+	public ModelAndView deptPopup(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
+		
+		modelAndView.setViewName("basicManagement/deptPopup");
+		return modelAndView;
 	}
 }
