@@ -1,4 +1,4 @@
-package com.spring.sample.web.chitInput.controller;
+/*package com.spring.sample.web.chitInput.controller;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -86,6 +86,6 @@ public class ChitInputController {
 		return modelAndView;
 	}
 	
-}
+}*/
 
 
