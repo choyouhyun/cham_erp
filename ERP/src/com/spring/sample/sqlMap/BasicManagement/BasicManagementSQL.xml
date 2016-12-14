@@ -84,6 +84,17 @@
 	<delete parameterClass="String" id="subDelete"> DELETE FROM SUB WHERE NO =
 		#NO# </delete>
 
-	<select resultClass="java.util.HashMap" id="getBank"> SELECT to_char(NO,
-		'FM000') NO,NAME FROM BANK </select>
+	<select resultClass="java.util.HashMap" id="getBank"> 
+		SELECT to_char(NO,'FM000') NO,NAME FROM BANK 
+	</select>
+	<select id="ComInfoGet" resultClass="java.util.HashMap">
+		SELECT NAME,TO_CHAR(DATE_STA,'YYYY-MM-DD') DATE_STA,TO_CHAR(DATE_END,'YYYY-MM-DD') DATE_END,NUM,CEO,TEL,POST,ADDRESS,SUB_ADDRESS FROM COM_INFO
+	</select>
+	<insert id="ComInsert" parameterClass="java.util.HashMap">
+		Insert Into COM_INFO(NAME,DATE_STA,DATE_END,NUM,CEO,TEL,POST,ADDRESS,SUB_ADDRESS) values(#comName#,#date_sta#,#date_end#,#num#,#ceo#,#tel#,#address1#,#address2#,#address3#)
+	</insert>
+	<update id="ComUpdate" parameterClass="java.util.HashMap" >
+		UPDATE COM_INFO SET NAME=#comName#,DATE_STA=#date_sta#,DATE_END=#date_end#,NUM=#num#,CEO=#ceo#,TEL=#tel#,POST=#address1#,ADDRESS=#address2#,SUB_ADDRESS=#address3#
+		WHERE 1=1
+	</update>
 </sqlMap>

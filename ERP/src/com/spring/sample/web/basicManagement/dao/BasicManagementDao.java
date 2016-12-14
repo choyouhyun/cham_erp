@@ -199,4 +199,36 @@ public class BasicManagementDao implements IBasicManagementDao{
 		// TODO Auto-generated method stub
 		return sqlMapClient.delete("BasicManagement.subDelete",string);
 	}
+	//회사 업데이트
+	@Override
+	public void ComUpdate(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		sqlMapClient.update("BasicManagement.ComUpdate",params);
+	}
+	//회사 등록
+	@Override
+	public String ComInsert(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		String res="false";
+		sqlMapClient.startTransaction();
+		sqlMapClient.startBatch();
+		try{
+			sqlMapClient.insert("BasicManagement.ComInsert",params);
+			sqlMapClient.executeBatch();
+			sqlMapClient.commitTransaction();
+							//└적용되는 부분
+			res="true";
+		}catch(Exception e){
+			res="false";
+			e.printStackTrace();
+		}
+		sqlMapClient.endTransaction();
+		return res;
+	}
+	//회사데이터 가져오기
+	@Override
+	public HashMap<String, String> ComInfoGet() throws Throwable {
+		// TODO Auto-generated method stub
+		return (HashMap<String, String>) sqlMapClient.queryForObject("BasicManagement.ComInfoGet");
+	}
 }

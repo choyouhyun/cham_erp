@@ -46,4 +46,10 @@ public interface IBasicManagementDao {
 
 	public ArrayList<HashMap<String, String>> getSub() throws Throwable;
 
+	public void ComUpdate(HashMap<String, String> params) throws Throwable;
+
+	public String ComInsert(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> ComInfoGet() throws Throwable;
+
 }

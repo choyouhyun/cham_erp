@@ -361,4 +361,41 @@ public class BasicManagementController {
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
+	//회사 등록 페이지 열기
+	@RequestMapping(value="/ComInfo")
+	   public ModelAndView ComInfo(HttpServletRequest request,@RequestParam HashMap<String, String> params, ModelAndView modelAndView)
+			   throws Throwable{
+		   modelAndView.setViewName("basicManagement/Company/ComInfo");
+		   return modelAndView;
+	   }
+	//회사정보 읽어오기
+	   @RequestMapping(value="/ComInfoGet") 
+	   public @ResponseBody ResponseEntity<String> ComInfoGet( 
+		         HttpServletRequest request,ModelAndView modelAndView) throws Throwable {	   									//└HTTP 요청 파라미터를 메서드의 파라미터로 전달받을 때 사용
+		   HashMap<String, String> con = iBasicManagementService.ComInfoGet();
+		   ObjectMapper mapper = new ObjectMapper();
+		   Map<String, Object> modelMap = new HashMap<String, Object>();
+		   modelMap.put("con", con);
+		   HttpHeaders responseHeaders = new HttpHeaders();
+		   responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+		   return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	   }
+	 // 회사 등록
+	   @RequestMapping(value="/ComInsert") 
+	   public @ResponseBody ResponseEntity<String> ComInsert( 
+			   HttpServletRequest request,@RequestParam HashMap<String, String> params,ModelAndView modelAndView) throws Throwable {	   									//└HTTP 요청 파라미터를 메서드의 파라미터로 전달받을 때 사용
+		   ObjectMapper mapper = new ObjectMapper();
+		   Map<String, Object> modelMap = new HashMap<String, Object>();
+		   System.out.println(params);
+		   String res="";
+		   if(params.get("reg_up")==""){
+			   res=iBasicManagementService.ComInsert(params);
+		   }else {
+			   iBasicManagementService.ComUpdate(params);
+		   }
+		   modelMap.put("res", res);
+		   HttpHeaders responseHeaders = new HttpHeaders();
+		   responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+		   return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	   }
 }

@@ -133,4 +133,22 @@ public class BasicManagementService implements IBasicManagementService{
 		return iBasicManagementDao.subDelete(string);
 	}
 
+	@Override
+	public HashMap<String, String> ComInfoGet() throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.ComInfoGet();
+	}
+
+	@Override
+	public String ComInsert(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iBasicManagementDao.ComInsert(params);
+	}
+
+	@Override
+	public void ComUpdate(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		iBasicManagementDao.ComUpdate(params);
+	}
+
 }
