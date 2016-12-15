@@ -19,5 +19,7 @@
 	<sqlMap resource="/com/spring/sample/sqlMap/bbs/BbsSQL.xml" />
 	<!-- Main 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/main/MainSQL.xml" />
+	<!-- ChitInput 쿼리 -->
+	<sqlMap resource="/com/spring/sample/sqlMap/ChitInput/ChitInputSQL.xml" />
 </sqlMapConfig>
  

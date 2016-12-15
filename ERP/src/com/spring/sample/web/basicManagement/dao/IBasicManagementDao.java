@@ -65,4 +65,11 @@ public interface IBasicManagementDao {
 
 	public HashMap<String, String> ComInfoGet() throws Throwable;
 
+	public ArrayList<HashMap<String, String>> getTest(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getList() throws Throwable;
+
+	public int getTestCount(HashMap<String, String> params) throws Throwable;
+	
+	public String insertTest(HashMap<String, String> params)throws Throwable;
 }

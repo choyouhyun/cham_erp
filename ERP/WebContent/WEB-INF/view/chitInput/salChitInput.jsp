@@ -207,7 +207,7 @@ function getLastNum() {
 			</div>
 		</div>
 		<div class="contents">
-		<input type="hidden" name="memNo" id="memNo" value="<%=(String)session.getAttribute("sMemNo")%>"/>
+		<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
 		<table border="1" >
 			<tr>
 				<th>전표일자</th>

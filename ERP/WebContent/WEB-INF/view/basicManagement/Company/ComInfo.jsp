@@ -5,8 +5,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
+<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
@@ -137,25 +137,26 @@ function ComInfoGet() {
 					<ul>
 					 <li><a href="#" id="current">전표입력</a>
 					    <ul>
-					     <li><a href="#">매입매출전표</a></li>
-					     <li><a href="#">일반전표</a></li>
-					     <li><a href="#">자금전표</a></li>
+					     <li id="incChitInput"><a href="#">매입전표</a></li>
+					     <li id="salChitInput"><a href="#">매출전표</a></li>
+					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
+					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
+					     <li id="salReList"><a href="#">지출결의서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">장부관리</a>
 					   <ul>
-					     <li id="cusLedSearch"><a href="#">거래처 원장</a></li>
-					     <li><a href="#">계정별 원장</a></li>
-					     <li><a href="#">매입매출장</a></li>
-					     <li><a href="#">거래처별 매입매출장</a></li>
+					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
+					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
+					     <li id="incSal"><a href="#">매입매출장</a></li>
+					     <li id="chitManagement"><a href="#">전표관리</a></li>
+					     <li id="chitSign"><a href="#">전표결재</a></li>					     
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li><a href="#">합계잔액시산표</a></li>
-					     <li><a href="#">재무상태표</a></li>
-					     <li><a href="#">손익계산서</a></li>
-					     <li><a href="#">제조원가명세서</a></li>
-					     <li><a href="#">기간별손익계산서</a></li>
+					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
+					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
+					     <li id="incStatement"><a href="#">손익계산서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">전기재무재표</a><ul>
@@ -169,88 +170,73 @@ function ComInfoGet() {
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
-					     <li><a href="#">회사등록/회계연도</a></li>
-					     <li><a href="#">거래처 관리</a></li>
-					     <li><a href="#">사원관리</a></li>
-					     <li><a href="#">부서관리</a></li>
-					     <li><a href="#">계정과목</a></li>
+					     <li id="companyRegister"><a href="#">회사등록/회계연도</a></li>
+					     <li id="customerList"><a href="#">거래처 관리</a></li>
+					     <li id="memList"><a href="#">사원관리</a></li>
+					     <li id="deptList"><a href="#">부서관리</a></li>
+					     <li id="bankList"><a href="#">계좌관리</a></li>
+					     <li id="subjectList"><a href="#">계정과목관리</a></li>
 					    </ul>
 					 </li>
 					</ul>
 				</div>
 			</div>
 		</div>
-		<div class="contents" >
-				<div class="bbsInfo">
-					<div class="c">
-						<div class="bbsInfo_d">
-							<div class="e" id="bbsName"></div>
-						</div>
-					</div>
-				</div>
-			<div class="con_bbs" >
-				<form action="#" id="actionForm" >
-<table border="1px" width="600px" align="center">
-	<colgroup>	
-	 	<col width="170" />
-        <col width="430" />
-    </colgroup>
-	<tr>
-		<th>회계기준일
-		</th>
-		<td scope="row" align="left">
-			<input type="text" class="form-control" id="datepicker1" name="date_sta" placeholder="기준 시작일"/> ~
-			<input type="text" class="form-control" id="datepicker2" name="date_end" placeholder="기준 종료일"/>
-		</td>
-	</tr>
-	<tr>
-		<th>회사명
-		</th>
-		<td><input type="text" name="comName">
-		</td>
-	</tr>
-	<tr>
-		<th>사업자 등록번호
-		</th>
-		<td><input type="text" name="num">
-		</td>
-	</tr>
-	<tr>
-		<th>대표자명
-		</th>
-		<td><input type="text" name="ceo">
-		</td>
-	</tr>
-	<tr>
-		<th>전화번호
-		</th>
-		<td><input type="text" name="tel">
-		</td>
-	</tr>
-	<tr>
-		<th>주소
-		</th>
-		<td scope="row" align="left"><input type="button" value="우편번호 검색" />
-						<br /> <input type="text" maxlength="" name="address1"/>-
-						<input type="text" maxlength="" name="address2"/> <br /> 
-						<input type="text" maxlength="" name="address3"/></td>
-	</tr>
-	
-</table>
-		<input type="hidden" name="reg_up">
-</form><br/>
-<div class="btn">
-<input type="button" value="등록" id="regBtn">
-<input type="button" value="수정" id="updateBtn">
-</div>
-				<div class="bbsInfo">
-					<div class="c">
-						<div class="bbsInfo_d">
-							<div class="e" id="bbsName"></div>
-						</div>
-					</div>
-				</div>
-			</div>
+		<div class="contents">
+			<form action="#" id="actionForm" >
+			<table border="1px" width="600px" align="center">
+				<colgroup>	
+				 	<col width="170" />
+			        <col width="430" />
+			    </colgroup>
+				<tr>
+					<th>회계기준일
+					</th>
+					<td scope="row" align="left">
+						<input type="text" class="form-control" id="datepicker1" name="date_sta" placeholder="기준 시작일"/> ~
+						<input type="text" class="form-control" id="datepicker2" name="date_end" placeholder="기준 종료일"/>
+					</td>
+				</tr>
+				<tr>
+					<th>회사명
+					</th>
+					<td><input type="text" name="comName">
+					</td>
+				</tr>
+				<tr>
+					<th>사업자 등록번호
+					</th>
+					<td><input type="text" name="num">
+					</td>
+				</tr>
+				<tr>
+					<th>대표자명
+					</th>
+					<td><input type="text" name="ceo">
+					</td>
+				</tr>
+				<tr>
+					<th>전화번호
+					</th>
+					<td><input type="text" name="tel">
+					</td>
+				</tr>
+				<tr>
+					<th>주소
+					</th>
+					<td scope="row" align="left"><input type="button" value="우편번호 검색" />
+									<br /> <input type="text" maxlength="" name="address1"/>-
+									<input type="text" maxlength="" name="address2"/> <br /> 
+									<input type="text" maxlength="" name="address3"/></td>
+				</tr>
+				
+			</table>
+					<input type="hidden" name="reg_up">
+			</form><br/>
+			<div class="btn">
+			<input type="button" value="등록" id="regBtn">
+			<input type="button" value="수정" id="updateBtn">
+			</div>		
 		</div>
 	</div>
 </div>

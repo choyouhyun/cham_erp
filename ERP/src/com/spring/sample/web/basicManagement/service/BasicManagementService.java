@@ -190,7 +190,26 @@ public class BasicManagementService implements IBasicManagementService{
 			// TODO Auto-generated method stub
 			iBasicManagementDao.ComUpdate(params);
 		}
+		@Override
+		   public ArrayList<HashMap<String, String>> getTest(HashMap<String, String> params) throws Throwable {
+		      return iBasicManagementDao.getTest(params);
+		   }
 
+		   @Override
+		   public ArrayList<HashMap<String, String>> getList() throws Throwable {
+		      return iBasicManagementDao.getList();
+		   }
+
+		   @Override
+		   public int getTestCount(HashMap<String, String> params) throws Throwable {
+		      // TODO Auto-generated method stub
+		      return iBasicManagementDao.getTestCount(params);
+		   }
+		@Override
+		   public String insertTest(HashMap<String, String> params) throws Throwable {
+		      // TODO Auto-generated method stub
+		      return iBasicManagementDao.insertTest(params);
+		   }
 	
 
 }

@@ -154,5 +154,56 @@
       DELETE FROM MEMBER
       WHERE NO = #string#
    </delete>
- 	
-</sqlMap>
+    <select id="getTest" parameterClass="java.util.HashMap"
+      resultClass="java.util.HashMap">
+      
+      SELECT A.NO,A.ACNTNUM,A.NAME,A.ETC
+      FROM(SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) AS RNUM, NO,ACNTNUM,NAME,ETC
+      FROM ACNT
+      WHERE 1 =1
+      <isNotEmpty property="searchText">
+         AND   ACNTNUM LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      <isNotEmpty property="searchText">
+         OR   NAME LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      )A 
+      WHERE A.RNUM BETWEEN #start# AND #end#
+      
+      
+   </select>
+ <select id="getList" resultClass="java.util.HashMap" parameterClass="java.util.HashMap"> 
+       SELECT NO,ACNTNUM,NAME ,ETC
+      FROM ACNT 
+      WHERE NO = #acntNo#
+      </select> 
+
+   <select id="getTestCount" parameterClass="java.util.HashMap"
+      resultClass="Integer">
+      <!-- SELECT COUNT(*) AS CNT
+      FROM TEST
+      WHERE 1 = 1
+      <isNotEmpty property="searchText">
+         AND TEST_CON LIKE '%' || #searchText# || '%'
+      </isNotEmpty> -->
+      
+      SELECT COUNT(*) AS CNT
+      FROM ACNT
+      WHERE 1 = 1
+      <!-- <isNotEmpty property="searchText">
+         AND ACNTNUM LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      <isNotEmpty property="searchText">
+         OR NAME LIKE '%' || #searchText# || '%'
+      </isNotEmpty> -->
+      
+      
+   </select>
+
+<insert id="insertTest" parameterClass="java.util.HashMap">
+         INSERT INTO ACNT
+         VALUES (ACNT_SEQ.NEXTVAL,NULL,#ACNTNUM#,#NAME#,#ETC#)
+   </insert>
+   
+ 
+ </sqlMap>	
