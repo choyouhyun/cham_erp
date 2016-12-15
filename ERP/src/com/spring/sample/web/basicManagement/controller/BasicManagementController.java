@@ -201,19 +201,19 @@ public class BasicManagementController {
 
 
 
-	@RequestMapping(value="/test1pop")
-	public ModelAndView test(
+	@RequestMapping(value="/basicManagement/Bank1pop")
+	public ModelAndView basicBank(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
 
-		modelAndView.setViewName("basicManagement/test");
+		modelAndView.setViewName("basicManagement/basicManagement/Bank");
 		return modelAndView;
 	}
 
-	@RequestMapping(value="/test2pop")
-	public ModelAndView test2(
+	@RequestMapping(value="/basicManagement/Bank2pop")
+	public ModelAndView basicBank2(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
 
-		modelAndView.setViewName("basicManagement/test2");
+		modelAndView.setViewName("basicManagement/basicManagement/Bank2");
 		return modelAndView;
 	}
 
@@ -520,5 +520,115 @@ public class BasicManagementController {
 		   responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		   return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	   }
+	   //컨트롤러 부분
 
+/*	   @RequestMapping(value="/refreshbasicManagement/Bank") 
+	      public @ResponseBody ResponseEntity<String> refreshBasicBank( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
+	            HttpServletRequest request, 
+	            @RequestParam HashMap<String, String> params, //모두 가져와준다 request map에 한번에 받아 온다. requestgetParameter를 할 필요가 없어진
+	            ModelAndView modelAndView) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         
+	         PagingBean pb = iPagingService.getPageingBean(
+	               Integer.parseInt(params.get("page")),iBasicManagementService.getBasicBankCount(params));
+	         
+	         params.put("start",Integer.toString(pb.getStartCount()));
+	         params.put("end",Integer.toString(pb.getEndCount()));
+	         
+	         
+	         ArrayList<HashMap<String, String>> list = iBasicManagementService.getBasicBank(params);
+	         
+	         modelMap.put("list", list);
+	         modelMap.put("pb", pb);
+	         
+	      
+	         
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	      
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	      }
+	      
+	      @RequestMapping(value="/insertBasicBank") 
+	      public @ResponseBody ResponseEntity<String> insertBank( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
+	            HttpServletRequest request, 
+	            @RequestParam HashMap<String, String> params, //모두 가져와준다 request map에 한번에 받아 온다. requestgetParameter를 할 필요가 없어진다.
+	            ModelAndView modelAndView) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         
+	         String res = iBasicManagementService.insertBasicBank(params);//res에는 true false가 들어있다.
+	         
+	         modelMap.put("res", res);//res가 ajax 결과로 넘어 갈것이다
+	         
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	         
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	      }
+	   @RequestMapping(value="/updateBasicBank") 
+	      public @ResponseBody ResponseEntity<String> updateBank( 
+	            HttpServletRequest request, 
+	            @RequestParam HashMap<String, String> params,
+	            ModelAndView modelAndView) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         
+	         int res = iBasicManagementService.updateBasicBank(params);
+	         
+	         modelMap.put("res", res);
+	         
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	         
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	      }
+	   @RequestMapping(value="/BankList")
+	      public ModelAndView BankList(HttpServletRequest request,ModelAndView modelAndView){
+	         modelAndView.setViewName("basicManagement/Bank/BankList");
+	         
+	         return modelAndView;
+	      }
+	      @RequestMapping(value="/BankRegister")
+	      public ModelAndView BankRegister(HttpServletRequest request,ModelAndView modelAndView,@RequestParam HashMap<String, String> params){
+	         modelAndView.setViewName("basicManagement/Bank/BankRegister");
+	         System.out.println(params);
+	         return modelAndView;
+	      }
+	      @RequestMapping(value="/BankEdit")
+	      public ModelAndView BankEdit(HttpServletRequest request,ModelAndView modelAndView ,@RequestParam HashMap<String, String> params){
+	         modelAndView.setViewName("basicManagement/Bank/BankEdit");
+	         return modelAndView;
+	      }
+	      
+	      @RequestMapping(value="/updateBank")
+	      public @ResponseBody ResponseEntity<String> updateBank(
+	            HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params ) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+	         Map<String, Object> modelMap = new HashMap<String, Object>();
+	         int res = iBasicManagementService.updateBank(params);
+
+	         modelMap.put("res", res);
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+
+	      }
+	      
+	      @RequestMapping(value="/getList")
+	      public @ResponseBody ResponseEntity<String> getList(
+	            HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+	         ObjectMapper mapper = new ObjectMapper();
+	         HashMap<String, Object> modelMap = new HashMap<String, Object>();
+	         HttpHeaders responseHeaders = new HttpHeaders();
+	         responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+	         HashMap<String, String> list = iBasicManagementService.getList(params);
+	         modelMap.put("list", list);
+	         System.out.println(list);
+	         
+	         return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	      }
+	      
+*/	      
 }

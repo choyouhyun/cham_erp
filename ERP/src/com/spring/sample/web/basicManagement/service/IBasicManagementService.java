@@ -64,4 +64,6 @@ public interface IBasicManagementService {
 	public String ComInsert(HashMap<String, String> params) throws Throwable;
 
 	public void ComUpdate(HashMap<String, String> params) throws Throwable;
+	
+	
 }

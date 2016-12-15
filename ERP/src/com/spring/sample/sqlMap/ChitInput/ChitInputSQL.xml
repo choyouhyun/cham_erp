@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ChitInput">
+	<insert id="insertSal" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+	</insert>
+	
+	<insert id="insertSalDetail" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+	</insert>
+	
+	<select id="getLastNum" resultClass="String">
+		SELECT A.NO
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		 WHERE RNUM=1
+	</select>
+</sqlMap>

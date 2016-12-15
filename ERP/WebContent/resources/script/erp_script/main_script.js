@@ -24,13 +24,13 @@ $(document).ready(function(){
 		location.href="subjectLedger";
 	});
 	/*전표입력*/
-	$("#incChitInput").on("click", function(){
+/*	$("#incChitInput").on("click", function(){
 		location.href="incChitInput";
-	});
+	});*/
 	$("#salChitInput").on("click", function(){
 		location.href="salChitInput";
 	});
-	$("#othSalChitInput").on("click", function(){
+/*	$("#othSalChitInput").on("click", function(){
 		location.href="othSalChitInput";
 	});
 	$("#othIncsalChitInput").on("click", function(){
@@ -38,7 +38,7 @@ $(document).ready(function(){
 	});
 	$("#salReList").on("click", function(){
 		location.href="salReList";
-	});
+	});*/
 	/*재무재표*/
 /*	$("#statementOfPosition").on("click", function(){
 		location.href="statementOfPosition";
