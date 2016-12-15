@@ -48,7 +48,7 @@ $(document).ready(function(){
 	});*/
 	/*기본관리*/
 	$("#companyRegister").on("click", function(){
-		location.href="companyRegister";
+		location.href="ComInfo";
 	});
 	$("#customerList").on("click", function(){
 		location.href="customerList";
