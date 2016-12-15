@@ -90,7 +90,7 @@ $(document).ready(function(){
 		<form action="#" id="loginForm" method="post">
 		<div class="loginTitle">순실미르재단</div><br/>
 			<br/>
-		   &nbsp;<input type="text" name="ID" id="ID" value="사원번호를 입력 해 주세요."/>
+		   &nbsp;<input type="text" name="ID" id="ID" value="ID를 입력 해 주세요."/>
 		   <br/>
 		   <div class="o"></div>
 		   &nbsp;<input type="password" name="PW" id="PW" placeholder="***********************"/>

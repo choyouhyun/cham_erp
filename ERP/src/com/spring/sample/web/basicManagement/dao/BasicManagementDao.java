@@ -303,17 +303,17 @@ public class BasicManagementDao implements IBasicManagementDao{
 
 @Override
    public ArrayList<HashMap<String, String>> getTest(HashMap<String, String> params) throws Throwable{
-      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("test.getTest", params);
+      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("BasicManagement.getTest", params);
    }   
 @SuppressWarnings("unchecked")
    @Override
    public ArrayList<HashMap<String, String>> getList() throws Throwable {
-      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForObject("test.getList");
+      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForObject("BasicManagement.getList");
    }
 
    @Override
    public int getTestCount(HashMap<String, String> params) throws Throwable {
-      return (int) sqlMapClient.queryForObject("test.getTestCount",params);
+      return (int) sqlMapClient.queryForObject("BasicManagement.getTestCount",params);
    }
 @Override
    public String insertTest(HashMap<String, String> params) throws Throwable {
@@ -324,7 +324,7 @@ public class BasicManagementDao implements IBasicManagementDao{
       
       
       try{
-         sqlMapClient.insert("test.insertTest",params);
+         sqlMapClient.insert("BasicManagement.insertTest",params);
          
          sqlMapClient.executeBatch();//배치를 적용안한경우 쿼리를 하나씩 날린다--오라클의 작업을 늘린다.배치를 적용할경우 모아놨다가 한번에 날려준다.일반적으로는 느끼지 못한다.
          sqlMapClient.commitTransaction();

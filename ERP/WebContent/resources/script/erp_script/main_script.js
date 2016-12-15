@@ -60,7 +60,7 @@ $(document).ready(function(){
 		location.href="deptList";
 	});
 	$("#bankList").on("click", function(){
-		location.href="bankList";
+		location.href="BankList";
 	});
 	$("#subjectList").on("click", function(){
 		location.href="SubjectList";
