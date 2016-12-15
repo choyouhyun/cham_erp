@@ -56,7 +56,7 @@ function subList() {
           
           for(var i = 0; i < result.list.length ; i++) {
            html += "<tr>";
-     		html += "<td><input type=\"text\" name=\"text\" value=\""+result.list[i].NO+"\"></td>";
+     		html += "<td><input type=\"checkbox\" name=\"checkBox\" value=\""+result.list[i].NO+"\"></td>";
      		html += "<td>" ;
      		for(var j=0; j<result.list[i].DEPTH;j++)
      			{html += "&nbsp;&nbsp;&nbsp;&nbsp;";}
