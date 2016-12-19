@@ -54,7 +54,7 @@ function ComInsert() {
      success : function(result) {
     	if(result.res){
 	  	 	$("#regBtn").css("display","none");
-	  	 	$("#updateBtn").css("display","block");
+	  	 	$("#updateBtn").css("display","inline-block");
 	  	   	alert("등록 되었습니다.");
     	}else{
     		alert("업데이트 되었습니다.");
@@ -183,7 +183,7 @@ function ComInfoGet() {
 			</div>
 		</div>
 		<div class="contents">
-			<form action="#" id="actionForm" >
+			<form action="#" id="actionForm">회사등록/회계연도
 			<table border="1px" width="600px" align="center">
 				<colgroup>	
 				 	<col width="170" />

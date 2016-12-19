@@ -208,6 +208,7 @@ function getLastNum() {
 		</div>
 		<div class="contents">
 		<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
+		<div class="chitBody">
 		<table border="1" >
 			<tr>
 				<th>전표일자</th>
@@ -254,7 +255,7 @@ function getLastNum() {
 	</div>
 </div>
 <div id="detail">
-	<table width="676px">
+	<table width="676px" >
 	    <tr style="text-align: right;">
 			<td><input type="button" id="closeBtn" value="X"/></td>
 		</tr>
@@ -326,7 +327,7 @@ function getLastNum() {
 			</tr>
 			</tfoot>
 		</table>
-		
+		</div>
 		</div>
 	</div>
 </div>

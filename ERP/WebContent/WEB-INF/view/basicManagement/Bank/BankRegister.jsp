@@ -87,13 +87,13 @@ src="resources/script/jquery/jquery-1.11.0.js">
 </head>
 <body>
 <form action="#" id="actionForm">
-<input type="hidden" id="acntNo" name="acntNo" value="${param.acntNo}"/>
 <h1><center>통장계좌 등록</center></h1>
-<center><table  border=1 cellspacing="0"></center>
+<center><table  border=1 cellspacing="0">
      <tbody>
      <tr>
       <th scope="row">계좌번호</th>
       <td scope="row">
+	<input type="hidden" id="acntNo" name="acntNo" value="${param.acntNo}"/>
        <input type="text"  maxlength="" id="ACNTNUM" name="ACNTNUM">
        <input type="button" value="중복확인" >
       </td>
@@ -132,6 +132,7 @@ src="resources/script/jquery/jquery-1.11.0.js">
      </tr>
      </tbody>
     </table>
+    </center>
     <br/>
 <input type="button" id="saveBtn" value="저장"/>
 <input type="button" id="cancelBtn" value="취소"/>
