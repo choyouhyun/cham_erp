@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,8 +18,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.sample.common.bean.PagingBean;
-import com.spring.sample.web.bbs.service.IBbsService;
 import com.spring.sample.web.main.service.IMainService;
 
 @Controller
@@ -66,5 +65,25 @@ public class MainController {
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap),
 										  responseHeaders, HttpStatus.CREATED);
 		
+	}
+	
+	@RequestMapping(value="/top")
+	public ModelAndView top(HttpServletRequest request,
+							HttpSession session,
+							ModelAndView modelAndView) {
+		
+		modelAndView.setViewName("common/top");
+		
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/bottom")
+	public ModelAndView bottom(HttpServletRequest request,
+			HttpSession session,
+			ModelAndView modelAndView) {
+		
+		modelAndView.setViewName("common/bottom");
+		
+		return modelAndView;
 	}
 }
