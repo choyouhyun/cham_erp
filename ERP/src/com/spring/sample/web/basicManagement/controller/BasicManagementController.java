@@ -84,7 +84,7 @@ public class BasicManagementController {
 	public ModelAndView customerEdit(HttpServletRequest request, @RequestParam HashMap<String, String> params, ModelAndView modelAndView) {
 
 
-		modelAndView.setViewName("basicManagement/customerEdit");
+		modelAndView.setViewName("basicManagement/CustomerEdit");
 		return modelAndView;
 	}
 
@@ -461,6 +461,7 @@ public class BasicManagementController {
 	           return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	           
 	        }
+	       
 	        @RequestMapping(value="/delMem") 
 	      public @ResponseBody ResponseEntity<String> delMem( 
 	            HttpServletRequest request, 
