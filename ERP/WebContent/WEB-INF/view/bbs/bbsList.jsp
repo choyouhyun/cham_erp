@@ -110,7 +110,7 @@ function refreshList() {
 
 </head>
 <body>
-<form action="#" method="post" id="actionForm">
+<%-- <form action="#" method="post" id="actionForm">
 <input type="hidden" value="${param.cap}" name="cap">
 	<c:choose>
 	<c:when test= "${empty param.page}">
@@ -210,7 +210,8 @@ function refreshList() {
 					</ul>
 				</div>
 			</div>
-		</div>
+		</div> --%>
+		<c:import url="/top"></c:import>
 		<div class="contents">
 			<div class="con_bbs">
 				<div class="bbsInfo">
@@ -281,7 +282,8 @@ function refreshList() {
 			</div>
 		
 		</div>
-	</div>
-</div>
+		<c:import url="/bottom"></c:import>
+<!-- 	</div>
+</div> -->
 </body>
 </html>
