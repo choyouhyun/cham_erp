@@ -119,7 +119,7 @@ table.ass, table.debt{
 				</div>
 			</div>
 		</div>
-		<div class="contents">
+		<div class="contents">전기분재무재표<p>
 
 
 

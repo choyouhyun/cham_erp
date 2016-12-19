@@ -12,15 +12,14 @@
 	<select resultClass="integer" parameterClass="java.util.HashMap"
 		id="getCusCount"> SELECT COUNT(*) AS CUSCNT FROM CUS </select>
 
-	<insert parameterClass="java.util.HashMap" id="insertCus"> INSERT INTO CUS
-		(NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL) VALUES
-		(CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#,
-		#textPostCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' ||
-		#textEmail#) </insert>
+	<insert parameterClass="java.util.HashMap" id="insertCus"> 
+	INSERT INTO CUS (NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL) VALUES (CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#,#textPostCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' ||#textEmail#) 
+	</insert>
 
-	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap"
-		id="getCus"> SELECT NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL
-		FROM CUS WHERE NO = #cusNo# </select>
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="getCus"> 
+		SELECT NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL
+		FROM CUS WHERE NO = #cusNo# 
+		</select>
 
 	<update parameterClass="java.util.HashMap" id="updateCus"> UPDATE CUS SET
 		NAME = #textName#, CEO = #textCEO#, TEL = #textTel#, CELL =

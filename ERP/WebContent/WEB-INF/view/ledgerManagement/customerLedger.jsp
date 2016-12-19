@@ -165,6 +165,7 @@ $(function() {
 			</div>
 		</div>
 		<div class="contents">
+		거래처별 원장
 			<form action="#" id="ledgerForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">
 				<tr>
