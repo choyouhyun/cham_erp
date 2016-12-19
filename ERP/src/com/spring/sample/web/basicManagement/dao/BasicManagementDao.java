@@ -1,4 +1,3 @@
-
 package com.spring.sample.web.basicManagement.dao;
 
 import java.sql.SQLException;
@@ -200,4 +199,147 @@ public class BasicManagementDao implements IBasicManagementDao{
 		// TODO Auto-generated method stub
 		return sqlMapClient.delete("BasicManagement.subDelete",string);
 	}
+
+	@SuppressWarnings("unchecked")
+	   @Override
+	   public String getIdCheck(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      String res = (String) sqlMapClient.queryForObject("BasicManagement.getIdCheck", params);
+	      if(res == null){
+	         res = "success";
+	      } else {
+	         res = "fail";
+	      }
+	      
+	      
+	      return res;
+	     }
+
+	   @SuppressWarnings("unchecked")
+	   @Override
+	   public ArrayList<HashMap<String, String>> memCon(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("BasicManagement.memCon", params);
+	   }
+
+	   @Override
+	   public int getMemCount(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return (int) sqlMapClient.queryForObject("BasicManagement.getMemCount",params);
+	   }
+
+	   @Override
+	   public String Meminsert(HashMap<String, String> params)  throws Throwable {
+	      String res = "false";
+	      sqlMapClient.startTransaction();//트랜잭션 시작
+	      sqlMapClient.startBatch();
+	      try{
+	         sqlMapClient.insert("BasicManagement.Meminsert",params);
+	         sqlMapClient.executeBatch();
+	         sqlMapClient.commitTransaction();
+	         res="true";
+	      }catch(Exception e){
+	         res="false";
+	         e.printStackTrace();
+	      }
+	         sqlMapClient.endTransaction();//트랜잭션 끝
+	      return res;
+	   }
+
+	   @Override
+	   public int updateMem(HashMap<String, String> params) throws Throwable {
+	      return sqlMapClient.update("BasicManagement.updateMem",params);
+	   }
+
+	   @SuppressWarnings("unchecked")
+	@Override
+	   public HashMap<String, String> getMemList(HashMap<String, String> params) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return (HashMap<String, String>) sqlMapClient.queryForObject("BasicManagement.getMemList",params);
+	   }
+
+	   @Override
+	   public int delMem(String string) throws Throwable {
+	      // TODO Auto-generated method stub
+	      return sqlMapClient.delete("BasicManagement.delMem",string);
+	   }
+		
+		
+		
+
+	//회사 업데이트
+	@Override
+	public void ComUpdate(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		sqlMapClient.update("BasicManagement.ComUpdate",params);
+	}
+	//회사 등록
+	@Override
+	public String ComInsert(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		String res="false";
+		sqlMapClient.startTransaction();
+		sqlMapClient.startBatch();
+		try{
+			sqlMapClient.insert("BasicManagement.ComInsert",params);
+			sqlMapClient.executeBatch();
+			sqlMapClient.commitTransaction();
+							//└적용되는 부분
+			res="true";
+		}catch(Exception e){
+			res="false";
+			e.printStackTrace();
+		}
+		sqlMapClient.endTransaction();
+		return res;
+	}
+	//회사데이터 가져오기
+	@Override
+	public HashMap<String, String> ComInfoGet() throws Throwable {
+		// TODO Auto-generated method stub
+		return (HashMap<String, String>) sqlMapClient.queryForObject("BasicManagement.ComInfoGet");
+	}
+
+
+@Override
+   public ArrayList<HashMap<String, String>> getTest(HashMap<String, String> params) throws Throwable{
+      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("BasicManagement.getTest", params);
+   }   
+@SuppressWarnings("unchecked")
+   @Override
+   public ArrayList<HashMap<String, String>> getList() throws Throwable {
+      return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForObject("BasicManagement.getList");
+   }
+
+   @Override
+   public int getTestCount(HashMap<String, String> params) throws Throwable {
+      return (int) sqlMapClient.queryForObject("BasicManagement.getTestCount",params);
+   }
+@Override
+   public String insertTest(HashMap<String, String> params) throws Throwable {
+      String res = "false";
+      
+      sqlMapClient.startTransaction();//트랜잭션 시작
+      sqlMapClient.startBatch();
+      
+      
+      try{
+         sqlMapClient.insert("BasicManagement.insertTest",params);
+         
+         sqlMapClient.executeBatch();//배치를 적용안한경우 쿼리를 하나씩 날린다--오라클의 작업을 늘린다.배치를 적용할경우 모아놨다가 한번에 날려준다.일반적으로는 느끼지 못한다.
+         sqlMapClient.commitTransaction();
+         
+         res="true";
+      }catch(Exception e){
+         res="false";
+         e.printStackTrace();
+      }
+      
+         sqlMapClient.endTransaction();//트랜잭션 끝
+      
+      return res;
+   }
+	
+
+
 }

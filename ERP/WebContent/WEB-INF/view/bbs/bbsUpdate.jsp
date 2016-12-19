@@ -80,7 +80,6 @@ function removePre(data) {
 </script>
 </head>
 <body>
-<div class="bg">
 <form action="#" id="actionForm" method="post" >
 	<input type="hidden" name="No" value="${param.No}" />	
 	<input type="hidden" name="page" value="${param.page}" />
@@ -90,8 +89,7 @@ function removePre(data) {
 	<input type="hidden" name="bbsName" value="${param.bbsName}"/>
 	<input type="hidden" value="${param.cap}" name="cap">
 </form>
-
-
+<div class="bg">
 	<div class="range">
 		<div class="top">
 			<div class="logo" id="mainBtn"></div>
@@ -114,10 +112,7 @@ function removePre(data) {
 									<div><font size=4>공지사항</font>
 									<marquee id=pf 
 									 width="500" height="20" behavior="loop" direction="up" scrolldelay="1.5" scrollamount="1.0">
-									<FONT size=3pt> 
-									 <UL>※농부 후안은 바리스타 입니다.※</UL>
-									 <UL>※로스팅하는 엠마도 바리스타입니다.※</UL>
-									 <UL>※추출하는 폴도 바리스타입니다.※</UL>
+									<FONT id="topNotice" size=3pt> 
 									</FONT>
 									</marquee>
 									</div>
@@ -134,44 +129,45 @@ function removePre(data) {
 					<ul>
 					 <li><a href="#" id="current">전표입력</a>
 					    <ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="incChitInput"><a href="#">매입전표</a></li>
+					     <li id="salChitInput"><a href="#">매출전표</a></li>
+					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
+					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
+					     <li id="salReList"><a href="#">지출결의서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">장부관리</a>
 					   <ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
+					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
+					     <li id="incSal"><a href="#">매입매출장</a></li>
+					     <li id="chitManagement"><a href="#">전표관리</a></li>
+					     <li id="chitSign"><a href="#">전표결재</a></li>					     
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
+					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
+					     <li id="incStatement"><a href="#">손익계산서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">전기재무재표</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="beforeFinancialStatement"><a href="#">전기분 재무재표</a></li>
+					     <li id="beforeProfitAndLoss"><a href="#">전기분 손익 계산서</a></li>
 					    </ul>
 					 </li>
-					 <li><a href="#" id="current">게시판</a><ul>
+					 <li ><a href="#" id="current">게시판</a><ul>
 					     <li id="noticePage"><a href="#">공지사항</a></li>
 					     <li id="bbsPage"><a href="#">부서게시판</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="companyRegister"><a href="#">회사등록/회계연도</a></li>
+					     <li id="customerList"><a href="#">거래처 관리</a></li>
+					     <li id="memList"><a href="#">사원관리</a></li>
+					     <li id="deptList"><a href="#">부서관리</a></li>
+					     <li id="bankList"><a href="#">계좌관리</a></li>
+					     <li id="subjectList"><a href="#">계정과목관리</a></li>
 					    </ul>
 					 </li>
 					</ul>
@@ -257,6 +253,5 @@ function removePre(data) {
 		</div>
 	</div>
 </div>
-
 </body>
 </html>

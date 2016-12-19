@@ -45,5 +45,31 @@ public interface IBasicManagementDao {
 	public HashMap<String, String> regSub(HashMap<String, String> params) throws Throwable;
 
 	public ArrayList<HashMap<String, String>> getSub() throws Throwable;
+	public String getIdCheck(HashMap<String, String> params) throws Throwable;
 
+	public ArrayList<HashMap<String, String>> memCon(HashMap<String, String> params) throws Throwable;
+
+	public int getMemCount(HashMap<String, String> params)throws Throwable;
+
+	public String Meminsert(HashMap<String, String> params)throws Throwable;
+
+	public int updateMem(HashMap<String, String> params)throws Throwable;
+
+	public HashMap<String, String> getMemList(HashMap<String, String> params)throws Throwable;
+
+	public int delMem(String string) throws Throwable;
+
+	public void ComUpdate(HashMap<String, String> params) throws Throwable;
+
+	public String ComInsert(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> ComInfoGet() throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getTest(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getList() throws Throwable;
+
+	public int getTestCount(HashMap<String, String> params) throws Throwable;
+	
+	public String insertTest(HashMap<String, String> params)throws Throwable;
 }

@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<!DOCTYPE html>
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -9,31 +8,93 @@
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <style type="text/css">
-table{
-	overflow: auto;
+.bbsInfo {
 	display: inline-block;
-}/* 따닥 */
-table.sub th, table.code th {
-    font-weight: bold;
-    vertical-align: top;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #fff;
-    border-left: 1px solid #fff;
-    background: #eee;
+	width: 1024px;
+	height: 100px;
+	background-color: #eada99;
+	font-size: 12pt;
+	text-align: left;
+	vertical-align: top;
 }
-table.code td, table.sub td {
-    padding: auto;
-    vertical-align: top;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+.contents{
+
+text-align: center;
 }
-table.code{
-	height: 365px;
+#updateBtn, #regBtn{
+display: none;
+
 }
 
 </style>
+<script type="text/javascript">
+$(document).ready(function() {
+	ComInfoGet();
+	$("#regBtn,#updateBtn").on("click", function() {
+		ComInsert();
+	})
+});
+$(function() {
+	$( "#datepicker1, #datepicker2" ).datepicker({
+	dateFormat: 'yy-mm-dd'
+	});
+});
+function ComInsert() {
+	 var params = $("#actionForm").serialize();
+	
+  $.ajax({
+     type : "post",
+     url : "ComInsert",
+     dataType : "json",
+     data : params,
+     success : function(result) {
+    	if(result.res){
+	  	 	$("#regBtn").css("display","none");
+	  	 	$("#updateBtn").css("display","block");
+	  	   	alert("등록 되었습니다.");
+    	}else{
+    		alert("업데이트 되었습니다.");
+    	}
+     },
+     error : function(result) {
+        alert("error!!");
+    	}
+ });
+}
+function ComInfoGet() {
+	$.ajax({
+		type : "post",
+		url : "ComInfoGet",
+		dataType : "json",
+		success : function(result) {
+			if(result.con!=null){
+				$("[name='comName']").val(result.con.NAME);
+				$("[name='date_sta']").val(result.con.DATE_STA);
+				$("[name='date_end']").val(result.con.DATE_END);
+				$("[name='num']").val(result.con.NUM);
+				$("[name='ceo']").val(result.con.CEO);
+				$("[name='tel']").val(result.con.TEL);
+				$("[name='address1']").val(result.con.POST);
+				$("[name='address2']").val(result.con.ADDRESS);
+				$("[name='address3']").val(result.con.SUB_ADDRESS);
+				$("[name='reg_up']").val("update");
+				$("#updateBtn").css("display","inline-block");
+			}else{
+				$("#regBtn").css("display","inline-block");
+			}
+			
+		},
+		error : function(result) {
+			alert("error!!");
+		}
+	});
+}
+</script>
+
 </head>
 <body>
 <div class="bg">
@@ -122,181 +183,60 @@ table.code{
 			</div>
 		</div>
 		<div class="contents">
-
-
-
-			<table class="code" border="1px" align="center">
+			<form action="#" id="actionForm" >
+			<table border="1px" width="600px" align="center">
+				<colgroup>	
+				 	<col width="170" />
+			        <col width="430" />
+			    </colgroup>
 				<tr>
-					<th>코드
+					<th>회계기준일
 					</th>
-					<th>계정과목
+					<td scope="row" align="left">
+						<input type="text" class="form-control" id="datepicker1" name="date_sta" placeholder="기준 시작일"/> ~
+						<input type="text" class="form-control" id="datepicker2" name="date_end" placeholder="기준 종료일"/>
+					</td>
+				</tr>
+				<tr>
+					<th>회사명
 					</th>
-					<th>금액
+					<td><input type="text" name="comName">
+					</td>
+				</tr>
+				<tr>
+					<th>사업자 등록번호
 					</th>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
+					<td><input type="text" name="num">
 					</td>
 				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
+				<tr>
+					<th>대표자명
+					</th>
+					<td><input type="text" name="ceo">
 					</td>
 				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
+				<tr>
+					<th>전화번호
+					</th>
+					<td><input type="text" name="tel">
 					</td>
 				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
+				<tr>
+					<th>주소
+					</th>
+					<td scope="row" align="left"><input type="button" value="우편번호 검색" />
+									<br /> <input type="text" maxlength="" name="address1"/>-
+									<input type="text" maxlength="" name="address2"/> <br /> 
+									<input type="text" maxlength="" name="address3"/></td>
 				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<td>&nbsp;
-					</td>
-					<td>
-					</td>
-					<td>
-					</td>
-				</tr>
+				
 			</table>
-			<table class="sub" border="1px" align="center">
-				<tr>
-					<th colspan="2">계정 별 합계
-					</th>
-				</tr>
-				<tr>     
-					<th>1.매출액
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>2.매출원가
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>3.매출 총이익
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>4.판매비와 관리비
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>5.영업이익
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>6.영업 외 수익
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>7.영업 외 비용
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>8.법인세 차감 전 이익
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>9.법인세등
-					</th>
-					<td>
-					</td>
-				</tr>
-				<tr>     
-					<th>10.당기 순이익
-					</th>
-					<td>
-					</td>
-				</tr>
-			</table>		
+					<input type="hidden" name="reg_up">
+			</form><br/>
+			<div class="btn">
+			<input type="button" value="등록" id="regBtn">
+			<input type="button" value="수정" id="updateBtn">
+			</div>		
 		</div>
 	</div>
 </div>

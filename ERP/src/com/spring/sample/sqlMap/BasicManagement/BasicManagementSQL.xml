@@ -84,6 +84,126 @@
 	<delete parameterClass="String" id="subDelete"> DELETE FROM SUB WHERE NO =
 		#NO# </delete>
 
-	<select resultClass="java.util.HashMap" id="getBank"> SELECT to_char(NO,
-		'FM000') NO,NAME FROM BANK </select>
-</sqlMap>
+	<select resultClass="java.util.HashMap" id="getBank"> 
+		SELECT to_char(NO,'FM000') NO,NAME FROM BANK 
+	</select>
+	<select id="ComInfoGet" resultClass="java.util.HashMap">
+		SELECT NAME,TO_CHAR(DATE_STA,'YYYY-MM-DD') DATE_STA,TO_CHAR(DATE_END,'YYYY-MM-DD') DATE_END,NUM,CEO,TEL,POST,ADDRESS,SUB_ADDRESS FROM COM_INFO
+	</select>
+	<insert id="ComInsert" parameterClass="java.util.HashMap">
+		Insert Into COM_INFO(NAME,DATE_STA,DATE_END,NUM,CEO,TEL,POST,ADDRESS,SUB_ADDRESS) values(#comName#,#date_sta#,#date_end#,#num#,#ceo#,#tel#,#address1#,#address2#,#address3#)
+	</insert>
+	<update id="ComUpdate" parameterClass="java.util.HashMap" >
+		UPDATE COM_INFO SET NAME=#comName#,DATE_STA=#date_sta#,DATE_END=#date_end#,NUM=#num#,CEO=#ceo#,TEL=#tel#,POST=#address1#,ADDRESS=#address2#,SUB_ADDRESS=#address3#
+		WHERE 1=1
+	</update>
+<!-- 사원등록부분 -->
+    <select id="getIdCheck"
+         parameterClass="java.util.HashMap"
+         resultClass="String">
+      SELECT NO
+      FROM MEMBER
+      WHERE NO = #idNo#   
+   </select>
+   <select id="getMemCount" parameterClass="java.util.HashMap" resultClass="integer">
+      SELECT COUNT(*) AS CNT
+      FROM MEMBER
+      WHERE 1=1
+      <isNotEmpty property ="searchText">
+         AND NO LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+   </select>
+      <select id="memCon" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+      SELECT A.NO, A.NAME, A.DEPT_NO, A.RANK_NO,A.CELL, A.JOINDATE, A.ADDRESS
+      FROM(
+            SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO, NAME, DEPT_NO, RANK_NO,CELL,TO_CHAR(JOIN_DATE,'YYYYMMDD') AS JOINDATE,ADDRESS
+            FROM MEMBER
+            WHERE 1=1
+         ) A
+      WHERE 1=1
+      <isNotEmpty property ="searchText">
+         AND NO LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+         AND A.RNUM BETWEEN #start# AND #end#
+   </select>
+   <!-- 사원 등록부분  -->
+   <insert id="Meminsert" parameterClass="java.util.HashMap">
+         INSERT INTO MEMBER(NO,NAME,JUMIN,JOIN_DATE,CELL,EMAIL,ADDRESS,ETC)
+         VALUES (#idNo#,#NAME#,#Jumin1#||'-'|| #Jumin2#,TO_date(#datepicker1#,'YYYYMMDD'),
+         #Hpnum1#||'-'||#Hpnum2#||'-'||#Hpnum3#,#textEmailId# || '@' || #textEmail#,#textRoadAddress#||#textJibunAddress#,#Memo#)
+   </insert>   
+   
+   <update id="updateMem" parameterClass="java.util.HashMap">
+      UPDATE MEMBER SET NO = #idNo#,
+                    NAME = #NAME#,
+                    JUMIN = #Jumin1#||'-'|| #Jumin2#,
+                    JOIN_DATE = TO_date(#datepicker1#,'YYYYMMDD'),
+                    CELL = #Hpnum1#||'-'|| #Hpnum2# ||'-'||#Hpnum3#,
+                    EMAIL = #textEmailId# || '@' || #textEmail#,
+                    ADDRESS = #textRoadAddress#||#textJibunAddress#,
+                    ETC = #Memo#
+      WHERE NO = #idNo#
+   </update>
+   <select id="getMemList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+      SELECT NO,NAME,SUBSTR(JUMIN,1,6) AS JUMIN1,SUBSTR(JUMIN,7,7) AS JUMIN2 ,TO_CHAR(JOIN_DATE,'YYYYMMDD') AS DATEJOIN,
+      SUBSTR(CELL,1,3) AS CELL1,SUBSTR(CELL,4,4) AS CELL2,SUBSTR(CELL,8,4) AS CELL3,EMAIL,ADDRESS,ETC
+      FROM MEMBER
+      WHERE NO = #acntNo#   
+   </select>
+   <delete id="delMem" parameterClass="java.util.HashMap">
+      DELETE FROM MEMBER
+      WHERE NO = #string#
+   </delete>
+    <select id="getTest" parameterClass="java.util.HashMap"
+      resultClass="java.util.HashMap">
+      
+      SELECT A.NO,A.ACNTNUM,A.NAME,A.ETC
+      FROM(SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) AS RNUM, NO,ACNTNUM,NAME,ETC
+      FROM ACNT
+      WHERE 1 =1
+      <isNotEmpty property="searchText">
+         AND   ACNTNUM LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      <isNotEmpty property="searchText">
+         OR   NAME LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      )A 
+      WHERE A.RNUM BETWEEN #start# AND #end#
+      
+      
+   </select>
+ <select id="getList" resultClass="java.util.HashMap" parameterClass="java.util.HashMap"> 
+       SELECT NO,ACNTNUM,NAME ,ETC
+      FROM ACNT 
+      WHERE NO = #acntNo#
+      </select> 
+
+   <select id="getTestCount" parameterClass="java.util.HashMap"
+      resultClass="Integer">
+      <!-- SELECT COUNT(*) AS CNT
+      FROM TEST
+      WHERE 1 = 1
+      <isNotEmpty property="searchText">
+         AND TEST_CON LIKE '%' || #searchText# || '%'
+      </isNotEmpty> -->
+      
+      SELECT COUNT(*) AS CNT
+      FROM ACNT
+      WHERE 1 = 1
+      <!-- <isNotEmpty property="searchText">
+         AND ACNTNUM LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      <isNotEmpty property="searchText">
+         OR NAME LIKE '%' || #searchText# || '%'
+      </isNotEmpty> -->
+      
+      
+   </select>
+
+<insert id="insertTest" parameterClass="java.util.HashMap">
+         INSERT INTO ACNT
+         VALUES (ACNT_SEQ.NEXTVAL,NULL,#ACNTNUM#,#NAME#,#ETC#)
+   </insert>
+   
+ 
+ </sqlMap>	
