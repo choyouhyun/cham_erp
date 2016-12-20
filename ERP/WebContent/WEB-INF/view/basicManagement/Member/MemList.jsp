@@ -102,6 +102,31 @@
 #pagingArea:HOVER{
 	cursor: pointer;
 }
+
+.tblGreen {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.tblGreen td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+}
+.tblGreen th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+}
+.tblGreen tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.tblGreen caption {
+    height: 30px;
+    text-align: left;
+    font-weight: bold;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -243,7 +268,7 @@ $(document).ready(function(){
 				</form>
 			</div>
 			<br/>
-				<table border="1" cellspacing="0" align="center">
+				<table border="1" cellspacing="0" align="center" class="tblGreen">
 					<thead>
 						<tr>
 							<th><input type = "checkbox" id = "checkAll"/></th>
