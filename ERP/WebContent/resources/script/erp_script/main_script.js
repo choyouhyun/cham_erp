@@ -76,25 +76,24 @@ $(document).ready(function(){
 	/*메인 아래 게시판*/
 	$("#noticeTb").on("click", "tr", function(){
 		$("input[name='No']").val($(this).attr("name"));
-		$("#actionForm").attr("action", "bbsShow");
-		$("#actionForm").submit();
+		$("#mainForm").attr("action", "bbsShow");
+		$("#mainForm").submit();
 	});
 	$("#deptBbsTb").on("click", "tr", function(){
 		$("input[name='No']").val($(this).attr("name"));
-		$("#actionForm2").attr("action", "bbsShow?cap=dept");
-		$("#actionForm2").submit();
+		$("#mainForm2").attr("action", "bbsShow?cap=dept");
+		$("#mainForm2").submit();
 	});
 	$(document).on("click","#noticeMar", function(){
-		alert("클릭");
 		$("input[name='No']").val($(this).attr("name"));
-		$("#actionForm").attr("action", "bbsShow");
-		$("#actionForm").submit();
+		$("#mainForm").attr("action", "bbsShow");
+		$("#mainForm").submit();
 	});
 	
 });
 
 function noticeList() {
-	var params = $("#actionForm").serialize();
+	var params = $("#mainForm").serialize();
 	
 	$.ajax({
 		type : "post",
@@ -131,7 +130,7 @@ function noticeList() {
 	});
 }
 function deptBbsList() {
-	var params = $("#actionForm2").serialize();
+	var params = $("#mainForm2").serialize();
 	
 	$.ajax({
 		type : "post",
