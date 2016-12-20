@@ -2,6 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="ChitInput">
+	<!--매출 전표 입력-->
 	<insert id="insertSal" parameterClass="java.util.HashMap">
 		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
 		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
@@ -12,7 +13,58 @@
 		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
 	</insert>
 	
-	<select id="getLastNum" resultClass="String">
+	<select id="getSalLastNum" resultClass="String">
+		SELECT A.NO
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		 WHERE RNUM=1
+	</select>
+	
+	<!--매입 전표 입력-->
+	<insert id="insertInc" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+	</insert>
+	
+	<insert id="insertIncDetail" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+	</insert>
+	
+	<select id="getIncLastNum" resultClass="String">
+		SELECT A.NO
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		 WHERE RNUM=1
+	</select>
+	
+	<!--기타 입금 전표 입력-->
+	<insert id="insertOthSal" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+	</insert>
+	
+	<insert id="insertOthSalDetail" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+	</insert>
+	
+	<select id="getOthSalLastNum" resultClass="String">
+		SELECT A.NO
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		 WHERE RNUM=1
+	</select>
+	
+	<!--기타 지출 전표 입력-->
+	<insert id="insertOthInc" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+	</insert>
+	
+	<insert id="insertOthIncDetail" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+	</insert>
+	
+	<select id="getOthIncLastNum" resultClass="String">
 		SELECT A.NO
 		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
 		 WHERE RNUM=1
