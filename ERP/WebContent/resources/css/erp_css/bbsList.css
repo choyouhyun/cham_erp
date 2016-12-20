@@ -1,8 +1,11 @@
 @CHARSET "UTF-8";
+span {
+	padding: 2px;
+}
 /* 정렬 부분 */
 .bbsInfo_d {
 	display: table-row;
-	height: 100px;
+	height: 150px;
 }
 .bbsSearch_d {
 	display: table-row;
@@ -21,25 +24,26 @@
 	display: inline-block;
 	width: 1024px;
 	height: 820px;
-	background-color: #ccfa00;
 	font-size: 0pt;
 }
 /* 게시판 이름 (부서) */
 .bbsInfo {
 	display: inline-block;
-	width: 1024px;
+	width: 1017px;
 	height: 100px;
-	background-color: #eada99;
-	font-size: 12pt;
+	background-color: #ffffff;
+	font-size: 20pt;
+	font-weight: bolder;
+	padding-left: 7px;
 	text-align: left;
 	vertical-align: top;
+	border-bottom: 2px solid rgb(71,71,71);
 }
 /* 검색창 부분 */
 .bbsSearch {
 	display: inline-block;
 	width: 1024px;
 	height: 60px;
-	background-color: #d9dc99;
 	text-align: center;
 	vertical-align: top;
 }
@@ -66,14 +70,24 @@
 .bbs {
 	display: inline-block;
 	width: 1024px;
-	height: 630px;
 	background-color: #ffffff;
 	font-size: 11pt;
 	vertical-align: top;
 }
-td {
-	width: 100px;
-	height: 30px;
+.bbsTb {
+	border-collapse: collapse;
+}
+.bbsTb td {
+	text-align: left;
+	height: 50px;
+	border-bottom: 1px solid #d8d8d8;
+	white-space: nowrap; /* pre, pre-wrap 자동 줄 바꿈 */
+ 	text-overflow: ellipsis; /* 넘어가는 글 ... 처리 */
+  	overflow: hidden;/*여기까지 */
+}
+.bbsTb img {
+	width: 25px;
+	height: 25px;
 }
 .title {
 	width: 400px;
@@ -83,7 +97,6 @@ td {
 	display: inline-block;
 	width: 1024px;
 	height: 50px;
-	background-color: #dd88c7;
 	text-align: left;
 	font-size: 0pt;
 }
@@ -91,13 +104,11 @@ td {
 	display: inline-block;
 	width: 250px;
 	height: 50px;
-	background-color: #dd88c7;
 }
 .paging {
 	display: inline-block;
 	width: 524px;
 	height: 50px;
-	background-color: #dc18c0;
 	vertical-align: top;
 	text-align: center;
 }
@@ -105,15 +116,13 @@ td {
 	display: inline-block;
 	width: 300px;
 	height: 30px;
-	background-color: #aa18f0;
 	font-size: 11pt;
-	color: #ffffff;
+	color: #000000;
 }
 .writeBtn {
 	display: inline-block;
 	width: 250px;
 	height: 50px;
-	background-color: #ccdf00;
 	vertical-align: top;
 	text-align: center;
 }

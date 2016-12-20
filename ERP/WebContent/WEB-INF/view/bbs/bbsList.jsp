@@ -59,13 +59,14 @@ function refreshList() {
 			
 			for(var i = 0; i < result.list.length ; i++) {
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td>" + result.list[i].TITLE + "</td>";
-				html += "<td>" + result.list[i].JOINDT + "</td>";
-				html += "<td>" + result.list[i].MEMNAME + "</td>";
-				html += "<td>" + result.list[i].HITS + "</td>";
+				html += "<td width='" + "500px" +"'>" + result.list[i].TITLE + "</td>";
+				html += "<td width='" + "300px" +"'>" + result.list[i].JOINDT + "</td>";
+				html += "<td width='" + "100px" +"'>" 
+					+ "<img alt='" + "user" + "'src='" + "resources/images/ERP/user-bbs.png" + "'/>" 
+					+ result.list[i].MEMNAME + "</td>";
+				html += "<td width='" + "100px" +"'>" + "조회수 [" + result.list[i].HITS + "]" + "</td>";
 				html += "</tr>";
 			}
-
 			$("#tb").html(html);
 			
 			html = "";
@@ -226,13 +227,9 @@ function refreshList() {
 					<div class="c">
 						<div class="bbs_d">
 							<div class="e">
-								<table border="1">
+								<table class="bbsTb">
 									<thead>
 										<tr>
-											<th class="title">글 제목</th>
-											<th>작성일</th>
-											<th>작성자</th>
-											<th>조회수</th>
 										</tr>
 									</thead>
 									<tbody id="tb">
