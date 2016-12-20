@@ -5,6 +5,10 @@ body {
 div {
 	margin: 0px;
 }
+tr:HOVER {
+	cursor: pointer;
+}
+
 .bg {
 	display: inline-block;
 	width: 100%;
@@ -40,6 +44,10 @@ div {
 	display: table-row;
 	height: 48px;
 }
+.memPicture_d, .memInfo_d {
+	display: table-row;
+	height: 470px;
+}
 
 /* 주 메뉴 */
 .depth1_Body {
@@ -55,7 +63,7 @@ div {
 	display: inline-block;
 	width: 1280px;
 	min-height: 820px;
-	background-color: #ddff00; 
+	background-color: #ededed; 
 	font-size: 20px;
 	text-align: center;
 	
@@ -257,4 +265,86 @@ clear:left;
    margin-right:10px;
    font-size: 11pt;
    color: #ffffff;
+}
+/* 메인 contents 내용 */
+/* 사원정보 */
+.memInfo {
+	display: inline-block;
+	width: 1280px;
+	height: 470px;
+	background: #ffffff;
+	font-size: 0pt;
+}
+
+.pictureBody {
+	display: inline-block;
+	width: 450px;
+	height: 470px;
+	background: #ffcccc;
+	vertical-align: top;
+}
+.infoBody {
+	display: inline-block;
+	width: 830px;
+	height: 470px;
+
+}
+.memInfo_range {
+	display: inline-block;
+}
+.memPicture {
+	display: inline-block;
+	width: 274px;
+	height: 354px;
+	background: #cccc00;
+}
+.memNo, .memNameNRank, .memDept, .memCell, .memEmail {
+	display: inline-block;
+	width: 800px;
+	line-height:50px;
+	padding: 0px 15px;
+	margin:0px;
+	text-align: left;
+	font-size: 15pt;
+	border-bottom: 2px solid;
+	border-bottom-color: #ededed;
+}
+
+/* 게시판 부분 */
+.boards {
+	display: inline-block;
+	width: 1280px;
+	height: 350px;
+	background: #000000;
+	font-size: 0pt;
+}
+
+.noticeBody, .deptBbsBody {
+	display: inline-block;
+	width: 640px;
+	height: 350px;
+}
+.boardName {
+	display: inline-block;
+	width: 640px;
+	height: 50px;
+	font-size: 11pt;
+	background: #ccffee;	
+}
+.bbsNotice, .bbsDept {
+	display: inline-block;
+	width: 638px;
+	height: 298px;
+	background: #ffffff;
+	border: 5px solid;
+	border-color: #ededed;
+	font-size: 11pt;
+	text-align: left;
+}
+.mainTb {
+	border-collapse: collapse;
+}
+.mainTd {
+	border-bottom: 3px solid #ededed;
+	padding-top: 10px;
 }

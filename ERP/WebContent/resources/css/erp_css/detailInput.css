@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+#detail input[type=text]{
+	text-align: right;
+	width: 80px;
+}
+#detail tr{
+	height: 30px;
+	
+	
+}
+#detail{
+	position: absolute;
+	top: 50%;
+  	left: 50%;
+  	transform: translate(-50%,-50%);
+  	height: 372px;
+  	display: none;
+ 	font-size: 11pt; 
+}
+.detailBody {
+	display: inline-block;
+	border: 1px;
+ 	background-color: white;
+ 	font-size: 11pt; 
+}
+.chitBody {
+	display: inline-block;
+	border: 1px;
+}

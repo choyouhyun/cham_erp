@@ -1,42 +1,208 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
-    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd" >
 <sqlMap namespace="BasicManagement">
-	<select id="cusCon" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-		SELECT A.NO, A.NAME, A.CEO, A.TEL, A.CELL,A.POST, A.ADDRESS, A.EMAIL
-		FROM(
-				SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO, NAME, CEO, TEL, CELL, POST, ADDRESS || ' ' || ADDRESS2 AS ADDRESS, EMAIL
-				FROM CUS
-				WHERE 1=1
-			) A
-		WHERE A.RNUM BETWEEN #start# AND #end#
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap"
+		id="cusCon"> SELECT A.NO, A.NAME, A.CEO, A.TEL, A.CELL,A.POST, A.ADDRESS,
+		A.EMAIL FROM( SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO,
+		NAME, CEO, TEL, CELL, POST, ADDRESS || ' ' || ADDRESS2 AS ADDRESS,
+		EMAIL FROM CUS WHERE 1=1 ) A WHERE A.RNUM BETWEEN #start# AND #end#
 	</select>
-	
-	<select id="getCusCount" parameterClass="java.util.HashMap" resultClass="integer">
-		SELECT COUNT(*) AS CUSCNT
-		FROM CUS
-	</select>
-	
-	<insert id="insertCus" parameterClass="java.util.HashMap">
-		INSERT INTO CUS (NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL)
-		VALUES (CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#, #textPostCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' || #textEmail#)
+
+	<select resultClass="integer" parameterClass="java.util.HashMap"
+		id="getCusCount"> SELECT COUNT(*) AS CUSCNT FROM CUS </select>
+
+	<insert parameterClass="java.util.HashMap" id="insertCus"> 
+	INSERT INTO CUS (NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL) VALUES (CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#,#textPostCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' ||#textEmail#) 
 	</insert>
-	
-	<select id="getCus" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="getCus"> 
 		SELECT NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL
-		FROM CUS
-		WHERE NO = #cusNo#
+		FROM CUS WHERE NO = #cusNo# 
+		</select>
+
+	<update parameterClass="java.util.HashMap" id="updateCus"> UPDATE CUS SET
+		NAME = #textName#, CEO = #textCEO#, TEL = #textTel#, CELL =
+		#textCell#, POST = #textPostCode#, ADDRESS = #textAddress#, ADDRESS2 =
+		#textAddress2#, EMAIL = #textEmailId# || '@' || #textEmail# WHERE NO =
+		#cusNo# </update>
+
+	<select resultClass="integer" parameterClass="java.util.HashMap"
+		id="getDeptCount"> SELECT COUNT(*) AS CUSCNT FROM DEPT </select>
+
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap"
+		id="deptAjax"> SELECT A.NO, A.NAME, A.ETC FROM (SELECT ROW_NUMBER() OVER (ORDER
+		BY NO DESC) AS RNUM, NO, NAME, ETC FROM DEPT) A WHERE A.RNUM BETWEEN
+		#start# AND #end# </select>
+
+	<insert parameterClass="java.util.HashMap" id="insertDept"> INSERT INTO DEPT
+		(NO, NAME, ETC) VALUES (DEPT_SEQ.NEXTVAL, #textName#, #textEtc#)
+	</insert>
+
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap"
+		id="getDeptCon"> SELECT NO, NAME, ETC FROM DEPT WHERE NO = #deptNo# </select>
+
+	<update parameterClass="java.util.HashMap" id="updateDept"> UPDATE DEPT SET
+		NAME = #textName#, ETC = #textEtc# WHERE NO = #deptNo# </update>
+
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap"
+		id="rankAjax"> SELECT A.NO, A.NAME FROM (SELECT ROW_NUMBER() OVER (ORDER BY NO
+		DESC) AS RNUM, NO, NAME FROM RANK) A WHERE A.RNUM BETWEEN #start# AND
+		#end# </select>
+
+	<select resultClass="integer" parameterClass="java.util.HashMap"
+		id="getRankCount"> SELECT COUNT(*) AS CUSCNT FROM RANK </select>
+
+	<insert parameterClass="java.util.HashMap" id="insertRank"> INSERT INTO RANK
+		(NO, NAME) VALUES (RANK_SEQ.NEXTVAL, #textName#) </insert>
+
+	<delete parameterClass="String" id="deleteCus"> DELETE FROM CUS WHERE
+		NO=#NO# </delete>
+
+	<delete parameterClass="String" id="deleteDept"> DELETE FROM DEPT WHERE
+		NO=#NO# </delete>
+
+	<select resultClass="java.util.HashMap" id="getSub"> SELECT A.NO
+		NO,A.DEPTH DEPTH,A.NAME NAME,A.DECHA DECHA,A.ETC ETC,B.NO
+		SUB_NO,B.NAME SUB_NAME, A.SUBSEC SUBSEC,A.DEPTH FROM SUB A LEFT OUTER
+		JOIN SUB B ON A.SUB_NO=B.NO Start with A.DEPTh=0 connect by
+		A.SUB_NO=prior A.NO ORDER siblings by A.SUBSEC NULLS FIRST,B.NO
 	</select>
-	
-	<update id="updateCus" parameterClass="java.util.HashMap">
-		UPDATE CUS SET NAME = #textName#,
-							CEO = #textCEO#,
-							TEL = #textTel#,
-							CELL = #textCell#,
-							POST = #textPostCode#,
-							ADDRESS = #textAddress#,
-							ADDRESS2 = #textAddress2#,
-							EMAIL = #textEmailId# || '@' || #textEmail#
-		WHERE NO = #cusNo#
+
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap"
+		id="regSub"> SELECT DEPTH, SUBSEC FROM SUB where NO= #subNo# </select>
+
+	<insert parameterClass="java.util.HashMap" id="subInsert"> Insert Into
+		SUB(NO,DEPTH,NAME,DECHA,ETC,SUB_NO,SUBSEC)
+		values(SUB_SEQ.NEXTVAL,#depth#+1,#subName#,#dechaSec#,#etc#,#subNo#,#subSec#)
+	</insert>
+
+	<update parameterClass="java.util.HashMap" id="subUpdate"> UPDATE SUB SET
+		NAME=#subName# ,DECHA=#dechaSec#,ETC=#etc# WHERE NO = #NO2# </update>
+
+	<delete parameterClass="String" id="subDelete"> DELETE FROM SUB WHERE NO =
+		#NO# </delete>
+
+	<select resultClass="java.util.HashMap" id="getBank"> 
+		SELECT to_char(NO,'FM000') NO,NAME FROM BANK 
+	</select>
+	<select id="ComInfoGet" resultClass="java.util.HashMap">
+		SELECT NAME,TO_CHAR(DATE_STA,'YYYY-MM-DD') DATE_STA,TO_CHAR(DATE_END,'YYYY-MM-DD') DATE_END,NUM,CEO,TEL,POST,ADDRESS,SUB_ADDRESS FROM COM_INFO
+	</select>
+	<insert id="ComInsert" parameterClass="java.util.HashMap">
+		Insert Into COM_INFO(NAME,DATE_STA,DATE_END,NUM,CEO,TEL,POST,ADDRESS,SUB_ADDRESS) values(#comName#,#date_sta#,#date_end#,#num#,#ceo#,#tel#,#address1#,#address2#,#address3#)
+	</insert>
+	<update id="ComUpdate" parameterClass="java.util.HashMap" >
+		UPDATE COM_INFO SET NAME=#comName#,DATE_STA=#date_sta#,DATE_END=#date_end#,NUM=#num#,CEO=#ceo#,TEL=#tel#,POST=#address1#,ADDRESS=#address2#,SUB_ADDRESS=#address3#
+		WHERE 1=1
 	</update>
-</sqlMap>
+<!-- 사원등록부분 -->
+    <select id="getIdCheck"
+         parameterClass="java.util.HashMap"
+         resultClass="String">
+      SELECT NO
+      FROM MEMBER
+      WHERE NO = #idNo#   
+   </select>
+   <select id="getMemCount" parameterClass="java.util.HashMap" resultClass="integer">
+      SELECT COUNT(*) AS CNT
+      FROM MEMBER
+      WHERE 1=1
+      <isNotEmpty property ="searchText">
+         AND NO LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+   </select>
+      <select id="memCon" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+      SELECT A.NO, A.NAME, A.DEPT_NO, A.RANK_NO,A.CELL, A.JOINDATE, A.ADDRESS
+      FROM(
+            SELECT ROW_NUMBER() OVER (ORDER BY NO DESC) AS RNUM, NO, NAME, DEPT_NO, RANK_NO,CELL,TO_CHAR(JOIN_DATE,'YYYYMMDD') AS JOINDATE,ADDRESS
+            FROM MEMBER
+            WHERE 1=1
+         ) A
+      WHERE 1=1
+      <isNotEmpty property ="searchText">
+         AND NO LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+         AND A.RNUM BETWEEN #start# AND #end#
+   </select>
+   <!-- 사원 등록부분  -->
+   <insert id="Meminsert" parameterClass="java.util.HashMap">
+         INSERT INTO MEMBER(NO,NAME,JUMIN,JOIN_DATE,CELL,EMAIL,ADDRESS,ETC)
+         VALUES (#idNo#,#NAME#,#Jumin1#||'-'|| #Jumin2#,TO_date(#datepicker1#,'YYYYMMDD'),
+         #Hpnum1#||'-'||#Hpnum2#||'-'||#Hpnum3#,#textEmailId# || '@' || #textEmail#,#textRoadAddress#||#textJibunAddress#,#Memo#)
+   </insert>   
+   
+   <update id="updateMem" parameterClass="java.util.HashMap">
+      UPDATE MEMBER SET NO = #idNo#,
+                    NAME = #NAME#,
+                    JUMIN = #Jumin1#||'-'|| #Jumin2#,
+                    JOIN_DATE = TO_date(#datepicker1#,'YYYYMMDD'),
+                    CELL = #Hpnum1#||'-'|| #Hpnum2# ||'-'||#Hpnum3#,
+                    EMAIL = #textEmailId# || '@' || #textEmail#,
+                    ADDRESS = #textRoadAddress#||#textJibunAddress#,
+                    ETC = #Memo#
+      WHERE NO = #idNo#
+   </update>
+   <select id="getMemList" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
+      SELECT NO,NAME,SUBSTR(JUMIN,1,6) AS JUMIN1,SUBSTR(JUMIN,7,7) AS JUMIN2 ,TO_CHAR(JOIN_DATE,'YYYYMMDD') AS DATEJOIN,
+      SUBSTR(CELL,1,3) AS CELL1,SUBSTR(CELL,4,4) AS CELL2,SUBSTR(CELL,8,4) AS CELL3,EMAIL,ADDRESS,ETC
+      FROM MEMBER
+      WHERE NO = #acntNo#   
+   </select>
+   <delete id="delMem" parameterClass="java.util.HashMap">
+      DELETE FROM MEMBER
+      WHERE NO = #string#
+   </delete>
+    <select id="getTest" parameterClass="java.util.HashMap"
+      resultClass="java.util.HashMap">
+      
+      SELECT A.NO,A.ACNTNUM,A.NAME,A.ETC
+      FROM(SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) AS RNUM, NO,ACNTNUM,NAME,ETC
+      FROM ACNT
+      WHERE 1 =1
+      <isNotEmpty property="searchText">
+         AND   ACNTNUM LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      <isNotEmpty property="searchText">
+         OR   NAME LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      )A 
+      WHERE A.RNUM BETWEEN #start# AND #end#
+      
+      
+   </select>
+ <select id="getList" resultClass="java.util.HashMap" parameterClass="java.util.HashMap"> 
+       SELECT NO,ACNTNUM,NAME ,ETC
+      FROM ACNT 
+      WHERE NO = #acntNo#
+      </select> 
+
+   <select id="getTestCount" parameterClass="java.util.HashMap"
+      resultClass="Integer">
+      <!-- SELECT COUNT(*) AS CNT
+      FROM TEST
+      WHERE 1 = 1
+      <isNotEmpty property="searchText">
+         AND TEST_CON LIKE '%' || #searchText# || '%'
+      </isNotEmpty> -->
+      
+      SELECT COUNT(*) AS CNT
+      FROM ACNT
+      WHERE 1 = 1
+      <!-- <isNotEmpty property="searchText">
+         AND ACNTNUM LIKE '%' || #searchText# || '%'
+      </isNotEmpty>
+      <isNotEmpty property="searchText">
+         OR NAME LIKE '%' || #searchText# || '%'
+      </isNotEmpty> -->
+      
+      
+   </select>
+
+<insert id="insertTest" parameterClass="java.util.HashMap">
+         INSERT INTO ACNT
+         VALUES (ACNT_SEQ.NEXTVAL,NULL,#ACNTNUM#,#NAME#,#ETC#)
+   </insert>
+   
+ 
+ </sqlMap>	

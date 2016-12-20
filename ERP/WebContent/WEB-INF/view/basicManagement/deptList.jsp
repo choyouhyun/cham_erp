@@ -7,7 +7,8 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" />
+<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
+<script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <script type="text/javascript">
 $(document).ready(function() {
 	deptAjax();
@@ -17,16 +18,18 @@ $(document).ready(function() {
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('../SampleSpring/deptRegister','','location=no, directories=no,resizable=no,status=no,toolbar=no,menubar=no, left=0, top=0, scrollbars=no');
+		window.open('deptRegister','','width=400, height=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
-	$("#tb").on("click", "tr", function() {
-		var cusNo = new Object(); 
- 		$("input[name='deptNo']").val($(this).attr("name"));
+	$("#tb").on("click", "td", function() {
+ 		$("input[name='deptNo']").val($(this).parents("tr").attr("name"));
 		$("#actionForm").attr("action", "deptRegister");
-		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../deptRegister', 'Edit', 'width=100, height=100');");
+		$("#actionForm").attr("target", "deptRegister");
+		$("#actionForm").attr("onsubmit", "window.open('deptRegister', 'deptRegister', 'width=300, height=300');");
 		$("#actionForm").submit(); 
+	});
+	$("#deleteBtn").click(function() {
+		deleteDept();
 	});
 });
 
@@ -42,7 +45,7 @@ function deptAjax() {
 			var html = "";
 			for(var i = 0; i < result.list.length; i++){
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td><input type = 'checkbox' id='check_"+i+"'/></td>";
+				html += "<th><input type = 'checkbox' name='deleteCheck' value='"+ result.list[i].NO +"'/></th>";
 				html += "<td>"+result.list[i].NO+"</td>";
 				html += "<td>"+result.list[i].NAME+"</td>";
 				html += "<td>"+result.list[i].ETC+"</td>";
@@ -81,44 +84,115 @@ function deptAjax() {
 		}
 	});
 }
+
+function deleteDept() {
+	var params = $("#actionForm").serializeArray();
+	
+	$.ajax({
+		type : "post",
+		url : "deleteDept",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			deptAjax();
+		},
+		error : function() {
+			alert("error!!!");
+		}
+	});
+}
 </script>
 </head>
 <body>
 <div class="bg">
-
 	<div class="range">
 		<div class="top">
-			<div class="logo">로곳</div>
+			<div class="logo" id="mainBtn"></div>
 			<div class="loginInfo">
 				<div class="login">
 					<div class="blank"></div>
-					<div class="user">로그인 정보</div>
+					<div class="user">
+						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
+						  <span id="logout">
+						  	<span class="userName">${sMemNm}</span>
+						  	<input type="image" id="logoutBtn" src="resources/images/ERP/logout.png" class="img2" border="0" />
+						  </span>
+					</div>
 				</div>
 				<div class="noticeInfo">
 					<div class= "notice">
 						<div class="c">
 							<div class="d">
-								<div class="e">공지사항</div>
+								<div class="e">
+									<div><font size=4>공지사항</font>
+									<marquee id=pf 
+									 width="500" height="20" behavior="loop" direction="up" scrolldelay="1.5" scrollamount="1.0">
+									<FONT id="topNotice" size=3pt> 
+									</FONT>
+									</marquee>
+									</div>
+								</div>
 							</div>
 						</div>
 					</div>
-					<div class="blank2"></div>
 				</div>
 			</div>
 		</div>	
 		<div class="depth1_Body">
-			<div class="menu">
-				<div class="menu_1"></div>
-				<div class="menu_2"></div>
-				<div class="menu_3"></div>
-				<div class="menu_4"></div>
-				<div class="menu_5"></div>
-				<div class="menu_6"></div>
+			<div class="menubar">
+				<div class="menuRange">
+					<ul>
+					 <li><a href="#" id="current">전표입력</a>
+					    <ul>
+					     <li id="incChitInput"><a href="#">매입전표</a></li>
+					     <li id="salChitInput"><a href="#">매출전표</a></li>
+					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
+					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
+					     <li id="salReList"><a href="#">지출결의서</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">장부관리</a>
+					   <ul>
+					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
+					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
+					     <li id="incSal"><a href="#">매입매출장</a></li>
+					     <li id="chitManagement"><a href="#">전표관리</a></li>
+					     <li id="chitSign"><a href="#">전표결재</a></li>					     
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">재무재표</a><ul>
+					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
+					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
+					     <li id="incStatement"><a href="#">손익계산서</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">전기재무재표</a><ul>
+					     <li id="beforeFinancialStatement"><a href="#">전기분 재무재표</a></li>
+					     <li id="beforeProfitAndLoss"><a href="#">전기분 손익 계산서</a></li>
+					    </ul>
+					 </li>
+					 <li ><a href="#" id="current">게시판</a><ul>
+					     <li id="noticePage"><a href="#">공지사항</a></li>
+					     <li id="bbsPage"><a href="#">부서게시판</a></li>
+					    </ul>
+					 </li>
+					 <li><a href="#" id="current">기본관리</a><ul>
+					     <li id="companyRegister"><a href="#">회사등록/회계연도</a></li>
+					     <li id="customerList"><a href="#">거래처 관리</a></li>
+					     <li id="memList"><a href="#">사원관리</a></li>
+					     <li id="deptList"><a href="#">부서관리</a></li>
+					     <li id="bankList"><a href="#">계좌관리</a></li>
+					     <li id="subjectList"><a href="#">계정과목관리</a></li>
+					    </ul>
+					 </li>
+					</ul>
+				</div>
 			</div>
 		</div>
-		<div class="depth2">서브 메뉴</div>
 		<div class="contents">
-			<div>거래처 리스트 
+
+
+			<div>부서 리스트 
 				<input type ="text" id="searchText" value=""/>
 				<input type="button" value="검색" id="searchBtn"/>
 			</div>
@@ -127,8 +201,7 @@ function deptAjax() {
 			<br/>
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
-				<input type="hidden" name="deptNo" vlaue="0"/>
-			</form>
+				<input type="hidden" name="deptNo"/>
 			<table border="1" cellspacing="0" align="center">
 				<thead>
 					<tr>
@@ -141,12 +214,14 @@ function deptAjax() {
 				<tbody id="tb">
 				</tbody>
 			</table>
+			</form>
 			<div id="pagingArea">
 			</div>
 			<br/>
 			<input type="button" value="등록" id="registBtn" />
-			<input type="button" value="선택삭제" onclick="clearBtn();" />
+			<input type="button" value="선택삭제" id="deleteBtn" />
 			<br/>
+		
 		
 		</div>
 	</div>

@@ -1,31 +1,49 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
-<script type="text/javascript">
-$(document).ready(function () {
-/* 공지사항페이지 */
- 	$("#noticePage").on("click", function(){ 
-		  location.href="bbsList";
-	});
-/* 부서게시판 페이지 */
-	$("#bbsPage").on("click", function(){
-		  location.href="bbsList";
-	});
-});
-</script>
+<script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <title>Insert title here</title>
 </head>
 <body>
+<form action="#" method="post" id="actionForm">
+	<c:choose>
+	<c:when test= "${empty param.page}">
+		<input type="hidden" name="page" value="1" />
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" name="page" value="${param.page}" />
+	</c:otherwise>
+	</c:choose>
+	<input type="hidden" name="No" />
+	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
+	<input type="hidden" name="userName" value="${sMemNm}"/>
+	<input type="hidden" name="bbsName" value=""/>
+</form>
+<form action="#" method="post" id="actionForm2">
+<input type="hidden" value="${param.cap}" name="cap">
+	<c:choose>
+	<c:when test= "${empty param.page}">
+		<input type="hidden" name="page" value="1" />
+	</c:when>
+	<c:otherwise>
+		<input type="hidden" name="page" value="${param.page}" />
+	</c:otherwise>
+	</c:choose>
+	<input type="hidden" name="No" />
+	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
+	<input type="hidden" name="userName" value="${sMemNm}"/>
+	<input type="hidden" name="bbsName" value=""/>
+</form>
 <div class="bg">
-
 	<div class="range">
 		<div class="top">
-			<div class="logo"></div>
+			<div class="logo" id="mainBtn"></div>
 			<div class="loginInfo">
 				<div class="login">
 					<div class="blank"></div>
@@ -33,7 +51,7 @@ $(document).ready(function () {
 						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
 						  <span id="logout">
 						  	<span class="userName">${sMemNm}</span>
-						  	<input type="image" src="resources/images/ERP/logout.png" class="img2" border="0" />
+						  	<input type="image" id="logoutBtn" src="resources/images/ERP/logout.png" class="img2" border="0" />
 						  </span>
 					</div>
 				</div>
@@ -45,10 +63,7 @@ $(document).ready(function () {
 									<div><font size=4>공지사항</font>
 									<marquee id=pf 
 									 width="500" height="20" behavior="loop" direction="up" scrolldelay="1.5" scrollamount="1.0">
-									<FONT size=3pt> 
-									 <UL>※농부 후안은 바리스타 입니다.※</UL>
-									 <UL>※로스팅하는 엠마도 바리스타입니다.※</UL>
-									 <UL>※추출하는 폴도 바리스타입니다.※</UL>
+									<FONT id="topNotice" size=3pt> 
 									</FONT>
 									</marquee>
 									</div>
@@ -65,44 +80,45 @@ $(document).ready(function () {
 					<ul>
 					 <li><a href="#" id="current">전표입력</a>
 					    <ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="incChitInput"><a href="#">매입전표</a></li>
+					     <li id="salChitInput"><a href="#">매출전표</a></li>
+					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
+					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
+					     <li id="salReList"><a href="#">지출결의서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">장부관리</a>
 					   <ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
+					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
+					     <li id="incSal"><a href="#">매입매출장</a></li>
+					     <li id="chitManagement"><a href="#">전표관리</a></li>
+					     <li id="chitSign"><a href="#">전표결재</a></li>					     
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
+					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
+					     <li id="incStatement"><a href="#">손익계산서</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">전기재무재표</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="beforeFinancialStatement"><a href="#">전기분 재무재표</a></li>
+					     <li id="beforeProfitAndLoss"><a href="#">전기분 손익 계산서</a></li>
 					    </ul>
 					 </li>
-					 <li><a href="#" id="current">게시판</a><ul>
+					 <li ><a href="#" id="current">게시판</a><ul>
 					     <li id="noticePage"><a href="#">공지사항</a></li>
 					     <li id="bbsPage"><a href="#">부서게시판</a></li>
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">기본관리</a><ul>
-					     <li><a href="#">서브메뉴1</a></li>
-					     <li><a href="#">서브메뉴2</a></li>
-					     <li><a href="#">서브메뉴3</a></li>
-					     <li><a href="#">서브메뉴4</a></li>
+					     <li id="companyRegister"><a href="#">회사등록/회계연도</a></li>
+					     <li id="customerList"><a href="#">거래처 관리</a></li>
+					     <li id="memList"><a href="#">사원관리</a></li>
+					     <li id="deptList"><a href="#">부서관리</a></li>
+					     <li id="bankList"><a href="#">계좌관리</a></li>
+					     <li id="subjectList"><a href="#">계정과목관리</a></li>
 					    </ul>
 					 </li>
 					</ul>
@@ -110,7 +126,52 @@ $(document).ready(function () {
 			</div>
 		</div>
 		<div class="contents">
-
+			<div class="memInfo">
+				<div class="pictureBody">
+					<div class="c">
+						<div class="memPicture_d">
+							<div class="e">
+								<div class="memPicture"><img alt="memImg" src="resources/images/memImg/${sMemImg}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="infoBody">
+					<div class="c">
+						<div class="memInfo_d">
+							<div class="e">
+								<div class="memInfo_range">
+									<div class="memNo">사원번호 : ${sMemNo}</div>
+									<div class="memNameNRank"><b>${sMemNm}</b>&nbsp<font size=1pt>${sMemRname}</font></div>
+									<div class="memDept">부서 : ${sMemDname}</div>
+									<div class="memCell">H.P : ${sMemCell}</div>
+									<div class="memEmail">E-mail : ${sMemEmail} </div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="boards">
+				<div class="noticeBody">
+					<div class="boardName">공지사항</div>
+					<div class="bbsNotice">
+						<table class="mainTb">
+							<tbody class="mainTb" id="noticeTb">
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="deptBbsBody">
+					<div class="boardName">부서게시판</div>
+					<div class="bbsDept">
+						<table class="mainTb">
+							<tbody class="mainTb" id="deptBbsTb">
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
 		
 		</div>
 	</div>

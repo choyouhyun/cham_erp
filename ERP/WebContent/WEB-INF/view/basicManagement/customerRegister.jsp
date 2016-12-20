@@ -145,8 +145,7 @@ function editCus() {
 }
 </script>
 </head>
-<body onresize="parent.resizeTo(800,600)"
-	onload="parent.resizeTo(800,600)">
+<body>
 	<h1>
 		<center>거래처 등록</center>
 	</h1>
