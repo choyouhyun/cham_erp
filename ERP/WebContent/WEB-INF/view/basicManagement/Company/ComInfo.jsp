@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,54 @@ text-align: center;
 #updateBtn, #regBtn{
 display: none;
 
+}
+
+#updateBtn{
+   border: 1px solid #ffffff;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
+   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
+   background: -moz-linear-gradient(top, #6d6d6d, #474747);
+   background: -ms-linear-gradient(top, #6d6d6d, #474747);
+   background: -o-linear-gradient(top, #6d6d6d, #474747);
+   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
+   padding: 10.5px 21px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#updateBtn:hover{
+   border: 1px solid #ffffff;
+   /* text-shadow: #ffffff 0 1px 0; */
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+#updateBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
 }
 
 </style>
@@ -97,92 +146,9 @@ function ComInfoGet() {
 
 </head>
 <body>
-<div class="bg">
-	<div class="range">
-		<div class="top">
-			<div class="logo" id="mainBtn"></div>
-			<div class="loginInfo">
-				<div class="login">
-					<div class="blank"></div>
-					<div class="user">
-						 <img alt="user" src="resources/images/ERP/user.png" class="img1" border="0" />
-						  <span id="logout">
-						  	<span class="userName">${sMemNm}</span>
-						  	<input type="image" id="logoutBtn" src="resources/images/ERP/logout.png" class="img2" border="0" />
-						  </span>
-					</div>
-				</div>
-				<div class="noticeInfo">
-					<div class= "notice">
-						<div class="c">
-							<div class="d">
-								<div class="e">
-									<div><font size=4>공지사항</font>
-									<marquee id=pf 
-									 width="500" height="20" behavior="loop" direction="up" scrolldelay="1.5" scrollamount="1.0">
-									<FONT id="topNotice" size=3pt> 
-									</FONT>
-									</marquee>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>	
-		<div class="depth1_Body">
-			<div class="menubar">
-				<div class="menuRange">
-					<ul>
-					 <li><a href="#" id="current">전표입력</a>
-					    <ul>
-					     <li id="incChitInput"><a href="#">매입전표</a></li>
-					     <li id="salChitInput"><a href="#">매출전표</a></li>
-					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
-					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
-					     <li id="salReList"><a href="#">지출결의서</a></li>
-					    </ul>
-					 </li>
-					 <li><a href="#" id="current">장부관리</a>
-					   <ul>
-					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
-					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
-					     <li id="incSal"><a href="#">매입매출장</a></li>
-					     <li id="chitManagement"><a href="#">전표관리</a></li>
-					     <li id="chitSign"><a href="#">전표결재</a></li>					     
-					    </ul>
-					 </li>
-					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
-					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
-					     <li id="incStatement"><a href="#">손익계산서</a></li>
-					    </ul>
-					 </li>
-					 <li><a href="#" id="current">전기재무재표</a><ul>
-					     <li id="beforeFinancialStatement"><a href="#">전기분 재무재표</a></li>
-					     <li id="beforeProfitAndLoss"><a href="#">전기분 손익 계산서</a></li>
-					    </ul>
-					 </li>
-					 <li ><a href="#" id="current">게시판</a><ul>
-					     <li id="noticePage"><a href="#">공지사항</a></li>
-					     <li id="bbsPage"><a href="#">부서게시판</a></li>
-					    </ul>
-					 </li>
-					 <li><a href="#" id="current">기본관리</a><ul>
-					     <li id="companyRegister"><a href="#">회사등록/회계연도</a></li>
-					     <li id="customerList"><a href="#">거래처 관리</a></li>
-					     <li id="memList"><a href="#">사원관리</a></li>
-					     <li id="deptList"><a href="#">부서관리</a></li>
-					     <li id="bankList"><a href="#">계좌관리</a></li>
-					     <li id="subjectList"><a href="#">계정과목관리</a></li>
-					    </ul>
-					 </li>
-					</ul>
-				</div>
-			</div>
-		</div>
+		<c:import url="/top"></c:import>
 		<div class="contents">
+		<br/>
 			<form action="#" id="actionForm">회사등록/회계연도
 			<table border="1px" width="600px" align="center">
 				<colgroup>	
@@ -238,7 +204,6 @@ function ComInfoGet() {
 			<input type="button" value="수정" id="updateBtn">
 			</div>		
 		</div>
-	</div>
-</div>
+		<c:import url="/bottom"></c:import>
 </body>
 </html>
