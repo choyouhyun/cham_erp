@@ -1,9 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
-<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
-<script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
+<form action="#" method="post" id="mainForm">
+   <c:choose>
+   <c:when test= "${empty param.page}">
+      <input type="hidden" name="page" value="1" />
+   </c:when>
+   <c:otherwise>
+      <input type="hidden" name="page" value="${param.page}" />
+   </c:otherwise>
+   </c:choose>
+   <input type="hidden" name="No" />
+   <input type="hidden" name="bbsNo" value="${sMemDn}"/>
+   <input type="hidden" name="userName" value="${sMemNm}"/>
+   <input type="hidden" name="bbsName" value=""/>
+</form>
 <div class="bg">
 	<div class="range">
 		<div class="top">
