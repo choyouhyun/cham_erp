@@ -21,52 +21,52 @@
 	
 	<!--매입 전표 입력-->
 	<insert id="insertInc" parameterClass="java.util.HashMap">
-		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
-		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+		INSERT INTO INC_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (INC_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
 	</insert>
 	
 	<insert id="insertIncDetail" parameterClass="java.util.HashMap">
-		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
-		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+		INSERT INTO INC_CHIT_DET(NO, INC_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (INC_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
 	</insert>
 	
 	<select id="getIncLastNum" resultClass="String">
 		SELECT A.NO
-		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM INC_CHIT) A
 		 WHERE RNUM=1
 	</select>
 	
 	<!--기타 입금 전표 입력-->
 	<insert id="insertOthSal" parameterClass="java.util.HashMap">
-		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
-		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+		INSERT INTO OTH_SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (OTH_SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
 	</insert>
 	
 	<insert id="insertOthSalDetail" parameterClass="java.util.HashMap">
-		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
-		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+		INSERT INTO OTH_SAL_CHIT_DET(NO, OTH_SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (OTH_SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
 	</insert>
 	
 	<select id="getOthSalLastNum" resultClass="String">
 		SELECT A.NO
-		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM OTH_SAL_CHIT) A
 		 WHERE RNUM=1
 	</select>
 	
 	<!--기타 지출 전표 입력-->
 	<insert id="insertOthInc" parameterClass="java.util.HashMap">
-		INSERT INTO SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
-		VALUES (SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+		INSERT INTO OTH_INC_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (OTH_INC_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
 	</insert>
 	
 	<insert id="insertOthIncDetail" parameterClass="java.util.HashMap">
-		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
-		VALUES (SAL_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+		INSERT INTO OTH_INC_CHIT_DET(NO, OTH_INC_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (OTH_INC_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
 	</insert>
 	
 	<select id="getOthIncLastNum" resultClass="String">
 		SELECT A.NO
-		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_CHIT) A
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM OTH_INC_CHIT) A
 		 WHERE RNUM=1
 	</select>
 </sqlMap>
