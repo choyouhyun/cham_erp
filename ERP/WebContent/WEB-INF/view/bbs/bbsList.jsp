@@ -60,10 +60,10 @@ function refreshList() {
 			for(var i = 0; i < result.list.length ; i++) {
 				html += "<tr name='" + result.list[i].NO + "'>";
 				html += "<td width='" + "500px" +"'>" + result.list[i].TITLE + "</td>";
-				html += "<td width='" + "300px" +"'>" + result.list[i].JOINDT + "</td>";
-				html += "<td width='" + "100px" +"'>" 
-					+ "<img alt='" + "user" + "'src='" + "resources/images/ERP/user-bbs.png" + "'/>" 
-					+ result.list[i].MEMNAME + "</td>";
+				html += "<td width='" + "300px" +"'>" 
+				+ "<img alt='" + "user" + "'src='" + "resources/images/ERP/user-bbs.png" + "'/>" 
+				+ result.list[i].MEMNAME + "</td>";
+				html += "<td width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
 				html += "<td width='" + "100px" +"'>" + "조회수 [" + result.list[i].HITS + "]" + "</td>";
 				html += "</tr>";
 			}
@@ -262,7 +262,7 @@ function refreshList() {
 						<div class="c">
 							<div class="bbsControll_d">
 								<div class="e">
-									<div class="pagingArea" id="pagingArea">페이징</div>
+									<div class="pagingArea" id="pagingArea"></div>
 								</div>
 							</div>
 						</div>
@@ -271,7 +271,7 @@ function refreshList() {
 						<div class="c">
 							<div class="bbsControll_d">
 								<div class="e">
-									<input type="button" id="insertBtn" value="글 쓰기" style="width: 80px; height: 30px;" />
+									<input type="button" id="insertBtn" value="글 쓰기" />
 								</div>
 							</div>
 						</div>

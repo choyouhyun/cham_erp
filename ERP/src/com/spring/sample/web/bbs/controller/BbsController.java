@@ -31,25 +31,20 @@ public class BbsController {
 	 public IPagingService iPagingService;
 		@RequestMapping(value="/bbsList")
 		public ModelAndView bbsList(HttpServletRequest request,
+									@RequestParam HashMap<String, String> params,
 									HttpSession session,
 									ModelAndView modelAndView)
 									throws Throwable {
 
-			
-	/*		String searchText = request.getParameter("searchText");
-			
-			ArrayList<HashMap<String, String>> list
-										= iTestService.getTest(searchText); //조회 해오는 것
-			
-			modelAndView.addObject("list", list);
-			*/
+
+
 		      if(session.getAttribute("sMemNo")!=null){
 					modelAndView.setViewName("bbs/bbsList");
 			      }else{
 			         modelAndView.setViewName("redirect:login");
 			      }
 
-			
+
 			return modelAndView;
 		}
 		@RequestMapping(value= "/refreshList")
@@ -60,14 +55,14 @@ public class BbsController {
 			
 			ObjectMapper mapper = new ObjectMapper();
 			Map<String, Object> modelMap = new HashMap<String, Object>();
-			
-			PagingBean pb = iPagingService.getPageingBean(
-					Integer.parseInt(params.get("page")), 
-					iBbsService.getBbsCount(params));
 			if(params.get("cap")==null||params.get("cap")==""){
 				params.put("bbsNo", "80");
 				
 			}
+			
+			PagingBean pb = iPagingService.getPageingBean(
+					Integer.parseInt(params.get("page")), 
+					iBbsService.getBbsCount(params));
 			System.out.println(params);
 			params.put("start", Integer.toString(pb.getStartCount()));
 			params.put("end", Integer.toString(pb.getEndCount()));
