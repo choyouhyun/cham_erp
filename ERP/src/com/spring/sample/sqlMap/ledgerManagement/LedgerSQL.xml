@@ -1,10 +1,35 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
-    "http://www.ibatis.com/dtd/sql-map-2.dtd">
-
-<sqlMap namespace="ledger">
-	<!-- <typeAlias alias="loginBean" 
-			   type="com.spring.sample.web.login.bean.LoginBean" /> -->
-	<!-- <select id="getMem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-   </select> -->
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ledgerManagement">
+	<select id="getCusNo" parameterClass="java.util.HashMap"
+		remapResults="true" resultClass="java.util.ArrayList">
+		SELECT ROWNUM, CUS_NO
+		FROM SAL_CHIT
+		WHERE CREDITOR_NO = #subNameText# OR DEBTOR_NO = #subNameText#
+		<isEmpty property="cusNoText">
+			AND CUS_NO IN (#cusNoText#)
+		</isEmpty>
+		UNION
+		SELECT CUS_NO
+		FROM INC_CHIT
+		WHERE CREDITOR_NO = #subNameText# OR DEBTOR_NO = #subNameText#
+		<isEmpty property="cusNoText">
+			AND CUS_NO IN (#cusNoText#)
+		</isEmpty>
+		UNION
+		SELECT CUS_NO
+		FROM OTH_SAL_CHIT
+		WHERE CREDITOR_NO = #subNameText# OR DEBTOR_NO = #subNameText#
+		<isEmpty property="cusNoText">
+			AND CUS_NO IN (#cusNoText#)
+		</isEmpty>
+		UNION
+		SELECT CUS_NO
+		FROM OTH_INC_CHIT
+		WHERE CREDITOR_NO = #subNameText# OR DEBTOR_NO = #subNameText#
+		<isEmpty property="cusNoText">
+			AND CUS_NO IN (#cusNoText#)
+		</isEmpty>
+	</select>
 </sqlMap>

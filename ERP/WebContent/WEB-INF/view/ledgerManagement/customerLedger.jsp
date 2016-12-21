@@ -123,8 +123,6 @@ $(function() {
 			</table><br/><br/>
 			</form>
 			<input type="button" id="ledsearchBtn" value="조회"/>
-
-		
 		</div>
 		<c:import url="/bottom"></c:import>
 
