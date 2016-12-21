@@ -13,6 +13,48 @@
 	href="resources/css/erp_css/basic.css" />
 	
 <style type="text/css">
+/*스크롤바  */
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
 #registerBtn,#deleteBtn{
    border: 1px solid #ffffff;
    background: #474747;
@@ -103,26 +145,26 @@
 	cursor: pointer;
 }
 /* 테이블디자인  */
-.tblGreen {
+.maintbl {
     border-collapse: collapse;
     text-align: center;
     font-family: 'Trebuchet MS';
 }
-.tblGreen td, th {
+.maintbl td, th {
     font-size: 10pt;
     border: 1px solid #98bf21;
     height: 30px;
 }
-.tblGreen th {
+.maintbl th {
     background-color:#A7C942;
     color:#ffffff;
     font-family: Georgia;
 }
-.tblGreen tr.alt td {
+.maintbl tr.alt td {
     color:#000000;
     background-color:#EAF2D3;
 }
-.tblGreen caption {
+.maintbl caption {
     height: 30px;
     text-align: left;
     font-weight: bold;
@@ -273,7 +315,7 @@ $(document).ready(function(){
 				</form>
 			</div>
 			<br/>
-				<table border="1" cellspacing="0" align="center" class="tblGreen">
+				<table border="1" cellspacing="0" align="center" class="maintbl">
 					<thead>
 						<tr>
 							<th><input type = "checkbox" id = "checkAll"/></th>
