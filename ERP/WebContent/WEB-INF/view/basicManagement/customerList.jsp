@@ -9,6 +9,125 @@
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
+
+<style type="text/css">
+#registBtn,#deleteBtn{
+   border: 1px solid #ffffff;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
+   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
+   background: -moz-linear-gradient(top, #6d6d6d, #474747);
+   background: -ms-linear-gradient(top, #6d6d6d, #474747);
+   background: -o-linear-gradient(top, #6d6d6d, #474747);
+   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
+   padding: 10.5px 21px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#registBtn:hover,#deleteBtn:hover{
+   border: 1px solid #ffffff;
+   /* text-shadow: #ffffff 0 1px 0; */
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+#registBtn:active,#deleteBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+
+#searchBtn{
+   height:40px;
+   border: 1px solid #ffffff;
+   background: #6d6d6d;
+   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
+   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
+   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
+  
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+#searchBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+
+#pagingArea:HOVER{
+	cursor: pointer;
+}
+
+.tblGreen {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.tblGreen td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+}
+.tblGreen th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+}
+.tblGreen tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.tblGreen caption {
+    height: 30px;
+    text-align: left;
+    font-weight: bold;
+}
+</style>
+
+
 <script type="text/javascript">
 $(document).ready(function() {
 	cusAjax();
@@ -109,21 +228,37 @@ function deleteCus() {
 	});
 }
 </script>
+
+<script type="text/javascript"> //전체 체크박스 선택,해제
+$(document).ready(function(){
+    
+    $("#checkAll").click(function(){
+        
+        if($("#checkAll").prop("checked")){
+            
+            $("input[type=checkbox]").prop("checked",true);
+            
+        }else{
+           
+            $("input[type=checkbox]").prop("checked",false);
+        }
+    });
+});
+</script>
 </head>
 <body>
 		<c:import url="/top"></c:import>
 		<div class="contents">
+		<br/>
 			<div>거래처 리스트 
 				<input type ="text" id="searchText" value=""/>
 				<input type="button" value="검색" id="searchBtn"/>
 			</div>
 			<br/>
-			<div id = "">페이지 순서</div>
-			<br/>
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
 				<input type="hidden" name="cusNo" />
-			<table border="1" cellspacing="0" align="center">
+			<table border="1" cellspacing="0" align="center" class="tblGreen">
 				<thead>
 					<tr>
 						<th><input type = "checkbox" id = "checkAll"/></th>

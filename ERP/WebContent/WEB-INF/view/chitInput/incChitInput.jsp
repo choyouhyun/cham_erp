@@ -73,7 +73,7 @@ $(document).ready(function() {
 		if($("#dealDateText").val() != "" && $("#deptNoText").val() != "" && $("#cusNoText").val() != "" &&
 				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#dealDateText").val() != ""){	
 			if(confirm("입력 하시겠습니까?") == true){
-				insertSal();
+				insertInc();
 			}
 		} else {
 			alert("입력값을 확인하세요");

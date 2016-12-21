@@ -56,8 +56,8 @@
 					    <ul>
 					     <li id="incChitInput"><a href="#">매입전표</a></li>
 					     <li id="salChitInput"><a href="#">매출전표</a></li>
-					     <li id="othSalChitInput"><a href="#">기타지출전표</a></li>
-					     <li id="othIncsalChitInput"><a href="#">기타수입전표</a></li>
+					     <li id="othSalChitInput"><a href="#">기타입금전표</a></li>
+					     <li id="othIncsalChitInput"><a href="#">기타지출전표</a></li>
 					     <li id="salReList"><a href="#">지출결의서</a></li>
 					    </ul>
 					 </li>

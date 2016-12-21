@@ -48,7 +48,7 @@ tr, ul:HOVER {
 	display: table-row;
 	height: 470px;
 }
-td, #noticeMar {
+.mainTd, #noticeMar {
  	white-space: nowrap; /* pre, pre-wrap 자동 줄 바꿈 */
  	text-overflow: ellipsis; /* 넘어가는 글 ... 처리 */
   	overflow: hidden;/*여기까지 */
@@ -69,7 +69,7 @@ td, #noticeMar {
 	display: inline-block;
 	width: 1280px;
 	min-height: 820px;
-	background-color: #ededed; 
+	background-color: #ffffff; 
 	font-size: 20px;
 	text-align: center;
 	
@@ -360,7 +360,7 @@ clear:left;
 	border-collapse: collapse;
 }
 .mainTd {
-	border-bottom: 3px solid #ededed;
+	border-bottom: 2px solid #ededed;
 	padding-top: 10px;
 	height: 44px;
 }
