@@ -128,7 +128,8 @@ function removePre(data) {
 						<div class="c">
 							<div class="writeContents_d">
 								<div class="e">
-									<textarea rows="30" cols="100" name="bbsCon">${con.CON}</textarea>
+									<textarea rows="30" cols="100" name="bbsCon"
+										class="bbsCon">${con.CON}</textarea>
 								</div>
 							</div>
 						</div>
