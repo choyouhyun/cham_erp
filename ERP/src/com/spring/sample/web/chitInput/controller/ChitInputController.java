@@ -83,6 +83,7 @@ public class ChitInputController {
 		ObjectMapper mapper = new ObjectMapper();
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		HashMap<String, String> list = new HashMap<String, String>();
+		System.out.println(params);
 		String salNum = iChitInputService.insertInc(params);
 		String res = null;
 		for(int i = 0; i < date.size(); i++){
