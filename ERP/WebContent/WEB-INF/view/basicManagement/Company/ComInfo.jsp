@@ -26,6 +26,39 @@
 
 text-align: center;
 }
+
+#font{
+	font-weight: bold;
+	font-size: 20pt
+}
+/*테이블 디자인  */
+.maintbl {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #FF4848;
+ 	margin : 20px 10px;
+}
+.maintbl th {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #FF6C6C;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+.maintbl td {
+    width: 180px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+
 #updateBtn, #regBtn{
 display: none;
 
@@ -79,6 +112,43 @@ display: none;
    color: #fff;
 }
 
+#postBtn{
+   height:40px;
+   border: 1px solid #ffffff;
+   background: #6d6d6d;
+   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
+   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
+   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
+  
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+#postBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -149,8 +219,9 @@ function ComInfoGet() {
 		<c:import url="/top"></c:import>
 		<div class="contents">
 		<br/>
-			<form action="#" id="actionForm">회사등록/회계연도
-			<table border="1px" width="600px" align="center">
+			<form action="#" id="actionForm"><div id="font">회사등록/회계연도</div>
+			<div align="center">
+			<table border="1px" width="600px" align="center" class="maintbl">
 				<colgroup>	
 				 	<col width="170" />
 			        <col width="430" />
@@ -190,13 +261,14 @@ function ComInfoGet() {
 				<tr>
 					<th>주소
 					</th>
-					<td scope="row" align="left"><input type="button" value="우편번호 검색" />
+					<td scope="row" align="left"><input type="button" value="우편번호 검색" id="postBtn"/>
 									<br /> <input type="text" maxlength="" name="address1"/>-
 									<input type="text" maxlength="" name="address2"/> <br /> 
 									<input type="text" maxlength="" name="address3"/></td>
 				</tr>
 				
 			</table>
+			</div>
 					<input type="hidden" name="reg_up">
 			</form><br/>
 			<div class="btn">

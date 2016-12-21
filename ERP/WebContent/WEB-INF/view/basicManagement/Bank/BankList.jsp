@@ -11,6 +11,11 @@
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 
 <style type="text/css">
+#font{
+font-weight: bold;
+font-size: 20pt
+}
+
 #registerBtn{
    border: 1px solid #ffffff;
    background: #474747;
@@ -221,8 +226,10 @@
 <body >
 		<c:import url="/top"></c:import>
 		<div class="contents">
+		<br/>
 				<div>
-					통장계좌 리스트
+					<div id="font">통장계좌 리스트</div>
+					
 					<form action="#" id="actionForm" method="post">
 <%-- 						<c:choose>
 							<c:when test="${empty param.page}"> --%>
@@ -238,7 +245,8 @@
 						<input type="text" id="searchText" /> <input type="button"
 							value="검색" id="searchBtn" />
 				
-				<br />
+				<br/>
+				<br/>
 				<table border="1" cellspacing="0" align="center" class="tblGreen">
 					<thead>
 						<tr>
@@ -255,7 +263,7 @@
 				<div id="pagingArea"></div>
 				<br /> 
 				<br /> 
-				<input type="button" value="신규등록" id="registerBtn" /> 
+				<input type="button" value="신규등록" id="registerBtn" onclick="window.open('BankRegister', 'Edit', 'width=300, height=300');"/> 
 				</form>
 				</div>		
 		</div>

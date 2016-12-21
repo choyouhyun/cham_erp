@@ -129,7 +129,8 @@
 }
 
 #font{
-font-weight: bold
+font-weight: bold;
+font-size: 20pt
 }
 </style>
 <script type="text/javascript">

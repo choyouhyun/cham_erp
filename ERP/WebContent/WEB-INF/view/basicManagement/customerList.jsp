@@ -11,6 +11,11 @@
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 
 <style type="text/css">
+#font{
+	font-weight: bold;
+	font-size: 20pt
+}
+
 #registBtn,#deleteBtn{
    border: 1px solid #ffffff;
    background: #474747;
@@ -250,7 +255,7 @@ $(document).ready(function(){
 		<c:import url="/top"></c:import>
 		<div class="contents">
 		<br/>
-			<div>거래처 리스트 
+			<div id="font">거래처 리스트 
 				<input type ="text" id="searchText" value=""/>
 				<input type="button" value="검색" id="searchBtn"/>
 			</div>

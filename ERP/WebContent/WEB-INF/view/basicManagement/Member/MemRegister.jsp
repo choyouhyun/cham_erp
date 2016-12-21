@@ -10,6 +10,35 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+/*테이블 디자인  */
+.maintbl {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #FF7012;
+ 	margin : 20px 10px;
+}
+.maintbl th {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #FF9436;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+.maintbl td {
+    width: 180px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+
+
+
 #saveBtn,#clearBtn{
    border: 1px solid #ffffff;
    background: #474747;
@@ -316,8 +345,8 @@ function execDaumPostcode() {
 		<h1>
 			<center>사원 등록</center>
 		</h1>
-
-		<table border=1 cellspacing="0" width=75% height=300% align="center">
+		<div align="center">
+		<table border=1 cellspacing="0" width=75% height=300% align="center" class="maintbl">
 
 			<caption></caption>
 			<tbody>
@@ -421,6 +450,7 @@ function execDaumPostcode() {
 
 
 		</table>
+		</div>
 	</form>
 	<br />
 	<div align="center">

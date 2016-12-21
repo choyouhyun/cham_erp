@@ -26,6 +26,11 @@ A:HOVER{
 	text-decoration: underline;
 }
 
+#font{
+font-weight: bold;
+font-size: 20pt
+}
+
 #regBtn,#delBtn{
    border: 1px solid #ffffff;
    background: #474747;
@@ -171,7 +176,8 @@ function checkDelete() {
 <body>
 		<c:import url="/top"></c:import>
 		<div class="contents">
-				<div>계정코드등록</div>
+		<br/>
+				<div id="font">계정코드등록</div>
 				<br />
 				<form action="#" id="actionForm" method="post">
 				<table border="1" cellspacing="0" align="center" class="tblGreen">
