@@ -239,14 +239,16 @@ function getMemList() {
 	     
      function insertMem(){
 			
+    	 	var resData = eval("(" + removePre(data) + ")");
+			$("#textFile").val(resData.fileName[0]);
 			var params = $("#actionForm").serialize();
-			
 			$.ajax({
 				type :"post" ,
 				url : "Meminsert",
 				dataType : "json",
 				data : params,
 				success : function(result) {//ajax가 성공적으로 돌았을때이다
+					
 					if(result.res == "true"){
 						alert("저장됨");						
 						location.href="MemList";
@@ -259,6 +261,17 @@ function getMemList() {
 				}
 			});	//ajax 끝
 		}
+     function removePre(data) {
+    		if(data.indexOf("<pre>") > -1) {
+    			var st = data.indexOf(">");
+    			var ed = data.indexOf("<", st);
+    			
+    			return data.substring(st + 1, ed);
+    		} else {
+    			return data;
+    		}
+    	}
+     
      $("#ddlEmail").on("change", function() {
  		$("#textEmail").val($(this).val());
  		if($("#textEmail").val() == "self"){
@@ -337,7 +350,6 @@ function execDaumPostcode() {
 
 
 </script>
-
 </head>
 <body>
 	<form action="#" id="actionForm" method="post" enctype="multipart/form-data">
@@ -351,7 +363,14 @@ function execDaumPostcode() {
 			<caption></caption>
 			<tbody>
 				<tr>
-					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100></td>
+					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100>
+					<br/>
+					<input type="file" name="att1">
+					<input type="hidden" name="textFile" id="textFile" />
+					</td>
+					
+					
+				</tr>
 				<tr>
 					<th scope="row">사원번호</th>
 					<td scope="row" align="left">
