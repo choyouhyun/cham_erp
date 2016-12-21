@@ -10,6 +10,48 @@
 <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
+/*스크롤바  */
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
 /*테이블 디자인  */
 .maintbl {
     border-collapse: collapse;
@@ -239,16 +281,14 @@ function getMemList() {
 	     
      function insertMem(){
 			
-    	 	var resData = eval("(" + removePre(data) + ")");
-			$("#textFile").val(resData.fileName[0]);
 			var params = $("#actionForm").serialize();
+			
 			$.ajax({
 				type :"post" ,
 				url : "Meminsert",
 				dataType : "json",
 				data : params,
 				success : function(result) {//ajax가 성공적으로 돌았을때이다
-					
 					if(result.res == "true"){
 						alert("저장됨");						
 						location.href="MemList";
@@ -261,17 +301,6 @@ function getMemList() {
 				}
 			});	//ajax 끝
 		}
-     function removePre(data) {
-    		if(data.indexOf("<pre>") > -1) {
-    			var st = data.indexOf(">");
-    			var ed = data.indexOf("<", st);
-    			
-    			return data.substring(st + 1, ed);
-    		} else {
-    			return data;
-    		}
-    	}
-     
      $("#ddlEmail").on("change", function() {
  		$("#textEmail").val($(this).val());
  		if($("#textEmail").val() == "self"){
@@ -350,6 +379,7 @@ function execDaumPostcode() {
 
 
 </script>
+
 </head>
 <body>
 	<form action="#" id="actionForm" method="post" enctype="multipart/form-data">
@@ -363,14 +393,7 @@ function execDaumPostcode() {
 			<caption></caption>
 			<tbody>
 				<tr>
-					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100>
-					<br/>
-					<input type="file" name="att1">
-					<input type="hidden" name="textFile" id="textFile" />
-					</td>
-					
-					
-				</tr>
+					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100></td>
 				<tr>
 					<th scope="row">사원번호</th>
 					<td scope="row" align="left">
