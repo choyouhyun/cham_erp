@@ -15,8 +15,11 @@
 $(document).ready(function(){
 	var html = "";
 	html += "<span>" +  $("input[name='bbsName']").val()  + "</span>";
-	
 	$("#bbsName").html(html);
+ 	if('${sMemNm}' == '${con.MEMNAME}') {
+ 		$("#updateBtn").css("visibility", "visible");
+ 		$("#deleteBtn").css("visibility", "visible");
+	} 
 	$("#listBtn").on("click", function(){
 		$("#actionForm").attr("action", "bbsList");
 		$("#actionForm").submit();
@@ -146,7 +149,8 @@ $(document).ready(function(){
 							<div class="e">
 								<div class="btnsBody">
 									<div class="btnPart1">
-										<input type="button" id="updateBtn" value="수정" />
+										<input type="button" id="updateBtn" value="수정" 
+										 disabled="disabled"/>
 									</div>
 									<div class="btnPart2">
 										<input type="button" id="deleteBtn"value="삭제" />

@@ -37,7 +37,6 @@ $(document).ready(function() {
 function uploadResultCallBack(data, result) {   
 	if(result =="success") {
 		var resData = eval("(" + removePre(data) + ")");
-		console.log(resData.fileName[0]);
 		$("#textFile").val(resData.fileName[0]);
 		var params = $("#insertForm").serialize();
 		

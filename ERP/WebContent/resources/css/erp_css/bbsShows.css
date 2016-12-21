@@ -124,6 +124,7 @@
 	display: inline-block;
 	width: 72px;
 	height: 41px;
+	
 }
 .btnPart2 {
 	display: inline-block;
@@ -136,6 +137,9 @@
 	width: 880px;
 	height: 41px;
 	text-align: right;
+}
+#updateBtn, #deleteBtn {
+	visibility: hidden;
 }
 #updateBtn, #listBtn, #deleteBtn{
    border: 1px solid #ffffff;
