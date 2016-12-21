@@ -10,33 +10,128 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <style type="text/css">
-table{
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
+#font{
+	font-weight: bold;
+	font-size: 20pt
+}
+
+table {
+	overflow: auto;
 	display: inline-block;
 }
-table.sub th, table.ass th, table.debt th {
-    font-weight: bold;
-    vertical-align: top;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
-    border-top: 1px solid #fff;
-    border-left: 1px solid #fff;
-    background: #eee;
+
+table.sub{
+	text-align: left;
+    /* line-height: 1.5; */
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #484848;
+ 	
 }
-table.sub td, table.ass td, table.debt td {
-    padding: 1px;
-    vertical-align: top;
-    border-right: 1px solid #ccc;
-    border-bottom: 1px solid #ccc;
+
+table.sub th {
+	font-weight: bold;
+	vertical-align: top;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	border-top: 1px solid #fff;
+	border-left: 1px solid #fff;
+	background: #FFFFFF;
+	
 }
-table.ass, table.debt{
-	height: 497px;
+
+table.sub td {
+	padding: auto;
+	vertical-align: top;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
 }
+
+table.ass {
+	
+}
+
+table.ass td {
+	padding: auto;
+	vertical-align: top;
+	border: 1px solid #BDBDBD;
+}
+
+table.ass th {
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #BDBDBD;
+	background: #484848/* #47C83E */;
+	color: #FFFFFF
+}
+
+table.debt {
+	
+}
+
+table.debt td {
+	padding: auto;
+	vertical-align: top;
+	border: 1px solid #BDBDBD;
+}
+
+table.debt th {
+	font-weight: bold;
+	vertical-align: top;
+	border: 1px solid #BDBDBD;
+	background: #484848/* #47C83E */;
+	color: #FFFFFF
+}
+
+
+
 </style>
 </head>
 <body>
 		<c:import url="/top"></c:import>
-		<div class="contents">전기분재무재표<p>
-				<table class="ass" border="1px" align="center">
+		<div class="contents">
+		<div id="font" >전기분재무재표</div><p>
+				<table class="ass" border="0px" align="center">
 				<tr>
 					<th colspan="3">자산
 					</th>
@@ -152,7 +247,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 			</table>
-			<table class="debt" id="debt" border="1px" align="center">
+			<table class="debt" id="debt" border="0px" align="center">
 				<tr>
 					<th colspan="3">부채 및 자본
 					</th>
@@ -268,7 +363,7 @@ table.ass, table.debt{
 					</td>
 				</tr>
 			</table>
-			<table class="sub" id="sub" border="1px" align="center">
+			<table class="sub" id="sub" border="0px" align="center">
 				<tr>
 					<th colspan="2">계정 별 합계
 					</th>
