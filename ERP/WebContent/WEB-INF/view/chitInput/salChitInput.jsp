@@ -81,7 +81,7 @@ $(document).ready(function() {
 });
 
 function insertSal() {
-	var params = $("#actionMain").serializeArray();
+	var params = $("#actionChit").serializeArray();
 	
 	$.ajax({
 		type: "post",
@@ -101,7 +101,7 @@ function insertSal() {
 </head>
 <body>
 <c:import url="/top"></c:import>
-<form action="#" id="actionMain" method="post">
+<form action="#" id="actionChit" method="post">
 <div class="contents">
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
 	<div class="chitBody">

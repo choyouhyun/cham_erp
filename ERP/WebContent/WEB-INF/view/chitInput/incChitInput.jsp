@@ -71,7 +71,7 @@ $(document).ready(function() {
 	
 	$("#saveBtn").click(function() {
 		if($("#dealDateText").val() != "" && $("#deptNoText").val() != "" && $("#cusNoText").val() != "" &&
-				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#dealDateText").val() != ""){	
+				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#moneyText").val() != ""){	
 			if(confirm("입력 하시겠습니까?") == true){
 				insertInc();
 			}
@@ -82,7 +82,7 @@ $(document).ready(function() {
 });
 
 function insertInc() {
-	var params = $("#actionMain").serializeArray();
+	var params = $("#actionChit").serializeArray();
 	
 	$.ajax({
 		type: "post",
@@ -102,7 +102,7 @@ function insertInc() {
 </head>
 <body>
 <c:import url="/top"></c:import>
-<form action="#" id="actionMain" method="post">
+<form action="#" id="actionChit" method="post">
 <div class="contents">
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
 	<div class="chitBody">
