@@ -14,6 +14,79 @@
 	width: 500px;
 	height: 800px;
 }
+
+#pagingArea:HOVER{
+	cursor: pointer;
+}
+
+#head{
+	font-size: 14pt;
+	font-weight: bold;
+}
+/*팝업테이블 디자인  */
+.poptbl {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.poptbl td, th {
+    font-size: 10pt;
+    border: 1px solid #FFBA85;
+    height: 30px;
+}
+.poptbl th {
+    background-color:#FFCC97;
+    color:#ffffff;
+    font-family: Georgia;
+}
+.poptbl tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.poptbl caption {
+    height: 30px;
+    text-align: left;
+    font-weight: bold;
+}
+/*검색버튼 디자인  */
+#searchBtn{
+   height:40px;
+   border: 1px solid #ffffff;
+   background: #6d6d6d;
+   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
+   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
+   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
+  
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+#searchBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
@@ -87,7 +160,7 @@ function cusAjax() {
 <body>
 <div>
 	<div class="outSide">
-		<div>거래처 리스트 
+		<div id="head">거래처 리스트 
 			<input type ="text" id="searchText" value=""/>
 			<input type="button" value="검색" id="searchBtn"/>
 		</div>
@@ -96,7 +169,7 @@ function cusAjax() {
 			<input type="hidden" name="page" value="1" />
 			<input type="hidden" name="cusNo" />
 		</form>
-		<table border="1" cellspacing="0" align="center">
+		<table border="1" cellspacing="0" align="center" class="poptbl">
 			<thead>
 				<tr>
 					<th>거래처코드 ▼</th>

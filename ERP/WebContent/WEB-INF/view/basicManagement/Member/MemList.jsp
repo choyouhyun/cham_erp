@@ -102,7 +102,7 @@
 #pagingArea:HOVER{
 	cursor: pointer;
 }
-
+/* 테이블디자인  */
 .tblGreen {
     border-collapse: collapse;
     text-align: center;
@@ -126,6 +126,10 @@
     height: 30px;
     text-align: left;
     font-weight: bold;
+}
+
+#font{
+font-weight: bold
 }
 </style>
 <script type="text/javascript">
@@ -250,7 +254,7 @@ $(document).ready(function(){
 		<c:import url="/top"></c:import>
 		<div class="contents">
 		<br/>
-			<div>사원목록 
+			<div id="font">사원목록 
 			<form action="#" id="actionForm" method="post">
 				<c:choose>
 					<c:when test="${empty param.page}">

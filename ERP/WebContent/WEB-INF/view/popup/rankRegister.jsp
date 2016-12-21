@@ -8,6 +8,12 @@
 <title>Insert title here</title>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" />
+
+<style type="text/css">
+
+
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	
