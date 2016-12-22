@@ -26,11 +26,18 @@ $(document).ready(function() {
 		$("#actionForm").submit();
 	});
 	$("#saveBtn").on("click", function() {
-		var insertForm = $("#insertForm");
-		
-		insertForm.ajaxForm(uploadResultCallBack);
-		insertForm.submit();
-	
+		if($("input[name='bbsTitle']").val() == "") {
+			alert("제목을 입력해주세요!");
+		}else if($("[name='bbsCon']").val() == ""){
+			alert("내용을 입력해주세요!");
+		}else if($("[name='bbsCon']").val().length < 5) {
+			alert("글 내용은 5글자 이상 입력해주세요!");
+		}else {
+			var insertForm = $("#insertForm");
+			
+			insertForm.ajaxForm(uploadResultCallBack);
+			insertForm.submit();	
+		}
 	});
 });
 

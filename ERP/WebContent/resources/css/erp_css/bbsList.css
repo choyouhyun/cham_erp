@@ -130,6 +130,10 @@ span {
 	vertical-align: top;
 	text-align: center;
 }
+/* 공지사항 글쓰기 권한 */
+#insertBtn {
+	visibility: hidden;
+}
 
 /* 버튼 스타일 */
 #insertBtn{

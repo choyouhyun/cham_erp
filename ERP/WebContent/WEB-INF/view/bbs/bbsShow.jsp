@@ -149,8 +149,7 @@ $(document).ready(function(){
 							<div class="e">
 								<div class="btnsBody">
 									<div class="btnPart1">
-										<input type="button" id="updateBtn" value="수정" 
-										 disabled="disabled"/>
+										<input type="button" id="updateBtn" value="수정" />
 									</div>
 									<div class="btnPart2">
 										<input type="button" id="deleteBtn"value="삭제" />
