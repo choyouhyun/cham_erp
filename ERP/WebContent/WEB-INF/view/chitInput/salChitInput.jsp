@@ -209,6 +209,7 @@ html {
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
+	getchit();
 	$( "#dealDateText" ).datepicker({
 		dateFormat: 'yymmdd'
 	});
@@ -259,12 +260,24 @@ $(document).ready(function() {
 		if($("#dealDateText").val() != "" && $("#deptNoText").val() != "" && $("#cusNoText").val() != "" &&
 				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#dealDateText").val() != ""){	
 			if(confirm("입력 하시겠습니까?") == true){
-				insertSal();
+				if($("#chitNo").val() != ""){
+					updatechit();
+				}else{
+				 	insertSal();
+				}
 			}
 		} else {
 			alert("입력값을 확인하세요");
 		}
 	});
+	//2016-12-22 유현 전표관리부분 
+	if($("#chitNo").val() != ""){
+		getchit();
+		$("#saveBtn").val("수정");
+	}
+	
+	
+	
 });
 
 function insertSal() {
@@ -284,13 +297,58 @@ function insertSal() {
 		}
 	});
 }
+
+function getchit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "getchit",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			$("#dealDateText").val(result.list.INPUT_DATE);
+			$("#deptNoText").val(result.list.DEPT_NO);
+			$("#deptNameText").val(result.list.DEPT_NAME);
+			$("#cusNoText").val(result.list.CUS_NO);
+			$("#cusNameText").val(result.list.CUS_NAME);
+			$("#moneyText").val(result.list.MONEY);
+			$("#creNoText").val(result.list.CREDITOR_NO);
+			$("#creNameText").val(result.list.CREDITOR_NAME);
+			$("#debNoText").val(result.list.DEBTOR_NO);
+			$("#debNameText").val(result.list.DEBTOR_NAME);
+			$("#etcText").val(result.list.ETC);
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+function updatechit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "updatechit",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+
 </script>
 </head>
 <body>
-<c:import url="/top"></c:import>
+<c:import url="/top"></c:import> 
 <form action="#" id="actionChit" method="post">
 <div class="contents">
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
+	<input type="hidden" name="chitNo" id="chitNo" value="${param.chitNo}"/>
 	<div class="chitBody">
 	<br>
 	<span class="title"> 매출 전표 입력</span>
@@ -341,7 +399,7 @@ function insertSal() {
 		<input type="button" value="저장" id="saveBtn"/>		
 	</div>
 </div>
-<c:import url="/bottom"></c:import>
+<c:import url="/bottom"></c:import> 
 
 <div id="detail">
 	<table width="676px" >

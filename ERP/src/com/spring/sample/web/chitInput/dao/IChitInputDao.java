@@ -19,4 +19,8 @@ public interface IChitInputDao {
 	public String insertOthInc(HashMap<String, String> params) throws Throwable;
 
 	public String insertOthIncDetail(HashMap<String, String> list) throws Throwable;
+
+	public HashMap<String, String> getchit(HashMap<String, String> params)throws Throwable;
+
+	public int updatechit(HashMap<String, String> params) throws Throwable;
 }
