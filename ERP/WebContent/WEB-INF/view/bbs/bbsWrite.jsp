@@ -37,7 +37,6 @@ $(document).ready(function() {
 function uploadResultCallBack(data, result) {   
 	if(result =="success") {
 		var resData = eval("(" + removePre(data) + ")");
-		console.log(resData.fileName[0]);
 		$("#textFile").val(resData.fileName[0]);
 		var params = $("#insertForm").serialize();
 		
@@ -123,7 +122,8 @@ function removePre(data) {
 						<div class="c">
 							<div class="writeContents_d">
 								<div class="e">
-									<textarea rows="30" cols="100" name="bbsCon"></textarea>
+									<textarea rows="30" cols="100" name="bbsCon"
+										class="bbsCon"></textarea>
 								</div>
 							</div>
 						</div>

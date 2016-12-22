@@ -60,6 +60,7 @@ public class ChitInputDao implements IChitInputDao{
 		sqlMapClient.startTransaction();;// 여기서부터 트렌젝션을 시작하겠다
 		sqlMapClient.startBatch();
 		try {
+			System.out.println(params);
 			sqlMapClient.insert("ChitInput.insertInc", params);
 			
 			sqlMapClient.executeBatch();
