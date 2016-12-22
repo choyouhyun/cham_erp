@@ -21,5 +21,7 @@
 	<sqlMap resource="/com/spring/sample/sqlMap/main/MainSQL.xml" />
 	<!-- ChitInput 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/ChitInput/ChitInputSQL.xml" />
+	<!-- chitManagement 쿼리 -->
+	<sqlMap resource="/com/spring/sample/sqlMap/chitManagement/chitManagementSQL.xml" />
 </sqlMapConfig>
  
