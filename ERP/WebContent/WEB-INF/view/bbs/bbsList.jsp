@@ -15,6 +15,9 @@
 
 $(document).ready(function() {
 	refreshList();
+	if(${sMemAuth} > 1 || $("input[name='cap']").val() == "dept") {
+	$("#insertBtn").css("visibility", "visible");
+	}
 
 	$("#searchBtn").on("click", function() {
 		$("input[name='searchText']").val($("#searchText").val());

@@ -65,6 +65,7 @@ public class LoginController {
 	         session.setAttribute("sMemDname", mem.get("DEPTNAME"));
 	         session.setAttribute("sMemRname", mem.get("RANKNAME"));
 	         session.setAttribute("sMemImg", mem.get("IMG"));
+	         session.setAttribute("sMemAuth", mem.get("AUTHORIZE_NO"));
 	                  //└임시공간에 집어넣는다.
 	         modelMap.put("res","sucess");
 	      }else{
