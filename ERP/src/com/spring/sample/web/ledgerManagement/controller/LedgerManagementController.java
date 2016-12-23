@@ -5,7 +5,9 @@ import java.util.HashMap;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.tomcat.util.log.SystemLogHandler;
 import org.codehaus.jackson.map.ObjectMapper;
+import org.directwebremoting.util.SystemOutLoggingOutput;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -41,12 +43,14 @@ public class LedgerManagementController {
 	public @ResponseBody ResponseEntity<String> subLedgerGet(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
-		ArrayList<String> cusNo = new ArrayList<String>();
-		cusNo = iLedgerManagementService.getCusNo(params);
-		
-		
-				
 		ObjectMapper mapper = new ObjectMapper();
+		ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getChit(params);
+		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getBeforeMoney(params);
+		System.out.println(chit);
+		System.out.println(beforeMoney);
+		modelMap.put("chit", chit);
+		modelMap.put("beforeMoney", beforeMoney);
+		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);

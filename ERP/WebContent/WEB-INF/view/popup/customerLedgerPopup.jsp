@@ -98,9 +98,15 @@ $(document).ready(function() {
 	
 	$("#tb").on("click", "tr", function() {
  		$("input[name='cusNo']").val($(this).attr("name"));
-		$("#cusNameText", opener.document).val($("#cusName_"+$(this).attr("name")).text());
-		$("#cusNoText", opener.document).val($(this).attr("name"));
-		window.close();
+ 		var inputVal = null;
+ 		if($("#cusNameText", opener.document).val() != ""){
+ 			$("#cusNameText", opener.document).val($("#cusNameText", opener.document).val()+","+$("#cusName_"+$(this).attr("name")).text());
+ 			$("#cusNoText", opener.document).val($("#cusNoText", opener.document).val() + "," + $(this).attr("name"));
+
+ 		} else {
+ 			$("#cusNameText", opener.document).val($("#cusName_"+$(this).attr("name")).text());
+ 			$("#cusNoText", opener.document).val($(this).attr("name"));
+ 		}
 	});
 });
 
@@ -116,7 +122,6 @@ function cusAjax() {
 			var html = "";
 			for(var i = 0; i < result.list.length; i++){
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td><input type='checkbox' /></td>";
 				html += "<td>"+result.list[i].NO+"</td>";
 				html += "<td id='cusName_" + result.list[i].NO + "'>"+result.list[i].NAME+"</td>";
 				html += "<td>"+result.list[i].CEO+"</td>";
@@ -173,7 +178,6 @@ function cusAjax() {
 		<table border="1" cellspacing="0" align="center" class="poptbl">
 			<thead>
 				<tr>
-					<th></th>
 					<th>거래처코드 ▼</th>
 					<th>거래처명 ▼</th>
 					<th>대표자명 ▼</th>

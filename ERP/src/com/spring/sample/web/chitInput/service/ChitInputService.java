@@ -58,4 +58,16 @@ public class ChitInputService implements IChitInputService{
 		// TODO Auto-generated method stub
 		return iChitInputDao.insertOthIncDetail(list);
 	}
+
+	@Override
+	public HashMap<String, String> getchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iChitInputDao.getchit(params);
+	}
+
+	@Override
+	public int updatechit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iChitInputDao.updatechit(params);
+	}
 }

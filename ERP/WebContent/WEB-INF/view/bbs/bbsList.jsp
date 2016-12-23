@@ -15,7 +15,9 @@
 
 $(document).ready(function() {
 	refreshList();
-	console.log($("input[name='noticeCC']").val());
+	if(${sMemAuth} > 1 || $("input[name='cap']").val() == "dept") {
+	$("#insertBtn").css("visibility", "visible");
+	}
 
 	$("#searchBtn").on("click", function() {
 		$("input[name='searchText']").val($("#searchText").val());
@@ -51,26 +53,36 @@ function refreshList() {
 		data : params,
 		success : function(result) {
 			var html = "";
-			html += "<span>" + result.list[0].NAME + "</span>";
-			$("input[name='bbsName']").val(result.list[0].NAME)
-			$("#bbsName").html(html);
-			
-			html = "";
-			
-			for(var i = 0; i < result.list.length ; i++) {
-				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td width='" + "500px" +"'>" + result.list[i].TITLE + "</td>";
-				html += "<td width='" + "300px" +"'>" + result.list[i].JOINDT + "</td>";
-				html += "<td width='" + "100px" +"'>" 
+			 if(result.list.length == 0 && $("input[name='searchText']").val != null) {
+				 
+				 html += "<span>" + $("input[name='bbsName']").val() + "</span>";
+				 $("#bbsName").html(html);
+				 html = "";
+				 html += "'" + $("input[name='searchText']").val() + "'" + " 에 대한 검색 결과가 없습니다.";
+				 $("#bbs").html(html);
+				 html= "";
+					
+			} else {
+				for(var i = 0; i < result.list.length ; i++) {
+					html += "<tr name='" + result.list[i].NO + "'>";
+					html += "<td width='" + "500px" +"'>" + result.list[i].TITLE + "</td>";
+					html += "<td width='" + "300px" +"'>" 
 					+ "<img alt='" + "user" + "'src='" + "resources/images/ERP/user-bbs.png" + "'/>" 
 					+ result.list[i].MEMNAME + "</td>";
-				html += "<td width='" + "100px" +"'>" + "조회수 [" + result.list[i].HITS + "]" + "</td>";
-				html += "</tr>";
+					html += "<td width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
+					html += "<td width='" + "100px" +"'>" + "조회수 [" + result.list[i].HITS + "]" + "</td>";
+					html += "</tr>";
+					}
+				$("#tb").html(html);
+				html = "";
+				html += "<span>" + result.list[0].NAME + "</span>";
+				$("input[name='bbsName']").val(result.list[0].NAME)
+				$("#bbsName").html(html);
+				html = "";
 			}
-			$("#tb").html(html);
+
 			
-			html = "";
-			
+
 			
 			html += "<span name='1'>처음</span>";
 			
@@ -223,7 +235,7 @@ function refreshList() {
 						</div>
 					</div>
 				</div>
-				<div class="bbs">
+				<div class="bbs" id="bbs">
 					<div class="c">
 						<div class="bbs_d">
 							<div class="e">
@@ -262,7 +274,7 @@ function refreshList() {
 						<div class="c">
 							<div class="bbsControll_d">
 								<div class="e">
-									<div class="pagingArea" id="pagingArea">페이징</div>
+									<div class="pagingArea" id="pagingArea"></div>
 								</div>
 							</div>
 						</div>
@@ -271,7 +283,7 @@ function refreshList() {
 						<div class="c">
 							<div class="bbsControll_d">
 								<div class="e">
-									<input type="button" id="insertBtn" value="글 쓰기" style="width: 80px; height: 30px;" />
+									<input type="button" id="insertBtn" value="글 쓰기" />
 								</div>
 							</div>
 						</div>

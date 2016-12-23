@@ -25,10 +25,18 @@ $(document).ready(function() {
 		$("#actionForm").submit();
 	});
 	$("#updateBtn").on("click", function() {
-		var updateForm = $("#updateForm");
-		
-		updateForm.ajaxForm(uploadResultCallBack);
-		updateForm.submit();
+		if($("input[name='bbsTitle']").val() == "") {
+			alert("제목을 입력해주세요!");
+		}else if($("[name='bbsCon']").val() == ""){
+			alert("내용을 입력해주세요!");
+		}else if($("[name='bbsCon']").val().length < 5) {
+			alert("글 내용은 5글자 이상 입력해주세요!");
+		}else {
+			var updateForm = $("#updateForm");
+			
+			updateForm.ajaxForm(uploadResultCallBack);
+			updateForm.submit();	
+		}
 		
 	});
 	$("#fileDelBtn").on("click", function() {
@@ -128,7 +136,8 @@ function removePre(data) {
 						<div class="c">
 							<div class="writeContents_d">
 								<div class="e">
-									<textarea rows="30" cols="100" name="bbsCon">${con.CON}</textarea>
+									<textarea rows="30" cols="100" name="bbsCon"
+										class="bbsCon">${con.CON}</textarea>
 								</div>
 							</div>
 						</div>

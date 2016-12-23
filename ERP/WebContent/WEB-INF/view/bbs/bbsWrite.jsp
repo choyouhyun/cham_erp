@@ -26,18 +26,24 @@ $(document).ready(function() {
 		$("#actionForm").submit();
 	});
 	$("#saveBtn").on("click", function() {
-		var insertForm = $("#insertForm");
-		
-		insertForm.ajaxForm(uploadResultCallBack);
-		insertForm.submit();
-	
+		if($("input[name='bbsTitle']").val() == "") {
+			alert("제목을 입력해주세요!");
+		}else if($("[name='bbsCon']").val() == ""){
+			alert("내용을 입력해주세요!");
+		}else if($("[name='bbsCon']").val().length < 5) {
+			alert("글 내용은 5글자 이상 입력해주세요!");
+		}else {
+			var insertForm = $("#insertForm");
+			
+			insertForm.ajaxForm(uploadResultCallBack);
+			insertForm.submit();	
+		}
 	});
 });
 
 function uploadResultCallBack(data, result) {   
 	if(result =="success") {
 		var resData = eval("(" + removePre(data) + ")");
-		console.log(resData.fileName[0]);
 		$("#textFile").val(resData.fileName[0]);
 		var params = $("#insertForm").serialize();
 		
@@ -123,7 +129,8 @@ function removePre(data) {
 						<div class="c">
 							<div class="writeContents_d">
 								<div class="e">
-									<textarea rows="30" cols="100" name="bbsCon"></textarea>
+									<textarea rows="30" cols="100" name="bbsCon"
+										class="bbsCon"></textarea>
 								</div>
 							</div>
 						</div>

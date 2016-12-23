@@ -15,6 +15,48 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="resources/script/erp_script/detailInput.js"></script>
 <style type="text/css">
+/*스크롤바  */
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
 .title{
 	font-size: 25pt;
 	font-weight: bold;
@@ -167,6 +209,7 @@
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
+	getchit();
 	$( "#dealDateText" ).datepicker({
 		dateFormat: 'yymmdd'
 	});
@@ -217,12 +260,24 @@ $(document).ready(function() {
 		if($("#dealDateText").val() != "" && $("#deptNoText").val() != "" && $("#cusNoText").val() != "" &&
 				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#dealDateText").val() != ""){	
 			if(confirm("입력 하시겠습니까?") == true){
-				insertSal();
+				if($("#chitNo").val() != ""){
+					updatechit();
+				}else{
+				 	insertSal();
+				}
 			}
 		} else {
 			alert("입력값을 확인하세요");
 		}
 	});
+	//2016-12-22 유현 전표관리부분 
+	if($("#chitNo").val() != ""){
+		getchit();
+		$("#saveBtn").val("수정");
+	}
+	
+	
+	
 });
 
 function insertSal() {
@@ -242,13 +297,58 @@ function insertSal() {
 		}
 	});
 }
+
+function getchit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "getchit",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			$("#dealDateText").val(result.list.INPUT_DATE);
+			$("#deptNoText").val(result.list.DEPT_NO);
+			$("#deptNameText").val(result.list.DEPT_NAME);
+			$("#cusNoText").val(result.list.CUS_NO);
+			$("#cusNameText").val(result.list.CUS_NAME);
+			$("#moneyText").val(result.list.MONEY);
+			$("#creNoText").val(result.list.CREDITOR_NO);
+			$("#creNameText").val(result.list.CREDITOR_NAME);
+			$("#debNoText").val(result.list.DEBTOR_NO);
+			$("#debNameText").val(result.list.DEBTOR_NAME);
+			$("#etcText").val(result.list.ETC);
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+function updatechit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "updatechit",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+
 </script>
 </head>
 <body>
-<c:import url="/top"></c:import>
+<c:import url="/top"></c:import> 
 <form action="#" id="actionChit" method="post">
 <div class="contents">
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
+	<input type="hidden" name="chitNo" id="chitNo" value="${param.chitNo}"/>
 	<div class="chitBody">
 	<br>
 	<span class="title"> 매출 전표 입력</span>
@@ -299,7 +399,7 @@ function insertSal() {
 		<input type="button" value="저장" id="saveBtn"/>		
 	</div>
 </div>
-<c:import url="/bottom"></c:import>
+<c:import url="/bottom"></c:import> 
 
 <div id="detail">
 	<table width="676px" >

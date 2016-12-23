@@ -15,8 +15,11 @@
 $(document).ready(function(){
 	var html = "";
 	html += "<span>" +  $("input[name='bbsName']").val()  + "</span>";
-	
 	$("#bbsName").html(html);
+ 	if('${sMemNm}' == '${con.MEMNAME}') {
+ 		$("#updateBtn").css("visibility", "visible");
+ 		$("#deleteBtn").css("visibility", "visible");
+	} 
 	$("#listBtn").on("click", function(){
 		$("#actionForm").attr("action", "bbsList");
 		$("#actionForm").submit();
@@ -90,7 +93,7 @@ $(document).ready(function(){
 							<div class="c">
 								<div class="writer_d">
 									<div class="e">
-										<div class="writerText">작성자 | ${con.MEMNAME}</div>
+										<div class="writerText"><b>작성자</b> | ${con.MEMNAME}</div>
 									</div>
 								</div>
 							</div>
@@ -99,7 +102,7 @@ $(document).ready(function(){
 							<div class="c">
 								<div class="date_d">
 									<div class="e">
-										<div class="dateText">작성일 | ${con.JOINDT}</div>
+										<div class="dateText"><b>작성일</b> | ${con.JOINDT}</div>
 									</div>
 								</div>
 							</div>
@@ -108,7 +111,7 @@ $(document).ready(function(){
 							<div class="c">
 								<div class="hits_d">
 									<div class="e">
-										<div class="hitsText">조회수 | ${con.HITS}</div>
+										<div class="hitsText"><b>조회수</b> | ${con.HITS}</div>
 									</div>
 								</div>
 							</div>
@@ -128,7 +131,14 @@ $(document).ready(function(){
 					<div class="c">
 						<div class="file_d">
 							<div class="e">
-								<a href="resources/upload/${con.UPLOAD}"download>${con.UPLOAD}</a>
+								<c:choose>
+									<c:when test= "${empty con.UPLOAD}">
+										파일없음
+									</c:when>
+									<c:otherwise>
+										<a href="resources/upload/${con.UPLOAD}"download>${con.UPLOAD}</a>
+									</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>

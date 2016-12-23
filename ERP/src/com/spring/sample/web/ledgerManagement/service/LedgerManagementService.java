@@ -14,8 +14,15 @@ public class LedgerManagementService implements ILedgerManagementService{
 	public ILedgerManagementDao iLedgerManagementDao;
 
 	@Override
-	public ArrayList<String> getCusNo(HashMap<String, String> params) throws Throwable{
+	public ArrayList<HashMap<String, String>> getChit(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return iLedgerManagementDao.getCusNo(params);
+		return iLedgerManagementDao.getChit(params);
 	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getBeforeMoney(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iLedgerManagementDao.getBeforeMoney(params);
+	}
+	
 }

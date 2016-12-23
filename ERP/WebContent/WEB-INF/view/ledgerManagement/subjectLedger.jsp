@@ -39,7 +39,7 @@ table.th{
 <script type="text/javascript">
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
-	dateFormat: 'yymmdd'
+	dateFormat: 'yymm'
 	});
 	
 	$("#subSearchBtn").click(function() {
@@ -51,8 +51,14 @@ $(function() {
 	});
 	
 	$("#cusSearchBtn").click(function() {
-		window.open("customerPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		$("#cusNoText").val("");
+		$("#cusNameText").val("");
+		window.open("customerLedgerPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
+	
+	$("#ledSearchBtn").click(function() {
+		subLedgerGet();
+	})
 });
 
 function subLedgerGet() {
@@ -64,6 +70,7 @@ function subLedgerGet() {
 		data: params,
 		dataType: "json",
 		success: function() {
+			
 		},
 		error: function() {
 			alert("에러");
@@ -82,9 +89,9 @@ function subLedgerGet() {
 					<th>기준일자
 					</th>
 					<td align="left" class="date">
-						<input type="text" class="form-control" id="datepicker1" name="date_sta" placeholder="기준 시작일"/>
+						<input type="text" class="form-control" id="datepicker1" name="startDate" placeholder="기준 시작일"/>
 						<span style="font-size: 15pt; font-weight: bold;"> ~ </span>
-						<input type="text" class="form-control" id="datepicker2" name="date_end" placeholder="기준 종료일"/>
+						<input type="text" class="form-control" id="datepicker2" name="endDate" placeholder="기준 종료일"/>
 					</td>
 				</tr>
 				<tr>
@@ -111,12 +118,12 @@ function subLedgerGet() {
 					<td align="left">
 						<input type="button" id="cusSearchBtn"/>
 						<input type ="hidden" id="cusNoText" name="cusNoText"/>
-						<input type ="text" id="cusNameText" name="cusNameText"/>
+						<input type ="text" id="cusNameText" name="cusNameText" style="width: 300px;"/>
 					</td>
 				</tr>
 			</table><br/><br/>
 			</form>
-			<input type="button" id="ledsearchBtn" value="조회"/>
+			<input type="button" id="ledSearchBtn" value="조회"/>
 		</div>
 		<br>
 		<br>
