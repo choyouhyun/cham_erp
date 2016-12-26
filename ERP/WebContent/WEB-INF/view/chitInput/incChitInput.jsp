@@ -210,6 +210,7 @@ html {
 <script type="text/javascript">
 var lastNum = null;
 $(document).ready(function() {
+	getinchit();
 	$( "#dealDateText" ).datepicker({
 		dateFormat: 'yymmdd'
 	});
@@ -260,14 +261,23 @@ $(document).ready(function() {
 		if($("#dealDateText").val() != "" && $("#deptNoText").val() != "" && $("#cusNoText").val() != "" &&
 				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#moneyText").val() != ""){	
 			if(confirm("입력 하시겠습니까?") == true){
-				insertInc();
+				if($("#chitNo").val() != ""){
+					updateinchit();
+				}else{
+				 	insertInc();
+				}
 			}
 		} else {
 			alert("입력값을 확인하세요");
 		}
 	});
+	
+	if($("#chitNo").val() != ""){
+	getinchit();
+	$("#saveBtn").val("수정");
+}
 });
-
+	//
 function insertInc() {
 	var params = $("#actionChit").serializeArray();
 	
@@ -285,6 +295,49 @@ function insertInc() {
 		}
 	});
 }
+function getinchit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "getinchit",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			$("#dealDateText").val(result.list.INPUT_DATE);
+			$("#deptNoText").val(result.list.DEPT_NO);
+			$("#deptNameText").val(result.list.DEPT_NAME);
+			$("#cusNoText").val(result.list.CUS_NO);
+			$("#cusNameText").val(result.list.CUS_NAME);
+			$("#moneyText").val(result.list.MONEY);
+			$("#debNoText").val(result.list.DEBTOR_NO);
+			$("#debNameText").val(result.list.DEBTOR_NAME);
+			$("#creNoText").val(result.list.CREDITOR_NO);
+			$("#creNameText").val(result.list.CREDITOR_NAME);
+			$("#etcText").val(result.list.ETC);
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+function updateinchit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "updateinchit",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+
 </script>
 </head>
 <body>
@@ -292,6 +345,7 @@ function insertInc() {
 <form action="#" id="actionChit" method="post">
 <div class="contents">
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
+	<input type="hidden" name="chitNo" id="chitNo" value="${param.chitNo}"/>
 	<div class="chitBody">
 		<br>
 		<span class="title"> 매입 전표 입력</span>

@@ -60,4 +60,12 @@ public class PopupController {
 		return modelAndView;
 	}
 	
+	@RequestMapping(value="/customerLedgerPopup")
+	public ModelAndView customerLedgerPopup(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params){
+		
+		modelAndView.setViewName("popup/customerLedgerPopup");
+		return modelAndView;
+	}
+	
 }

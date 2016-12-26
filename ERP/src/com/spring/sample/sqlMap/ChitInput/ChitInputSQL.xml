@@ -24,7 +24,6 @@
                 INNER JOIN SUB E ON A.DEBTOR_NO = E.NO
      WHERE A.NO=#chitNo#
 	</select>
-	
 		
 	<insert id="insertSalDetail" parameterClass="java.util.HashMap">
 		INSERT INTO SAL_CHIT_DET(NO, SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
@@ -43,6 +42,23 @@
 		VALUES (INC_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
 	</insert>
 	
+	<update parameterClass="java.util.HashMap" id="updateinchit">
+		UPDATE INC_CHIT 
+		SET  CUS_NO=#cusNoText#, DEPT_NO=#deptNoText#,DEBTOR_NO=#debNoText#, 
+			 CREDITOR_NO=#creNoText#, MONEY=#moneyText#, DEAL_DATE=TO_DATE(#dealDateText#, 'YYYYMMDD'), ETC=#etcText#
+	    WHERE NO = #chitNo#
+	</update> 
+	
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="getinchit" >
+	 SELECT TO_CHAR(A.INPUT_DATE,'YYYY-MM-DD') INPUT_DATE, A.DEPT_NO,B.NAME DEPT_NAME,A.CUS_NO , C.NAME  CUS_NAME, A.MONEY ,
+        	A.DEBTOR_NO , E.NAME DEBTOR_NAME,A.CREDITOR_NO,D.NAME CREDITOR_NAME,A.ETC
+	 FROM INC_CHIT A INNER JOIN DEPT B ON A.DEPT_NO = B.NO
+                INNER JOIN CUS C ON A.CUS_NO = C.NO 
+                INNER JOIN SUB D ON A.CREDITOR_NO = D.NO
+                INNER JOIN SUB E ON A.DEBTOR_NO = E.NO
+     WHERE A.NO=#chitNo#
+	</select>
+	
 	<insert id="insertIncDetail" parameterClass="java.util.HashMap">
 		INSERT INTO INC_CHIT_DET(NO, INC_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
 		VALUES (INC_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
@@ -59,6 +75,23 @@
 		INSERT INTO OTH_SAL_CHIT(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
 		VALUES (OTH_SAL_CHIT_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
 	</insert>
+	
+	<update parameterClass="java.util.HashMap" id="updateOthInchit">
+		UPDATE OTH_INC_CHIT 
+		SET  CUS_NO=#cusNoText#, DEPT_NO=#deptNoText#,DEBTOR_NO=#debNoText#, 
+			 CREDITOR_NO=#creNoText#, MONEY=#moneyText#, DEAL_DATE=TO_DATE(#dealDateText#, 'YYYYMMDD'), ETC=#etcText#
+	    WHERE NO = #chitNo#
+	</update> 
+	
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="getOthInchit" >
+	 SELECT TO_CHAR(A.INPUT_DATE,'YYYY-MM-DD') INPUT_DATE, A.DEPT_NO,B.NAME DEPT_NAME,A.CUS_NO , C.NAME  CUS_NAME, A.MONEY ,
+        	A.DEBTOR_NO , E.NAME DEBTOR_NAME,A.CREDITOR_NO,D.NAME CREDITOR_NAME,A.ETC
+	 FROM OTH_INC_CHIT A INNER JOIN DEPT B ON A.DEPT_NO = B.NO
+                INNER JOIN CUS C ON A.CUS_NO = C.NO 
+                INNER JOIN SUB D ON A.CREDITOR_NO = D.NO
+                INNER JOIN SUB E ON A.DEBTOR_NO = E.NO
+     WHERE A.NO=#chitNo#
+	</select>
 	
 	<insert id="insertOthSalDetail" parameterClass="java.util.HashMap">
 		INSERT INTO OTH_SAL_CHIT_DET(NO, OTH_SAL_CHIT_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)

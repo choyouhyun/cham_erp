@@ -276,8 +276,6 @@ $(document).ready(function() {
 		$("#saveBtn").val("수정");
 	}
 	
-	
-	
 });
 
 function insertSal() {

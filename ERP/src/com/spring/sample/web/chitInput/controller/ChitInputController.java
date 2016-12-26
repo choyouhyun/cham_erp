@@ -181,7 +181,7 @@ public class ChitInputController {
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
-	
+	//매출전표 입력값 가져오기
 	@RequestMapping(value="/getchit")
 	public @ResponseBody ResponseEntity<String> getchit(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
@@ -197,7 +197,7 @@ public class ChitInputController {
 	}
 
 
-	//거래처 수정 완료 Ajax
+	//매출전표 수정
 	@RequestMapping(value="/updatechit")
 	public @ResponseBody ResponseEntity<String> updatechit(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params ) throws Throwable {
@@ -212,7 +212,68 @@ public class ChitInputController {
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 
 	}
-	
+	//매입전표 입력값 가져오기
+		@RequestMapping(value="/getinchit")
+		public @ResponseBody ResponseEntity<String> getinchit(
+				HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+			ObjectMapper mapper = new ObjectMapper();
+			HashMap<String, Object> modelMap = new HashMap<String, Object>();
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+			HashMap<String, String> list = iChitInputService.getinchit(params);
+
+			modelMap.put("list", list);
+
+			return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+		}
+
+
+		//매입전표 수정
+		@RequestMapping(value="/updateinchit")
+		public @ResponseBody ResponseEntity<String> updateinchit(
+				HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params ) throws Throwable {
+			ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+			Map<String, Object> modelMap = new HashMap<String, Object>();
+			System.out.println(params);
+			int res = iChitInputService.updateinchit(params);
+
+			modelMap.put("res", res);
+			HttpHeaders responseHeaders = new HttpHeaders();
+			responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+			return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+
+		}
+		//매입전표 입력값 가져오기
+				@RequestMapping(value="/getOthInchit")
+				public @ResponseBody ResponseEntity<String> getOthInchit(
+						HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+					ObjectMapper mapper = new ObjectMapper();
+					HashMap<String, Object> modelMap = new HashMap<String, Object>();
+					HttpHeaders responseHeaders = new HttpHeaders();
+					responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+					HashMap<String, String> list = iChitInputService.getOthInchit(params);
+
+					modelMap.put("list", list);
+
+					return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+				}
+
+
+				//매입전표 수정
+				@RequestMapping(value="/updateOthInchit")
+				public @ResponseBody ResponseEntity<String> updateOthInchit(
+						HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params ) throws Throwable {
+					ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
+					Map<String, Object> modelMap = new HashMap<String, Object>();
+					System.out.println(params);
+					int res = iChitInputService.updateOthInchit(params);
+
+					modelMap.put("res", res);
+					HttpHeaders responseHeaders = new HttpHeaders();
+					responseHeaders.add("Content-Type", "text/json; charset=UTF-8"); //text/json 타입만을 받겠다
+					return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+
+				}
 }
 
 

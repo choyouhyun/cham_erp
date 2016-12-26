@@ -174,20 +174,25 @@ html {
 
 <script type="text/javascript">
 $(document).ready(function(){
-	
 	if($("#acntNo").val() !=""){
 		getMemList();
-		
     	$("#saveBtn").val("수정");
     }
     
     $("#saveBtn").on("click",function(){
-    	if($("#acntNo").val() !=""){
-    		editMem();
-    	}else{
-    		insertMem();
-    	}
-    	
+    	$("input[type='text']").each(function(){
+    		if($(this).val() !=""){
+    			if($("#acntNo").val() !=""){
+        			editMem();    			
+	        	}else{
+	        		insertMem();
+	        	}
+    		}else{
+    			$(this).focus();
+    			alert("누락.");
+    			return false;
+    		}
+    	});
     });
 	$("#memCheck").on("click",function(){ 
 	     	var params = $("#actionForm").serialize();
@@ -280,9 +285,7 @@ function getMemList() {
 	}
 	     
      function insertMem(){
-			
 			var params = $("#actionForm").serialize();
-			
 			$.ajax({
 				type :"post" ,
 				url : "Meminsert",
@@ -290,6 +293,7 @@ function getMemList() {
 				data : params,
 				success : function(result) {//ajax가 성공적으로 돌았을때이다
 					if(result.res == "true"){
+						
 						alert("저장됨");						
 						location.href="MemList";
 						}else{

@@ -176,7 +176,7 @@ function lookupList() {
 			success : function(result) {
 				cusledger.style.display = 'none';
 				var html = "";
-				var NAME="";	          
+				var NAME="";
 				for(var i = 0; i < result.list.length ; i++) {
 					html += "<tr>";
 					html += "<td>" + result.list[i].NO + "</td>";	/* 전표번호 */
