@@ -39,6 +39,10 @@ $(document).ready(function(){
 	$("#salReList").on("click", function(){
 		location.href="salReList";
 	});
+	//전표관리
+	$("#chitManagement").on("click", function(){
+		location.href="chitManagement";
+	});
 /*	$("#othSalChitInput").on("click", function(){
 		location.href="othSalChitInput";
 	});
