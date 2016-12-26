@@ -1,10 +1,59 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
-    "http://www.ibatis.com/dtd/sql-map-2.dtd">
-
-<sqlMap namespace="ledger">
-	<!-- <typeAlias alias="loginBean" 
-			   type="com.spring.sample.web.login.bean.LoginBean" /> -->
-	<!-- <select id="getMem" parameterClass="java.util.HashMap" resultClass="java.util.HashMap">
-   </select> -->
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap namespace="ledgerManagement">
+	<select id="getChit" parameterClass="java.util.HashMap"
+		remapResults="true" resultClass="java.util.HashMap">
+		SELECT CHIT.NO AS NO, CHIT.CUS_NO AS CUS_NO, CHIT.DEPT_NO AS DEPT_NO, CHIT.CREDITOR_NO AS CREDITOR_NO, CHIT.DEBTOR_NO AS DEBTOR_NO, CHIT.MONEY AS MONEY, CHIT.DEAL_DATE AS DEAL_DATE, CHIT.INPUT_DATE AS INPUT_DATE, CHIT.ETC AS ETC, CHIT.GBN AS GBN, 
+		  CASE 
+		    WHEN CHIT.CREDITOR_NO = #subNoText# THEN 'CRE'
+		    WHEN CHIT.DEBTOR_NO = #subNoText# THEN 'DEB'
+		  END AS CREDEB
+		FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
+		      FROM INC_CHIT
+		      UNION ALL
+		      SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'SC' AS GBN
+		      FROM SAL_CHIT
+		      UNION ALL
+		      SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OIC' AS GBN
+		      FROM OTH_INC_CHIT
+		      UNION ALL
+		      SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OSC' AS GBN
+		      FROM OTH_SAL_CHIT) CHIT
+		WHERE 1 = 1
+		AND (CHIT.CREDITOR_NO = #subNoText# OR CHIT.DEBTOR_NO = #subNoText#)
+		AND TO_CHAR(CHIT.DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+		<isNotEmpty property="cusNoText">		
+		AND CHIT.CUS_NO IN ($cusNoText$)
+		</isNotEmpty>
+		<isNotEmpty property="deptNoText">
+		AND CHIT.DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		ORDER BY CUS_NO
+	</select>
+	<select id="getBeforeMoney">
+		SELECT CHIT.CUS_NO AS CUS_NO, SUM(MONEY) AS MONEY
+		FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
+		      FROM INC_CHIT
+		      UNION ALL
+		      SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'SC' AS GBN
+		      FROM SAL_CHIT
+		      UNION ALL
+		      SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OIC' AS GBN
+		      FROM OTH_INC_CHIT
+		      UNION ALL
+		      SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OSC' AS GBN
+		      FROM OTH_SAL_CHIT) CHIT
+		WHERE 1=1
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN SUBSTR(#startDate#, 1, 4)||'01' AND (TO_NUMBER(#startDate#)-1)
+		AND (CHIT.CREDITOR_NO = #subNoText# OR CHIT.DEBTOR_NO = #subNoText#)
+		<isNotEmpty property="cusNoText">		
+			AND CHIT.CUS_NO IN ($cusNoText$)
+		</isNotEmpty>
+		<isNotEmpty property="deptNoText">
+			AND CHIT.DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		GROUP BY CUS_NO
+		ORDER BY CUS_NO
+	</select>
 </sqlMap>
