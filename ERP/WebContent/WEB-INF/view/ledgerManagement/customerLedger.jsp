@@ -124,6 +124,7 @@ $(function() {
 			</table><br/><br/>
 			</form>
 			<input type="button" id="ledsearchBtn" value="조회"/>
+<<<<<<< HEAD
 			<table class="ledLookup" border="1" style="display:none">
 				<thead align="center">
 					<tr>
@@ -137,6 +138,8 @@ $(function() {
 				<tbody id="tb">
 				</tbody>
 			</table>
+=======
+>>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp
 		</div>
 		<c:import url="/bottom"></c:import>
 

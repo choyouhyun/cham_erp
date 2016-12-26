@@ -24,6 +24,14 @@ table.th{
 .date{
 	font-size: 0pt;
 }
+.pull{
+}
+.pull_left{
+	text-align: left;
+}
+.pull_right{
+	text-align: right;
+}
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
@@ -31,54 +39,122 @@ table.th{
 <script type="text/javascript">
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
-	dateFormat: 'yy-mm-dd'
+	dateFormat: 'yymm'
 	});
+	
+	$("#subSearchBtn").click(function() {
+		window.open("subjectPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	
+	$("#deptSearchBtn").click(function() {
+		window.open("deptPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	
+	$("#cusSearchBtn").click(function() {
+		$("#cusNoText").val("");
+		$("#cusNameText").val("");
+		window.open("customerLedgerPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	
+	$("#ledSearchBtn").click(function() {
+		subLedgerGet();
+	})
 });
+
+function subLedgerGet() {
+	var params = $("#searchForm").serialize();
+	
+	$.ajax({
+		url: "subLedgerGet",
+		type: "post",
+		data: params,
+		dataType: "json",
+		success: function() {
+			
+		},
+		error: function() {
+			alert("에러");
+		}
+	});
+}
 </script>
 </head>
 <body>
-		<c:import url="/top"></c:import>
-		<div class="contents">거래처별/계정별 원장<br/>
-			<form action="#" id="ledgerForm" method="post">
+	<c:import url="/top"></c:import>
+	<div class="contents">거래처별/계정별 원장<br/>
+		<div class="search">
+			<form action="#" id="searchForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">
 				<tr>
 					<th>기준일자
 					</th>
 					<td align="left" class="date">
-						<input type="text" class="form-control" id="datepicker1" name="date_sta" placeholder="기준 시작일"/> ~
-						<input type="text" class="form-control" id="datepicker2" name="date_end" placeholder="기준 종료일"/>
+						<input type="text" class="form-control" id="datepicker1" name="startDate" placeholder="기준 시작일"/>
+						<span style="font-size: 15pt; font-weight: bold;"> ~ </span>
+						<input type="text" class="form-control" id="datepicker2" name="endDate" placeholder="기준 종료일"/>
 					</td>
 				</tr>
 				<tr>
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptsearchBtn" />
-						<input type ="text" id="deptText" value=""/>
+						<input type="button" id="deptSearchBtn" />
+						<input type ="text" id="deptNoText" name="deptNoText"/>
+						<input type ="text" id="deptNameText" name="deptNameText"/>
 					</td>
 				</tr>
 				<tr>
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subsearchBtn" />
-						<input type ="text" id="subText" value=""/>
+						<input type="button" id="subSearchBtn" />
+						<input type ="text" id="subNoText" name="subNoText"/>
+						<input type ="text" id="subNameText" name="subNameText"/>
 					</td>
 				</tr>
 				<tr>
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cussearchBtn"/>
-						<input type ="text" id="cusText" value=""/>
+						<input type="button" id="cusSearchBtn"/>
+						<input type ="hidden" id="cusNoText" name="cusNoText"/>
+						<input type ="text" id="cusNameText" name="cusNameText" style="width: 300px;"/>
 					</td>
 				</tr>
 			</table><br/><br/>
 			</form>
-			<input type="button" id="ledsearchBtn" value="조회"/>
-
-		
+			<input type="button" id="ledSearchBtn" value="조회"/>
 		</div>
-		<c:import url="/bottom"></c:import>
+		<br>
+		<br>
+		<div class="result" id="result">
+			<div>
+				<div class="pull" >
+					<div class="pull_left">회사명 : 구디</div>
+					<div class="pull_right">날짜</div>
+				</div>
+				<table>
+					<thead>
+						<tr>
+							<th>전표번호</th>
+							<th>적요</th>
+							<th>차변</th>
+							<th>대변</th>
+							<th>잔액</th>
+						</tr>
+					</thead>
+					<tbody id="tb_">
+						<tr>
+							<td colspan="2">전월이월</td>
+							<td></td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+	</div>
+	<c:import url="/bottom"></c:import>
 </body>
 </html>
