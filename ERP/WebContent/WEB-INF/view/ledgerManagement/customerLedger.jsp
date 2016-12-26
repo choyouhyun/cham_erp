@@ -46,6 +46,7 @@ $(document).ready(function() {
 function lookupList() {
 	var params = $("ledgerform").serialize();
 	var cusledger = $("cusledger");
+	var ledLookup = $("ledLookup");
 		$.ajax({
 			type : "post",
 			url : "subList",
@@ -54,18 +55,18 @@ function lookupList() {
 			success : function(result) {
 				cusledger.style.display = 'none';
 				var html = "";
-				var NAME="";	          
+				var NAME="";
 				for(var i = 0; i < result.list.length ; i++) {
 					html += "<tr>";
-					html += "<td><input type=\"text\" name=\"\" value=\""+result.list[i].NO+"\"></td>";
-					html += "<td>" ;
-					html += "<td>"+ result.list[i].ETC +"</td>";
-					html += "<td>"+ result.list[i].chaSub +"</td>";
-					html += "<td>"+result.list[i].deSub+"</td>";
-					html += "<td>"+result.list[i].BALANCE +"</td>";
+					html += "<td>" + result.list[i].NO + "</td>";	/* 전표번호 */
+					html += "<td>"+ result.list[i].ETC +"</td>";	/* 적요 */
+					html += "<td>"+ result.list[i].chaSub +"</td>"; /* 차변 */
+					html += "<td>"+result.list[i].deSub+"</td>";	/* 대변 */
+					html += "<td>"+result.list[i].BALANCE +"</td>"; /* 잔액 */
 					html += "</tr>";
 				}
-				$("#tb").html(html); 
+				
+				$("#tb").html(html);
 			},
 			error : function(result) {
    				alert("error!!");
@@ -98,7 +99,7 @@ $(function() {
 					</th>
 					<td align="left">
 						<input type="button" id="deptsearchBtn" />
-						<input type ="text" id="deptNameText" value="" readonly/>
+						<input type ="text" id="deptNameText" value="" readOnly/>
 						<input type="hidden" id="deptNoText">
 					</td>
 				</tr>
@@ -107,7 +108,7 @@ $(function() {
 					</th>
 					<td align="left">
 						<input type="button" id="subsearchBtn" />
-						<input type ="text" id="NameText" value="" readonly/>
+						<input type ="text" id="NameText" value="" readOnly/>
 						<input type="hidden" id="NoText">
 					</td>
 				</tr>
@@ -116,15 +117,26 @@ $(function() {
 					</th>
 					<td align="left">
 						<input type="button" id="cussearchBtn"/>
-						<input type ="text" id="cusNameText" value="" readonly/>
+						<input type ="text" id="cusNameText" value="" readOnly/>
 						<input type="hidden" id="cusNoText">
 					</td>
 				</tr>
 			</table><br/><br/>
 			</form>
 			<input type="button" id="ledsearchBtn" value="조회"/>
-
-		
+			<table class="ledLookup" border="1" style="display:none">
+				<thead align="center">
+					<tr>
+					<th>전표번호</th>
+					<th>적요</th>
+					<th>차변</th>
+					<th>대변</th>
+					<th>잔액</th>
+					</tr>
+				</thead>
+				<tbody id="tb">
+				</tbody>
+			</table>
 		</div>
 		<c:import url="/bottom"></c:import>
 
