@@ -257,12 +257,22 @@ $(document).ready(function() {
 		if($("#dealDateText").val() != "" && $("#deptNoText").val() != "" && $("#cusNoText").val() != "" &&
 				$("#creNoText").val() != "" && $("#etcText").val() != "" && $("#dealDateText").val() != ""){	
 			if(confirm("입력 하시겠습니까?") == true){
-				insertOthInc();
+				if($("#chitNo").val() != ""){
+					updateOthInchit();
+				}else{
+					insertOthInc();
+				}
 			}
 		} else {
 			alert("입력값을 확인하세요");
 		}
 	});
+	//2016-12-22 유현 전표관리부분 
+	if($("#chitNo").val() != ""){
+		getOthInchit();
+		$("#saveBtn").val("수정");
+	}
+	
 });
 
 function insertOthInc() {
@@ -282,6 +292,49 @@ function insertOthInc() {
 		}
 	});
 }
+function getOthInchit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "getOthInchit",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			$("#dealDateText").val(result.list.INPUT_DATE);
+			$("#deptNoText").val(result.list.DEPT_NO);
+			$("#deptNameText").val(result.list.DEPT_NAME);
+			$("#cusNoText").val(result.list.CUS_NO);
+			$("#cusNameText").val(result.list.CUS_NAME);
+			$("#moneyText").val(result.list.MONEY);
+			$("#debNoText").val(result.list.DEBTOR_NO);
+			$("#debNameText").val(result.list.DEBTOR_NAME);
+			$("#creNoText").val(result.list.CREDITOR_NO);
+			$("#creNameText").val(result.list.CREDITOR_NAME);
+			$("#etcText").val(result.list.ETC);
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+function updateOthInchit() {
+	var params = $("#actionChit").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "updateOthInchit",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+
 </script>
 </head>
 <body>
@@ -289,6 +342,8 @@ function insertOthInc() {
 <form action="#" id="actionChit" method="post">
 <div class="contents">
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
+	<input type="hidden" name="chitNo" id="chitNo" value="${param.chitNo}"/>
+	
 	<div class="chitBody">
 		<br>
 		<span class="title"> 기타 지출 전표 입력</span>

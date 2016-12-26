@@ -21,21 +21,21 @@ $(document).ready(function() {
 		if($(this).parents("tr").attr("gbn")==0){
 			$("#actionForm").attr("action", "salChitInput");
 			$("#actionForm").attr("target", "salChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('salChitInput', 'salChitInput', 'width=800, height=800');");
+			$("#actionForm").attr("onsubmit", "window.open('salChitInput', 'salChitInput', 'width=900, height=900');");
 		}else if($(this).parents("tr").attr("gbn")==1){
 			$("#actionForm").attr("action", "othSalChitInput");
 			$("#actionForm").attr("target", "othSalChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('othSalChitInput', 'othSalChitInput', 'width=400, height=600');");
+			$("#actionForm").attr("onsubmit", "window.open('othSalChitInput', 'othSalChitInput', 'width=900, height=900');");
 
 		}else if($(this).parents("tr").attr("gbn")==2){
 			$("#actionForm").attr("action", "incChitInput");
 			$("#actionForm").attr("target", "incChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('incChitInput', 'incChitInput', 'width=400, height=600');");
+			$("#actionForm").attr("onsubmit", "window.open('incChitInput', 'incChitInput', 'width=900, height=900');");
 
 		}else if($(this).parents("tr").attr("gbn")==3){
 			$("#actionForm").attr("action", "othIncChitInput");
 			$("#actionForm").attr("target", "othIncChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('othIncChitInput', 'othIncChitInput', 'width=400, height=600');");
+			$("#actionForm").attr("onsubmit", "window.open('othIncChitInput', 'othIncChitInput', 'width=900, height=900');");
 		}
 		$("#actionForm").submit(); 
 	});

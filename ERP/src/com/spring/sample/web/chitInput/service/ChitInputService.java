@@ -70,4 +70,28 @@ public class ChitInputService implements IChitInputService{
 		// TODO Auto-generated method stub
 		return iChitInputDao.updatechit(params);
 	}
+
+	@Override
+	public HashMap<String, String> getinchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iChitInputDao.getinchit(params);
+	}
+
+	@Override
+	public int updateinchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iChitInputDao.updateinchit(params);
+	}
+
+	@Override
+	public HashMap<String, String> getOthInchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iChitInputDao.getOthInchit(params);
+	}
+
+	@Override
+	public int updateOthInchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iChitInputDao.updateOthInchit(params);
+	}
 }
