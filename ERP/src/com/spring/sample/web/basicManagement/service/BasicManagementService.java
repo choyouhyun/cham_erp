@@ -206,9 +206,9 @@ public class BasicManagementService implements IBasicManagementService{
 		      return iBasicManagementDao.getTestCount(params);
 		   }
 		@Override
-		   public String insertTest(HashMap<String, String> params) throws Throwable {
+		   public String insertBank(HashMap<String, String> params) throws Throwable {
 		      // TODO Auto-generated method stub
-		      return iBasicManagementDao.insertTest(params);
+		      return iBasicManagementDao.insertBank(params);
 		   }
 	
 
