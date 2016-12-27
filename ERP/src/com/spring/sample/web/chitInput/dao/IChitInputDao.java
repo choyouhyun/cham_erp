@@ -23,4 +23,12 @@ public interface IChitInputDao {
 	public HashMap<String, String> getchit(HashMap<String, String> params)throws Throwable;
 
 	public int updatechit(HashMap<String, String> params) throws Throwable;
+
+	public HashMap<String, String> getinchit(HashMap<String, String> params)throws Throwable;
+
+	public int updateinchit(HashMap<String, String> params)throws Throwable;
+
+	public HashMap<String, String> getOthInchit(HashMap<String, String> params)throws Throwable;
+
+	public int updateOthInchit(HashMap<String, String> params)throws Throwable;
 }

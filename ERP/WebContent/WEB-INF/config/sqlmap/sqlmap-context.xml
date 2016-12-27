@@ -13,15 +13,18 @@
 	<sqlMap resource="/com/spring/sample/sqlMap/chat/ChatSQL.xml" />
 	<!-- AjaxBoard쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/ajaxBoard/AjaxBoardSQL.xml" />
-	<!-- AjaxBoard쿼리 -->
-	<sqlMap resource="/com/spring/sample/sqlMap/BasicManagement/BasicManagementSQL.xml" />
 	<!-- Bbs 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/bbs/BbsSQL.xml" />
 	<!-- Main 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/main/MainSQL.xml" />
+	<!-- BasicManagement쿼리 -->
+	<sqlMap resource="/com/spring/sample/sqlMap/BasicManagement/BasicManagementSQL.xml" />
 	<!-- ChitInput 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/ChitInput/ChitInputSQL.xml" />
 	<!-- chitManagement 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/chitManagement/chitManagementSQL.xml" />
+	<!-- LedgerManagement 쿼리 -->
+	<sqlMap resource="/com/spring/sample/sqlMap/ledgerManagement/LedgerSQL.xml" />
+	
 </sqlMapConfig>
  

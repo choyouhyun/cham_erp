@@ -184,4 +184,28 @@ public class ChitInputDao implements IChitInputDao{
 		// TODO Auto-generated method stub
 		return sqlMapClient.update("ChitInput.updatechit", params);
 	}
+
+	@Override
+	public HashMap<String, String> getinchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (HashMap<String, String>) sqlMapClient.queryForObject("ChitInput.getinchit", params);
+	}
+
+	@Override
+	public int updateinchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlMapClient.update("ChitInput.updateinchit", params);
+	}
+
+	@Override
+	public HashMap<String, String> getOthInchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (HashMap<String, String>) sqlMapClient.queryForObject("ChitInput.getOthInchit", params);
+	}
+
+	@Override
+	public int updateOthInchit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return sqlMapClient.update("ChitInput.updateOthInchit", params);
+	}
 }
