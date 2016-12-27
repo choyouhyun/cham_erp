@@ -172,15 +172,29 @@ html {
 <script type="text/javascript">
 var NO2=${params.NO2};
 $(document).ready(function(){
-
 	subInput();	
 	$("#reg").on("click", function() {
-	if(NO2 != null){
-		$("#subSelect").removeAttr("disabled");
-		subUpdate();
-	}else{
-		subInsert();
-	}
+		$("input[type='text']").each(function(){
+			var x=$("input[type='text']").size()-1;
+			if($(this).val() !=""){
+				if(NO2 != null){
+					$("#subSelect").removeAttr("disabled");
+					subUpdate();
+				}else{
+					if(x==$("input[type='text']").index(this)){
+						subInsert(); 
+					}
+				}
+			}else{
+				$(this).focus();
+				alert("누락된 부분이 있습니다.");
+				return false;
+			}
+		});
+	});
+	//취소버튼
+	$("#cancel").on("click", function() {
+		window.close();
 	});
 });
 function subInput() {
@@ -229,11 +243,11 @@ function subInsert() {
       url : "subInsert",
       dataType : "json",
       data : params,
-      success : function(result) {
+      success : function() {
    	   window.opener.location.reload();
    	   window.close();
       },
-      error : function(result) {
+      error : function() {
          alert("error!!");
      	}
   });

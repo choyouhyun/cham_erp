@@ -13,7 +13,7 @@
 		id="getCusCount"> SELECT COUNT(*) AS CUSCNT FROM CUS </select>
 
 	<insert parameterClass="java.util.HashMap" id="insertCus"> 
-	INSERT INTO CUS (NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL) VALUES (CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#,#textPostCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' ||#textEmail#) 
+	INSERT INTO CUS (NO, NAME, CEO, TEL, CELL, POST, ADDRESS, ADDRESS2, EMAIL) VALUES (CUS_SEQ.NEXTVAL, #textName#, #textCEO#, #textTel#, #textCell#,#postCode#, #textAddress#, #textAddress2#, #textEmailId# || '@' ||#textEmail#) 
 	</insert>
 
 	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="getCus"> 

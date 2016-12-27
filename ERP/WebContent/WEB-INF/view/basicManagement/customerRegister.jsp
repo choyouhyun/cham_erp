@@ -231,13 +231,23 @@ $(document).ready(function() {
 	
 	//저장버튼
 	$("#saveBtn").on("click", function() {
-		if($("#cusNo").val() != ""){
-			editCus();
-		}
-		insertCus();
+		$("input[type='text']").each(function(){
+			var x=$("input[type='text']").size()-1;
+			if($(this).val() !=""){
+				if($("#cusNo").val() !=""){
+					editCus();    			
+	        	}else{
+	        		if(x==$("input[type='text']").index(this)){
+	        			insertCus();
+	        		}
+	        	}
+			}else{
+				$(this).focus();
+				alert("누락된 부분이 있습니다.");
+				return false;
+			}
+		});
 	});
-	
-	
 	//취소버튼
 	$("#cancleBtn").on("click", function() {
 		window.close();
@@ -253,6 +263,7 @@ function insertCus() {
 		dataType : "json",
 		data : params,
 		success : function() {
+			window.opener.location.reload();
 			window.close();
 		},
 		error : function() {
@@ -274,7 +285,7 @@ function getCus() {
 			$("#textCEO").val(result.list.CEO);
 			$("#textTel").val(result.list.TEL);
 			$("#textCell").val(result.list.CELL);
-			$("#postcode").val(result.list.POST);
+			$("#postCode").val(result.list.POST);
 			$("#address").val(result.list.ADDRESS);
 			$("#address2").val(result.list.ADDRESS2);
 			var email = result.list.EMAIL;

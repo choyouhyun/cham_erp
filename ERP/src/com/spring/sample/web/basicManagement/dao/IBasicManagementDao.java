@@ -71,5 +71,5 @@ public interface IBasicManagementDao {
 
 	public int getTestCount(HashMap<String, String> params) throws Throwable;
 	
-	public String insertTest(HashMap<String, String> params)throws Throwable;
+	public String insertBank(HashMap<String, String> params)throws Throwable;
 }

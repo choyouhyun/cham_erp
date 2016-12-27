@@ -548,15 +548,15 @@ public class BasicManagementController {
 	   
 	      return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	   }
-	   @RequestMapping(value="/insertTest") 
-	   public @ResponseBody ResponseEntity<String> insertTest( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
+	   @RequestMapping(value="/insertBank") 
+	   public @ResponseBody ResponseEntity<String> insertBank( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
 	         HttpServletRequest request, 
 	         @RequestParam HashMap<String, String> params, //모두 가져와준다 request map에 한번에 받아 온다. requestgetParameter를 할 필요가 없어진다.
 	         ModelAndView modelAndView) throws Throwable {
 	      ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
 	      Map<String, Object> modelMap = new HashMap<String, Object>();
 	      
-	      String res = iBasicManagementService.insertTest(params);//res에는 true false가 들어있다.
+	      String res = iBasicManagementService.insertBank(params);//res에는 true false가 들어있다.
 	      
 	      modelMap.put("res", res);//res가 ajax 결과로 넘어 갈것이다
 	      
