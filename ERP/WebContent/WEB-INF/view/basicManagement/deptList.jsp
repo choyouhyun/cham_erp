@@ -289,10 +289,12 @@ $(document).ready(function(){
 				<input type="hidden" name="page" value="1" />
 				<input type="hidden" name="deptNo"/>
 			<table border="1" cellspacing="0" align="center" class="maintbl">
+				<colgroup>
 					<col style="width:40px"/> <!-- 체크박스 -->
 					<col style="width:90px"/> <!-- 코드 -->
 					<col style="width:150px"/> <!-- 부서명 -->
 					<col style="width:200px"/> <!-- 적요 -->
+				</colgroup>
 				<thead>
 					<tr>
 						<th><input type = "checkbox" id = "checkAll"/></th>

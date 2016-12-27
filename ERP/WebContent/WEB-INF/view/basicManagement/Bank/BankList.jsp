@@ -282,11 +282,13 @@ font-size: 20pt
 				<br/>
 				<br/>
 				<table border="1" cellspacing="0" align="center" class="tblGreen">
-					<col style="width:90px"/> <!-- 번호 -->
-					<col style="width:250px"/> <!-- 계좌번호 -->
-					<col style="width:120px"/> <!-- 계좌명 -->
-					<col style="width:100px"/> <!-- 계정코드 -->
-					<col style="width:200px"/> <!-- 적요-->
+					<colgroup>
+						<col style="width:90px"/> <!-- 번호 -->
+						<col style="width:250px"/> <!-- 계좌번호 -->
+						<col style="width:120px"/> <!-- 계좌명 -->
+						<col style="width:100px"/> <!-- 계정코드 -->
+						<col style="width:200px"/> <!-- 적요-->
+					</colgroup>
 					<thead>
 						<tr>
 							<th>번호</th>

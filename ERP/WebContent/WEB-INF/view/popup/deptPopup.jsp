@@ -218,6 +218,11 @@ function deptAjax() {
 		<input type="hidden" id="deptName" name="deptName" />
 	</form>
 	<table border="1" cellspacing="0" align="center" class="poptbl">
+			<colgroup>
+				<col style="width:90px"/> <!-- 코드 -->
+				<col style="width:150px"/> <!-- 부서명 -->
+				<col style="width:200px"/> <!-- 적요 -->
+			</colgroup>
 		<thead>
 			<tr>
 				<th>부서코드 ▼</th>

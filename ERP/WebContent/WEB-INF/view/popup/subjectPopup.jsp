@@ -157,6 +157,11 @@ function subList() {
 	<form action="#" id="actionForm" method="post">
 	<input type="hidden" id="con" value="${param.con}"/>
 	<table border="1" cellspacing="0" align="center" class="poptbl">
+		<colgroup>
+			<col style="width:120px"/> <!-- 계정명 -->
+			<col style="width:80px"/> <!-- 대차구분 -->
+			<col style="width:80px"/> <!-- 계정종류 -->
+		</colgroup>
 		<thead>
 			<tr>
 				<th>[계정코드]계정명</th>

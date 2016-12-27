@@ -309,12 +309,14 @@ $(document).ready(function(){
 			</div>
 			<br/>
 				<table border="1" cellspacing="0" align="center" class="maintbl">
-					<col style="width:40px"/> <!-- 체크박스 -->
-					<col style="width:90px"/> <!-- 코드 -->
-					<col style="width:100px"/> <!-- 사원이름 -->
-					<col span="2" style="width:90px"/> <!--부서/ 직급 -->
-					<col span="2" style="width:120px"/> <!-- 핸드폰/입사일자 -->
-					<col style="width:350px"/> <!-- 주소 -->
+					<colgroup>
+						<col style="width:40px"/> <!-- 체크박스 -->
+						<col style="width:90px"/> <!-- 코드 -->
+						<col style="width:100px"/> <!-- 사원이름 -->
+						<col span="2" style="width:90px"/> <!--부서/ 직급 -->
+						<col span="2" style="width:120px"/> <!-- 핸드폰/입사일자 -->
+						<col style="width:350px"/> <!-- 주소 -->
+					</colgroup>
 					<thead>
 						<tr>
 							<th><input type = "checkbox" id = "checkAll"/></th>

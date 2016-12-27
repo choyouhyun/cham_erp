@@ -224,10 +224,12 @@ function checkDelete() {
 				<br />
 				<form action="#" id="actionForm" method="post">
 				<table border="1" cellspacing="0" align="center" class="tblGreen">
-					<col style="width:40px"/> <!-- 체크박스 -->
-					<col style="width:120px"/> <!-- 계정명 -->
-					<col style="width:80px"/> <!-- 대차구분 -->
-					<col style="width:80px"/> <!-- 계정종류 -->
+					<colgroup>
+						<col style="width:40px"/> <!-- 체크박스 -->
+						<col style="width:120px"/> <!-- 계정명 -->
+						<col style="width:80px"/> <!-- 대차구분 -->
+						<col style="width:80px"/> <!-- 계정종류 -->
+					</colgroup>
 					<thead>
 						<tr>
 							<th><input type="checkbox" /></th>
