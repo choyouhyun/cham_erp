@@ -138,8 +138,6 @@ $(function() {
 				<tbody id="tb">
 				</tbody>
 			</table>
-=======
->>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp
 		</div>
 		<c:import url="/bottom"></c:import>
 
