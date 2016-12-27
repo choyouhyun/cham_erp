@@ -79,7 +79,7 @@ text-align: center;
     text-align: left;
     line-height: 1.5;
     border-top: 1px solid #ccc;
-    border-left: 3px solid #FF4848;
+    border-left: 3px solid #98bf21;
  	margin : 20px 10px;
 }
 .maintbl th {
@@ -87,7 +87,7 @@ text-align: center;
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
-    color: #FF6C6C;
+    color: #A7C942;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 

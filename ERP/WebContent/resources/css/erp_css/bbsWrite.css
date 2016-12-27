@@ -18,8 +18,9 @@
 	display: inline-block;
 	width: 1024px;
 	height: 50px;
-	background: rgb(71,71,71);
-	border-bottom: 1px solid #959595;
+	background: #A7C942;
+	border-top: 1px solid #98bf21;
+	border-bottom: 1px solid #98bf21;
 }
 .titleText {
 	width: 974px;
@@ -30,14 +31,14 @@
 	width: 1024px;
 	height: 50px;
 	text-align: right;
-	background: #e4e4e4;	
-	border-bottom: 1px solid #959595;
+	background: #eeeeee;	
+	border-bottom: 1px solid #98bf21;
 }
 .writeContents {
 	display: inline-block;
 	width: 1024px;
 	height: 499px;
-	border-bottom: 1px solid #959595;
+	border-bottom: 1px solid #98bf21;
 }
 .bbsCon {
 	width: 974px;
@@ -73,7 +74,7 @@
 	text-align: left;
 	font-size: 11pt;
 	background: #fbfbfb; 	
-	border-bottom: 1px solid #959595;
+	border-bottom: 1px solid #98bf21;
 }
 .btnsBodyU {
 	display: inline-block;

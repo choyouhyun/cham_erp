@@ -97,7 +97,7 @@ html {
     text-align: left;
     line-height: 1.5;
     border-top: 1px solid #ccc;
-    border-left: 3px solid #A566FF;
+    border-left: 3px solid #98bf21;
  	margin : 20px 10px;
 }
 .maintbl th {
@@ -105,7 +105,7 @@ html {
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
-    color: #B778FF;
+    color: #A7C942;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 

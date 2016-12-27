@@ -105,9 +105,7 @@ html {
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #fff;
 }
-
 #searchBtn{
-   height:40px;
    border: 1px solid #ffffff;
    background: #6d6d6d;
    background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
@@ -116,33 +114,27 @@ html {
    background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
    background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
    background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
-  
+   padding: 7.2px 13px;
    -webkit-border-radius: 6px;
    -moz-border-radius: 6px;
    border-radius: 6px;
-   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
-  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #ffffff 0 1px 0; */
    color: #ffffff;
-   font-size: 14px;
+   font-size: 10px;
    font-family: '맑은고딕';
    text-decoration: none;
    vertical-align: middle;
-}
-
-#searchBtn:active{
-   /* text-shadow: #ffffff 0 1px 0; */
+   }
+#searchBtn:hover{
    border: 1px solid #ffffff;
-   background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
-   background: -webkit-linear-gradient(top, #000000, #000000);
-   background: -moz-linear-gradient(top, #000000, #000000);
-   background: -ms-linear-gradient(top, #000000, #000000);
-   background: -o-linear-gradient(top, #000000, #000000);
-   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
-   color: #fff;
-}
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
 
 #pagingArea:HOVER{
 	cursor: pointer;
@@ -306,6 +298,16 @@ $(document).ready(function(){
 				<input type="hidden" name="page" value="1" />
 				<input type="hidden" name="cusNo" />
 			<table border="1" cellspacing="0" align="center" class="tblGreen">
+				<colgroup>
+					<col style="width:40px"/> <!-- 체크박스 -->
+					<col style="width:90px"/> <!-- 코드 -->
+					<col style="width:150px"/> <!-- 거래처명 -->
+					<col style="width:100px"/> <!-- 대표자명 -->
+					<col span="2" style="width:120px"/> <!-- 전화/핸드폰 -->
+					<col style="width:100px"/> <!-- 우편 -->
+					<col style="width:350px"/> <!-- 주소 -->
+					<col style="width:150px"/> <!-- 이메일 -->
+				</colgroup>
 				<thead>
 					<tr>
 						<th><input type = "checkbox" id = "checkAll"/></th>

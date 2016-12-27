@@ -105,9 +105,7 @@ font-size: 20pt
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #fff;
 }
-
 #searchBtn{
-   height:40px;
    border: 1px solid #ffffff;
    background: #6d6d6d;
    background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
@@ -116,33 +114,27 @@ font-size: 20pt
    background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
    background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
    background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
-  
+   padding: 7.2px 13px;
    -webkit-border-radius: 6px;
    -moz-border-radius: 6px;
    border-radius: 6px;
-   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
-  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #ffffff 0 1px 0; */
    color: #ffffff;
-   font-size: 14px;
+   font-size: 10px;
    font-family: '맑은고딕';
    text-decoration: none;
    vertical-align: middle;
-}
-
-#searchBtn:active{
-   /* text-shadow: #ffffff 0 1px 0; */
+   }
+#searchBtn:hover{
    border: 1px solid #ffffff;
-   background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
-   background: -webkit-linear-gradient(top, #000000, #000000);
-   background: -moz-linear-gradient(top, #000000, #000000);
-   background: -ms-linear-gradient(top, #000000, #000000);
-   background: -o-linear-gradient(top, #000000, #000000);
-   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
-   color: #fff;
-}
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
 
 #pagingArea:HOVER{
 	cursor: pointer;
@@ -270,7 +262,6 @@ font-size: 20pt
 		<div class="contents">
 		<br/>
 				<div>
-					<div id="font">통장계좌 리스트</div>
 					
 					<form action="#" id="actionForm" method="post">
 <%-- 						<c:choose>
@@ -283,6 +274,7 @@ font-size: 20pt
 								<input type="hidden" name="acntNo" />
 							</c:otherwise>
 						</c:choose> --%>
+						<span id="font">통장계좌 리스트</span>
 						<input type="hidden" name="searchText" value="${param.searchText}" />
 						<input type="text" id="searchText" /> <input type="button"
 							value="검색" id="searchBtn" />
@@ -290,6 +282,11 @@ font-size: 20pt
 				<br/>
 				<br/>
 				<table border="1" cellspacing="0" align="center" class="tblGreen">
+					<col style="width:90px"/> <!-- 번호 -->
+					<col style="width:250px"/> <!-- 계좌번호 -->
+					<col style="width:120px"/> <!-- 계좌명 -->
+					<col style="width:100px"/> <!-- 계정코드 -->
+					<col style="width:200px"/> <!-- 적요-->
 					<thead>
 						<tr>
 							<th>번호</th>
