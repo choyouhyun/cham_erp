@@ -23,11 +23,12 @@
 	display: inline-block;
 	width: 1019px;
 	height: 60px;
-	background: #fbfbfb;
+	background: #A7C942;
 	text-align: left;
 	font-size: 20pt;
 	font-weight: bolder;
-	border-bottom: 1px solid #959595;
+	border-top: 1px solid #98bf21;
+	border-bottom: 1px solid #98bf21;
 	padding-left: 5px;
 }
 /*  게시글 이름 글씨부분 */
@@ -35,7 +36,8 @@
 	width: 700px;
 	height: 40px;
 	border: 0px;
-	background: #fbfbfb;
+	background: #A7C942;
+	color: #ffffff;
 	font-size: 14pt;
 	font-weight: bold;
 }
@@ -46,7 +48,7 @@
 	height: 40px;
 	text-align: left;
 	vertical-align: top;
-	border-bottom: 1px solid #959595;
+	border-bottom: 1px solid #98bf21;
 }
 .writer {
 	display: inline-block;
@@ -87,7 +89,7 @@
 	display: inline-block;
 	width: 1024px;
 	height: 500px;
-	border-bottom: 1px solid #959595;
+	border-bottom: 1px solid #98bf21;
 }
 .contentsText {
 	display: inline-block;
@@ -106,8 +108,9 @@
 	height: 40px;
 	text-align: left;
 	font-size: 11pt;
-	background: #fbfbfb; 
-	border-bottom: 1px solid #959595;
+	background: #eeeeee; 
+	border-bottom: 1px solid #98bf21;
+	border-top: 1px solid #98bf21;
 }
 /* 수정, 목록, 삭제등 버튼 부분 */
 .showBtns {
