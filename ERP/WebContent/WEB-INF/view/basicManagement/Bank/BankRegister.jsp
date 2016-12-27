@@ -170,80 +170,87 @@ html {
 
 </style>
 <script>
-	$(document).ready(function(){
-		
-		if($("#acntNo").val() != ""){
-			getBank();
-			$("#saveBtn").val("수정");
-		}
-		
-		$("#saveBtn").on("click",function(){
-			if($("#acntNo").val() != ""){
-				editBank();
-			} else {
-				insertBank();
-			}
-			
-		});//function inputBtn끝
-	});//ready끝
-	function insertBank() {
-		var params = $("#actionForm").serialize();
-		
-		$.ajax({
-			type :"post" ,
-			url : "insertTest",
-			dataType : "json",
-			data : params,
-			success : function(result) {//ajax가 성공적으로 돌았을때이다
-				if(result.res == "true"){
-					alert("저장됨");						
-					location.href="BankList";
-					}else{
-					alert("저장 중 문제가 발생했습니다.");
-				}
-			},
-			error : function(result) {
-					alert("ERROR!");
-			}
-		});	//ajax 끝
+$(document).ready(function(){
+	if($("#acntNo").val() != ""){
+		getBank();
+		$("#saveBtn").val("수정");
 	}
-	function getBank() {
-		var params = $("#actionForm").serialize();
-		
-		$.ajax({
-			type : "post",
-			url : "getList",
-			dataType : "json",
-			data : params,
-			success : function(result) {
-				$("#ACNTNUM").val(result.list.ACNTNUM);
-				$("#NAME").val(result.list.NAME);
-				$("#ETC").val(result.list.ETC);
-				},
-			error : function() {
-				alert("error!");
-			}
-		});
-	}
+	//저장버튼
+	$("#saveBtn").on("click",function(){
+		$("input[type='text']").each(function(){
+			var x=$("input[type='text']").size()-1;
+    		if($(this).val() !=""){
+    			if($("#acntNo").val() !=""){
+    				editBank();    			
+	        	}else{
+	        		if(x==$("input[type='text']").index(this)){
+	        		insertBank();
+	        		}
+	        	}
+    		}else{
+    			$(this).focus();
+    			alert("누락된 부분이 있습니다.");
+    			return false;
+    		}
+    	});
+	});//function inputBtn끝
+	//취소버튼
+	$("#cancleBtn").on("click", function() {
+		window.close();
+	});
+});//ready끝
+function insertBank() {
+	var params = $("#actionForm").serialize();
 	
-	function editBank() {
-		var params = $("#actionForm").serialize();
-		
-		$.ajax({
-			type : "post",
-			url : "updateBank",
-			dataType : "json",
-			data : params,
-			success : function() {
-				window.close();
-				window.opener.parent.location.reload();
+	$.ajax({
+		type :"post" ,
+		url : "insertBank",
+		dataType : "json",
+		data : params,
+		success : function() {//ajax가 성공적으로 돌았을때이다
+			window.opener.location.reload();
+			window.close();
+		},
+		error : function() {
+			alert("ERROR!");
+		}
+	});	//ajax 끝
+}
+function getBank() {
+	var params = $("#actionForm").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "getList",
+		dataType : "json",
+		data : params,
+		success : function(result) {
+			$("#ACNTNUM").val(result.list.ACNTNUM);
+			$("#NAME").val(result.list.NAME);
+			$("#ETC").val(result.list.ETC);
 			},
-			error : function() {
-				alert("error!");
-			}
-		});
-	}	
-   
+		error : function() {
+			alert("error!");
+		}
+	});
+}
+function editBank() {
+	var params = $("#actionForm").serialize();
+	
+	$.ajax({
+		type : "post",
+		url : "updateBank",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+			window.opener.parent.location.reload();
+		},
+		error : function() {
+			alert("error!");
+		}
+	});
+}	
 </script>
 </head>
 <body>

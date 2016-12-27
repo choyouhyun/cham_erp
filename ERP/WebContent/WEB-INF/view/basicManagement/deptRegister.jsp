@@ -138,20 +138,28 @@ $(document).ready(function() {
 	}
 	//저장버튼
 	$("#saveBtn").on("click", function() {
-		if($("#deptNo").val() != ""){
-			updateDept();
-		}else {
-			insertDept();
-		}
+		$("input[type='text']").each(function(){
+			var x=$("input[type='text']").size()-1;
+    		if($(this).val() !=""){
+    			if($("#deptNo").val() !=""){
+    				updateDept();    			
+	        	}else{
+	        		if(x==$("input[type='text']").index(this)){
+	        			insertDept();
+	        		}
+	        	}
+    		}else{
+    			$(this).focus();
+    			alert("누락된 부분이 있습니다.");
+    			return false;
+    		}
+    	});
 	});
-	
-	
 	//취소버튼
 	$("#cancleBtn").on("click", function() {
 		window.close();
 	});
 });
-
 function insertDept() {
 	var params = $("#actionForm").serialize();
 	
@@ -161,14 +169,14 @@ function insertDept() {
 		dataType : "json",
 		data : params,
 		success : function() {
+			window.opener.location.reload();
 			window.close();
 		}, 
 		error : function() {
-			alert("error!");
+			alert("ERROR!");
 		}
 	});
 }
-
 function getDeptCon() {
 	var params = $("#actionForm").serialize();
 	

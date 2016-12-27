@@ -181,15 +181,18 @@ $(document).ready(function(){
     
     $("#saveBtn").on("click",function(){
     	$("input[type='text']").each(function(){
+    		var x=$("input[type='text']").size()-1;
     		if($(this).val() !=""){
     			if($("#acntNo").val() !=""){
         			editMem();    			
 	        	}else{
-	        		insertMem();
+	        		if(x==$("input[type='text']").index(this)){
+	        			insertMem();
+	        		}
 	        	}
     		}else{
     			$(this).focus();
-    			alert("누락.");
+    			alert("누락된 부분이 있습니다.");
     			return false;
     		}
     	});
@@ -292,16 +295,11 @@ function getMemList() {
 				dataType : "json",
 				data : params,
 				success : function(result) {//ajax가 성공적으로 돌았을때이다
-					if(result.res == "true"){
-						
-						alert("저장됨");						
-						location.href="MemList";
-						}else{
-						alert("저장 중 문제가 발생했습니다.");
-					}
+			   	   window.opener.location.reload();
+			   	   window.close();
 				},
 				error : function(result) {
-						alert("ERROR!");
+					alert("ERROR!");
 				}
 			});	//ajax 끝
 		}

@@ -316,7 +316,7 @@ public class BasicManagementDao implements IBasicManagementDao{
       return (int) sqlMapClient.queryForObject("BasicManagement.getTestCount",params);
    }
 @Override
-   public String insertTest(HashMap<String, String> params) throws Throwable {
+   public String insertBank(HashMap<String, String> params) throws Throwable {
       String res = "false";
       
       sqlMapClient.startTransaction();//트랜잭션 시작
