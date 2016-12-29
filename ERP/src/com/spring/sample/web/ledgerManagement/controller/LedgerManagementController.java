@@ -46,10 +46,13 @@ public class LedgerManagementController {
 		ObjectMapper mapper = new ObjectMapper();
 		ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getChit(params);
 		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getBeforeMoney(params);
+		ArrayList<HashMap<String,String>> cusNo = iLedgerManagementService.getCusNo(params);
 		System.out.println(chit);
 		System.out.println(beforeMoney);
+		System.out.println(cusNo);
 		modelMap.put("chit", chit);
 		modelMap.put("beforeMoney", beforeMoney);
+		modelMap.put("cusNo", cusNo);
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");

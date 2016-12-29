@@ -8,4 +8,6 @@ public interface ILedgerManagementService {
 
 	public ArrayList<HashMap<String, String>> getBeforeMoney(HashMap<String, String> params) throws Throwable;
 
+	public ArrayList<HashMap<String, String>> getCusNo(HashMap<String, String> params) throws Throwable;
+
 }
