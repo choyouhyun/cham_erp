@@ -548,15 +548,15 @@ public class BasicManagementController {
 	   
 	      return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	   }
-	   @RequestMapping(value="/insertBank") 
-	   public @ResponseBody ResponseEntity<String> insertBank( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
+	   @RequestMapping(value="/insertAcnt") 
+	   public @ResponseBody ResponseEntity<String> insertAcnt( //데이터를 가져가기위해 가상의 바디를 만들어 바디로서 인식시켜줌
 	         HttpServletRequest request, 
 	         @RequestParam HashMap<String, String> params, //모두 가져와준다 request map에 한번에 받아 온다. requestgetParameter를 할 필요가 없어진다.
 	         ModelAndView modelAndView) throws Throwable {
 	      ObjectMapper mapper = new ObjectMapper();//ObjectMapper란 map타입을 json타입으로 만들어주는 기능
 	      Map<String, Object> modelMap = new HashMap<String, Object>();
 	      
-	      String res = iBasicManagementService.insertBank(params);//res에는 true false가 들어있다.
+	      String res = iBasicManagementService.insertAcnt(params);//res에는 true false가 들어있다.
 	      
 	      modelMap.put("res", res);//res가 ajax 결과로 넘어 갈것이다
 	      
@@ -577,5 +577,35 @@ public class BasicManagementController {
 	      modelAndView.setViewName("basicManagement/Bank/BankRegister");
 	      System.out.println(params);
 	      return modelAndView;
-	   }     
+	   }
+	   @RequestMapping(value = "/ACNTCheck")
+       public @ResponseBody ResponseEntity<String> ACNTCheck(
+             HttpServletRequest request, //우리가 만든 것을 body에 두겠다.
+             @RequestParam HashMap<String, String> params, HttpSession session, ModelAndView modelAndView) throws Throwable{
+          ObjectMapper mapper = new ObjectMapper();
+          Map<String, Object> modelMap = new HashMap<String, Object>();
+           
+          HashMap<String, String> con = iBasicManagementService.getAcntNoCheck(params);
+          modelMap.put("con", con);
+          HttpHeaders responseHeaders = new HttpHeaders(); 
+          responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+           
+          return new ResponseEntity<String>(mapper.writeValueAsString(modelMap),
+                                     responseHeaders, HttpStatus.CREATED);
+       }
+	   @RequestMapping(value = "/SubCheck")
+       public @ResponseBody ResponseEntity<String> SubCheck(
+             HttpServletRequest request, //우리가 만든 것을 body에 두겠다.
+             @RequestParam HashMap<String, String> params, HttpSession session, ModelAndView modelAndView) throws Throwable{
+          ObjectMapper mapper = new ObjectMapper();
+          Map<String, Object> modelMap = new HashMap<String, Object>();
+           
+          HashMap<String, String> con = iBasicManagementService.getSubCheck(params);
+          modelMap.put("con", con);
+          HttpHeaders responseHeaders = new HttpHeaders(); 
+          responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+           
+          return new ResponseEntity<String>(mapper.writeValueAsString(modelMap),
+                                     responseHeaders, HttpStatus.CREATED);
+       }
 }

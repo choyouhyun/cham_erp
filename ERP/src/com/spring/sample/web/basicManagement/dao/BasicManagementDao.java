@@ -316,7 +316,7 @@ public class BasicManagementDao implements IBasicManagementDao{
       return (int) sqlMapClient.queryForObject("BasicManagement.getTestCount",params);
    }
 @Override
-   public String insertBank(HashMap<String, String> params) throws Throwable {
+   public String insertAcnt(HashMap<String, String> params) throws Throwable {
       String res = "false";
       
       sqlMapClient.startTransaction();//트랜잭션 시작
@@ -339,6 +339,18 @@ public class BasicManagementDao implements IBasicManagementDao{
       
       return res;
    }
+
+@Override
+public HashMap<String, String> getAcntNoCheck(HashMap<String, String> params) throws Throwable {
+	// TODO Auto-generated method stub
+	return (HashMap<String, String>) sqlMapClient.queryForObject("BasicManagement.getAcntNoCheck");
+}
+
+@Override
+public HashMap<String, String> getSubCheck(HashMap<String, String> params) throws Throwable {
+	// TODO Auto-generated method stub
+	return (HashMap<String, String>) sqlMapClient.queryForObject("BasicManagement.getSubCheck");
+}
 	
 
 

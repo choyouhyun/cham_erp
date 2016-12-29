@@ -130,7 +130,7 @@ html {
    color: #fff;
 }
 
-#checkBtn{
+#ACNTCheck{
    height:40px;
    border: 1px solid #ffffff;
    background: #6d6d6d;
@@ -155,7 +155,7 @@ html {
    vertical-align: middle;
 }
 
-#checkBtn:active{
+#ACNTCheck:active{
    /* text-shadow: #ffffff 0 1px 0; */
    border: 1px solid #ffffff;
    background: #000000;
@@ -194,17 +194,46 @@ $(document).ready(function(){
     		}
     	});
 	});//function inputBtn끝
-	//취소버튼
-	$("#cancleBtn").on("click", function() {
+	$("#ACNTCheck").on("click",function(){
+		if($("#ACNTNUM").val().trim() != null&& $("#ACNTNUM").val().trim() !="")
+			{
+		     	var params = $("#actionForm").serialize();
+		        $.ajax({
+		            url : "ACNTCheck",
+		            type : "post",  
+		            data : params,
+		            success : function(result) {		            	
+		               if (result.res == "fail") { 
+		                 alert("사용불가.");
+		                 $("input[name='ACNTNUM']").val("");
+		                 $("input[name='ACNTNUM']").focus();
+		               } else {		            	   
+		                     alert("사용가능."); 
+		                     idcheck = true;
+		                     $("#saveBtn").attr("disabled", false);
+		                  }  
+		               },  
+		            error : function(error) {
+		               alert("ERROR!");
+		            }
+		         });    
+		        return false; 
+			}else{
+				alert("사원번호를 입력 해 주세요.");
+	               $("input[name='ACNTNUM']").val("");
+	               $("input[name='ACNTNUM']").focus();
+			}
+	});//id중복체크
+	$("#cancelBtn").on("click", function() {
 		window.close();
-	});
+	});//취소버튼
 });//ready끝
-function insertBank() {
+function insertAcnt() {
 	var params = $("#actionForm").serialize();
 	
 	$.ajax({
 		type :"post" ,
-		url : "insertBank",
+		url : "insertAcnt",
 		dataType : "json",
 		data : params,
 		success : function() {//ajax가 성공적으로 돌았을때이다
@@ -263,7 +292,7 @@ function editBank() {
       <td scope="row">
 	<input type="hidden" id="acntNo" name="acntNo" value="${param.acntNo}"/>
        <input type="text"  maxlength="" id="ACNTNUM" name="ACNTNUM">
-       <input type="button" value="중복확인" id="checkBtn">
+       <input type="button" value="중복확인" id="ACNTCheck">
       </td>
      </tr>
      <tr>
@@ -303,7 +332,7 @@ function editBank() {
     </center>
     <br/>
 <div align="center">
-<input type="button" id="saveBtn" value="저장"/>
+<input type="button" id="saveBtn" value="저장" disabled="true"/>
 <input type="button" id="cancelBtn" value="취소"/>
 </div>
 </form>

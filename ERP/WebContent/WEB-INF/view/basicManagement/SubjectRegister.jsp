@@ -130,7 +130,7 @@ html {
    color: #fff;
 }
 
-#checkBtn{
+#SubCheck{
    height:40px;
    border: 1px solid #ffffff;
    background: #6d6d6d;
@@ -155,7 +155,7 @@ html {
    vertical-align: middle;
 }
 
-#checkBtn:active{
+#SubCheck:active{
    /* text-shadow: #ffffff 0 1px 0; */
    border: 1px solid #ffffff;
    background: #000000;
@@ -192,10 +192,38 @@ $(document).ready(function(){
 			}
 		});
 	});
-	//취소버튼
+	$("#SubCheck").on("click",function(){
+		if($("#subName").val().trim() != null && $("#subName").val().trim() !="")
+			{
+		     	var params = $("#actionForm").serialize();
+		        $.ajax({
+		            url : "SubCheck",
+		            type : "post",  
+		            data : params,
+		            success : function(result) {		            	
+		               if (result.res == "fail") { 
+		                 alert("사용불가.");
+		                 $("input[name='subName']").val("");
+		                 $("input[name='subName']").focus();
+		               } else {		            	   
+		                     alert("사용가능."); 
+		                     idcheck = true; 
+		                  }  
+		               },  
+		            error : function(error) {
+		               alert("ERROR!");
+		            }
+		         });    
+		        return false; 
+			}else{
+				alert("사원번호를 입력 해 주세요.");
+	               $("input[name='subName']").val("");
+	               $("input[name='subName']").focus();
+			}
+	});//id중복체크
 	$("#cancel").on("click", function() {
 		window.close();
-	});
+	});//취소버튼
 });
 function subInput() {
 	 var params = $("#actionForm").serialize();   
@@ -281,8 +309,8 @@ function subUpdate() {
 		<table border="1" class="maintbl">
 			<tr>
 				<td>계정명</td>
-				<td><input type="text" name="subName" /> <input type="button"
-					value="중복확인" id="checkBtn"/></td>
+				<td><input type="text" name="subName" id="subName"/>
+				<input type="button" value="중복확인" id="SubCheck"/></td>
 			</tr>
 			<tr>
 				<td>대차구분</td>

@@ -206,10 +206,22 @@ public class BasicManagementService implements IBasicManagementService{
 		      return iBasicManagementDao.getTestCount(params);
 		   }
 		@Override
-		   public String insertBank(HashMap<String, String> params) throws Throwable {
+		   public String insertAcnt(HashMap<String, String> params) throws Throwable {
 		      // TODO Auto-generated method stub
-		      return iBasicManagementDao.insertBank(params);
+		      return iBasicManagementDao.insertAcnt(params);
 		   }
+
+		@Override
+		public HashMap<String, String> getAcntNoCheck(HashMap<String, String> params) throws Throwable {
+			// TODO Auto-generated method stub
+			return iBasicManagementDao.getAcntNoCheck(params);
+		}
+
+		@Override
+		public HashMap<String, String> getSubCheck(HashMap<String, String> params) throws Throwable {
+			// TODO Auto-generated method stub
+			return iBasicManagementDao.getSubCheck(params);
+		}
 	
 
 }
