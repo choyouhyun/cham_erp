@@ -59,7 +59,7 @@ $(function() {
 	
 	$("#ledSearchBtn").click(function() {
 		subLedgerGet();
-	})
+	});
 });
 
 function subLedgerGet() {
@@ -164,7 +164,7 @@ function resultChitDeteil(e) {
 </head>
 <body>
 	<c:import url="/top"></c:import>
-	<div class="contents">거래처별/계정별 원장<br/>
+	<div class="contents">계정별 원장<br/>
 		<div class="search">
 			<form action="#" id="searchForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">

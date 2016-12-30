@@ -10,4 +10,10 @@ public interface ILedgerManagementService {
 
 	public ArrayList<HashMap<String, String>> getCusNo(HashMap<String, String> params) throws Throwable;
 
+	public ArrayList<HashMap<String, String>> getSubNo(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getCusBeforeMoney(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getCusChit(HashMap<String, String> params) throws Throwable;
+
 }

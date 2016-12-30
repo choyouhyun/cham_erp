@@ -98,7 +98,6 @@ $(document).ready(function() {
 	
 	$("#tb").on("click", "tr", function() {
  		$("input[name='cusNo']").val($(this).attr("name"));
- 		var inputVal = null;
  		if($("#cusNameText", opener.document).val() != ""){
  			$("#cusNameText", opener.document).val($("#cusNameText", opener.document).val()+","+$("#cusName_"+$(this).attr("name")).text());
  			$("#cusNoText", opener.document).val($("#cusNoText", opener.document).val() + "," + $(this).attr("name"));
