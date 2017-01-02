@@ -166,12 +166,7 @@ html {
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #fff;
 }
-
-
-
-
 </style>
-
 <script type="text/javascript">
 $(document).ready(function(){
 	if($("#acntNo").val() !=""){
@@ -197,40 +192,42 @@ $(document).ready(function(){
     		}
     	});
     });
-	$("#memCheck").on("click",function(){ 
-	     	var params = $("#actionForm").serialize();
-	        $.ajax({
-	            url : "MemberCheck",
-	            type : "post",  
-	            data : params,
-	            success : function(result) {
-	            	
-	               if (result.res == "fail") { 
-	                 alert("사용불가.");
-	                 $("input[name='idNo']").val("");
-	                 $("input[name='idNo']").focus();
-	               } else {
-	                     alert("사용가능."); 
-	                     idcheck = true; 
-	                  }  
-	               },  
-	            error : function(error) {
-	               alert("ERROR!");
-	            }
-	         });    
-	        return false; 
-	     
-	     });//id중복체크 
+	$("#memCheck").on("click",function(){
+		if($("#idNo").val().trim() != null&& $("#idNo").val().trim() !="")
+			{
+		     	var params = $("#actionForm").serialize();
+		        $.ajax({
+		            url : "MemberCheck",
+		            type : "post",  
+		            data : params,
+		            success : function(result) {
+		            	
+		               if (result.res == "fail") { 
+		                 alert("사용불가.");
+		                 $("input[name='idNo']").val("");
+		                 $("input[name='idNo']").focus();
+		               } else {
+		            	   
+		                     alert("사용가능."); 
+		                     idcheck = true; 
+		                  }  
+		               },  
+		            error : function(error) {
+		               alert("ERROR!");
+		            }
+		         });    
+		        return false; 
+			}else{
+				alert("사원번호를 입력 해 주세요.");
+	               $("input[name='idNo']").val("");
+	               $("input[name='idNo']").focus();
+			}
+	});//id중복체크 
      $("#searchBankBtn").click(function() {
     	 var newWindow;
          newWindow = window.open("bankPopup","bankPopup","width=500, height=600");
 	});
 });
-
-
-
-
-
 function getMemList() {
 		var params = $("#actionForm").serialize();
 		
@@ -257,52 +254,48 @@ function getMemList() {
 				var email = result.con.EMAIL;
 	 			var emailArray = email.split("@");
 				$("#textEmailId").val(emailArray[0]);
-				$("#textEmail").val(emailArray[1]); 
-					
+				$("#textEmail").val(emailArray[1]); 				
 				$("#roadAddress").val(result.con.ADDRESS);
-				
-				 
 				$("#Memo").val(result.con.ETC);
 			},
 			error : function() {
 				alert("error!");
 			}
 		});
-	}
+}	
+function editMem() {
+	var params = $("#actionForm").serialize();
 	
-	function editMem() {
-		var params = $("#actionForm").serialize();
-		
-		$.ajax({
-			type : "post",
-			url : "updateMem",
-			dataType : "json",
-			data : params,
-			success : function() {
-				window.close();
-			},
-			error : function() {
-				alert("error!");
-			}
-		});
-	}
-	     
-     function insertMem(){
-			var params = $("#actionForm").serialize();
-			$.ajax({
-				type :"post" ,
-				url : "Meminsert",
-				dataType : "json",
-				data : params,
-				success : function(result) {//ajax가 성공적으로 돌았을때이다
-			   	   window.opener.location.reload();
-			   	   window.close();
-				},
-				error : function(result) {
-					alert("ERROR!");
-				}
-			});	//ajax 끝
+	$.ajax({
+		type : "post",
+		url : "updateMem",
+		dataType : "json",
+		data : params,
+		success : function() {
+			window.close();
+		},
+		error : function() {
+			alert("error!");
 		}
+	});
+}
+     
+function insertMem(){
+	var params = $("#actionForm").serialize();
+	$.ajax({
+		type :"post" ,
+		url : "Meminsert",
+		dataType : "json",
+		data : params,
+		success : function(result) {//ajax가 성공적으로 돌았을때이다
+	   	   window.opener.location.reload();
+	   	   window.close();
+		},
+		error : function(result) {
+			alert("ERROR!");
+	}
+	});	//ajax 끝
+}
      $("#ddlEmail").on("change", function() {
  		$("#textEmail").val($(this).val());
  		if($("#textEmail").val() == "self"){

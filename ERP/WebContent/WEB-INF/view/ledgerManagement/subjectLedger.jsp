@@ -37,6 +37,7 @@ table.th{
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
+var leftMoney = new Array();
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
 	dateFormat: 'yymm'
@@ -58,7 +59,7 @@ $(function() {
 	
 	$("#ledSearchBtn").click(function() {
 		subLedgerGet();
-	})
+	});
 });
 
 function subLedgerGet() {
@@ -69,19 +70,101 @@ function subLedgerGet() {
 		type: "post",
 		data: params,
 		dataType: "json",
-		success: function() {
-			
+		success: function(result) {
+			resultChit(result);
+			resultBeforeMoney(result);
+			resultChitDeteil(result);
 		},
 		error: function() {
 			alert("에러");
 		}
 	});
 }
+
+function resultChit(e){
+	var html = "";
+	for(var i = 0; i < e.cusNo.length; i++){
+		html += "<div>";
+		html += "	<div class='pull'>";
+		html += "		<div class='pull_left'>회사명 : " + e.cusNo[i].NAME + "</div>";
+		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
+		html += "	</div>";
+		html += "	<table>";
+		html += "		<thead>";
+		html += "			<tr>";
+		html += "				<th>전표번호</th>";
+		html += "				<th>적요</th>";
+		html += "				<th>차변</th>";
+		html += "				<th>대변</th>";
+		html += "				<th>잔액</th>";
+		html += "			</tr>";
+		html += "		</thead>";
+		html += "		<tbody id='tb_" + e.cusNo[i].CUS_NO + "'>";
+		html += "		</tbody>";
+		html += "	</table>";
+		html += "</div>";
+		
+		$("#result").append(html);
+		html = "";
+	}
+}
+
+function resultBeforeMoney(e) {
+	var html = "";
+	
+	for(var i = 0; i < e.beforeMoney.length; i++){
+		$("#leftMoney_"+e.beforeMoney[i].CUS_NO).val
+		html += "			<tr>";
+		html += "				<td colspan='2'>전월이월</td>";
+		html += "				<td>"+ e.beforeMoney[i].DEBTOR_MONEY +"</td>";
+		html += "				<td>"+ e.beforeMoney[i].CREDITOR_MONEY +"</td>";
+		html += "				<td>"+ (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY) +"</td>";
+		html += "			</tr>";
+		
+		$("#tb_"+e.beforeMoney[i].CUS_NO).append(html);
+		html = "";
+		
+		leftMoney[e.beforeMoney[i].CUS_NO] = (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY);
+			
+	}
+}
+
+function resultChitDeteil(e) {
+	var html = "";
+	
+	for(var i = 0; i < e.chit.length; i++){
+		html += "			<tr>";
+		html += "				<td>"+ e.chit[i].NO +"</td>";
+		html += "				<td>"+ e.chit[i].ETC +"</td>";
+		if(e.chit[i].DECHA == 0){
+			html += "				<td>"+ e.chit[i].MONEY +"</td>";
+			html += "				<td></td>";
+			if(leftMoney[e.chit[i].CUS_NO] != null){
+				leftMoney[e.chit[i].CUS_NO] += e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].CUS_NO] = e.chit[i].MONEY;
+			}
+		}else{
+			html += "				<td></td>";
+			html += "				<td>"+ e.chit[i].MONEY +"</td>";
+			if(leftMoney[e.chit[i].CUS_NO] != null){
+				leftMoney[e.chit[i].CUS_NO] -= e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].CUS_NO] = -e.chit[i].MONEY;
+			}
+		}
+		html += "				<td>" + leftMoney[e.chit[i].CUS_NO] + "</td>";
+		html += "			</tr>";
+		
+		$("#tb_"+e.chit[i].CUS_NO).append(html);
+		html = "";
+	}
+}
 </script>
 </head>
 <body>
 	<c:import url="/top"></c:import>
-	<div class="contents">거래처별/계정별 원장<br/>
+	<div class="contents">계정별 원장<br/>
 		<div class="search">
 			<form action="#" id="searchForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">
@@ -128,31 +211,6 @@ function subLedgerGet() {
 		<br>
 		<br>
 		<div class="result" id="result">
-			<div>
-				<div class="pull" >
-					<div class="pull_left">회사명 : 구디</div>
-					<div class="pull_right">날짜</div>
-				</div>
-				<table>
-					<thead>
-						<tr>
-							<th>전표번호</th>
-							<th>적요</th>
-							<th>차변</th>
-							<th>대변</th>
-							<th>잔액</th>
-						</tr>
-					</thead>
-					<tbody id="tb_">
-						<tr>
-							<td colspan="2">전월이월</td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
-			</div>
 		</div>
 	</div>
 	<c:import url="/bottom"></c:import>

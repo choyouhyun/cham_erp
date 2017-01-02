@@ -108,9 +108,13 @@ $(document).ready(function(){
 	subList();
 	$("#tb").on("click","a", function() {
 		var name = $(this).text().split("-");
-		$("#" + $("#con").val() + "NameText", opener.document).val(name[1]);
-		$("#" + $("#con").val() + "NoText", opener.document).val($(this).attr("id"));
-		window.close();
+		if($("#subNameText", opener.document).val() != ""){
+			$("#subNameText", opener.document).val($("#subNameText", opener.document).val() + "," + name[1]);
+			$("#subNoText", opener.document).val($("#subNoText", opener.document).val() + "," + $(this).attr("id"));
+		}else {
+			$("#subNameText", opener.document).val(name[1]);
+			$("#subNoText", opener.document).val($(this).attr("id"));
+		}
 	});
 });
 function subList() {

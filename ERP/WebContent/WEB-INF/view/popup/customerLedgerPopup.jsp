@@ -98,7 +98,6 @@ $(document).ready(function() {
 	
 	$("#tb").on("click", "tr", function() {
  		$("input[name='cusNo']").val($(this).attr("name"));
- 		var inputVal = null;
  		if($("#cusNameText", opener.document).val() != ""){
  			$("#cusNameText", opener.document).val($("#cusNameText", opener.document).val()+","+$("#cusName_"+$(this).attr("name")).text());
  			$("#cusNoText", opener.document).val($("#cusNoText", opener.document).val() + "," + $(this).attr("name"));
@@ -176,6 +175,12 @@ function cusAjax() {
 			<input type="hidden" name="cusNo" />
 		</form>
 		<table border="1" cellspacing="0" align="center" class="poptbl">
+			<colgroup>
+					<col style="width:90px"/> <!-- 코드 -->
+					<col style="width:150px"/> <!-- 거래처명 -->
+					<col style="width:100px"/> <!-- 대표자명 -->
+					<col style="width:350px"/> <!-- 주소 -->
+			</colgroup>
 			<thead>
 				<tr>
 					<th>거래처코드 ▼</th>

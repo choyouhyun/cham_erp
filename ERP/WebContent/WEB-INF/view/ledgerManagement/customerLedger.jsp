@@ -24,124 +24,195 @@ table.th{
 .date{
 	font-size: 0pt;
 }
+.pull{
+}
+.pull_left{
+	text-align: left;
+}
+.pull_right{
+	text-align: right;
+}
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
-$(document).ready(function() {
-	$("#deptsearchBtn").on("click", function() {
-		window.open('deptPopup','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
-	});
-	$("#subsearchBtn").on("click", function() {
-		window.open('subjectPopup','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
-	});
-	$("#cussearchBtn").on("click", function() {
-		window.open('customerPopup','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
-	});
-	$("#ledsearchBtn").on("click", function() {
-		lookupList();
-	});
-});
-function lookupList() {
-	var params = $("ledgerform").serialize();
-	var cusledger = $("cusledger");
-	var ledLookup = $("ledLookup");
-		$.ajax({
-			type : "post",
-			url : "subList",
-			dataType : "json",
-			data : params,
-			success : function(result) {
-				cusledger.style.display = 'none';
-				var html = "";
-				var NAME="";
-				for(var i = 0; i < result.list.length ; i++) {
-					html += "<tr>";
-					html += "<td>" + result.list[i].NO + "</td>";	/* 전표번호 */
-					html += "<td>"+ result.list[i].ETC +"</td>";	/* 적요 */
-					html += "<td>"+ result.list[i].chaSub +"</td>"; /* 차변 */
-					html += "<td>"+result.list[i].deSub+"</td>";	/* 대변 */
-					html += "<td>"+result.list[i].BALANCE +"</td>"; /* 잔액 */
-					html += "</tr>";
-				}
-				
-				$("#tb").html(html);
-			},
-			error : function(result) {
-   				alert("error!!");
-			}
-	});
-}
+var leftMoney = new Array();
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
-		dateFormat: 'yy-mm-dd'
+	dateFormat: 'yymm'
+	});
+	
+	$("#subSearchBtn").click(function() {
+		$("#subNoText").val("");
+		$("#subNameText").val("");
+		window.open("subjectLedgerPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	
+	$("#deptSearchBtn").click(function() {
+		window.open("deptPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	
+	$("#cusSearchBtn").click(function() {
+		window.open("customerPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+	});
+	
+	$("#ledSearchBtn").click(function() {
+		subLedgerGet();
 	});
 });
+
+function subLedgerGet() {
+	var params = $("#searchForm").serialize();
+	
+	$.ajax({
+		url: "customerLedgerGet",
+		type: "post",
+		data: params,
+		dataType: "json",
+		success: function(result) {
+			resultChit(result);
+			resultBeforeMoney(result);
+			resultChitDeteil(result);
+		},
+		error: function() {
+			alert("에러");
+		}
+	});
+}
+
+function resultChit(e){
+	var html = "";
+	for(var i = 0; i < e.cusNo.length; i++){
+		html += "<div>";
+		html += "	<div class='pull'>";
+		html += "		<div class='pull_left'>회사명 : " + e.cusNo[i].NAME + "</div>";
+		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
+		html += "	</div>";
+		html += "	<table>";
+		html += "		<thead>";
+		html += "			<tr>";
+		html += "				<th>전표번호</th>";
+		html += "				<th>적요</th>";
+		html += "				<th>차변</th>";
+		html += "				<th>대변</th>";
+		html += "				<th>잔액</th>";
+		html += "			</tr>";
+		html += "		</thead>";
+		html += "		<tbody id='tb_" + e.cusNo[i].CUS_NO + "'>";
+		html += "		</tbody>";
+		html += "	</table>";
+		html += "</div>";
+		
+		$("#result").append(html);
+		html = "";
+	}
+}
+
+function resultBeforeMoney(e) {
+	var html = "";
+	
+	for(var i = 0; i < e.beforeMoney.length; i++){
+		$("#leftMoney_"+e.beforeMoney[i].CUS_NO).val
+		html += "			<tr>";
+		html += "				<td colspan='2'>전월이월</td>";
+		html += "				<td>"+ e.beforeMoney[i].DEBTOR_MONEY +"</td>";
+		html += "				<td>"+ e.beforeMoney[i].CREDITOR_MONEY +"</td>";
+		html += "				<td>"+ (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY) +"</td>";
+		html += "			</tr>";
+		
+		$("#tb_"+e.beforeMoney[i].CUS_NO).append(html);
+		html = "";
+		
+		leftMoney[e.beforeMoney[i].CUS_NO] = (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY);
+			
+	}
+}
+
+function resultChitDeteil(e) {
+	var html = "";
+	
+	for(var i = 0; i < e.chit.length; i++){
+		html += "			<tr>";
+		html += "				<td>"+ e.chit[i].NO +"</td>";
+		html += "				<td>"+ e.chit[i].ETC +"</td>";
+		if(e.chit[i].DECHA == 0){
+			html += "				<td>"+ e.chit[i].MONEY +"</td>";
+			html += "				<td></td>";
+			if(leftMoney[e.chit[i].CUS_NO] != null){
+				leftMoney[e.chit[i].CUS_NO] += e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].CUS_NO] = e.chit[i].MONEY;
+			}
+		}else{
+			html += "				<td></td>";
+			html += "				<td>"+ e.chit[i].MONEY +"</td>";
+			if(leftMoney[e.chit[i].CUS_NO] != null){
+				leftMoney[e.chit[i].CUS_NO] -= e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].CUS_NO] = -e.chit[i].MONEY;
+			}
+		}
+		html += "				<td>" + leftMoney[e.chit[i].CUS_NO] + "</td>";
+		html += "			</tr>";
+		
+		$("#tb_"+e.chit[i].CUS_NO).append(html);
+		html = "";
+	}
+}
 </script>
 </head>
 <body>
-		<c:import url="/top"></c:import>
-		<div class="contents">
-		거래처별 원장
-			<form action="#" id="ledgerForm" method="post">
+	<c:import url="/top"></c:import>
+	<div class="contents">거래처별 원장<br/>
+		<div class="search">
+			<form action="#" id="searchForm" method="post">
 			<table id="cusledger" class="cusledger" border="1">
 				<tr>
 					<th>기준일자
 					</th>
 					<td align="left" class="date">
-						<input type="text" class="form-control" id="datepicker1" name="date_sta" placeholder="기준 시작일"/> ~
-						<input type="text" class="form-control" id="datepicker2" name="date_end" placeholder="기준 종료일"/>
+						<input type="text" class="form-control" id="datepicker1" name="startDate" placeholder="기준 시작일"/>
+						<span style="font-size: 15pt; font-weight: bold;"> ~ </span>
+						<input type="text" class="form-control" id="datepicker2" name="endDate" placeholder="기준 종료일"/>
 					</td>
 				</tr>
 				<tr>
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptsearchBtn" />
-						<input type ="text" id="deptNameText" value="" readOnly/>
-						<input type="hidden" id="deptNoText">
+						<input type="button" id="deptSearchBtn" />
+						<input type ="text" id="deptNoText" name="deptNoText"/>
+						<input type ="text" id="deptNameText" name="deptNameText"/>
 					</td>
 				</tr>
 				<tr>
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subsearchBtn" />
-						<input type ="text" id="NameText" value="" readOnly/>
-						<input type="hidden" id="NoText">
+						<input type="button" id="subSearchBtn" />
+						<input type ="hidden" id="subNoText" name="subNoText"/>
+						<input type ="text" id="subNameText" name="subNameText" style="width: 300px;"/>
 					</td>
 				</tr>
 				<tr>
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cussearchBtn"/>
-						<input type ="text" id="cusNameText" value="" readOnly/>
-						<input type="hidden" id="cusNoText">
+						<input type="button" id="cusSearchBtn"/>
+						<input type ="text" id="cusNoText" name="cusNoText"/>
+						<input type ="text" id="cusNameText" name="cusNameText"/>
 					</td>
 				</tr>
 			</table><br/><br/>
 			</form>
-			<input type="button" id="ledsearchBtn" value="조회"/>
-<<<<<<< HEAD
-			<table class="ledLookup" border="1" style="display:none">
-				<thead align="center">
-					<tr>
-					<th>전표번호</th>
-					<th>적요</th>
-					<th>차변</th>
-					<th>대변</th>
-					<th>잔액</th>
-					</tr>
-				</thead>
-				<tbody id="tb">
-				</tbody>
-			</table>
-=======
->>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp
+			<input type="button" id="ledSearchBtn" value="조회"/>
 		</div>
-		<c:import url="/bottom"></c:import>
-
+		<br>
+		<br>
+		<div class="result" id="result">
+		</div>
+	</div>
+	<c:import url="/bottom"></c:import>
 </body>
 </html>

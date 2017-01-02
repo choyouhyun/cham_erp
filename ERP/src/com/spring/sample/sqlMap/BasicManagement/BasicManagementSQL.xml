@@ -199,10 +199,20 @@
       
    </select>
 
-<insert id="insertTest" parameterClass="java.util.HashMap">
+<insert id="insertAcnt" parameterClass="java.util.HashMap">
          INSERT INTO ACNT
          VALUES (ACNT_SEQ.NEXTVAL,NULL,#ACNTNUM#,#NAME#,#ETC#)
    </insert>
-   
- 
+	<!-- 계좌 중복확인 -->
+    <select id="getACNTNoCheck" parameterClass="java.util.HashMap" resultClass="String">
+      SELECT ACNTNUM
+      FROM ACNT
+      WHERE NO = #ACNTNUM#   
+   </select>
+   <!-- 계정명 중복확인 -->
+   <select id="getSubCheck" parameterClass="java.util.HashMap" resultClass="String">
+      SELECT NAME
+      FROM SUB
+      WHERE NAME = #subName#   
+   </select>
  </sqlMap>	

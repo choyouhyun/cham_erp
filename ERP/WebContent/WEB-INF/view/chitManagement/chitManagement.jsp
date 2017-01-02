@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%> 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -8,6 +9,87 @@
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
+<script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
+<link rel="stylesheet" type="text/css"
+	href="resources/css/erp_css/basic.css" />
+
+<style type="text/css">
+/*스크롤바  */
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
+#font{
+font-weight: bold;
+font-size: 20pt
+}
+
+/*테이블 디자인*/
+.maintbl {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.maintbl td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+}
+.maintbl th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+}
+.maintbl tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.maintbl caption {
+    height: 30px;
+    text-align: left;
+    font-weight: bold;
+}
+</style>
+	
+	
 <script type="text/javascript">
 $(document).ready(function() {
 		chitAjax();
@@ -21,21 +103,21 @@ $(document).ready(function() {
 		if($(this).parents("tr").attr("gbn")==0){
 			$("#actionForm").attr("action", "salChitInput");
 			$("#actionForm").attr("target", "salChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('salChitInput', 'salChitInput', 'width=900, height=900');");
+			$("#actionForm").attr("onsubmit", "window.open('salChitInput', 'salChitInput', 'width=900, height=900, scrollbars=yes');");
 		}else if($(this).parents("tr").attr("gbn")==1){
 			$("#actionForm").attr("action", "othSalChitInput");
 			$("#actionForm").attr("target", "othSalChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('othSalChitInput', 'othSalChitInput', 'width=900, height=900');");
+			$("#actionForm").attr("onsubmit", "window.open('othSalChitInput', 'othSalChitInput', 'width=900, height=900, scrollbars=yes');");
 
 		}else if($(this).parents("tr").attr("gbn")==2){
 			$("#actionForm").attr("action", "incChitInput");
 			$("#actionForm").attr("target", "incChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('incChitInput', 'incChitInput', 'width=900, height=900');");
+			$("#actionForm").attr("onsubmit", "window.open('incChitInput', 'incChitInput', 'width=900, height=900, scrollbars=yes');");
 
 		}else if($(this).parents("tr").attr("gbn")==3){
 			$("#actionForm").attr("action", "othIncChitInput");
 			$("#actionForm").attr("target", "othIncChitInput");
-			$("#actionForm").attr("onsubmit", "window.open('othIncChitInput', 'othIncChitInput', 'width=900, height=900');");
+			$("#actionForm").attr("onsubmit", "window.open('othIncChitInput', 'othIncChitInput', 'width=900, height=900, scrollbars=yes');");
 		}
 		$("#actionForm").submit(); 
 	});
@@ -105,18 +187,43 @@ function chitAjax() {
 	});
 }
 </script>
+
+<script type="text/javascript"> //전체 체크박스 선택,해제
+$(document).ready(function(){
+    
+    $("#checkAll").click(function(){
+        
+        if($("#checkAll").prop("checked")){
+            
+            $("input[type=checkbox]").prop("checked",true);
+            
+        }else{
+           
+            $("input[type=checkbox]").prop("checked",false);
+        }
+    });
+});
+</script>
 </head>
 <body>
-<!-- 		<c:import url="/top"></c:import> -->
+		<c:import url="/top"></c:import>
 		<div class="contents">
 		<br/>
-			<div>전표관리 
+			<div id="font">전표관리 
 			</div>
 			<br/>
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
 				<input type="hidden" name="chitNo" />
-			<table border="1" cellspacing="0" align="center" class="tblGreen">
+			<table border="1" cellspacing="0" align="center" class="maintbl">
+				<colgroup>
+					<col style="width:40px"/> <!-- 체크박스 -->
+					<col style="width:90px"/> <!-- 전표번호/입력일자 -->
+					<col style="width:150px"/> <!-- 거래유형 -->
+					<col style="width:100px"/> <!-- 금액 -->
+					<col style="width:100px"/> <!-- 거래처명 -->
+					<col style="width:350px"/> <!-- 적요 -->
+				</colgroup>
 				<thead>
 					<tr>
 						<th><input type = "checkbox" id = "checkAll"/></th>
@@ -139,6 +246,6 @@ function chitAjax() {
 			<br/>
 		
 		</div>
-		<!-- <c:import url="/bottom"></c:import> -->
+		 <c:import url="/bottom"></c:import>
 </body>
 </html>

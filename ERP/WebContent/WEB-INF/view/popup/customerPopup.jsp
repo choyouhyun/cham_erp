@@ -212,6 +212,12 @@ function cusAjax() {
 			<input type="hidden" name="cusNo" />
 		</form>
 		<table border="1" cellspacing="0" align="center" class="poptbl">
+				<colgroup>
+					<col style="width:90px"/> <!-- 코드 -->
+					<col style="width:150px"/> <!-- 거래처명 -->
+					<col style="width:100px"/> <!-- 대표자명 -->
+					<col style="width:350px"/> <!-- 주소 -->
+				</colgroup>
 			<thead>
 				<tr>
 					<th>거래처코드 ▼</th>

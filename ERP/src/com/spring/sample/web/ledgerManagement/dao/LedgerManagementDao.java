@@ -30,4 +30,22 @@ public class LedgerManagementDao implements ILedgerManagementDao{
 		// TODO Auto-generated method stub
 		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getBeforeMoney", params);
 	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getCusChit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getCusChit", params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getCusBeforeMoney(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getCusBeforeMoney", params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getSubNo(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getSubNo", params);
+	}
 }

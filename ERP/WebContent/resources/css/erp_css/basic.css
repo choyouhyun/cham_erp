@@ -352,7 +352,7 @@ clear:left;
 	background: #ffffff;
 	border-bottom: 3px solid;
 	border-top: 3px solid;
-	border-color: rgb(71,71,71);
+	border-color: #A7C942;
 	font-size: 11pt;
 	text-align: left;
 }
@@ -360,7 +360,7 @@ clear:left;
 	border-collapse: collapse;
 }
 .mainTd {
-	border-bottom: 2px solid #ededed;
+	border-bottom: 1px solid #98bf21;
 	padding-top: 10px;
 	height: 44px;
 }
