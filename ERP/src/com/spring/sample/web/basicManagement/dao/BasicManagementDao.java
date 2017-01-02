@@ -324,7 +324,7 @@ public class BasicManagementDao implements IBasicManagementDao{
       
       
       try{
-         sqlMapClient.insert("BasicManagement.insertTest",params);
+         sqlMapClient.insert("BasicManagement.insertAcnt",params);
          
          sqlMapClient.executeBatch();//배치를 적용안한경우 쿼리를 하나씩 날린다--오라클의 작업을 늘린다.배치를 적용할경우 모아놨다가 한번에 날려준다.일반적으로는 느끼지 못한다.
          sqlMapClient.commitTransaction();

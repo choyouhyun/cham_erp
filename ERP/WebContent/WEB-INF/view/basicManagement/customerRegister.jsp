@@ -238,6 +238,7 @@ $(document).ready(function() {
 					editCus();    			
 	        	}else{
 	        		if(x==$("input[type='text']").index(this)){
+	        			
 	        			insertCus();
 	        		}
 	        	}
