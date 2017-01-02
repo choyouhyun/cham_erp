@@ -32,6 +32,9 @@ table.th{
 .pull_right{
 	text-align: right;
 }
+.chit{
+	border: 1px solid;
+}
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
@@ -89,7 +92,7 @@ function resultChit(e){
 		html += "		<div class='pull_left'>회사명 : " + e.cusNo[i].NAME + "</div>";
 		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
 		html += "	</div>";
-		html += "	<table>";
+		html += "	<table class = 'chit'>";
 		html += "		<thead>";
 		html += "			<tr>";
 		html += "				<th>전표번호</th>";
