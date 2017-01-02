@@ -81,6 +81,7 @@ function subLedgerGet() {
 	});
 }
 
+//검색조건에 해당하는 거래처 번호 만큼의 결과 표현
 function resultChit(e){
 	var html = "";
 	for(var i = 0; i < e.cusNo.length; i++){
@@ -109,6 +110,7 @@ function resultChit(e){
 	}
 }
 
+//전월까지의 잔액 조회
 function resultBeforeMoney(e) {
 	var html = "";
 	
@@ -116,8 +118,11 @@ function resultBeforeMoney(e) {
 		$("#leftMoney_"+e.beforeMoney[i].CUS_NO).val
 		html += "			<tr>";
 		html += "				<td colspan='2'>전월이월</td>";
+		//차변
 		html += "				<td>"+ e.beforeMoney[i].DEBTOR_MONEY +"</td>";
+		//대변
 		html += "				<td>"+ e.beforeMoney[i].CREDITOR_MONEY +"</td>";
+		//잔액
 		html += "				<td>"+ (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY) +"</td>";
 		html += "			</tr>";
 		
@@ -129,6 +134,7 @@ function resultBeforeMoney(e) {
 	}
 }
 
+//전표별 금액 
 function resultChitDeteil(e) {
 	var html = "";
 	

@@ -65,16 +65,18 @@ public class LedgerManagementController {
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		ObjectMapper mapper = new ObjectMapper();
+		//검색 조건에 따른 전표 가져오기
 		ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getChit(params);
-		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getBeforeMoney(params);
-		ArrayList<HashMap<String,String>> cusNo = iLedgerManagementService.getCusNo(params);
-		System.out.println(chit);
-		System.out.println(beforeMoney);
-		System.out.println(cusNo);
 		modelMap.put("chit", chit);
+
+		//검색 날짜 이전까지의 잔액 가져오기
+		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getBeforeMoney(params);
 		modelMap.put("beforeMoney", beforeMoney);
+
+		//검색 조건에 따른 거래처 no 가져오기
+		ArrayList<HashMap<String,String>> cusNo = iLedgerManagementService.getCusNo(params);
 		modelMap.put("cusNo", cusNo);
-		
+
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);

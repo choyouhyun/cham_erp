@@ -209,6 +209,11 @@ html {
 </style>
 <script type="text/javascript">
 $(document).ready(function() {
+	//2016-12-22 유현 전표관리부분 
+	if($("#chitNo").val() != ""){
+		getchit();
+		$("#saveBtn").val("수정");
+	}
 	getchit();
 	$( "#dealDateText" ).datepicker({
 		dateFormat: 'yymmdd'
@@ -270,12 +275,6 @@ $(document).ready(function() {
 			alert("입력값을 확인하세요");
 		}
 	});
-	//2016-12-22 유현 전표관리부분 
-	if($("#chitNo").val() != ""){
-		getchit();
-		$("#saveBtn").val("수정");
-	}
-	
 });
 
 function insertSal() {

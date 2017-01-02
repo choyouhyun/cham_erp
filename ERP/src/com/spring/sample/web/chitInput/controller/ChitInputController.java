@@ -38,7 +38,8 @@ public class ChitInputController {
 	//매출 전표입력 insert
 	@RequestMapping(value="/insertSal")
 	public @ResponseBody ResponseEntity<String> insertSal(
-			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params, @RequestParam(value="detailDate") List<String> date
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params, 
+			@RequestParam(value="detailDate") List<String> date
 			, @RequestParam(value="detailName") List<String> name, @RequestParam(value="detailStan") List<String> stan,
 			@RequestParam(value="detailAmnt") List<String> amnt, @RequestParam(value="detailPrice") List<String> price,
 			@RequestParam(value="detailEtc") List<String> etc) throws Throwable {
