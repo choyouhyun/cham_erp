@@ -60,6 +60,10 @@ html {
 	color:#153d73;
 	font-weight: bold;
 }
+/* 텍스트 박스 크기 */
+#deptNoText, #deptNameText, #subNoText, #subNameText {
+ width: 160px;
+}
 
 /*테이블 디자인  */
 .cusledger {
@@ -102,11 +106,22 @@ table.th{
 	font-size: 0pt;
 }
 .pull{
+	margin-top: 10px;
+	text-align: center;
+	height: 50px;
+	
 }
 .pull_left{
+	display: inline-block;
+	width: 916px;
 	text-align: left;
+	border-bottom: 1px solid #A7C942;
+	margin-bottom: 5px; 
+	padding-bottom: 3px; 
 }
 .pull_right{
+	display: inline-block;
+	width : 600px;
 	text-align: right;
 }
 
@@ -180,12 +195,11 @@ table.th{
 }
 .tblGreen caption {
     height: 30px;
-    text-align: left;
     font-weight: bold;
+    font-size: 10pt;
+	text-align: center;
 }
-.chit{
-	border: 1px solid;
-}
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
@@ -240,11 +254,11 @@ function resultChit(e){
 	for(var i = 0; i < e.cusNo.length; i++){
 		html += "<div>";
 		html += "	<div class='pull'>";
-		html += "		<div class='pull_left'>회사명 : " + e.cusNo[i].NAME + "</div>";
-		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
+		html += "		<div class='pull_left'><b>회사명</b> : " + e.cusNo[i].NAME + "</div>";
+
 		html += "	</div>";
 		html += "	<table class=tblGreen>";
-		html += "	<table class = 'chit'>";
+		html += "		<caption> <b>기준일자 </b> : " + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</caption>";
 		html += "		<thead>";
 		html += "			<tr>";
 		html += "				<th>전표번호</th>";
@@ -336,7 +350,7 @@ function resultChitDeteil(e) {
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptSearchBtn" />
+						<input type="button" id="deptSearchBtn" value="검색" />
 						<input type ="text" id="deptNoText" name="deptNoText"/>
 						<input type ="text" id="deptNameText" name="deptNameText"/>
 					</td>
@@ -345,7 +359,7 @@ function resultChitDeteil(e) {
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subSearchBtn" />
+						<input type="button" id="subSearchBtn" value="검색"/>
 						<input type ="text" id="subNoText" name="subNoText"/>
 						<input type ="text" id="subNameText" name="subNameText"/>
 					</td>
@@ -354,7 +368,7 @@ function resultChitDeteil(e) {
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cusSearchBtn"/>
+						<input type="button" id="cusSearchBtn" value="검색"/>
 						<input type ="hidden" id="cusNoText" name="cusNoText"/>
 						<input type ="text" id="cusNameText" name="cusNameText" style="width: 300px;"/>
 					</td>
