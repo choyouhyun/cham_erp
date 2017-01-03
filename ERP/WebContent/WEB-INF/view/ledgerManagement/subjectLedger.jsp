@@ -183,6 +183,9 @@ table.th{
     text-align: left;
     font-weight: bold;
 }
+.chit{
+	border: 1px solid;
+}
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
@@ -241,6 +244,7 @@ function resultChit(e){
 		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
 		html += "	</div>";
 		html += "	<table class=tblGreen>";
+		html += "	<table class = 'chit'>";
 		html += "		<thead>";
 		html += "			<tr>";
 		html += "				<th>전표번호</th>";
