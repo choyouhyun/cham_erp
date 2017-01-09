@@ -38,6 +38,7 @@ table.th{
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
 var leftMoney = new Array();
+var totalMoney = new Array();
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
 	dateFormat: 'yymm'
@@ -83,10 +84,10 @@ function subLedgerGet() {
 
 function resultChit(e){
 	var html = "";
-	for(var i = 0; i < e.cusNo.length; i++){
+	for(var i = 0; i < e.subNo.length; i++){
 		html += "<div>";
 		html += "	<div class='pull'>";
-		html += "		<div class='pull_left'>회사명 : " + e.cusNo[i].NAME + "</div>";
+		html += "		<div class='pull_left'>거래처명 : " + e.subNo[i].NAME + "</div>";
 		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
 		html += "	</div>";
 		html += "	<table>";
@@ -99,7 +100,7 @@ function resultChit(e){
 		html += "				<th>잔액</th>";
 		html += "			</tr>";
 		html += "		</thead>";
-		html += "		<tbody id='tb_" + e.cusNo[i].CUS_NO + "'>";
+		html += "		<tbody id='tb_" + e.subNo[i].SUB + "'>";
 		html += "		</tbody>";
 		html += "	</table>";
 		html += "</div>";
@@ -113,7 +114,6 @@ function resultBeforeMoney(e) {
 	var html = "";
 	
 	for(var i = 0; i < e.beforeMoney.length; i++){
-		$("#leftMoney_"+e.beforeMoney[i].CUS_NO).val
 		html += "			<tr>";
 		html += "				<td colspan='2'>전월이월</td>";
 		html += "				<td>"+ e.beforeMoney[i].DEBTOR_MONEY +"</td>";
@@ -121,10 +121,10 @@ function resultBeforeMoney(e) {
 		html += "				<td>"+ (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY) +"</td>";
 		html += "			</tr>";
 		
-		$("#tb_"+e.beforeMoney[i].CUS_NO).append(html);
+		$("#tb_"+e.beforeMoney[i].SUB).append(html);
 		html = "";
 		
-		leftMoney[e.beforeMoney[i].CUS_NO] = (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY);
+		leftMoney[e.beforeMoney[i].SUB] = (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY);
 			
 	}
 }

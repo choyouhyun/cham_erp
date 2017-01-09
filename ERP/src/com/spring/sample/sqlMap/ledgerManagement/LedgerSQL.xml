@@ -2,7 +2,7 @@
 <!DOCTYPE sqlMap PUBLIC "-//iBATIS.com//DTD SQL Map 2.0//EN"
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="ledgerManagement">
-	<select id="getChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+	<select id="getSubChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
  		SELECT  NO, MEM_NO, CUS_NO, DEPT_NO, DECHA, SUB, MONEY, DEAL_DATE, INPUT_DATE, ETC, GBN
 FROM (SELECT A.NO, A.MEM_NO, A.CUS_NO, A.DEPT_NO, 0 AS DECHA, A.DEBTOR_NO AS SUB, A.MONEY, A.DEAL_DATE, A.INPUT_DATE, A.ETC, A.GBN
   FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
@@ -39,7 +39,7 @@ SELECT A.NO, A.MEM_NO, A.CUS_NO, A.DEPT_NO, 1 AS CREDITOR_NO1 ,A.CREDITOR_NO AS 
 		AND DEPT_NO = #deptNoText#
 		</isNotEmpty>
 	</select>
-	<select id="getBeforeMoney" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+	<select id="subBeforeMoney" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
 	SELECT CUS_NO, SUM(DEBTOR_MONEY) AS DEBTOR_MONEY, SUM(CREDITOR_MONEY) AS CREDITOR_MONEY
 FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL_DATE, DEBTOR_NO AS SUB
   FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
@@ -104,43 +104,118 @@ FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL
 		GROUP BY CUS_NO)A INNER JOIN CUS B ON A.CUS_NO = B.NO
 	</select>
 	<select id="getSubNo" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
-		SELECT SUB, NAME
+	SELECT SUB, NAME
 	FROM (SELECT SUB
-	FROM (SELECT CUS_NO, DEAL_DATE, DEPT_NO, DEBTOR_NO AS SUB
-      FROM (SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM SAL_CHIT
-            UNION ALL
-            SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM INC_CHIT
-            UNION ALL
-            SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM OTH_SAL_CHIT
-            UNION ALL
-            SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM OTH_INC_CHIT)
-      UNION ALL
-      SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO AS SUB
-      FROM (SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM SAL_CHIT
-            UNION ALL
-            SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM INC_CHIT
-            UNION ALL
-            SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM OTH_SAL_CHIT
-            UNION ALL
-            SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
-              FROM OTH_INC_CHIT)
-      WHERE 1=1
-      		AND CUS_NO = #cusNoText#
-		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+			FROM (SELECT CUS_NO, DEAL_DATE, DEPT_NO, DEBTOR_NO AS SUB
+					FROM (SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM SAL_CHIT
+						  UNION ALL
+						  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM INC_CHIT
+						  UNION ALL
+						  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM OTH_SAL_CHIT
+						  UNION ALL
+						  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM OTH_INC_CHIT)
+				  UNION ALL
+				  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO AS SUB
+					FROM (SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM SAL_CHIT
+						  UNION ALL
+						  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM INC_CHIT
+					 	  UNION ALL
+						  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM OTH_SAL_CHIT
+						  UNION ALL
+						  SELECT CUS_NO, DEAL_DATE, DEPT_NO, CREDITOR_NO, DEBTOR_NO
+							FROM OTH_INC_CHIT))
+		  WHERE 1=1
+			AND CUS_NO = #cusNoText#
+			AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
 		<isNotEmpty property="subNoText">		
 			AND SUB IN ($subNoText$)
 		</isNotEmpty>
 		<isNotEmpty property="deptNoText">
 			AND DEPT_NO = #deptNoText#
-		</isNotEmpty>)
-      GROUP BY SUB)A INNER JOIN SUB B ON A.SUB = B.NO
+		</isNotEmpty>
+	    	GROUP BY SUB)A INNER JOIN SUB B ON A.SUB = B.NO
 	</select>
-	<select id=""></select>
+	<select id="cusBeforeMoney" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		SELECT SUB, SUM(DEBTOR_MONEY) AS DEBTOR_MONEY, SUM(CREDITOR_MONEY) AS CREDITOR_MONEY
+		FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL_DATE, DEBTOR_NO AS SUB
+		      FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'SC' AS GBN
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OIC' AS GBN
+		            FROM OTH_INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OSC' AS GBN
+		            FROM OTH_SAL_CHIT) A
+		      UNION
+		      SELECT A.CUS_NO, 0 AS DEBTOR_MONEY, MONEY AS CREDITOR_MONEY, DEPT_NO, DEAL_DATE, CREDITOR_NO AS SUB
+		      FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'SC' AS GBN
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OIC' AS GBN
+		            FROM OTH_INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OSC' AS GBN
+		            FROM OTH_SAL_CHIT) A)
+		WHERE 1=1
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN SUBSTR(#startDate#, 1, 4)||'01' AND (TO_NUMBER(#startDate#)-1)
+		AND CUS_NO = #cusNoText#
+		<isNotEmpty property="cusNoText">		
+		AND SUB IN ($subNoText$)
+		</isNotEmpty>
+		<isNotEmpty property="deptNoText">
+		AND DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		GROUP BY SUB
+		ORDER BY SUB
+	</select>
+	<select id="getCusChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		SELECT  NO, MEM_NO, CUS_NO, DEPT_NO, DECHA, SUB, MONEY, DEAL_DATE, INPUT_DATE, ETC, GBN
+		FROM (SELECT A.NO, A.MEM_NO, A.CUS_NO, A.DEPT_NO, 0 AS DECHA, A.DEBTOR_NO AS SUB, A.MONEY, A.DEAL_DATE, A.INPUT_DATE, A.ETC, A.GBN
+		      FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'SC' AS GBN
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OIC' AS GBN
+		            FROM OTH_INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OSC' AS GBN
+		            FROM OTH_SAL_CHIT) A
+		      UNION
+		      SELECT A.NO, A.MEM_NO, A.CUS_NO, A.DEPT_NO, 1 AS CREDITOR_NO1 ,A.CREDITOR_NO AS SUB, A.MONEY, A.DEAL_DATE, A.INPUT_DATE, A.ETC, A.GBN
+		      FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'SC' AS GBN
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OIC' AS GBN
+		            FROM OTH_INC_CHIT
+		            UNION ALL
+		            SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'OSC' AS GBN
+		            FROM OTH_SAL_CHIT) A)
+		WHERE 1 = 1
+		AND CUS_NO = #cusNoText#
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+		<isNotEmpty property="cusNoText">		
+		AND SUB IN ($subNoText$)
+		</isNotEmpty>
+		<isNotEmpty property="deptNoText">
+		AND DEPT_NO = #deptNoText#
+		</isNotEmpty>
+	</select>
 </sqlMap>

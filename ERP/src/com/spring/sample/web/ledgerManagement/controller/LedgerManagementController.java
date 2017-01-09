@@ -37,14 +37,14 @@ public class LedgerManagementController {
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		ObjectMapper mapper = new ObjectMapper();
-		//ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getCusChit(params);
-		//ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getCusBeforeMoney(params);
+		ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getCusChit(params);
+		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getCusBeforeMoney(params);
 		ArrayList<HashMap<String,String>> subNo = iLedgerManagementService.getSubNo(params);
-		//System.out.println(chit);
-		//System.out.println(beforeMoney);
+		System.out.println(chit);
+		System.out.println(beforeMoney);
 		System.out.println(subNo);
-		//modelMap.put("chit", chit);
-		//modelMap.put("beforeMoney", beforeMoney);
+		modelMap.put("chit", chit);
+		modelMap.put("beforeMoney", beforeMoney);
 		modelMap.put("subNo", subNo);
 		
 		HttpHeaders responseHeaders = new HttpHeaders();
