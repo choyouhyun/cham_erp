@@ -172,7 +172,7 @@ FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL
 		WHERE 1=1
 		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN SUBSTR(#startDate#, 1, 4)||'01' AND (TO_NUMBER(#startDate#)-1)
 		AND CUS_NO = #cusNoText#
-		<isNotEmpty property="cusNoText">		
+		<isNotEmpty property="subNoText">		
 		AND SUB IN ($subNoText$)
 		</isNotEmpty>
 		<isNotEmpty property="deptNoText">
@@ -211,7 +211,7 @@ FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL
 		WHERE 1 = 1
 		AND CUS_NO = #cusNoText#
 		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
-		<isNotEmpty property="cusNoText">		
+		<isNotEmpty property="subNoText">		
 		AND SUB IN ($subNoText$)
 		</isNotEmpty>
 		<isNotEmpty property="deptNoText">

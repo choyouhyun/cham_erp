@@ -37,8 +37,9 @@ table.th{
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
-var leftMoney = new Array();
-var totalMoney = new Array();
+var leftMoney;
+var debTotalMoney;
+var creTotalMoney;
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
 	dateFormat: 'yymm'
@@ -75,6 +76,7 @@ function subLedgerGet() {
 			resultChit(result);
 			resultBeforeMoney(result);
 			resultChitDeteil(result);
+			totalMoney(result);
 		},
 		error: function() {
 			alert("에러");
@@ -83,6 +85,10 @@ function subLedgerGet() {
 }
 
 function resultChit(e){
+	$("#result").html("");
+	leftMoney = new Array();
+	debTotalMoney = new Array();
+	creTotalMoney = new Array();
 	var html = "";
 	for(var i = 0; i < e.subNo.length; i++){
 		html += "<div>";
@@ -139,24 +145,61 @@ function resultChitDeteil(e) {
 		if(e.chit[i].DECHA == 0){
 			html += "				<td>"+ e.chit[i].MONEY +"</td>";
 			html += "				<td></td>";
-			if(leftMoney[e.chit[i].CUS_NO] != null){
-				leftMoney[e.chit[i].CUS_NO] += e.chit[i].MONEY;
+			
+			if(debTotalMoney[e.chit[i].SUB] != null){
+				debTotalMoney[e.chit[i].SUB] += e.chit[i].MONEY;				
 			}else{
-				leftMoney[e.chit[i].CUS_NO] = e.chit[i].MONEY;
+				debTotalMoney[e.chit[i].SUB] = e.chit[i].MONEY;				
+			}
+			
+			if(leftMoney[e.chit[i].SUB] != null){
+				leftMoney[e.chit[i].SUB] += e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].SUB] = e.chit[i].MONEY;
 			}
 		}else{
 			html += "				<td></td>";
 			html += "				<td>"+ e.chit[i].MONEY +"</td>";
-			if(leftMoney[e.chit[i].CUS_NO] != null){
-				leftMoney[e.chit[i].CUS_NO] -= e.chit[i].MONEY;
+			
+			if(creTotalMoney[e.chit[i].SUB] != null){
+				creTotalMoney[e.chit[i].SUB] += e.chit[i].MONEY;				
 			}else{
-				leftMoney[e.chit[i].CUS_NO] = -e.chit[i].MONEY;
+				creTotalMoney[e.chit[i].SUB] = e.chit[i].MONEY;				
+			}
+			
+			if(leftMoney[e.chit[i].SUB] != null){
+				leftMoney[e.chit[i].SUB] -= e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].SUB] = -e.chit[i].MONEY;
 			}
 		}
-		html += "				<td>" + leftMoney[e.chit[i].CUS_NO] + "</td>";
+		html += "				<td>" + leftMoney[e.chit[i].SUB] + "</td>";
 		html += "			</tr>";
 		
-		$("#tb_"+e.chit[i].CUS_NO).append(html);
+		$("#tb_"+e.chit[i].SUB).append(html);
+		html = "";
+	}
+}
+
+function totalMoney(e) {
+	var html = "";
+	for(var i = 0; i < e.subNo.length; i++){
+		html += "<tr>";
+		html += "	<td colspan=2;>총액</td>";
+		if(debTotalMoney[e.subNo[i].SUB] != null){
+			html += "	<td>" + debTotalMoney[e.subNo[i].SUB] + "</td>";
+		}else{
+			html += "	<td></td>";
+		}
+		if(creTotalMoney[e.subNo[i].SUB] != null){
+			html += "	<td>" + creTotalMoney[e.subNo[i].SUB] + "</td>";
+		}else{
+			html += "	<td></td>";
+		}
+		html += "	<td>" + leftMoney[e.subNo[i].SUB] + "</td>";
+		html += "</tr>";
+		
+		$("#tb_" + e.subNo[i].SUB).append(html);
 		html = "";
 	}
 }
