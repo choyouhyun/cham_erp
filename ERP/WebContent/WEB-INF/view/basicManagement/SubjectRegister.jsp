@@ -207,7 +207,8 @@ $(document).ready(function(){
 		                 $("input[name='subName']").focus();
 		               } else {		            	   
 		                     alert("사용가능."); 
-		                     idcheck = true; 
+		                     idcheck = true;
+		                     $("#reg").attr("disabled", false);
 		                  }  
 		               },  
 		            error : function(error) {
@@ -330,7 +331,7 @@ function subUpdate() {
 		</table>
 	</form>
 	<div align="center">
-	<input type="button" value="등록" id="reg">
+	<input type="button" value="등록" id="reg" disabled="true">
 	<input type="button" value="취소" id="cancel">
 	</div>
 </body>

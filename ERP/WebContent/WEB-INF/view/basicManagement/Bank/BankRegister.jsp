@@ -184,7 +184,7 @@ $(document).ready(function(){
     				editBank();    			
 	        	}else{
 	        		if(x==$("input[type='text']").index(this)){
-	        		insertBank();
+	        		insertAcnt();
 	        		}
 	        	}
     		}else{
