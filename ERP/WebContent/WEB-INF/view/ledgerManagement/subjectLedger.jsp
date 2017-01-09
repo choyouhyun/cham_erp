@@ -255,7 +255,6 @@ function resultChit(e){
 		html += "<div>";
 		html += "	<div class='pull'>";
 		html += "		<div class='pull_left'><b>회사명</b> : " + e.cusNo[i].NAME + "</div>";
-
 		html += "	</div>";
 		html += "	<table class=tblGreen>";
 		html += "		<caption> <b>기준일자 </b> : " + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</caption>";
@@ -282,7 +281,6 @@ function resultBeforeMoney(e) {
 	var html = "";
 	
 	for(var i = 0; i < e.beforeMoney.length; i++){
-		$("#leftMoney_"+e.beforeMoney[i].CUS_NO).val
 		html += "			<tr>";
 		html += "				<td colspan='2'>전월이월</td>";
 		html += "				<td>"+ e.beforeMoney[i].DEBTOR_MONEY +"</td>";

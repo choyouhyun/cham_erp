@@ -22,13 +22,13 @@ public class LedgerManagementDao implements ILedgerManagementDao{
 	@Override
 	public ArrayList<HashMap<String, String>> getChit(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getChit", params);
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getSubChit", params);
 	}
 
 	@Override
 	public ArrayList<HashMap<String, String>> getBeforeMoney(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getBeforeMoney", params);
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.subBeforeMoney", params);
 	}
 
 	@Override
@@ -40,7 +40,7 @@ public class LedgerManagementDao implements ILedgerManagementDao{
 	@Override
 	public ArrayList<HashMap<String, String>> getCusBeforeMoney(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getCusBeforeMoney", params);
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.cusBeforeMoney", params);
 	}
 
 	@Override
