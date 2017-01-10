@@ -16,4 +16,8 @@ public interface ILedgerManagementService {
 
 	public ArrayList<HashMap<String, String>> getCusChit(HashMap<String, String> params) throws Throwable;
 
+	public ArrayList<HashMap<String, String>> getIncChit(HashMap<String, String> params) throws Throwable;
+
+	public ArrayList<HashMap<String, String>> getSalChit(HashMap<String, String> params) throws Throwable;
+
 }

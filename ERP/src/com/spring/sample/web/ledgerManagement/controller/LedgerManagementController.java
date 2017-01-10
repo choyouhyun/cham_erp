@@ -79,4 +79,34 @@ public class LedgerManagementController {
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
+	
+	@RequestMapping(value="/incSalLedger")
+	public ModelAndView incSalLedger(HttpServletRequest request, ModelAndView modelAndView) {
+		modelAndView.setViewName("ledgerManagement/incSalLedger");
+		return modelAndView;
+	}
+	
+	@RequestMapping(value="/getIncSalChit")
+	public @ResponseBody ResponseEntity<String> incSalChitGet(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+		HashMap<String, Object> modelMap = new HashMap<String, Object>();
+		ArrayList<HashMap<String, String>> incChit = new ArrayList<HashMap<String, String>>();
+		ArrayList<HashMap<String, String>> salChit = new ArrayList<HashMap<String, String>>();
+		System.out.println(params.get("subRadio"));
+		String type = params.get("subRadio");
+		if(type == "inc" || type == "incSal"){
+			incChit = iLedgerManagementService.getIncChit(params);
+		}
+		if(type == "sal" || type == "incSal"){
+			salChit = iLedgerManagementService.getSalChit(params);
+		}
+		System.out.println(incChit);
+		System.out.println(salChit);
+		modelMap.put("incChit", incChit);
+		modelMap.put("salChit", salChit);
+		ObjectMapper mapper = new ObjectMapper();
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	}
 }

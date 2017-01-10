@@ -48,4 +48,16 @@ public class LedgerManagementDao implements ILedgerManagementDao{
 		// TODO Auto-generated method stub
 		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getSubNo", params);
 	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getIncChit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getIncChit", params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getSalChit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getSalChit", params);
+	}
 }

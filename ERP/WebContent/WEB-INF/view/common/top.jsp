@@ -12,7 +12,7 @@
    <input type="hidden" name="No" />
    <input type="hidden" name="bbsNo" value="${sMemDn}"/>
    <input type="hidden" name="userName" value="${sMemNm}"/>
-   <input type="hidden" name="bbsName" value=""/>
+   <input type="hidden" name="bbsName" value="공지사항"/>
 </form>
 <div class="bg">
 	<div class="range">

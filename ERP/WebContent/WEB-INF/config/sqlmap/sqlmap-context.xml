@@ -9,10 +9,6 @@
 		maxTransactions="5" maxRequests="32" maxSessions="10" />
 	<!-- Login쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/login/LoginSQL.xml" />
-	<!-- Chat쿼리 -->
-	<sqlMap resource="/com/spring/sample/sqlMap/chat/ChatSQL.xml" />
-	<!-- AjaxBoard쿼리 -->
-	<sqlMap resource="/com/spring/sample/sqlMap/ajaxBoard/AjaxBoardSQL.xml" />
 	<!-- Bbs 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/bbs/BbsSQL.xml" />
 	<!-- Main 쿼리 -->

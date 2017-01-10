@@ -218,4 +218,28 @@ FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL
 		AND DEPT_NO = #deptNoText#
 		</isNotEmpty>
 	</select>
+	<select id="getIncChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		SELECT CHIT.DEAL_DATE, CHIT.NO, 'INC' TYPE, CUS.NAME, CHIT.ETC, CHIT.MONEY 
+		FROM INC_CHIT CHIT INNER JOIN CUS ON CHIT.CUS_NO = CUS.NO
+		WHERE 1=1
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+		<isNotEmpty property="deptNoText">
+		AND DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		<isNotEmpty property="cusNoText">
+		AND CUS_NO in ($cusNoText$)
+		</isNotEmpty>
+	</select>
+	<select id="getSalChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		SELECT CHIT.DEAL_DATE, CHIT.NO, 'SAL' TYPE, CUS.NAME, CHIT.ETC, CHIT.MONEY 
+		FROM SAL_CHIT CHIT INNER JOIN CUS ON CHIT.CUS_NO = CUS.NO
+		WHERE 1=1
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+		<isNotEmpty property="deptNoText">
+		AND DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		<isNotEmpty property="cusNoText">
+		AND CUS_NO in ($cusNoText$)
+		</isNotEmpty>
+	</select>
 </sqlMap>
