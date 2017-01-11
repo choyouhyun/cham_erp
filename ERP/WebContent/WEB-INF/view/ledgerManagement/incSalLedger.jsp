@@ -68,6 +68,8 @@ function getIncSalChit() {
 		data: params,
 		dataType: "json",
 		success: function(result) {
+			resultForm();
+			resultChit(result);
 		},
 		error: function() {
 			alert("에러");
@@ -75,7 +77,94 @@ function getIncSalChit() {
 	});
 }
 
+function resultForm(){
+	var html = "";
+	
+	html += "<table>";
+	html += "	<thead>";
+	html += "		<tr>";
+	html += "			<th>년/월/일</th>";
+	html += "			<th>전표번호</th>";
+	html += "			<th>매입/매출유형</th>";
+	html += "			<th>거래처명</th>";
+	html += "			<th>적요</th>";
+	html += "			<th>매입공급가액</th>";
+	html += "			<th>매출공급가액</th>";
+	html += "		</tr>";
+	html += "	</thead>";
+	html += "	<tbody id='resultTb'>";
+	html += "	</tbody>";
+	html += "</table>";
 
+	$("#result").append(html);
+}
+
+function resultChit(e) {
+	var html = "";
+	var chitNo = 0;
+	var chitCnt;
+	incTotalMoney = new Array();
+	salTotalMoney = new Array();
+	for(var i = 0; i < e.month.length; i++){
+		chitCnt = 0;
+		for(var j = chitNo; j < e.chit.length; j++){
+			var chitMonth = e.chit[j].DEAL_DATE.split("/");
+			if(chitMonth[1] == e.month[i].MONTH){
+				html += "<tr>";
+				html += "	<td>" + e.chit[j].DEAL_DATE + "</td>";
+				html += "	<td>" + e.chit[j].NO + "</td>";
+				html += "	<td>" + e.chit[j].TYPE + "</td>";
+				html += "	<td>" + e.chit[j].NAME + "</td>";
+				html += "	<td>" + e.chit[j].ETC + "</td>";
+				if(e.chit[j].TYPE == "INC"){
+					html += "	<td>" + e.chit[j].MONEY + "</td>";
+					html += "	<td></td>";
+					if(salTotalMoney[e.month[i].MONTH] != null){
+						incTotalMoney[e.month[i].MONTH] += e.chit[j].MONEY;
+					}else {
+						incTotalMoney[e.month[i].MONTH] = e.chit[j].MONEY;
+					}
+				} else{
+					html += "	<td></td>";
+					html += "	<td>" + e.chit[j].MONEY + "</td>";
+					if(salTotalMoney[e.month[i].MONTH] != null){
+						salTotalMoney[e.month[i].MONTH] += e.chit[j].MONEY;
+					}else {
+						salTotalMoney[e.month[i].MONTH] = e.chit[j].MONEY;
+					}
+				}
+				html += "</tr>";
+				chitNo++;
+				chitCnt++;
+			}else{
+				break;
+			}
+		}
+		html += "<tr>";
+		html += "	<td colspan='3'></td>";
+		html += "	<td colspan='2'>총 매입/매출 건수</td>";
+		html += "	<td>" + chitCnt + "</td>";
+		html += "	<td>건</td>";
+		html += "<tr>";
+		html += "<tr>";
+		html += "	<td colspan='4'></td>";
+		html += "	<td>총액</td>";
+		if(incTotalMoney[e.month[i].MONTH] != null){
+			html += "	<td>" + incTotalMoney[e.month[i].MONTH] + "</td>";
+		}else {
+			html += "	<td></td>";
+		}
+
+		if(salTotalMoney[e.month[i].MONTH]){
+			html += "	<td>" + salTotalMoney[e.month[i].MONTH] + "</td>";
+		}else {
+			html += "	<td></td>";
+		}
+		html += "<tr>";
+		$("#resultTb").append(html);
+		html = "";
+	}
+}
 </script>
 </head>
 <body>
@@ -96,9 +185,9 @@ function getIncSalChit() {
 				<tr>
 					<th>매입/매출구분</th>
 					<td align="left">
-						<input type="radio" id="incRadio" name="subRadio" value="inc"/>매입
-						<input type="radio" id="salRadio" name="subRadio" value="sal"/>매출
-						<input type="radio" id="incSalRadio" name="subRadio" value="incSal"/>매입/매출
+						<input type="radio" id="incRadio" name="subRadio" value="&#39;INC&#39;"/>매입
+						<input type="radio" id="salRadio" name="subRadio" value="&#39;SAL&#39;"/>매출
+						<input type="radio" id="incSalRadio" name="subRadio" value="&#39;INC&#39;,&#39;SAL&#39;"/>매입/매출
 					</td>
 				</tr>
 				<tr>

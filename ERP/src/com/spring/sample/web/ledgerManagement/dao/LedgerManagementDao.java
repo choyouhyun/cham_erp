@@ -50,14 +50,14 @@ public class LedgerManagementDao implements ILedgerManagementDao{
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> getIncChit(HashMap<String, String> params) throws Throwable {
+	public ArrayList<HashMap<String, String>> getIncSalChit(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getIncChit", params);
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getIncSalChit", params);
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> getSalChit(HashMap<String, String> params) throws Throwable {
+	public ArrayList<HashMap<String, String>> getMonth(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getSalChit", params);
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("ledgerManagement.getMonth", params);
 	}
 }

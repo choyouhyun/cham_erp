@@ -17,8 +17,7 @@ public interface ILedgerManagementDao {
 
 	public ArrayList<HashMap<String, String>> getSubNo(HashMap<String, String> params) throws Throwable;
 
-	public ArrayList<HashMap<String, String>> getIncChit(HashMap<String, String> params) throws Throwable;
+	public ArrayList<HashMap<String, String>> getIncSalChit(HashMap<String, String> params) throws Throwable;
 
-	public ArrayList<HashMap<String, String>> getSalChit(HashMap<String, String> params) throws Throwable;
-
+	public ArrayList<HashMap<String, String>> getMonth(HashMap<String, String> params) throws Throwable;
 }

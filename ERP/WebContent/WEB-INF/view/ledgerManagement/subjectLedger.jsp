@@ -265,6 +265,7 @@ function resultChit(e){
 		html += "		<caption> <b>기준일자 </b> : " + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</caption>";
 		html += "		<thead>";
 		html += "			<tr>";
+		html += "				<th>거래일자</th>";
 		html += "				<th>전표번호</th>";
 		html += "				<th>적요</th>";
 		html += "				<th>차변</th>";
@@ -287,7 +288,7 @@ function resultBeforeMoney(e) {
 	
 	for(var i = 0; i < e.beforeMoney.length; i++){
 		html += "			<tr>";
-		html += "				<td colspan='2'>전월이월</td>";
+		html += "				<td colspan='3'>전월이월</td>";
 		html += "				<td>"+ e.beforeMoney[i].DEBTOR_MONEY +"</td>";
 		html += "				<td>"+ e.beforeMoney[i].CREDITOR_MONEY +"</td>";
 		html += "				<td>"+ (e.beforeMoney[i].DEBTOR_MONEY - e.beforeMoney[i].CREDITOR_MONEY) +"</td>";
@@ -306,6 +307,7 @@ function resultChitDeteil(e) {
 	
 	for(var i = 0; i < e.chit.length; i++){
 		html += "			<tr>";
+		html += "				<td>" + e.chit[i].DEAL_DATE + "</td>";
 		html += "				<td>"+ e.chit[i].NO +"</td>";
 		html += "				<td>"+ e.chit[i].ETC +"</td>";
 		if(e.chit[i].DECHA == 0){
@@ -349,15 +351,15 @@ function totalMoney(e) {
 	var html = "";
 	for(var i = 0; i < e.cusNo.length; i++){
 		html += "<tr>";
-		html += "	<td colspan=2;>총액</td>";
+		html += "	<td colspan=3>총액</td>";
 		if(debTotalMoney[e.cusNo[i].CUS_NO] != null){
 			html += "	<td>" + debTotalMoney[e.cusNo[i].CUS_NO] + "</td>";
-		}else{
+		} else{
 			html += "	<td></td>";
 		}
 		if(creTotalMoney[e.cusNo[i].CUS_NO] != null){
 			html += "	<td>" + creTotalMoney[e.cusNo[i].CUS_NO] + "</td>";
-		}else{
+		} else{
 			html += "	<td></td>";
 		}
 		html += "	<td>" + leftMoney[e.cusNo[i].CUS_NO] + "</td>";

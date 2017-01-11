@@ -90,20 +90,13 @@ public class LedgerManagementController {
 	public @ResponseBody ResponseEntity<String> incSalChitGet(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
-		ArrayList<HashMap<String, String>> incChit = new ArrayList<HashMap<String, String>>();
-		ArrayList<HashMap<String, String>> salChit = new ArrayList<HashMap<String, String>>();
-		System.out.println(params.get("subRadio"));
 		String type = params.get("subRadio");
-		if(type == "inc" || type == "incSal"){
-			incChit = iLedgerManagementService.getIncChit(params);
-		}
-		if(type == "sal" || type == "incSal"){
-			salChit = iLedgerManagementService.getSalChit(params);
-		}
-		System.out.println(incChit);
-		System.out.println(salChit);
-		modelMap.put("incChit", incChit);
-		modelMap.put("salChit", salChit);
+		ArrayList<HashMap<String, String>> chit = iLedgerManagementService.getIncSalChit(params);
+		System.out.println(chit);
+		ArrayList<HashMap<String, String>> month = iLedgerManagementService.getMonth(params);
+		System.out.println(month);
+		modelMap.put("chit", chit);
+		modelMap.put("month", month);
 		ObjectMapper mapper = new ObjectMapper();
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");

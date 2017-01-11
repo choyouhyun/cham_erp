@@ -50,15 +50,14 @@ public class LedgerManagementService implements ILedgerManagementService{
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> getIncChit(HashMap<String, String> params) throws Throwable {
+	public ArrayList<HashMap<String, String>> getIncSalChit(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return iLedgerManagementDao.getIncChit(params);
+		return iLedgerManagementDao.getIncSalChit(params);
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> getSalChit(HashMap<String, String> params) throws Throwable {
+	public ArrayList<HashMap<String, String>> getMonth(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return iLedgerManagementDao.getSalChit(params);
+		return iLedgerManagementDao.getMonth(params);
 	}
-	
 }
