@@ -126,8 +126,7 @@ $(document).ready(function(){
 							</div>
 						</div>
 					</div>
-				</div>
-				<div class="showFile">
+									<div class="showFile">
 					<div class="c">
 						<div class="file_d">
 							<div class="e">
@@ -162,6 +161,8 @@ $(document).ready(function(){
 						</div>
 					</div>
 				</div>
+				</div>
+
 			</div>
 			</div>
 		
