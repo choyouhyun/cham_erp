@@ -121,7 +121,7 @@ $(document).ready(function(){
 						<div class="c">
 							<div class="showContents_d">
 								<div class="e">
-									<div class="contentsText">${con.CON}</div>
+									<div class="contentsText"><pre>${con.CON}</pre></div>
 								</div>
 							</div>
 						</div>
