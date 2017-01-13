@@ -205,9 +205,9 @@ table.th{
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
-var leftMoney = new Array();
-var debTotalMoney = new Array();
-var creTotalMoney = new Array();
+var leftMoney;
+var debTotalMoney;
+var creTotalMoney;
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
 	dateFormat: 'yymm'
@@ -228,9 +228,8 @@ $(function() {
 	});
 	
 	$("#ledSearchBtn").click(function() {
+		
 		subLedgerGet();
-		console.log(creTotalMoney);
-		console.log(debTotalMoney);
 	});
 });
 
@@ -255,6 +254,10 @@ function subLedgerGet() {
 }
 
 function resultChit(e){
+	$("#result").html("");
+	leftMoney = new Array();
+	debTotalMoney = new Array();
+	creTotalMoney = new Array();
 	var html = "";
 	for(var i = 0; i < e.cusNo.length; i++){
 		html += "<div>";
