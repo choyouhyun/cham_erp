@@ -14,7 +14,7 @@
 <script type="text/javascript">
 $(document).ready(function(){
 	var html = "";
-	html += "<span>" +  $("input[name='bbsName']").val()  + "</span>";
+	html += "<span id='" + "font" +"'>" +  $("input[name='bbsName']").val()  + "</span>";
 	$("#bbsName").html(html);
  	if('${sMemNm}' == '${con.MEMNAME}') {
  		$("#updateBtn").css("visibility", "visible");

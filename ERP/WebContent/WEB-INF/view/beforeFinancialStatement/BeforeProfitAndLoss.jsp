@@ -15,6 +15,38 @@
 	src="resources/script/erp_script/main_script.js"></script>
 <!-- basic -->
 <style type="text/css">
+.searchBtn{
+   border: 1px solid #ffffff;
+   background: #6d6d6d;
+   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
+   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
+   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
+   padding: 7.2px 13px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color: #ffffff;
+   font-size: 10px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.searchBtn:hover{
+   border: 1px solid #ffffff;
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+
+/*스크롤바  */
 html {
 	scrollbar-3dLight-Color: #efefef;
 	scrollbar-arrow-color: #dfdfdf;
@@ -56,65 +88,164 @@ html {
 	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
 } 
 
-table {
-	overflow: auto;
+.title{
+	font-size: 25pt;
+	font-weight: bold;
+}
+#font{
+	color:#153d73;
+	font-weight: bold;
+}
+/* 텍스트 박스 크기 */
+#deptNoText, #deptNameText, #subNoText, #subNameText {
+ width: 160px;
+}
+
+/*테이블 디자인  */
+.cusledger {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #98bf21;
+ 	margin : 20px 10px;
+}
+.cusledger th {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #A7C942;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+.cusledger td {
+    width: 400px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
+table{
 	display: inline-block;
 }
-
-table.sub{
-	text-align: left;
-    /* line-height: 1.5; */
-    border-top: 1px solid #ccc;
-    border-left: 3px solid #484848;
- 	
-}
-
-table.sub th {
+table.th{
 	font-weight: bold;
-	vertical-align: top;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
-	border-top: 1px solid #fff;
-	border-left: 1px solid #fff;
-	background: #FFFFFF;
+    vertical-align: top;
+}
+.form-control{
+	font-size: 11pt;
+	height: 20px;
+}
+.date{
+	font-size: 0pt;
+}
+.pull{
+	margin-top: 10px;
+	text-align: center;
+	height: 50px;
 	
 }
-
-table.sub td {
-	padding: auto;
-	vertical-align: top;
-	border-right: 1px solid #ccc;
-	border-bottom: 1px solid #ccc;
+.pull_left{
+	display: inline-block;
+	width: 916px;
+	text-align: left;
+	border-bottom: 1px solid #A7C942;
+	margin-bottom: 5px; 
+	padding-bottom: 3px; 
+}
+.pull_right{
+	display: inline-block;
+	width : 600px;
+	text-align: right;
 }
 
-table.code {
-	height: 365px;
+#ledSearchBtn{
+   border: 1px solid #ffffff;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
+   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
+   background: -moz-linear-gradient(top, #6d6d6d, #474747);
+   background: -ms-linear-gradient(top, #6d6d6d, #474747);
+   background: -o-linear-gradient(top, #6d6d6d, #474747);
+   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
+   padding: 10.5px 21px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#ledSearchBtn:hover{
+   border: 1px solid #ffffff;
+   /* text-shadow: #ffffff 0 1px 0; */
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+#ledSearchBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
 }
-
-table.code td {
-	padding: auto;
-	vertical-align: top;
-	border: 1px solid #BDBDBD;
+.tblGreen {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
 }
-
-table.code th {
-	font-weight: bold;
-	vertical-align: top;
-	border: 1px solid #BDBDBD;
-	background: #484848/* #47C83E */;
-	color: #FFFFFF
+.tblGreen td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+    width:120px;
 }
-
-
-
+.tblGreen th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+    width:120px;
+}
+.tblGreen tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.tblGreen caption {
+    height: 30px;
+    font-weight: bold;
+    font-size: 10pt;
+	text-align: center;
+}
 
 </style>
 </head>
 <body>
 	<c:import url="/top"></c:import>
 	<div class="contents">
-	<br/>
-		<table class="code" border="0px" align="center">
+			<br/>
+			<span id="font">전기분 손익계산서</span>
+			<br/>
+			<br/>
+		<table class="tblGreen" border="0px" align="center">
 			<tr>
 				<th>코드</th>
 				<th>계정과목</th>
@@ -182,7 +313,7 @@ table.code th {
 			</tr>
 		</table>
 		
-		<table class="sub" border="1px" align="center">
+		<table class="tblGreen" align="center">
 			<tr>
 				<th colspan="2">계정 별 합계</th>
 			</tr>

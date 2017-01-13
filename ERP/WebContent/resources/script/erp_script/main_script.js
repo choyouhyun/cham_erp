@@ -90,13 +90,13 @@ $(document).ready(function(){
 		location.href="main";
 	});
 	/*메인 아래 게시판*/
-	$("#noticeTb").on("click", "tr", function(){
-		$("input[name='No']").val($(this).attr("name"));
+	$("#noticeTb").on("click", "#showLink", function(){
+		$("input[name='No']").val($(this).closest("tr").attr("name"));
 		$("#mainForm").attr("action", "bbsShow");
 		$("#mainForm").submit();
 	});
-	$("#deptBbsTb").on("click", "tr", function(){
-		$("input[name='No']").val($(this).attr("name"));
+	$("#deptBbsTb").on("click", "#showLink", function(){
+		$("input[name='No']").val($(this).closest("tr").attr("name"));
 		$("#mainForm2").attr("action", "bbsShow?cap=dept");
 		$("#mainForm2").submit();
 	});
@@ -128,7 +128,8 @@ function noticeList() {
 			
 			for(var i = 0; i < result.list.length ; i++) {
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" + result.list[i].TITLE + "</td>";
+				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" 
+					+ "<span id='" + "showLink" + "'>" + result.list[i].TITLE + "</span> </td>";
 				html += "<td class='" + "mainTd" + "' width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
 				html += "<td class='" + "mainTd" + "'>" + result.list[i].MEMNAME + "</td>";
 				html += "</tr>";
@@ -158,7 +159,8 @@ function deptBbsList() {
 			
 			for(var i = 0; i < result.list.length ; i++) {
 				html += "<tr name='" + result.list[i].NO + "'>";
-				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" + result.list[i].TITLE + "</td>";
+				html += "<td class='" + "mainTd" + "' width='" + "300px" +"'>" 
+					+ "<span id='" + "showLink" + "'>" + result.list[i].TITLE + "</span> </td>";
 				html += "<td class='" + "mainTd" + "' width='" + "100px" +"'>" + result.list[i].JOINDT + "</td>";
 				html += "<td class='" + "mainTd" + "'>" + result.list[i].MEMNAME + "</td>";
 				html += "</tr>";

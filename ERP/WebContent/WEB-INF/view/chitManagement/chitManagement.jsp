@@ -58,8 +58,8 @@ html {
 } 
 
 #font{
-font-weight: bold;
-font-size: 20pt
+	color:#153d73;
+	font-weight: bold;
 }
 
 /*테이블 디자인*/
@@ -208,9 +208,9 @@ $(document).ready(function(){
 <body>
 		<c:import url="/top"></c:import>
 		<div class="contents">
-		<br/>
-			<div id="font">전표관리 
-			</div>
+			<br/>
+			<span id="font">전표관리</span>
+			<br/>
 			<br/>
 			<form action="#" id="actionForm" method="post">
 				<input type="hidden" name="page" value="1" />
@@ -218,9 +218,9 @@ $(document).ready(function(){
 			<table border="1" cellspacing="0" align="center" class="maintbl">
 				<colgroup>
 					<col style="width:40px"/> <!-- 체크박스 -->
-					<col style="width:90px"/> <!-- 전표번호/입력일자 -->
+					<col style="width:150px"/> <!-- 전표번호/입력일자 -->
 					<col style="width:150px"/> <!-- 거래유형 -->
-					<col style="width:100px"/> <!-- 금액 -->
+					<col style="width:120px"/> <!-- 금액 -->
 					<col style="width:100px"/> <!-- 거래처명 -->
 					<col style="width:350px"/> <!-- 적요 -->
 				</colgroup>

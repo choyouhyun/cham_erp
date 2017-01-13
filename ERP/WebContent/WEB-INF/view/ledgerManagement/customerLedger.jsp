@@ -10,6 +10,38 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <style type="text/css">
+.searchBtn{
+   border: 1px solid #ffffff;
+   background: #6d6d6d;
+   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
+   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
+   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
+   padding: 7.2px 13px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   color: #ffffff;
+   font-size: 12px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+.searchBtn:hover{
+   border: 1px solid #ffffff;
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+
+
 /*스크롤바  */
 html {
 	scrollbar-3dLight-Color: #efefef;
@@ -375,7 +407,11 @@ function totalMoney(e) {
 </head>
 <body>
 	<c:import url="/top"></c:import>
-	<div class="contents"><div id="font">거래처 원장</div><br/>
+	<div class="contents">
+	<br/>
+	<span id="font">거래처 원장</span>
+	<br/>
+	<br/>
 		<div class="search">
 			<form action="#" id="searchForm" method="post">
 			<table id="cusledger" class="cusledger">
@@ -392,7 +428,7 @@ function totalMoney(e) {
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptSearchBtn" value="검색"/>
+						<input type="button" class="searchBtn" id="deptSearchBtn" value="검색"/>
 						<input type ="text" id="deptNoText" name="deptNoText"/>
 						<input type ="text" id="deptNameText" name="deptNameText"/>
 					</td>
@@ -401,7 +437,7 @@ function totalMoney(e) {
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subSearchBtn" value="검색"/>
+						<input type="button" class="searchBtn" id="subSearchBtn" value="검색"/>
 						<input type ="hidden" id="subNoText" name="subNoText"/>
 						<input type ="text" id="subNameText" name="subNameText" style="width: 300px;"/>
 					</td>
@@ -410,7 +446,7 @@ function totalMoney(e) {
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cusSearchBtn" value="검색"/>
+						<input type="button" class="searchBtn" id="cusSearchBtn" value="검색"/>
 						<input type ="text" id="cusNoText" name="cusNoText"/>
 						<input type ="text" id="cusNameText" name="cusNameText"/>
 					</td>
