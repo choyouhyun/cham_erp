@@ -102,14 +102,14 @@ html {
  	margin : 20px 10px;
 }
 .maintbl th {
-    width: 100px;
+    width: 110px;
     padding: 10px;
     font-weight: bold;
     vertical-align: top;
     color: #A7C942;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
-
+	font-size: 13px;
 }
 .maintbl td {
     width: 180px;
@@ -168,7 +168,7 @@ html {
 }
 /*테이블내 버튼 디자인  */
 #deptBtn,#cusBtn,#debBtn,#creBtn,#detailInput{
-   height:40px;
+   height: 35px;
    border: 1px solid #ffffff;
    background: #6d6d6d;
    background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
@@ -186,7 +186,7 @@ html {
   /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
    text-shadow: #ffffff 0 1px 0; */
    color: #ffffff;
-   font-size: 14px;
+   font-size: 12px;
    font-family: '맑은고딕';
    text-decoration: none;
    vertical-align: middle;
@@ -349,7 +349,7 @@ function updatechit() {
 	<input type="hidden" name="chitNo" id="chitNo" value="${param.chitNo}"/>
 	<div class="chitBody">
 	<br>
-	<span class="title"> 매출 전표 입력</span>
+	<span id="font"> 매출 전표 입력</span>
 	<br>
 	<br>
 		<table border="1" class="maintbl">

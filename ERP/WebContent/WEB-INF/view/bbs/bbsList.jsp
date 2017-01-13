@@ -36,8 +36,9 @@ $(document).ready(function() {
 		refreshList();
 	});
 
-	$("#tb").on("click", "tr", function(){
-		$("input[name='No']").val($(this).attr("name"));
+	$("#tb").on("click", "#showLink", function(){
+		//$("input[name='No']").val($(this).attr("name"));
+		$("input[name='No']").val($(this).closest("tr").attr("name"));
 		$("#actionForm").attr("action", "bbsShow");
 		$("#actionForm").submit();
 	});
@@ -55,7 +56,7 @@ function refreshList() {
 			var html = "";
 			 if(result.list.length == 0 && $("input[name='searchText']").val != null) {
 				 
-				 html += "<span>" + $("input[name='bbsName']").val() + "</span>";
+				 html += "<span id='" + "font" + "'>" + $("input[name='bbsName']").val() + "</span>";
 				 $("#bbsName").html(html);
 				 html = "";
 				 html += "'" + $("input[name='searchText']").val() + "'" + " 에 대한 검색 결과가 없습니다.";
@@ -65,7 +66,7 @@ function refreshList() {
 			} else {
 				for(var i = 0; i < result.list.length ; i++) {
 					html += "<tr name='" + result.list[i].NO + "'>";
-					html += "<td width='" + "500px" +"'>" + result.list[i].TITLE + "</td>";
+					html += "<td width='" + "500px" +"'>" + "<span id='" + "showLink" + "'>" + result.list[i].TITLE + "</span> </td>";
 					html += "<td width='" + "300px" +"'>" 
 					+ "<img alt='" + "user" + "'src='" + "resources/images/ERP/user-bbs.png" + "'/>" 
 					+ result.list[i].MEMNAME + "</td>";
@@ -75,7 +76,7 @@ function refreshList() {
 					}
 				$("#tb").html(html);
 				html = "";
-				html += "<span>" + result.list[0].NAME + "</span>";
+				html += "<span id='" + "font" + "'>" + result.list[0].NAME + "</span>";
 				$("input[name='bbsName']").val(result.list[0].NAME)
 				$("#bbsName").html(html);
 				html = "";

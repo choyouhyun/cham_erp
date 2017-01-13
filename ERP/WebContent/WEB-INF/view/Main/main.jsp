@@ -57,7 +57,7 @@
 			</div>
 			<div class="boards">
 				<div class="noticeBody">
-					<div class="boardName">공지사항</div>
+					<div class="boardName" id="font">공지사항</div>
 					<div class="bbsNotice">
 						<table class="mainTb">
 							<tbody class="mainTb" id="noticeTb">
@@ -66,7 +66,7 @@
 					</div>
 				</div>
 				<div class="deptBbsBody">
-					<div class="boardName">부서게시판</div>
+					<div class="boardName" id="font">부서게시판</div>
 					<div class="bbsDept">
 						<table class="mainTb">
 							<tbody class="mainTb" id="deptBbsTb">

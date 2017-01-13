@@ -1,11 +1,17 @@
 @CHARSET "UTF-8";
+/* 공용폰트 */
+#font{
+	color:#153d73;
+	font-weight: bold;
+}
+
 body {
 	margin: 0px;
 }
 div {
 	margin: 0px;
 }
-tr, ul:HOVER {
+#showLink, ul:HOVER {
 	cursor: pointer;
 }
 
@@ -89,6 +95,9 @@ tr, ul:HOVER {
 	font-size: 20px;
 	text-align: center;
 	background-image: url("../../images/ERP/logo.png");
+}
+.logo:hover {
+	cursor: pointer;
 }
 /* 유저 로그인정보 */
 .loginInfo {
