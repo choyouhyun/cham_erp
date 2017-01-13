@@ -4,7 +4,6 @@
 
 <sqlMap namespace="chitManagement">
 	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="chitCon">
-
 SELECT*FROM(
 SELECT  A.NO,TO_CHAR(INPUT_DATE,'YYYY-MM-DD') INPUT_DATE,'매입전표' SEC,A.MONEY,B.NAME,A.ETC
 FROM INC_CHIT A,CUS B
@@ -22,27 +21,10 @@ SELECT  A.NO,TO_CHAR(INPUT_DATE,'YYYY-MM-DD'),'매입전표(기타)',A.MONEY,B.N
 FROM OTH_SAL_CHIT A,CUS B
 WHERE A.CUS_NO = B.NO) 
 ORDER BY NO
-<!-- SELECT*FROM(
-SELECT INPUT_DATE ||'-'||A.NO NO,'매입전표' SEC,A.MONEY,B.NAME,A.ETC
-FROM INC_CHIT A,CUS B
-WHERE A.CUS_NO = B.NO
-UNION ALL
-SELECT INPUT_DATE ||'-'||A.NO ,'매출전표',A.MONEY,B.NAME,A.ETC
-FROM SAL_CHIT A,CUS B
-WHERE A.CUS_NO = B.NO
-UNION ALL
-SELECT INPUT_DATE ||'-'||A.NO ,'매입전표(기타)',A.MONEY,B.NAME,A.ETC
-FROM OTH_INC_CHIT A,CUS B
-WHERE A.CUS_NO = B.NO
-UNION ALL
-SELECT INPUT_DATE ||'-'||A.NO ,'매입전표(기타)',A.MONEY,B.NAME,A.ETC
-FROM OTH_SAL_CHIT A,CUS B
-WHERE A.CUS_NO = B.NO) 
-ORDER BY NO -->
-
 </select>
 <select resultClass="integer" parameterClass="java.util.HashMap"
-		id="getchitCount"> SELECT
+		id="getchitCount"> 
+SELECT
 (SELECT COUNT(*) FROM INC_CHIT)+
 (SELECT COUNT(*) FROM OTH_INC_CHIT)+
 (SELECT COUNT(*) FROM SAL_CHIT)+
