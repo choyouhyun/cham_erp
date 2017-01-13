@@ -3,7 +3,7 @@
     "http://ibatis.apache.org/dtd/sql-map-2.dtd">
 <sqlMap namespace="ledgerManagement">
 	<select id="getSubChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
- 		SELECT  NO, MEM_NO, CUS_NO, DEPT_NO, DECHA, SUB, MONEY, DEAL_DATE, INPUT_DATE, ETC, GBN
+ 		SELECT  NO, MEM_NO, CUS_NO, DEPT_NO, DECHA, SUB, MONEY, TO_CHAR(DEAL_DATE, 'YY/MM/DD') DEAL_DATE, INPUT_DATE, ETC, GBN
 FROM (SELECT A.NO, A.MEM_NO, A.CUS_NO, A.DEPT_NO, 0 AS DECHA, A.DEBTOR_NO AS SUB, A.MONEY, A.DEAL_DATE, A.INPUT_DATE, A.ETC, A.GBN
   FROM (SELECT NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, INPUT_DATE, ETC, 'IC' AS GBN
 		      FROM INC_CHIT
@@ -172,7 +172,7 @@ FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL
 		WHERE 1=1
 		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN SUBSTR(#startDate#, 1, 4)||'01' AND (TO_NUMBER(#startDate#)-1)
 		AND CUS_NO = #cusNoText#
-		<isNotEmpty property="cusNoText">		
+		<isNotEmpty property="subNoText">		
 		AND SUB IN ($subNoText$)
 		</isNotEmpty>
 		<isNotEmpty property="deptNoText">
@@ -211,11 +211,48 @@ FROM (SELECT A.CUS_NO, MONEY AS DEBTOR_MONEY, 0 AS CREDITOR_MONEY, DEPT_NO, DEAL
 		WHERE 1 = 1
 		AND CUS_NO = #cusNoText#
 		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
-		<isNotEmpty property="cusNoText">		
+		<isNotEmpty property="subNoText">		
 		AND SUB IN ($subNoText$)
 		</isNotEmpty>
 		<isNotEmpty property="deptNoText">
 		AND DEPT_NO = #deptNoText#
 		</isNotEmpty>
+	</select>
+	<select id="getIncSalChit" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		SELECT TO_CHAR(DEAL_DATE, 'YY/MM/DD') DEAL_DATE, NO, TYPE, NAME, ETC, MONEY
+		FROM (SELECT CHIT.DEAL_DATE, CHIT.NO, 'INC' TYPE, CUS.NAME, CHIT.ETC, CHIT.MONEY, DEPT_NO, CUS_NO
+		      FROM INC_CHIT CHIT INNER JOIN CUS ON CHIT.CUS_NO = CUS.NO
+		      UNION ALL
+		      SELECT CHIT.DEAL_DATE, CHIT.NO, 'SAL' TYPE, CUS.NAME, CHIT.ETC, CHIT.MONEY, DEPT_NO, CUS_NO
+		      FROM SAL_CHIT CHIT INNER JOIN CUS ON CHIT.CUS_NO = CUS.NO)
+		WHERE 1=1
+		AND TYPE IN ($subRadio$)
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+		<isNotEmpty property="deptNoText">
+		AND DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		<isNotEmpty property="cusNoText">
+		AND CUS_NO in ($cusNoText$)
+		</isNotEmpty>
+		ORDER BY DEAL_DATE
+	</select>
+	<select id="getMonth" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" remapResults="true">
+		SELECT TO_CHAR(DEAL_DATE, 'MM') MONTH
+		FROM (SELECT DEAL_DATE, 'INC' TYPE, DEPT_NO, CUS_NO
+		      FROM INC_CHIT
+		      UNION ALL
+		      SELECT DEAL_DATE, 'SAL' TYPE, DEPT_NO, CUS_NO
+		      FROM SAL_CHIT)
+		WHERE 1=1
+		AND TO_CHAR(DEAL_DATE, 'YYYYMM') BETWEEN #startDate# AND #endDate#
+		AND TYPE IN ('INC')
+		GROUP BY TO_CHAR(DEAL_DATE, 'MM')
+		<isNotEmpty property="deptNoText">
+		AND DEPT_NO = #deptNoText#
+		</isNotEmpty>
+		<isNotEmpty property="cusNoText">
+		AND CUS_NO in ($cusNoText$)
+		</isNotEmpty>
+		ORDER BY MONTH
 	</select>
 </sqlMap>

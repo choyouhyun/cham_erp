@@ -10,6 +10,87 @@
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <style type="text/css">
+/*스크롤바  */
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
+.title{
+	font-size: 25pt;
+	font-weight: bold;
+}
+#font{
+	color:#153d73;
+	font-weight: bold;
+}
+/* 텍스트 박스 크기 */
+#deptNoText, #deptNameText, #subNoText, #subNameText, #cusNoText, #cusNameText {
+ width: 160px;
+}
+
+/*테이블 디자인  */
+.cusledger {
+    border-collapse: collapse;
+    text-align: left;
+    line-height: 1.5;
+    border-top: 1px solid #ccc;
+    border-left: 3px solid #98bf21;
+ 	margin : 20px 10px;
+}
+.cusledger th {
+    width: 100px;
+    padding: 10px;
+    font-weight: bold;
+    vertical-align: top;
+    color: #A7C942;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+
+}
+.cusledger td {
+    width: 400px;
+    padding: 10px;
+    vertical-align: top;
+    border-right: 1px solid #ccc;
+    border-bottom: 1px solid #ccc;
+}
 table{
 	display: inline-block;
 }
@@ -25,20 +106,108 @@ table.th{
 	font-size: 0pt;
 }
 .pull{
+	margin-top: 10px;
+	text-align: center;
+	height: 50px;
+	
 }
 .pull_left{
+	display: inline-block;
+	width: 916px;
 	text-align: left;
+	border-bottom: 1px solid #A7C942;
+	margin-bottom: 5px; 
+	padding-bottom: 3px; 
 }
 .pull_right{
+	display: inline-block;
+	width : 600px;
 	text-align: right;
 }
+
+#ledSearchBtn{
+   border: 1px solid #ffffff;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
+   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
+   background: -moz-linear-gradient(top, #6d6d6d, #474747);
+   background: -ms-linear-gradient(top, #6d6d6d, #474747);
+   background: -o-linear-gradient(top, #6d6d6d, #474747);
+   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
+   padding: 10.5px 21px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#ledSearchBtn:hover{
+   border: 1px solid #ffffff;
+   /* text-shadow: #ffffff 0 1px 0; */
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+#ledSearchBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+.tblGreen {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.tblGreen td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+    width:180px;
+}
+.tblGreen th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+    width:180px;
+}
+.tblGreen tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.tblGreen caption {
+    height: 30px;
+    font-weight: bold;
+    font-size: 10pt;
+	text-align: center;
+}
+
 </style>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <script type="text/javascript">
-var leftMoney = new Array();
-var totalMoney = new Array();
+var leftMoney;
+var debTotalMoney;
+var creTotalMoney;
 $(function() {
 	$( "#datepicker1, #datepicker2" ).datepicker({
 	dateFormat: 'yymm'
@@ -75,6 +244,7 @@ function subLedgerGet() {
 			resultChit(result);
 			resultBeforeMoney(result);
 			resultChitDeteil(result);
+			totalMoney(result);
 		},
 		error: function() {
 			alert("에러");
@@ -83,14 +253,18 @@ function subLedgerGet() {
 }
 
 function resultChit(e){
+	$("#result").html("");
+	leftMoney = new Array();
+	debTotalMoney = new Array();
+	creTotalMoney = new Array();
 	var html = "";
 	for(var i = 0; i < e.subNo.length; i++){
 		html += "<div>";
 		html += "	<div class='pull'>";
-		html += "		<div class='pull_left'>거래처명 : " + e.subNo[i].NAME + "</div>";
-		html += "		<div class='pull_right'>" + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</div>";
+		html += "		<div class='pull_left'><b>거래처명</b> : " + e.subNo[i].NAME + "</div>";
 		html += "	</div>";
-		html += "	<table>";
+		html += "	<table class=tblGreen>";
+		html += "		<caption> <b>기준일자 </b> : " + $("#datepicker1").val() + "~" +$("#datepicker2").val() + "</caption>";
 		html += "		<thead>";
 		html += "			<tr>";
 		html += "				<th>전표번호</th>";
@@ -139,24 +313,61 @@ function resultChitDeteil(e) {
 		if(e.chit[i].DECHA == 0){
 			html += "				<td>"+ e.chit[i].MONEY +"</td>";
 			html += "				<td></td>";
-			if(leftMoney[e.chit[i].CUS_NO] != null){
-				leftMoney[e.chit[i].CUS_NO] += e.chit[i].MONEY;
+			
+			if(debTotalMoney[e.chit[i].SUB] != null){
+				debTotalMoney[e.chit[i].SUB] += e.chit[i].MONEY;				
 			}else{
-				leftMoney[e.chit[i].CUS_NO] = e.chit[i].MONEY;
+				debTotalMoney[e.chit[i].SUB] = e.chit[i].MONEY;				
+			}
+			
+			if(leftMoney[e.chit[i].SUB] != null){
+				leftMoney[e.chit[i].SUB] += e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].SUB] = e.chit[i].MONEY;
 			}
 		}else{
 			html += "				<td></td>";
 			html += "				<td>"+ e.chit[i].MONEY +"</td>";
-			if(leftMoney[e.chit[i].CUS_NO] != null){
-				leftMoney[e.chit[i].CUS_NO] -= e.chit[i].MONEY;
+			
+			if(creTotalMoney[e.chit[i].SUB] != null){
+				creTotalMoney[e.chit[i].SUB] += e.chit[i].MONEY;				
 			}else{
-				leftMoney[e.chit[i].CUS_NO] = -e.chit[i].MONEY;
+				creTotalMoney[e.chit[i].SUB] = e.chit[i].MONEY;				
+			}
+			
+			if(leftMoney[e.chit[i].SUB] != null){
+				leftMoney[e.chit[i].SUB] -= e.chit[i].MONEY;
+			}else{
+				leftMoney[e.chit[i].SUB] = -e.chit[i].MONEY;
 			}
 		}
-		html += "				<td>" + leftMoney[e.chit[i].CUS_NO] + "</td>";
+		html += "				<td>" + leftMoney[e.chit[i].SUB] + "</td>";
 		html += "			</tr>";
 		
-		$("#tb_"+e.chit[i].CUS_NO).append(html);
+		$("#tb_"+e.chit[i].SUB).append(html);
+		html = "";
+	}
+}
+
+function totalMoney(e) {
+	var html = "";
+	for(var i = 0; i < e.subNo.length; i++){
+		html += "<tr>";
+		html += "	<td colspan=2;>총액</td>";
+		if(debTotalMoney[e.subNo[i].SUB] != null){
+			html += "	<td>" + debTotalMoney[e.subNo[i].SUB] + "</td>";
+		}else{
+			html += "	<td></td>";
+		}
+		if(creTotalMoney[e.subNo[i].SUB] != null){
+			html += "	<td>" + creTotalMoney[e.subNo[i].SUB] + "</td>";
+		}else{
+			html += "	<td></td>";
+		}
+		html += "	<td>" + leftMoney[e.subNo[i].SUB] + "</td>";
+		html += "</tr>";
+		
+		$("#tb_" + e.subNo[i].SUB).append(html);
 		html = "";
 	}
 }
@@ -164,10 +375,10 @@ function resultChitDeteil(e) {
 </head>
 <body>
 	<c:import url="/top"></c:import>
-	<div class="contents">거래처별 원장<br/>
+	<div class="contents"><div id="font">거래처 원장</div><br/>
 		<div class="search">
 			<form action="#" id="searchForm" method="post">
-			<table id="cusledger" class="cusledger" border="1">
+			<table id="cusledger" class="cusledger">
 				<tr>
 					<th>기준일자
 					</th>
@@ -181,7 +392,7 @@ function resultChitDeteil(e) {
 					<th>부서
 					</th>
 					<td align="left">
-						<input type="button" id="deptSearchBtn" />
+						<input type="button" id="deptSearchBtn" value="검색"/>
 						<input type ="text" id="deptNoText" name="deptNoText"/>
 						<input type ="text" id="deptNameText" name="deptNameText"/>
 					</td>
@@ -190,7 +401,7 @@ function resultChitDeteil(e) {
 					<th>계정
 					</th>
 					<td align="left">
-						<input type="button" id="subSearchBtn" />
+						<input type="button" id="subSearchBtn" value="검색"/>
 						<input type ="hidden" id="subNoText" name="subNoText"/>
 						<input type ="text" id="subNameText" name="subNameText" style="width: 300px;"/>
 					</td>
@@ -199,7 +410,7 @@ function resultChitDeteil(e) {
 					<th>거래처
 					</th>
 					<td align="left">
-						<input type="button" id="cusSearchBtn"/>
+						<input type="button" id="cusSearchBtn" value="검색"/>
 						<input type ="text" id="cusNoText" name="cusNoText"/>
 						<input type ="text" id="cusNameText" name="cusNameText"/>
 					</td>

@@ -48,5 +48,16 @@ public class LedgerManagementService implements ILedgerManagementService{
 		// TODO Auto-generated method stub
 		return iLedgerManagementDao.getCusChit(params);
 	}
-	
+
+	@Override
+	public ArrayList<HashMap<String, String>> getIncSalChit(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iLedgerManagementDao.getIncSalChit(params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> getMonth(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iLedgerManagementDao.getMonth(params);
+	}
 }

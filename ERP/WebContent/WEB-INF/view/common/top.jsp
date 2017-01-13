@@ -12,7 +12,7 @@
    <input type="hidden" name="No" />
    <input type="hidden" name="bbsNo" value="${sMemDn}"/>
    <input type="hidden" name="userName" value="${sMemNm}"/>
-   <input type="hidden" name="bbsName" value=""/>
+   <input type="hidden" name="bbsName" value="공지사항"/>
 </form>
 <div class="bg">
 	<div class="range">
@@ -65,7 +65,7 @@
 					   <ul>
 					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
 					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
-					     <li id="incSal"><a href="#">매입매출장</a></li>
+					     <li id="incSalLedger"><a href="#">매입매출장</a></li>
 					     <li id="chitManagement"><a href="#">전표관리</a></li>
 					     <li id="chitSign"><a href="#">전표결재</a></li>					     
 					    </ul>

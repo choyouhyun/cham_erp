@@ -23,6 +23,9 @@ $(document).ready(function(){
 	$("#subjectLedger").on("click", function(){
 		location.href="subjectLedger";
 	});
+	$("#incSalLedger").on("click", function(){
+		location.href="incSalLedger";
+	});
 	/*전표입력*/
 	$("#incChitInput").on("click", function(){
 		location.href="incChitInput";

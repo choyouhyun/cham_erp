@@ -25,7 +25,7 @@
 	<input type="hidden" name="No" />
 	<input type="hidden" name="bbsNo" value="${sMemDn}"/>
 	<input type="hidden" name="userName" value="${sMemNm}"/>
-	<input type="hidden" name="bbsName" value=""/>
+	<input type="hidden" name="bbsName" value="${sMemDname}"/>
 </form>
 		<c:import url="/top"></c:import>
 		<div class="contents">
