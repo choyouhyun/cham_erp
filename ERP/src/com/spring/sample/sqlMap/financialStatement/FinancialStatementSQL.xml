@@ -3,9 +3,9 @@
     "http://www.ibatis.com/dtd/sql-map-2.dtd">
 
 <sqlMap namespace="financialStatement">
-	<select id="getSub" parameterClass="jave.util.HashMap" reusltClass="java.util.HashMap" remapResult="true">
+<!-- 	<select id="getSub" parameterClass="jave.util.HashMap" reusltClass="java.util.HashMap" remapResult="true">
 		SELECT NO, SUB_NO, DEPTH, NAME
 		FROM SUB
 		ORDER BY DEPTH
-	</select>
+	</select> -->
 </sqlMap>
