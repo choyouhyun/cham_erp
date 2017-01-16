@@ -146,6 +146,9 @@ font-size: 20pt
     text-align: left;
     font-weight: bold;
 }
+tr td:NTH-CHILD(2){
+	 width: 250px; 
+}
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js">
 </script>
@@ -223,7 +226,7 @@ function checkDelete() {
 				<div id="font">계정코드등록</div>
 				<br />
 				<form action="#" id="actionForm" method="post">
-				<table border="1" cellspacing="0" align="center" class="tblGreen">
+				<table border="1" cellspacing="0" align="center" class="tblGreen" >
 					<colgroup>
 						<col style="width:40px"/> <!-- 체크박스 -->
 						<col style="width:120px"/> <!-- 계정명 -->

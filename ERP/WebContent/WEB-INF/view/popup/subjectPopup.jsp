@@ -99,6 +99,9 @@ A:HOVER{
     text-align: left;
     font-weight: bold;
 }
+tr td:NTH-CHILD(1){
+	 width: 250px; 
+}
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js">
@@ -123,17 +126,16 @@ function subList() {
           var NAME="";
           
           for(var i = 0; i < result.list.length ; i++) {
-        	  /* for(var j=0; j<result.list.length; j++){
-         			if(result.list[i].NUM==result.list[j].NO){
-         				NAME=result.list[j].NAME
-         				break;
-         			}
-         		} */
            html += "<tr>";
      		html += "<td>" ;
      		for(var j=0; j<result.list[i].DEPTH;j++)
      			{html += "&nbsp;&nbsp;&nbsp;&nbsp;";}
-     		html += "<a href=\"javascript:void(0);\" id=\""+result.list[i].NO+"\">-"+result.list[i].NAME + "</a></td>";
+     		if(result.list[i].SEC==0){
+     			html += result.list[i].NAME + "</td>";
+     		}
+     		else{
+     			html += "<a href=\"javascript:void(0);\" id=\""+result.list[i].NO+"\">-"+result.list[i].NAME + "</a></td>";
+     		}
      		html += "<td>"+ result.list[i].DECHA +"</td>";
      		html += "<td>"+result.list[i].SUBSEC+"</td>";
      		html += "</tr>";

@@ -12,6 +12,7 @@
 
 <style type="text/css">
 /*스크롤바  */
+
 html {
 	scrollbar-3dLight-Color: #efefef;
 	scrollbar-arrow-color: #dfdfdf;
@@ -173,16 +174,17 @@ html {
 var NO2=${params.NO2};
 $(document).ready(function(){
 	subInput();	
+	
 	$("#reg").on("click", function() {
 		$("input[type='text']").each(function(){
 			var x=$("input[type='text']").size()-1;
 			if($(this).val() !=""){
-				if(NO2 != null){
-					$("#subSelect").removeAttr("disabled");
-					subUpdate();
-				}else{
-					if(x==$("input[type='text']").index(this)){
-						subInsert(); 
+				if(x==$("input[type='text']").index(this)){
+					if(NO2 != null){
+						$("#subSelect").removeAttr("disabled");
+						subUpdate();
+					}else{
+							subInsert(); 
 					}
 				}
 			}else{
@@ -244,9 +246,20 @@ function subInput() {
       		if(result.list[i].DECHA=="대변"){
       			$("input:radio[value='대변']").prop("checked",true);
       		}
+      		if(result.list[i].SEC==0){
+      			$("input:radio[name='sec']").prop("disabled",true);
+      		}else
+      		{
+      			$("input:radio[value='1']").prop("checked",true);
+      			}
+      		
       		$('[name="etc"]').val(result.list[i].ETC);
       	}
-      	html+="<option value=\""+result.list[i].NO+"\">";
+      	if(result.list[i].SEC==1){
+      		html+="<option disabled value=\""+result.list[i].NO+"\">";
+      	}else{
+	      	html+="<option value=\""+result.list[i].NO+"\">";
+      	}
       	for(var j=0; j<result.list[i].DEPTH;j++){
       		html += "&nbsp;&nbsp;&nbsp;&nbsp;";
       		}
@@ -266,7 +279,7 @@ function subInput() {
   });
 }
 function subInsert() {
-	 var params = $("#actionForm").serialize();   
+	  var params = $("#actionForm").serialize();   
    $.ajax({
       type : "post",
       url : "subInsert",
@@ -282,6 +295,7 @@ function subInsert() {
   });
 }
 function subUpdate() {
+	
 	 var params = $("#actionForm").serialize();   
    $.ajax({
       type : "post",
@@ -307,7 +321,7 @@ function subUpdate() {
 	<form action="#" id="actionForm" method="post">
 		<input type="hidden" name="NO2" value="${params.NO2}" />
 		
-		<table border="1" class="maintbl">
+		<table border="1" class="maintbl" >
 			<tr>
 				<td>계정명</td>
 				<td><input type="text" name="subName" id="subName"/>
@@ -318,6 +332,12 @@ function subUpdate() {
 				<td><input type="radio" name="dechaSec" value="차변"
 					checked="checked">차변 &nbsp; <input type="radio"
 					name="dechaSec" value="대변">대변</td>
+			</tr>
+			<tr>
+				<td>입력구분</td>
+				<td><input type="radio" name="sec" value="0"
+					checked="checked">집계계정 &nbsp; <input type="radio"
+					name="sec" value="1">전표입력계정</td>
 			</tr>
 			<tr>
 				<td>상위계정</td>

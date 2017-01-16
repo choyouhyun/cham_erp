@@ -64,7 +64,7 @@
 
 	<select resultClass="java.util.HashMap" id="getSub"> SELECT A.NO
 		NO,A.DEPTH DEPTH,A.NAME NAME,A.DECHA DECHA,A.ETC ETC,B.NO
-		SUB_NO,B.NAME SUB_NAME, A.SUBSEC SUBSEC,A.DEPTH FROM SUB A LEFT OUTER
+		SUB_NO,B.NAME SUB_NAME, A.SUBSEC SUBSEC,A.DEPTH,A.SEC SEC FROM SUB A LEFT OUTER
 		JOIN SUB B ON A.SUB_NO=B.NO Start with A.DEPTh=0 connect by
 		A.SUB_NO=prior A.NO ORDER siblings by A.SUBSEC NULLS FIRST,B.NO
 	</select>
@@ -73,12 +73,12 @@
 		id="regSub"> SELECT DEPTH, SUBSEC FROM SUB where NO= #subNo# </select>
 
 	<insert parameterClass="java.util.HashMap" id="subInsert"> Insert Into
-		SUB(NO,DEPTH,NAME,DECHA,ETC,SUB_NO,SUBSEC)
-		values(SUB_SEQ.NEXTVAL,#depth#+1,#subName#,#dechaSec#,#etc#,#subNo#,#subSec#)
+		SUB(NO,DEPTH,NAME,DECHA,ETC,SUB_NO,SUBSEC,SEC)
+		values(SUB_SEQ.NEXTVAL,#depth#+1,#subName#,#dechaSec#,#etc#,#subNo#,#subSec#,#sec#)
 	</insert>
 
 	<update parameterClass="java.util.HashMap" id="subUpdate"> UPDATE SUB SET
-		NAME=#subName# ,DECHA=#dechaSec#,ETC=#etc# WHERE NO = #NO2# </update>
+		NAME=#subName# ,DECHA=#dechaSec#,ETC=#etc#,SEC=#sec# WHERE NO = #NO2# </update>
 
 	<delete parameterClass="String" id="subDelete"> DELETE FROM SUB WHERE NO =
 		#NO# </delete>
