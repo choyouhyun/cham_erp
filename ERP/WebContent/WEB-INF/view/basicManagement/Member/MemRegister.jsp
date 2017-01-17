@@ -79,6 +79,10 @@ html {
     border-bottom: 1px solid #ccc;
 }
 
+#Hpnum1,#Hpnum2,#Hpnum3 {
+	width: 50px;
+	
+}
 
 
 #saveBtn,#clearBtn{
@@ -225,7 +229,7 @@ $(document).ready(function(){
 	});//id중복체크 
      $("#searchBankBtn").click(function() {
     	 var newWindow;
-         newWindow = window.open("bankPopup","bankPopup","width=500, height=600");
+         newWindow = window.open("BankList","BankList","width=1000, height=1000");
 	});
 });
 function getMemList() {
@@ -309,7 +313,11 @@ function insertMem(){
      	dateFormat: 'yymmdd'
      	});
      	});
-     
+     $(function() {
+    		$("#searchBtn").click(function() {
+    			window.open("deptPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+    		});
+     });
      
 
 </script>
@@ -433,8 +441,10 @@ function execDaumPostcode() {
 				</tr>				
 				<tr>
 					<th scope="row">휴대전화</th>
-					<td scope="row" align="left">
-					<input type="text" maxlength="" id="Hpnum1" name="Hpnum1"/> - <input type="text" maxlength="" id="Hpnum2" name="Hpnum2"/> - <input type="text" maxlength="" id="Hpnum3" name="Hpnum3"/></td> 
+					<td scope="row" align="left" colspan=4>
+					<input type="text" maxlength="3" id="Hpnum1" name="Hpnum1"/> - 
+					<input type="text" maxlength="4" id="Hpnum2" name="Hpnum2"/> - 
+					<input type="text" maxlength="4" id="Hpnum3" name="Hpnum3"/></td> 
 				</tr>
 				<tr>
 					<th scope="row"><p>
