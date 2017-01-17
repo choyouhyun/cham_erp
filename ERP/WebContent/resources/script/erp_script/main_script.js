@@ -26,6 +26,10 @@ $(document).ready(function(){
 	$("#incSalLedger").on("click", function(){
 		location.href="incSalLedger";
 	});
+	$("#chitManagement").on("click", function(){
+		location.href="chitManagement";
+	});
+
 	/*전표입력*/
 	$("#incChitInput").on("click", function(){
 		location.href="incChitInput";
@@ -43,9 +47,7 @@ $(document).ready(function(){
 		location.href="salReList";
 	});
 	//전표관리
-	$("#chitManagement").on("click", function(){
-		location.href="chitManagement";
-	});
+
 /*	$("#othSalChitInput").on("click", function(){
 		location.href="othSalChitInput";
 	});

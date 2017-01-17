@@ -14,6 +14,124 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="resources/script/erp_script/detailInput.js"></script>
+<style type="text/css">
+/*스크롤바  */
+html {
+	scrollbar-3dLight-Color: #efefef;
+	scrollbar-arrow-color: #dfdfdf;
+	scrollbar-base-color: #efefef;
+	scrollbar-Face-Color: #dfdfdf;
+	scrollbar-Track-Color: #efefef;
+	scrollbar-DarkShadow-Color: #efefef;
+	scrollbar-Highlight-Color: #efefef;
+	scrollbar-Shadow-Color: #efefef
+}
+
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: 3px solid #fff;
+}
+
+::-webkit-scrollbar-button:start:decrement, ::-webkit-scrollbar-button:end:increment
+	{
+	display: block;
+	height: 10px;
+	background: #efefef;
+}
+
+::-webkit-scrollbar-track {
+	background: #efefef;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .2)
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(0, 0, 0, .2);
+	-webkit-border-radius: 8px;
+	border-radius: 8px;
+	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
+} 
+
+
+#salRe{
+   border: 1px solid #ffffff;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
+   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
+   background: -moz-linear-gradient(top, #6d6d6d, #474747);
+   background: -ms-linear-gradient(top, #6d6d6d, #474747);
+   background: -o-linear-gradient(top, #6d6d6d, #474747);
+   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
+   padding: 10.5px 21px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#salRe:hover{
+   border: 1px solid #ffffff;
+   /* text-shadow: #ffffff 0 1px 0; */
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+#salRe:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+
+.tblGreen {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.tblGreen td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+}
+.tblGreen th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+}
+.tblGreen tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.tblGreen caption {
+    height: 30px;
+    text-align: left;
+    font-weight: bold;
+}
+</style>
+
 <script type="text/javascript">
 $(document).ready(function() {
 	GetSal_Re();
@@ -102,15 +220,27 @@ function GetSal_Re() {
 </c:choose>
 </form>
 <input type="hidden" value="${sMemNo}" name="mem_no">
-	<table border="1px" align="center">
+		<br>
+		<span id="font">지출결의서</span>
+		<br>
+		<br>
+	<table class="tblGreen" align="center">
+		<colgroup>
+			<col style="width:40px"/> <!-- 체크박스 -->
+			<col style="width:150px"/> <!-- 전표번호 -->
+			<col style="width:130px"/> <!-- 금액 -->
+			<col style="width:100px"/> <!-- 거래처명 -->
+			<col style="width:200px"/> <!-- 적요 -->
+			<col style="width:90px"/> <!-- 결제 -->
+		</colgroup>
 		<thead>
 		<tr>
-			<td>체크</td>
-			<td>전표번호</td>
-			<td>금액</td>
-			<td>거래처명</td>
-			<td>적요</td>
-			<td>결제</td>
+			<th>체크</th>
+			<th>전표번호</th>
+			<th>금액</th>
+			<th>거래처명</th>
+			<th>적요</th>
+			<th>결제</th>
 		</tr>
 		</thead>
 		<tbody id="tb">

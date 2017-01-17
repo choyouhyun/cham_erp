@@ -66,8 +66,7 @@
 					     <li id="customerLedger"><a href="#">거래처 원장</a></li>
 					     <li id="subjectLedger"><a href="#">계정별 원장</a></li>
 					     <li id="incSalLedger"><a href="#">매입매출장</a></li>
-					     <li id="chitManagement"><a href="#">전표관리</a></li>
-					     <li id="chitSign"><a href="#">전표결재</a></li>					     
+					     <li id="chitManagement"><a href="#">전표관리</a></li>				     
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
