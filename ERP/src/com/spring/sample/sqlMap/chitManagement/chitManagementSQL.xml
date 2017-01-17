@@ -30,4 +30,69 @@ SELECT
 (SELECT COUNT(*) FROM SAL_CHIT)+
 (SELECT COUNT(*) FROM OTH_SAL_CHIT)
 FROM DUAL </select>
+<!-- ~~~~~~~~~지출결의서~~~~~~~~ -->
+<insert id="insertSalRe" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_RE(NO, MEM_NO, CUS_NO, DEPT_NO, CREDITOR_NO, DEBTOR_NO, MONEY, DEAL_DATE, ETC)
+		VALUES (SAL_RE_SEQ.NEXTVAL, #memNo#, #cusNoText#, #deptNoText#, #creNoText#, #debNoText#, #moneyText#, TO_DATE(#dealDateText#, 'YYYYMMDD'), #etcText#)
+		</insert>
+	<insert id="insertSalReDetail" parameterClass="java.util.HashMap">
+		INSERT INTO SAL_RE_DET(NO, SAL_RE_NO, DEAL_DATE, NAME, STANDARD, AMNT, PRICE, ETC)
+		VALUES (SAL_RE_DET_SEQ.NEXTVAL, #salNum#, TO_DATE(#date#, 'YYYYMMDD'), #name#, #stan#, #amnt#, #price#, #etc#)
+	</insert>
+	<select id="getSalReLastNum" resultClass="String">
+		SELECT A.NO
+		  FROM (SELECT ROW_NUMBER() OVER(ORDER BY NO DESC) RNUM, NO FROM SAL_RE) A
+		 WHERE RNUM=1
+	</select>
+	<select resultClass="java.util.HashMap" parameterClass="java.util.HashMap" id="GetSal_Re"> 
+		SELECT TO_CHAR(INPUT_DATE,'YYYY-MM-DD') INPUT_DATE,A.NO,A.MONEY,C.NAME,A.ETC,B.RES,A.MEM_NO FROM SAL_RE A LEFT JOIN SIGN B
+		ON A.NO=B.SAL_RE_NO
+		LEFT JOIN CUS C
+		ON A.CUS_NO=C.NO
+		where B.no in (select max(no) from sign group by sal_re_no)
+		or B.no is null
+	</select>
+	<update parameterClass="java.util.HashMap" id="updateSalRe"> 
+		Update SAL_RE Set CUS_NO=#cusNoText# ,DEPT_NO=#deptNoText#,CREDITOR_NO=#creNoText#,DEBTOR_NO=#debNoText#,MONEY=#moneyText#,DEAL_DATE=#dealDateText#,INPUT_DATE=SYSDATE, ETC=#etcText# where no=#no#
+	</update>
+	<select id="GetSal_Re_Obj" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+	select * from (
+		SELECT A.NO ,G.NO SIGN_NO,TO_CHAR(SIGN_DATE,'YYYY-MM-DD') SIGN_DATE ,G.RES,H.NAME SIGN_NAME,to_char(A.input_date,'YYYY-MM-DD') INPUT_DATE,CUS_NO,C.NAME CUS_NAME,A.DEPT_NO DEPT_NO,B.NAME DEPT_NAME,CREDITOR_NO,D.NAME CREDITOR_NAME,DEBTOR_NO ,E.NAME DEBTOR_NAME,MONEY,TO_CHAR(DEAL_DATE,'YYYY-MM-DD') DEAL_DATE,A.ETC, F.NAME WRITER_NAME
+		  FROM SAL_RE A Left Outer Join DEPT B
+		     On A.DEPT_NO=B.NO 
+         Left Outer Join CUS C
+         ON A.CUS_NO=C.NO
+         Left Outer Join SUB D
+         ON A.CREDITOR_NO=D.NO
+         Left Outer Join SUB E
+         ON A.DEBTOR_NO=E.NO
+         LEFT OUTER JOIN MEMBER F
+         ON A.MEM_NO=F.NO
+         LEFT OUTER JOIN SIGN G
+         ON A.NO=G.SAL_RE_NO
+         LEFT OUTER JOIN MEMBER H
+         ON G.MEM_NO=H.NO
+		 WHERE A.NO=#no#
+		 order by sign_no Desc
+		  )
+     where rownum=1
+	</select>
+	<select id="GetSal_Re_Det" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		select TO_CHAR(DEAL_DATE,'YYYY-MM-DD') DEAL_DATE,PRICE,NAME,AMNT,ETC,STANDARD,SAL_RE_NO,NO,PRICE*AMNT AS MONEY from SAL_RE_DET where sal_re_no=#no# 
+	</select>
+	<select id="detCheck" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
+		select * from(select row_number() over(order by no) as num,no from sal_re_det where SAL_RE_NO=#salNum#) where num=#i#
+	</select>
+	<update parameterClass="java.util.HashMap" id="updateSalReDetail" > 
+		Update SAL_RE_DET Set DEAL_DATE=#date# ,STANDARD=#stan#,AMNT=#amnt#,PRICE=#price#,ETC=#etc#,NAME=#name# 
+		where sal_re_no=#salNum#
+		and no=#num#
+	</update>
+	<insert id="insertSign" parameterClass="java.util.HashMap">
+		Insert Into sign(no,mem_no,sal_re_no,res) Values(INC_DET_SEQ.NEXTVAL,#mem_no#,#sal_re_no#,#res#)
+	</insert>
+	<select resultClass="integer" parameterClass="java.util.HashMap" id="getSalReCount">
+	 	SELECT COUNT(*) AS SALRECNT FROM SAL_RE 
+	 </select>
+	<!-- ~~~~~~~~~지출결의서끝~~~~~~~~ -->
 </sqlMap>
