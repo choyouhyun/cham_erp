@@ -99,6 +99,9 @@ A:HOVER{
     text-align: left;
     font-weight: bold;
 }
+tr td:NTH-CHILD(1){
+	 width: 250px; 
+}
 
 </style>
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js">

@@ -23,6 +23,5 @@
 	<sqlMap resource="/com/spring/sample/sqlMap/ledgerManagement/LedgerSQL.xml" />
 	<!-- FinancialStatement 쿼리 -->
 	<sqlMap resource="/com/spring/sample/sqlMap/financialStatement/FinancialStatementSQL.xml" />
-	
 </sqlMapConfig>
  
