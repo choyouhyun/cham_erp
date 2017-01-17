@@ -130,6 +130,7 @@ div {
 	text-align: right;
 		vertical-align: top;
 }
+
 /* 공지사항 */
 .noticeInfo {
 	display: inline-block;
@@ -282,6 +283,8 @@ clear:left;
    
 }
 .userName{
+   width: 45px;
+   height: 24px;	
    margin-right:10px;
    font-size: 11pt;
    color: #ffffff;

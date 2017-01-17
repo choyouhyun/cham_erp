@@ -45,7 +45,7 @@ html {
 span:HOVER{
 	cursor: pointer;
 }
-span {
+.pagingArea span, .bbsInfo_d span {
 	padding: 2px;
 }
 /* 정렬 부분 */
