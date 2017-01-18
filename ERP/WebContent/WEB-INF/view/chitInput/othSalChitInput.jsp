@@ -57,13 +57,9 @@ html {
 	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
 } 
 
-.title{
-	font-size: 25pt;
-	font-weight: bold;
-}
-
 #font{
 	color:#153d73;
+	font-size: 25pt;
 	font-weight: bold;
 }
 /*세부내역 테이블 디자인  */
