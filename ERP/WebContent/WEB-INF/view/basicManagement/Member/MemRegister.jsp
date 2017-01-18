@@ -396,7 +396,7 @@ function execDaumPostcode() {
 			<caption></caption>
 			<tbody>
 				<tr>
-					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100></td>
+					<td rowspan=7 width=30%><img src=" " width=100 height=100></td>
 				<tr>
 					<th scope="row">사원번호</th>
 					<td scope="row" align="left">
@@ -454,19 +454,19 @@ function execDaumPostcode() {
 					<input type="text" id="textEmailId" name="textEmailId" />
 					<span> @ </span>
 					<input type="text" id="textEmail" name="textEmail" />
-						<select id="ddlEmail">
+						<!-- <select id="ddlEmail">
 							<option value="self">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.com">daum.net</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="nate.com">nate.com</option>
-						</select></td>
+						</select> --></td>
 				</tr>
 				<tr>
 					<th scope="row">급여통장</th>
 					<td scope="row" colspan=4 align="left">
-					<input type="text" id="searchText" value=""> 
-						<input type="button" value="검색" id="searchBankBtn"> 
+					<!-- <input type="text" id="searchText" value=""> 
+						<input type="button" value="검색" id="searchBankBtn">  -->
 						계좌번호 : 
 						<input type="text" id="bankCode" maxlength="">
 						예금주 : <input type="text" maxlength="" /></td>

@@ -184,7 +184,7 @@ $(document).ready(function() {
 	
 	$("#tb").on("click", "td", function() {
 		var memNo = new Object(); 
- 		$("input[name='acntNo']").val($(this).attr("name"));
+		$("input[name='acntNo']").val($(this).parent("tr").attr("name"));
 		$("#actionForm").attr("action", "MemRegister");
 		$("#actionForm").attr("target", "Edit");
 		$("#actionForm").attr("onsubmit", "window.open('../MemRegister', 'Edit', 'width=500, height=500');");
