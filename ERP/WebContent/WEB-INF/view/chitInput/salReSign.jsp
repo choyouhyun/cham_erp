@@ -362,14 +362,14 @@ function GetSal_Re_Det() {
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
 	<div class="chitBody">
 		<br/>
-		<span class="title" id="font">전표 결제</span>
+		<span class="title" id="font">전표 결재</span>
 		<br/>
 		<h6 id="writer" align="left"></h6>
 		<table border="1" class="maintbl">
 			<tr>
-				<th>최종 결제자</th>
+				<th>최종 결재자</th>
 				<td><input type="text" name="sign_name" style="width:100px;"/></td>
-				<th>결제 날짜</th>
+				<th>결재 날짜</th>
 				<td><input type="text" name="sign_date" /></td>
 				
 			</tr>
