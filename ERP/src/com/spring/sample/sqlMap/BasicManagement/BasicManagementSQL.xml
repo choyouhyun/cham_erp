@@ -154,7 +154,7 @@
       ON A.Bank_No=D.No
       WHERE A.NO = #acntNo#   
    </select>
-   <delete id="delMem" parameterClass="java.util.HashMap">
+   <delete id="delMem" parameterClass="java.lang.String">
       DELETE FROM MEMBER
       WHERE NO = #string#
    </delete>
