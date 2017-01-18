@@ -32,6 +32,7 @@ public class chitManagementController {
 	@RequestMapping(value="/chitManagement")
 	public ModelAndView chitManagement(HttpServletRequest request, @RequestParam HashMap<String, String> params, ModelAndView modelAndView) {
 
+		
 		modelAndView.setViewName("chitManagement/chitManagement");
 		return modelAndView;
 	}

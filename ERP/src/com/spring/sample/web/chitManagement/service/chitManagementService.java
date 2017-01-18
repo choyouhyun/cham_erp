@@ -17,6 +17,7 @@ public class chitManagementService implements IchitManagementService{
 		// TODO Auto-generated method stub
 		return ichitManagementDao.getchitCount(params);
 	}
+	
 
 	@Override
 	public ArrayList<HashMap<String, String>> chitCon(HashMap<String, String> params) throws Throwable {

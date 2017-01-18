@@ -20,6 +20,7 @@ public class chitManagementDao implements IchitManagementDao{
 		return (int) sqlMapClient.queryForObject("chitManagement.getchitCount");
 	}
 
+	
 	@Override
 	public ArrayList<HashMap<String, String>> chitCon(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
