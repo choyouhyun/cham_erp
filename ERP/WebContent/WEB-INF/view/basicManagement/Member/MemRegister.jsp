@@ -428,7 +428,7 @@ function execDaumPostcode() {
 					<th scope="row">직위/직급</th>
 					<td scope="row" align="left">
 					<input type="text" id="searchText" value="" > 
-					<input type="button" value="검색" id="searchBtn" /></td>
+					<!-- <input type="button" value="검색" id="searchBtn" /> --></td>
 					<th scope="row">직책</th>
 					<td scope="row" align="left"> <select>
 							<option>선택</option>
