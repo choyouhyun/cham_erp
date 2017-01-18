@@ -12,6 +12,17 @@ import com.spring.sample.web.chitManagement.dao.IchitManagementDao;
 public class chitManagementService implements IchitManagementService{
 	@Autowired IchitManagementDao ichitManagementDao;
 	
+	@Override
+	public int getchitCount(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return ichitManagementDao.getchitCount(params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> chitCon(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return ichitManagementDao.chitCon(params);
+	}
 	
 	@Override
 	public String insertSalRe(HashMap<String, String> params) throws Throwable {

@@ -5,6 +5,9 @@ import java.util.HashMap;
 
 public interface IchitManagementService {
 
+	public int getchitCount(HashMap<String, String> params)  throws Throwable;
+
+	public ArrayList<HashMap<String, String>> chitCon(HashMap<String, String> params)  throws Throwable;
 	
 	public String insertSalRe(HashMap<String, String> params) throws Throwable;
 	
@@ -23,5 +26,6 @@ public interface IchitManagementService {
 	public String insertSign(HashMap<String, String> params) throws Throwable;
 
 	public int getSalReCount(HashMap<String, String> params) throws Throwable;
+	
 }
 

@@ -15,6 +15,18 @@ public class chitManagementDao implements IchitManagementDao{
 	@Autowired public SqlMapClient sqlMapClient;
 
 	@Override
+	public int getchitCount(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (int) sqlMapClient.queryForObject("chitManagement.getchitCount");
+	}
+
+	@Override
+	public ArrayList<HashMap<String, String>> chitCon(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("chitManagement.chitCon", params);
+	}
+	
+	@Override
 	public String insertSalRe(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		sqlMapClient.startTransaction();;// 여기서부터 트렌젝션을 시작하겠다
