@@ -248,9 +248,11 @@ function getMemList() {
 				
 				$("#Jumin1").val(result.con.JUMIN1);
 				$("#Jumin2").val(result.con.JUMIN2); 
+				$("#deptNameText").val(result.con.DEPT_NAME); 
 				
 				$("#datepicker1").val(result.con.DATEJOIN);
-				
+				$("#rankName").val(result.con.RANK_NAME);
+				$("#bankName").val(result.con.BANK_NAME);
 				$("#Hpnum1").val(result.con.CELL1);
 				$("#Hpnum2").val(result.con.CELL2);
 				$("#Hpnum3").val(result.con.CELL3);
@@ -259,7 +261,9 @@ function getMemList() {
 	 			var emailArray = email.split("@");
 				$("#textEmailId").val(emailArray[0]);
 				$("#textEmail").val(emailArray[1]); 				
-				$("#roadAddress").val(result.con.ADDRESS);
+				$("#roadAddress").val(result.con.POST);
+				$("#jibunAddress").val(result.con.ADDRESS);
+				$("#detailAddress").val(result.con.ADDRESS2);
 				$("#Memo").val(result.con.ETC);
 			},
 			error : function() {
@@ -414,7 +418,7 @@ function execDaumPostcode() {
 					<input	type="text" maxlength="" id="Jumin2" name="Jumin2"/>
 					<th scope="row">부서코드</th>
 					<td scope="row" align="left"><input type="text"
-						id="searchText" value=""> <input type="button" value="검색"
+						id="deptNameText" value=""> <input type="button" value="검색"
 						id="searchBtn" /></td>
 				</tr>
 
@@ -427,7 +431,7 @@ function execDaumPostcode() {
 				<tr>
 					<th scope="row">직위/직급</th>
 					<td scope="row" align="left">
-					<input type="text" id="searchText" value="" > 
+					<input type="text" id="rankName" value="" > 
 					<!-- <input type="button" value="검색" id="searchBtn" /> --></td>
 					<th scope="row">직책</th>
 					<td scope="row" align="left"> <select>
@@ -468,7 +472,7 @@ function execDaumPostcode() {
 					<!-- <input type="text" id="searchText" value=""> 
 						<input type="button" value="검색" id="searchBankBtn">  -->
 						계좌번호 : 
-						<input type="text" id="bankCode" maxlength="">
+						<input type="text" id="bankName" maxlength="">
 						예금주 : <input type="text" maxlength="" /></td>
 				</tr>
 				<tr>
