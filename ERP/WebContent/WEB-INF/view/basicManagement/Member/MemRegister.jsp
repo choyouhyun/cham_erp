@@ -248,9 +248,11 @@ function getMemList() {
 				
 				$("#Jumin1").val(result.con.JUMIN1);
 				$("#Jumin2").val(result.con.JUMIN2); 
+				$("#deptNameText").val(result.con.DEPT_NAME); 
 				
 				$("#datepicker1").val(result.con.DATEJOIN);
-				
+				$("#rankName").val(result.con.RANK_NAME);
+				$("#bankName").val(result.con.BANK_NAME);
 				$("#Hpnum1").val(result.con.CELL1);
 				$("#Hpnum2").val(result.con.CELL2);
 				$("#Hpnum3").val(result.con.CELL3);
@@ -259,7 +261,9 @@ function getMemList() {
 	 			var emailArray = email.split("@");
 				$("#textEmailId").val(emailArray[0]);
 				$("#textEmail").val(emailArray[1]); 				
-				$("#roadAddress").val(result.con.ADDRESS);
+				$("#roadAddress").val(result.con.POST);
+				$("#jibunAddress").val(result.con.ADDRESS);
+				$("#detailAddress").val(result.con.ADDRESS2);
 				$("#Memo").val(result.con.ETC);
 			},
 			error : function() {
@@ -396,7 +400,7 @@ function execDaumPostcode() {
 			<caption></caption>
 			<tbody>
 				<tr>
-					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100></td>
+					<td rowspan=7 width=30%><img src=" " width=100 height=100></td>
 				<tr>
 					<th scope="row">사원번호</th>
 					<td scope="row" align="left">
@@ -414,7 +418,7 @@ function execDaumPostcode() {
 					<input	type="text" maxlength="" id="Jumin2" name="Jumin2"/>
 					<th scope="row">부서코드</th>
 					<td scope="row" align="left"><input type="text"
-						id="searchText" value=""> <input type="button" value="검색"
+						id="deptNameText" value=""> <input type="button" value="검색"
 						id="searchBtn" /></td>
 				</tr>
 
@@ -427,8 +431,8 @@ function execDaumPostcode() {
 				<tr>
 					<th scope="row">직위/직급</th>
 					<td scope="row" align="left">
-					<input type="text" id="searchText" value="" > 
-					<input type="button" value="검색" id="searchBtn" /></td>
+					<input type="text" id="rankName" value="" > 
+					<!-- <input type="button" value="검색" id="searchBtn" /> --></td>
 					<th scope="row">직책</th>
 					<td scope="row" align="left"> <select>
 							<option>선택</option>
@@ -454,21 +458,21 @@ function execDaumPostcode() {
 					<input type="text" id="textEmailId" name="textEmailId" />
 					<span> @ </span>
 					<input type="text" id="textEmail" name="textEmail" />
-						<select id="ddlEmail">
+						<!-- <select id="ddlEmail">
 							<option value="self">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.com">daum.net</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="nate.com">nate.com</option>
-						</select></td>
+						</select> --></td>
 				</tr>
 				<tr>
 					<th scope="row">급여통장</th>
 					<td scope="row" colspan=4 align="left">
-					<input type="text" id="searchText" value=""> 
-						<input type="button" value="검색" id="searchBankBtn"> 
+					<!-- <input type="text" id="searchText" value=""> 
+						<input type="button" value="검색" id="searchBankBtn">  -->
 						계좌번호 : 
-						<input type="text" id="bankCode" maxlength="">
+						<input type="text" id="bankName" maxlength="">
 						예금주 : <input type="text" maxlength="" /></td>
 				</tr>
 				<tr>
