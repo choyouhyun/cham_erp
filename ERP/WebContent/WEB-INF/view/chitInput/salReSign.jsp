@@ -57,94 +57,11 @@ html {
 	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
 } 
 
-
-#detailInput{
-   height: 35px;
-   border: 1px solid #ffffff;
-   background: #6d6d6d;
-   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
-   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
-   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
-   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
-   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
-   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
-  
-   -webkit-border-radius: 6px;
-   -moz-border-radius: 6px;
-   border-radius: 6px;
-   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
-  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #ffffff 0 1px 0; */
-   color: #ffffff;
-   font-size: 12px;
-   font-family: '맑은고딕';
-   text-decoration: none;
-   vertical-align: middle;
+#font{
+	color:#153d73;
+	font-size: 25pt;
+	font-weight: bold;
 }
-
-#detailInput:active{
-   /* text-shadow: #ffffff 0 1px 0; */
-   border: 1px solid #ffffff;
-   background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
-   background: -webkit-linear-gradient(top, #000000, #000000);
-   background: -moz-linear-gradient(top, #000000, #000000);
-   background: -ms-linear-gradient(top, #000000, #000000);
-   background: -o-linear-gradient(top, #000000, #000000);
-   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
-   color: #fff;
-}
-
-/*저장 버튼 디자인  */
-#passBtn,#rejectBtn,#cancelBtn{
-   border: 1px solid #ffffff;
-   background: #474747;
-   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
-   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
-   background: -moz-linear-gradient(top, #6d6d6d, #474747);
-   background: -ms-linear-gradient(top, #6d6d6d, #474747);
-   background: -o-linear-gradient(top, #6d6d6d, #474747);
-   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
-   padding: 10.5px 21px;
-   -webkit-border-radius: 6px;
-   -moz-border-radius: 6px;
-   border-radius: 6px;
-   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
-  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
-   text-shadow: #ffffff 0 1px 0; */
-   color: #ffffff;
-   font-size: 14px;
-   font-family: '맑은고딕';
-   text-decoration: none;
-   vertical-align: middle;
-   }
-#passBtn:hover,#rejectBtn:hover,#cancelBtn:hover{
-   border: 1px solid #ffffff;
-   /* text-shadow: #ffffff 0 1px 0; */
-   background: #222222;
-   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
-   background: -webkit-linear-gradient(top, #474747, #222222);
-   background: -moz-linear-gradient(top, #474747, #222222);
-   background: -ms-linear-gradient(top, #474747, #222222);
-   background: -o-linear-gradient(top, #474747, #222222);
-   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
-   color: #ffffff;
-   }
-#passBtn:active,#rejectBtn:active,#cancelBtn:active{
-   /* text-shadow: #ffffff 0 1px 0; */
-   border: 1px solid #ffffff;
-   background: #000000;
-   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
-   background: -webkit-linear-gradient(top, #000000, #000000);
-   background: -moz-linear-gradient(top, #000000, #000000);
-   background: -ms-linear-gradient(top, #000000, #000000);
-   background: -o-linear-gradient(top, #000000, #000000);
-   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
-   color: #fff;
-}
-
 
 /*세부내역 테이블 디자인  */
 .subtbl { 
@@ -172,7 +89,6 @@ html {
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
 }
-
 /*테이블 디자인  */
 .maintbl {
     border-collapse: collapse;
@@ -198,6 +114,96 @@ html {
     vertical-align: top;
     border-right: 1px solid #ccc;
     border-bottom: 1px solid #ccc;
+}
+/*저장 버튼 디자인  */
+#passBtn, #rejectBtn, #cancelBtn{
+   border: 1px solid #ffffff;
+   background: #474747;
+   background: -webkit-gradient(linear, left top, left bottom, from(#6d6d6d), to(#474747));
+   background: -webkit-linear-gradient(top, #6d6d6d, #474747);
+   background: -moz-linear-gradient(top, #6d6d6d, #474747);
+   background: -ms-linear-gradient(top, #6d6d6d, #474747);
+   background: -o-linear-gradient(top, #6d6d6d, #474747);
+   background-image: -ms-linear-gradient(top, #6d6d6d 0%, #474747 100%);
+   padding: 10.5px 21px;
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 14px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+   }
+#passBtn:hover, #rejectBtn:hover, #cancelBtn:hover{
+   border: 1px solid #ffffff;
+   /* text-shadow: #ffffff 0 1px 0; */
+   background: #222222;
+   background: -webkit-gradient(linear, left top, left bottom, from(#474747), to(#222222));
+   background: -webkit-linear-gradient(top, #474747, #222222);
+   background: -moz-linear-gradient(top, #474747, #222222);
+   background: -ms-linear-gradient(top, #474747, #222222);
+   background: -o-linear-gradient(top, #474747, #222222);
+   background-image: -ms-linear-gradient(top, #474747 0%, #222222 100%);
+   color: #ffffff;
+   }
+#passBtn:active, #rejectBtn:active, #cancelBtn:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+/*테이블내 버튼 디자인  */
+#deptBtn,#cusBtn,#debBtn,#creBtn,#detailInput{
+   height: 35px;
+   border: 1px solid #ffffff;
+   background: #6d6d6d;
+   background: -webkit-gradient(linear, left top, left bottom, from(#BDBDBD), to(#BDBDBD));
+   background: -webkit-linear-gradient(top, #BDBDBD, #6d6d6d);
+   background: -moz-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -ms-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background: -o-linear-gradient(top, #BDBDBD, #BDBDBD);
+   background-image: -ms-linear-gradient(top, #474747 0%, #474747 100%);
+  
+   -webkit-border-radius: 6px;
+   -moz-border-radius: 6px;
+   border-radius: 6px;
+   /* -webkit-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   -moz-box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0; */
+  /*  box-shadow: rgba(255,255,255,0.4) 0 1px 0, inset rgba(255,255,255,0.4) 0 1px 0;
+   text-shadow: #ffffff 0 1px 0; */
+   color: #ffffff;
+   font-size: 12px;
+   font-family: '맑은고딕';
+   text-decoration: none;
+   vertical-align: middle;
+}
+
+#deptBtn:active,#cusBtn:active,#debBtn:active,#creBtn:active,#detailInput:active{
+   /* text-shadow: #ffffff 0 1px 0; */
+   border: 1px solid #ffffff;
+   background: #000000;
+   background: -webkit-gradient(linear, left top, left bottom, from(#000000), to(#222222));
+   background: -webkit-linear-gradient(top, #000000, #000000);
+   background: -moz-linear-gradient(top, #000000, #000000);
+   background: -ms-linear-gradient(top, #000000, #000000);
+   background: -o-linear-gradient(top, #000000, #000000);
+   background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
+   color: #fff;
+}
+
+#writer{
+	margin-bottom:0px; 
 }
 </style>
 <script type="text/javascript">
@@ -355,15 +361,15 @@ function GetSal_Re_Det() {
 	<input type="hidden" name="no" id="no" value="${param.no}" />
 	<input type="hidden" name="memNo" id="memNo" value="${sMemNo}"/>
 	<div class="chitBody">
-		<br>
-		<span id="font">전표 결제</span>
-		<br>
-		<br>
-		<table class="maintbl" >
+		<br/>
+		<span class="title" id="font">전표 결재</span>
+		<br/>
+		<h6 id="writer" align="left"></h6>
+		<table border="1" class="maintbl">
 			<tr>
-				<th>최종 결제자</th>
+				<th>최종 결재자</th>
 				<td><input type="text" name="sign_name" style="width:100px;"/></td>
-				<th>결제 날짜</th>
+				<th>결재 날짜</th>
 				<td><input type="text" name="sign_date" /></td>
 				
 			</tr>
@@ -424,7 +430,7 @@ function GetSal_Re_Det() {
 	</table>
 
 <div class="detailBody">
-	<table class="subtbl"" width="676px">
+	<table border="1px" width="676px" class="subtbl">
 	 	<colgroup>
 	 	<col span="2" width="20" />
 	 	<col span="1" width="40" />

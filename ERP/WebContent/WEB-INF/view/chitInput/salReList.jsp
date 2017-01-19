@@ -14,6 +14,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <script type="text/javascript" src="resources/script/erp_script/detailInput.js"></script>
+
 <style type="text/css">
 /*스크롤바  */
 html {
@@ -57,7 +58,37 @@ html {
 	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
 } 
 
-
+#font{
+	color:#153d73;
+	font-size: 25pt;
+	font-weight: bold;
+}
+/* 테이블 디자인 */
+.maintbl {
+    border-collapse: collapse;
+    text-align: center;
+    font-family: 'Trebuchet MS';
+}
+.maintbl td, th {
+    font-size: 10pt;
+    border: 1px solid #98bf21;
+    height: 30px;
+}
+.maintbl th {
+    background-color:#A7C942;
+    color:#ffffff;
+    font-family: Georgia;
+}
+.maintbl tr.alt td {
+    color:#000000;
+    background-color:#EAF2D3;
+}
+.maintbl caption {
+    height: 30px;
+    text-align: left;
+    font-weight: bold;
+}
+/* 버튼디자인 */
 #salRe{
    border: 1px solid #ffffff;
    background: #474747;
@@ -105,31 +136,6 @@ html {
    background-image: -ms-linear-gradient(top, #000000 0%, #000000 100%);
    color: #fff;
 }
-
-.tblGreen {
-    border-collapse: collapse;
-    text-align: center;
-    font-family: 'Trebuchet MS';
-}
-.tblGreen td, th {
-    font-size: 10pt;
-    border: 1px solid #98bf21;
-    height: 30px;
-}
-.tblGreen th {
-    background-color:#A7C942;
-    color:#ffffff;
-    font-family: Georgia;
-}
-.tblGreen tr.alt td {
-    color:#000000;
-    background-color:#EAF2D3;
-}
-.tblGreen caption {
-    height: 30px;
-    text-align: left;
-    font-weight: bold;
-}
 </style>
 
 <script type="text/javascript">
@@ -164,7 +170,7 @@ function GetSal_Re() {
 			var html = "";
 			for (var i = 0; i < result.list.length; i++) {
 				html += "<tr id='"+result.list[i].NO+"' name='"+result.list[i].MEM_NO+"'>";
-				html += "<td><input type=\"checkbox\" ></td>"
+				html += "<th><input type=\"checkbox\" ></th>"
 				html += "<td>" + result.list[i].INPUT_DATE +"-"+result.list[i].NO+"</td>";
 				html += "<td>" + result.list[i].MONEY + "</td>";
 				html += "<td>"+result.list[i].NAME+"</td>";
@@ -205,6 +211,22 @@ function GetSal_Re() {
 	});
 }
 </script>
+<script type="text/javascript"> //전체 체크박스 선택,해제
+$(document).ready(function(){
+    
+    $("#checkAll").click(function(){
+        
+        if($("#checkAll").prop("checked")){
+            
+            $("input[type=checkbox]").prop("checked",true);
+            
+        }else{
+           
+            $("input[type=checkbox]").prop("checked",false);
+        }
+    });
+});
+</script>
 </head>
 <body>
 <c:import url="/top"></c:import>
@@ -220,22 +242,21 @@ function GetSal_Re() {
 </c:choose>
 </form>
 <input type="hidden" value="${sMemNo}" name="mem_no">
-		<br>
-		<span id="font">지출결의서</span>
-		<br>
-		<br>
-	<table class="tblGreen" align="center">
-		<colgroup>
-			<col style="width:40px"/> <!-- 체크박스 -->
-			<col style="width:150px"/> <!-- 전표번호 -->
-			<col style="width:130px"/> <!-- 금액 -->
-			<col style="width:100px"/> <!-- 거래처명 -->
-			<col style="width:200px"/> <!-- 적요 -->
-			<col style="width:90px"/> <!-- 결제 -->
-		</colgroup>
+<br/>
+<div id="font">지출결의서</div>
+<br/>
+	<table border="1px" align="center" class="maintbl">
+			<colgroup>
+				<col style="width:40px"/> <!-- 체크박스 -->
+				<col style="width:150px"/> <!-- 전표번호 -->
+				<col style="width:150px"/> <!-- 금액 -->
+				<col style="width:200px"/> <!-- 거래처명 -->
+				<col style="width:200px"/> <!-- 적요 -->
+				<col style="width:100px"/> <!-- 결제 -->
+			</colgroup>
 		<thead>
 		<tr>
-			<th>체크</th>
+			<th><input type = "checkbox" id = "checkAll"/></th>
 			<th>전표번호</th>
 			<th>금액</th>
 			<th>거래처명</th>
@@ -247,6 +268,7 @@ function GetSal_Re() {
 		
 		</tbody>
 	</table>
+	<br/>
 	<input type="button" value="지출 결의서 등록" id="salRe">
 	</div>
 	<c:import url="/bottom"></c:import>
