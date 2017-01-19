@@ -176,7 +176,7 @@ $(document).ready(function() {
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('customerRegister','','width=600, height=500, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open('customerRegister','','left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-600)/2+', width=660px,height=600px');
 	});
 	
 	$("#tb").on("click", "td", function() {
@@ -184,7 +184,7 @@ $(document).ready(function() {
  		$("input[name='cusNo']").val($(this).parents("tr").attr("name"));
 		$("#actionForm").attr("action", "customerRegister");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('customerRegister', 'Edit', 'width=400, height=600');");
+		$("#actionForm").attr("onsubmit", "window.open('customerRegister', 'Edit', 'left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-600)/2+', width=660px,height=600px');");
 		$("#actionForm").submit(); 
 	});
 	
