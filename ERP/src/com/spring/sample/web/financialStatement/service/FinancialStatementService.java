@@ -19,8 +19,14 @@ public class FinancialStatementService implements IFinancialStatementService{
 	}
 
 	@Override
-	public ArrayList<HashMap<String, String>> getSub(HashMap<String, String> params) throws Throwable {
+	public ArrayList<HashMap<String, Integer>> getTotalSub(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
-		return iFinancialStatementDao.getSub(params);
+		return iFinancialStatementDao.getTotalSub(params);
+	}
+
+	@Override
+	public ArrayList<HashMap<String, Integer>> getTotalMoney(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iFinancialStatementDao.getTotalMoney(params);
 	}
 }

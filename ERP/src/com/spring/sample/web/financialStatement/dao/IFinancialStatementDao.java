@@ -7,6 +7,8 @@ public interface IFinancialStatementDao {
 
 	ArrayList<HashMap<String, String>> getTrial(HashMap<String, String> params) throws Throwable;
 
-	ArrayList<HashMap<String, String>> getSub(HashMap<String, String> params) throws Throwable;
+	ArrayList<HashMap<String, Integer>> getTotalSub(HashMap<String, String> params) throws Throwable;
+
+	ArrayList<HashMap<String, Integer>> getTotalMoney(HashMap<String, String> params) throws Throwable;
 
 }

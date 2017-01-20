@@ -185,10 +185,10 @@ font-size: 20pt
 		$("#tb").on("click", "tr", function() {
 			var BankNo = new Object(); 
 	 		$("input[name='acntNo']").val($(this).attr("name"));
-			alert($(this).attr("name"));
+			//alert($(this).attr("name"));
 			$("#actionForm").attr("action", "BankRegister");
 			$("#actionForm").attr("target", "Edit");
-			$("#actionForm").attr("onsubmit", "window.open('BankRegister', 'Edit', 'width=300, height=300');");
+			$("#actionForm").attr("onsubmit", "window.open('BankRegister', 'Edit', 'left='+(screen.availWidth-600)/2+',top='+(screen.availHeight-520)/2+', width=600px,height=520px');");
 			$("#actionForm").submit(); 
 		});
 	});
@@ -312,7 +312,7 @@ font-size: 20pt
 				</div>
 				<br /> 
 				<br /> 
-				<input type="button" value="신규등록" id="registerBtn" onclick="window.open('BankRegister', 'Edit', 'width=300, height=300');"/> 
+				<input type="button" value="신규등록" id="registerBtn" onclick="window.open('BankRegister', 'Edit', 'left='+(screen.availWidth-600)/2+',top='+(screen.availHeight-520)/2+', width=600px,height=520px');"/> 
 				</form>
 				</div>		
 		</div>
