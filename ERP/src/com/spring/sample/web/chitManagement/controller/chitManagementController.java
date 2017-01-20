@@ -47,13 +47,13 @@ public class chitManagementController {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
-		/*PagingBean pb = iPagingService.getPageingBean(Integer.parseInt(params.get("page")),ichitManagementService.getchitCount(params)); 
+		PagingBean pb = iPagingService.getPageingBean(Integer.parseInt(params.get("page")),ichitManagementService.getchitCount(params)); 
 		params.put("start", Integer.toString(pb.getStartCount()));                        
-		params.put("end", Integer.toString(pb.getEndCount()));*/
+		params.put("end", Integer.toString(pb.getEndCount()));
 		ArrayList<HashMap<String, String>> list = ichitManagementService.chitCon(params);
 
 		modelMap.put("list", list);
-		/*modelMap.put("pb", pb);*/
+		modelMap.put("pb", pb);
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
 /*-----------------------------------------------------------------------*/

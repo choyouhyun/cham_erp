@@ -4,7 +4,37 @@
 	color:#153d73;
 	font-weight: bold;
 }
+/* 페이징 */
+.paging {
+	display: inline-block;
+	width: 524px;
+	height: 50px;
+	vertical-align: top;
+	text-align: center;
+	margin: 0px;
+	font-size: 0px;
+}
+.pagingArea {
+	display: inline-block;
+	width: 350px;
+	height: 30px;
+	font-size: 11pt;
+	color: #000000;
+}
 
+.pagingArea .first {
+	border: 0;
+}
+.pagingArea span {
+	padding: 0 9px 0 9px;
+	border-left: 1px solid #d9d9d9;
+	color: #535353;
+	font-family: '나눔고딕', 'NanumGothic', 'Nanum Gothic', '맑은 고딕', 'Malgun Gothic', 'ng';
+}
+
+strong {
+	color: #b01c1c;
+} 
 body {
 	margin: 0px;
 }
@@ -49,6 +79,10 @@ div {
 .d {
 	display: table-row;
 	height: 48px;
+}
+.bbsControll_d {
+	display: table-row;
+	height: 50px;
 }
 .memPicture_d, .memInfo_d {
 	display: table-row;

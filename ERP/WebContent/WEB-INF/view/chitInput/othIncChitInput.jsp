@@ -57,11 +57,23 @@ html {
 	-webkit-box-shadow: inset 0 0 4px rgba(0, 0, 0, .1)
 } 
 
+/* 행 추가 */
+.detail_bottom {
+	display: inline-block;
+	width: 735px;
+	text-align: right;
+}
 #font{
 	color:#153d73;
-	font-size: 25pt;
+	font-size: 20pt;
 	font-weight: bold;
 }
+/* 총 합계 글자 */
+.total {
+	color:#153d73;
+	font-weight: bold;
+}
+
 /*세부내역 테이블 디자인  */
 .subtbl { 
     border-collapse: collapse;
@@ -163,7 +175,7 @@ html {
    color: #fff;
 }
 /*테이블내 버튼 디자인  */
-#deptBtn,#cusBtn,#debBtn,#creBtn,#detailInput{
+#deptBtn,#cusBtn,#debBtn,#creBtn,#detailInput,#addList{
    height: 35px;
    border: 1px solid #ffffff;
    background: #6d6d6d;
@@ -188,7 +200,7 @@ html {
    vertical-align: middle;
 }
 
-#deptBtn:active,#cusBtn:active,#debBtn:active,#creBtn:active,#detailInput:active{
+#deptBtn:active,#cusBtn:active,#debBtn:active,#creBtn:active,#detailInput:active,#addLis:active{
    /* text-shadow: #ffffff 0 1px 0; */
    border: 1px solid #ffffff;
    background: #000000;
@@ -229,7 +241,8 @@ $(document).ready(function() {
 	})
 	
 	//상세입력 부분
-	$("#tb").on("click","[type=button]", function() {
+
+	$("#addList").on("click", function() {
 		addList();
 		$("input[name=detailDate]").datepicker({
 			dateFormat: 'yymmdd'
@@ -394,7 +407,7 @@ function updateOthInchit() {
 <c:import url="/bottom"></c:import>
 
 <div id="detail">
-	<table width="676px" >
+	<table width="738px" >
 	    <tr style="text-align: right;">
 			<td><input type="button" id="closeBtn" value="X"/></td>
 		</tr>
@@ -409,7 +422,6 @@ function updateOthInchit() {
         </colgroup>
         <thead>
 		<tr>
-			<th>버튼</th>
 			<th>거래일자</th>
 			<th>품명</th>
 			<th>규격</th>
@@ -425,7 +437,6 @@ function updateOthInchit() {
 			<!-- class am_pr=갯수와 단가를 묶어둔것 change이벤트를 주기위하여 -->
 			<!-- class money=(am * pr) = (갯수 * 단가) =금액-->
 			<!-- id money=class money들의 합계-->
-			<td><input type="button" ></td>
 			<td><input type="text" name="detailDate"></td>
 			<td><input type="text" name="detailName" class="kor"></td>
 			<td><input type="text" name="detailStan" class="kor"></td>
@@ -435,7 +446,6 @@ function updateOthInchit() {
 			<td><input type="text" name="detailEtc" class="kor"></td>
 		</tr>
 		<tr>
-			<td><input type="button"></td>
 			<td><input type="text" name="detailDate"></td>
 			<td><input type="text" name="detailName" class="kor"></td>
 			<td><input type="text" name="detailStan" class="kor"></td>
@@ -445,7 +455,6 @@ function updateOthInchit() {
 			<td><input type="text" name="detailEtc" class="kor"></td>
 		</tr>
 		<tr>
-			<td><input type="button"></td>
 			<td><input type="text" name="detailDate"></td>
 			<td><input type="text" name="detailName" class="kor"></td>
 			<td><input type="text" name="detailStan" class="kor"></td>
@@ -457,16 +466,17 @@ function updateOthInchit() {
 		</tbody>
 		<tfoot>
 		<tr>
-			<td colspan="2"></td>
 			<td></td>
 			<td></td>
 			<td></td>
-			<td id="font">총 합계</td>
+			<td></td>
+			<td class="total">총 합계</td>
 			<td><input type="text" readonly="readonly" id="money"></td>
 			<td></td>
 		</tr>
 		</tfoot>
 	</table>
+	<div class="detail_bottom"><input type="button" id="addList" value="행 추가"></div>
 	</div>
 </div>
 </form>

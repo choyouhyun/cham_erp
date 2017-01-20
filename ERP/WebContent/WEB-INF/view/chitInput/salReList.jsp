@@ -60,7 +60,7 @@ html {
 
 #font{
 	color:#153d73;
-	font-size: 25pt;
+	font-size: 20pt;
 	font-weight: bold;
 }
 /* 테이블 디자인 */

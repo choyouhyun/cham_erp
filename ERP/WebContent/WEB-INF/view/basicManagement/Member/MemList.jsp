@@ -13,6 +13,7 @@
 	href="resources/css/erp_css/basic.css" />
 	
 <style type="text/css">
+
 /*스크롤바  */
 html {
 	scrollbar-3dLight-Color: #efefef;
@@ -163,8 +164,9 @@ html {
 }
 
 #font{
-font-weight: bold;
-font-size: 20pt
+	color:#153d73;
+	font-weight: bold;
+	font-size: 20pt
 }
 </style>
 <script type="text/javascript">
@@ -236,25 +238,25 @@ function memAjax() {
 			
 			html = "";
 			
-			html += "<span name='1'>처음</span> ";
+			html += "<span class='" + 'first' + "' name='1'>처음</span>";
 			if($("input[name='page']").val() == 1) {
 				html += "<span name='1'>이전</span> ";
 			} else {
-				html += "<span name='" + ($("input[name='page']").val() - 1) + "'>이전</span> ";					
+				html += "<span name='" + ($("input[name='page']").val() - 1) + "'>이전</span>";					
 			}
 			
 			for(var i = result.pb.startPcount; i <= result.pb.endPcount; i++){
 				if(i == $("input[name = 'page']").val()) {
-					html += "<span name='"+ i +"'><b>" + i + "</b></span>";
+					html += "<span name='"+ i +"'><strong>" + i + "</strong></span>";
 				} else {
 					html += "<span name='" + i + "'>" + i + "</span>";
 				}
 			}
 			
 			if($("input[name='page']").val() == result.pb.maxPcount) {
-				html += "<span name='" + result.pb.maxPcount + "'>다음</span> ";
+				html += "<span name='" + result.pb.maxPcount + "'>다음</span>";
 			} else {
-				html += "<span name='" + ($("input[name= 'page']").val() * 1 + 1) + "'>다음</span> ";					
+				html += "<span name='" + ($("input[name= 'page']").val() * 1 + 1) + "'>다음</span>";					
 			}
 			html += "<span name='" + result.pb.maxPcount + "'>마지막</span>";
 			
@@ -306,7 +308,7 @@ $(document).ready(function(){
 				<input type ="text" id="searchText" value=""/>
 				<input type="button" value="검색" id="searchBtn"/>
 				
-			
+			<br/>
 			<br/>
 				<table border="1" cellspacing="0" align="center" class="maintbl">
 					<colgroup>
@@ -335,7 +337,15 @@ $(document).ready(function(){
 				
 			</form>
 		</div>
-			<div id="pagingArea"></div>
+			<div class="paging">
+				<div class="c">
+					<div class="bbsControll_d">
+						<div class="e">
+							<div class="pagingArea" id="pagingArea"></div>
+						</div>
+					</div>
+				</div>
+			</div>
 			<br/>
 			<br/>
 				<input type="button" value="등록" id="registerBtn"  onclick="window.open('MemRegister','window_name','width=1715,height=800,location=no,status=no,scrollbars=yes');"  />

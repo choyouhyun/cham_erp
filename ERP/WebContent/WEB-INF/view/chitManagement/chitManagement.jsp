@@ -60,6 +60,7 @@ html {
 #font{
 	color:#153d73;
 	font-weight: bold;
+	font-size: 20pt;
 }
 
 /*테이블 디자인*/
@@ -157,7 +158,7 @@ function chitAjax() {
 			
 			html = "";
 			
-			html += "<span name='1'>처음</span> ";
+			html += "<span class='" + 'first' + "' name='1'>처음</span> ";
 			if($("input[name='page']").val() == 1) {
 				html += "<span name='1'>이전</span> ";
 			} else {
@@ -166,7 +167,7 @@ function chitAjax() {
 			
 			for(var i = result.pb.startPcount; i <= result.pb.endPcount; i++){
 				if(i == $("input[name = page]").val()) {
-					html += "<span name='"+ i +"'><b>" + i + "</b></span>";
+					html += "<span name='"+ i +"'><strong>" + i + "</strong></span>";
 				} else {
 					html += "<span name='" + i + "'>" + i + "</span>";
 				}
@@ -239,7 +240,14 @@ $(document).ready(function(){
 			</table>
 			</form>
 			
-			<div id="pagingArea">
+			<div class="paging">
+				<div class="c">
+					<div class="bbsControll_d">
+						<div class="e">
+							<div class="pagingArea" id="pagingArea"></div>
+						</div>
+					</div>
+				</div>
 			</div>
 			
 			<br/>

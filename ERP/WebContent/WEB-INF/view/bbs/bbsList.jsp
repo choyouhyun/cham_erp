@@ -6,8 +6,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <link rel="stylesheet" type="text/css" href="resources/css/erp_css/bbsList.css" /><!-- bbsList -->
+<link rel="stylesheet" type="text/css" href="resources/css/erp_css/basic.css" /> <!-- basic -->
 <script type="text/javascript" src="resources/script/jquery/jquery-1.11.0.js"></script>
 <script type="text/javascript" src="resources/script/erp_script/main_script.js"></script> <!-- basic -->
 <script type="text/javascript">
@@ -85,7 +85,7 @@ function refreshList() {
 			
 
 			
-			html += "<span name='1'>처음</span>";
+			html += "<span class='" + 'first' + "' name='1'>처음</span>";
 			
 			if($("input[name='page']").val() == 1) {
 				html += "<span name='1'>이전</span>";
@@ -96,7 +96,7 @@ function refreshList() {
 			}
 			for(var i = result.pb.startPcount ; i <= result.pb.endPcount ; i++) {
 				if(i == $("input[name='page']").val()) {
-					html += "<span name='" + i + "'><b>" + i + "</b></span>";
+					html += "<span name='" + i + "'><strong>" + i + "</strong></span>";
 				} else {
 					html += "<span name='" + i + "'>" + i + "</span>";
 				}

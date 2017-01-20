@@ -1,7 +1,6 @@
 function addList() {
 	var html="";
-	html+="<tr>";
-   html +="<td><input type=\"button\"></td>"; 
+	html+="<tr>"; 
    html += "<td><input type=\"text\" name=\"detailDate\"></td>";
    html += "<td><input type=\"text\" name=\"detailName\" class=\"kor\"></td>";
    html += "<td><input type=\"text\" name=\"detailStan\" class=\"kor\"></td>";
