@@ -84,6 +84,25 @@ html {
 	
 }
 
+#deptNameText, #idNo{
+	width: 100px;
+}
+
+#NAME, #rankName {
+	width: 80px;
+}
+ 
+#datepicker1{
+	width: 100px;
+}
+
+#Jumin1, #Jumin2{
+	width: 60px;
+}
+
+#bankName{
+	width: 80px;
+}
 
 #saveBtn,#clearBtn{
    border: 1px solid #ffffff;
@@ -241,16 +260,18 @@ function getMemList() {
 			dataType : "json",
 			data : params,
 			success : function(result) {
-				alert("실행");
+				//alert("실행");
 				$("#idNo").val(result.con.NO);
 				
 				$("#NAME").val(result.con.NAME);
 				
 				$("#Jumin1").val(result.con.JUMIN1);
 				$("#Jumin2").val(result.con.JUMIN2); 
+				$("#deptNameText").val(result.con.DEPT_NAME); 
 				
 				$("#datepicker1").val(result.con.DATEJOIN);
-				
+				$("#rankName").val(result.con.RANK_NAME);
+				$("#bankName").val(result.con.BANK_NAME);
 				$("#Hpnum1").val(result.con.CELL1);
 				$("#Hpnum2").val(result.con.CELL2);
 				$("#Hpnum3").val(result.con.CELL3);
@@ -259,7 +280,9 @@ function getMemList() {
 	 			var emailArray = email.split("@");
 				$("#textEmailId").val(emailArray[0]);
 				$("#textEmail").val(emailArray[1]); 				
-				$("#roadAddress").val(result.con.ADDRESS);
+				$("#roadAddress").val(result.con.POST);
+				$("#jibunAddress").val(result.con.ADDRESS);
+				$("#detailAddress").val(result.con.ADDRESS2);
 				$("#Memo").val(result.con.ETC);
 			},
 			error : function() {
@@ -315,7 +338,7 @@ function insertMem(){
      	});
      $(function() {
     		$("#searchBtn").click(function() {
-    			window.open("deptPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+    			window.open("deptPopup?con=sub","sub" ,'left='+(screen.availWidth-500)/2+',top='+(screen.availHeight-700)/2+', width=500px,height=700px');
     		});
      });
      
@@ -396,7 +419,7 @@ function execDaumPostcode() {
 			<caption></caption>
 			<tbody>
 				<tr>
-					<td rowspan=7 width=30%>이미지 <img src=" " width=100 height=100></td>
+					<td rowspan=7 width=30%><img src=" " width=100 height=100></td>
 				<tr>
 					<th scope="row">사원번호</th>
 					<td scope="row" align="left">
@@ -409,12 +432,12 @@ function execDaumPostcode() {
 				<tr>
 					<th scope="row">주민등록번호</th>
 					<td scope="row" align="left">
-					<input type="text" maxlength="" id="Jumin1" name="Jumin1"/>
+					<input type="text" maxlength="6" id="Jumin1" name="Jumin1"/>
 					<span> - </span>
-					<input	type="text" maxlength="" id="Jumin2" name="Jumin2"/>
+					<input	type="text" maxlength="7" id="Jumin2" name="Jumin2"/>
 					<th scope="row">부서코드</th>
 					<td scope="row" align="left"><input type="text"
-						id="searchText" value=""> <input type="button" value="검색"
+						id="deptNameText" value=""> <input type="button" value="검색"
 						id="searchBtn" /></td>
 				</tr>
 
@@ -427,7 +450,7 @@ function execDaumPostcode() {
 				<tr>
 					<th scope="row">직위/직급</th>
 					<td scope="row" align="left">
-					<input type="text" id="searchText" value="" > 
+					<input type="text" id="rankName" value="" > 
 					<!-- <input type="button" value="검색" id="searchBtn" /> --></td>
 					<th scope="row">직책</th>
 					<td scope="row" align="left"> <select>
@@ -454,22 +477,22 @@ function execDaumPostcode() {
 					<input type="text" id="textEmailId" name="textEmailId" />
 					<span> @ </span>
 					<input type="text" id="textEmail" name="textEmail" />
-						<select id="ddlEmail">
+						<!-- <select id="ddlEmail">
 							<option value="self">직접입력</option>
 							<option value="naver.com">naver.com</option>
 							<option value="daum.com">daum.net</option>
 							<option value="gmail.com">gmail.com</option>
 							<option value="nate.com">nate.com</option>
-						</select></td>
+						</select> --></td>
 				</tr>
 				<tr>
 					<th scope="row">급여통장</th>
 					<td scope="row" colspan=4 align="left">
-					<input type="text" id="searchText" value=""> 
-						<input type="button" value="검색" id="searchBankBtn"> 
+					<!-- <input type="text" id="searchText" value=""> 
+						<input type="button" value="검색" id="searchBankBtn">  -->
 						계좌번호 : 
-						<input type="text" id="bankCode" maxlength="">
-						예금주 : <input type="text" maxlength="" /></td>
+						<input type="text" id="bankName" maxlength="">
+						예금주 : <input type="text" id="bankName" maxlength="" /></td>
 				</tr>
 				<tr>
 					<th scope="row">주소</th>

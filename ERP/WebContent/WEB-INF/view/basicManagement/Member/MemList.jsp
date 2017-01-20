@@ -184,10 +184,10 @@ $(document).ready(function() {
 	
 	$("#tb").on("click", "td", function() {
 		var memNo = new Object(); 
- 		$("input[name='acntNo']").val($(this).attr("name"));
+		$("input[name='acntNo']").val($(this).parent("tr").attr("name"));
 		$("#actionForm").attr("action", "MemRegister");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../MemRegister', 'Edit', 'width=500, height=500');");
+		$("#actionForm").attr("onsubmit", "window.open('../MemRegister', 'Edit', 'left='+(screen.availWidth-1200)/2+',top='+(screen.availHeight-800)/2+', width=1200px,height=800px');");
 		$("#actionForm").submit(); 
 	});
 	$("#deleteBtn").on("click", function() {
@@ -196,7 +196,6 @@ $(document).ready(function() {
 });
 function delMem() {
 	var params = $("#actionForm").serializeArray();
-	
 	$.ajax({
 		type : "post",
 		url : "delMem",
@@ -204,6 +203,7 @@ function delMem() {
 		data : params,
 		success : function(result) {
 			alert("성공");
+			window.location.reload();
 		},
 		error : function() {
 			alert("error!!!");
@@ -305,8 +305,8 @@ $(document).ready(function(){
 				<input type="hidden" name= "searchText" value="${param.searchText}"/>
 				<input type ="text" id="searchText" value=""/>
 				<input type="button" value="검색" id="searchBtn"/>
-				</form>
-			</div>
+				
+			
 			<br/>
 				<table border="1" cellspacing="0" align="center" class="maintbl">
 					<colgroup>
@@ -333,13 +333,14 @@ $(document).ready(function(){
 					</tbody>
 				</table>
 				
+			</form>
+		</div>
 			<div id="pagingArea"></div>
 			<br/>
 			<br/>
-				<input type="button" value="등록" id="registerBtn"  onclick="window.open('MemRegister','window_name','width=1715,height=800,location=no,status=no,scrollbars=yes');"  />
+				<input type="button" value="등록" id="registerBtn"  onclick="window.open('MemRegister','window_name','left='+(screen.availWidth-1200)/2+',top='+(screen.availHeight-800)/2+', width=1200px,height=800px');"  />
 				<input type="button" value="선택삭제" id="deleteBtn" />
 			<br/>
-			</form>
 		</div>
 		<c:import url="/bottom"></c:import>
 </body>

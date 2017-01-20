@@ -141,7 +141,7 @@ $(document).ready(function() {
 		$("input[type='text']").each(function(){
 			var x=$("input[type='text']").size()-1;
     		if($(this).val() !=""){
-    			if($("#deptNo").val() !=""){
+    			if($("#deptNo").val() !=""&&x==$("input[type='text']").index(this)){
     				updateDept();    			
 	        	}else{
 	        		if(x==$("input[type='text']").index(this)){
