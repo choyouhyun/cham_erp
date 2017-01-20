@@ -32,11 +32,12 @@ public class FinancialStatementController {
 	public @ResponseBody ResponseEntity<String> getTrial(
 			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
-		ArrayList<HashMap<String, String>> getSub = iFinancialStatementService.getSub(params);
-		System.out.println(getSub);
-		ArrayList<HashMap<String, String>> getTrial = iFinancialStatementService.getTrial(params);
-		System.out.println(getTrial);
-		modelMap.put("trial", getTrial);
+		ArrayList<HashMap<String, Integer>> sub = iFinancialStatementService.getTotalSub(params);
+		ArrayList<HashMap<String, Integer>> money = iFinancialStatementService.getTotalMoney(params);
+		System.out.println(sub);
+		System.out.println(money);
+		modelMap.put("trial", sub);
+		modelMap.put("trial", money);
 		ObjectMapper mapper = new ObjectMapper();
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
