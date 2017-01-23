@@ -34,10 +34,13 @@ public class FinancialStatementController {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		ArrayList<HashMap<String, Integer>> sub = iFinancialStatementService.getTotalSub(params);
 		ArrayList<HashMap<String, Integer>> money = iFinancialStatementService.getTotalMoney(params);
+		int depth = iFinancialStatementService.getDepthMax(params);
 		System.out.println(sub);
 		System.out.println(money);
-		modelMap.put("trial", sub);
-		modelMap.put("trial", money);
+		System.out.println(depth);
+		modelMap.put("sub", sub);
+		modelMap.put("money", money);
+		modelMap.put("depth", depth);
 		ObjectMapper mapper = new ObjectMapper();
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");

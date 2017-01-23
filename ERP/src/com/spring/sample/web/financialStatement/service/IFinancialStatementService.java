@@ -11,4 +11,6 @@ public interface IFinancialStatementService {
 
 	ArrayList<HashMap<String, Integer>> getTotalMoney(HashMap<String, String> params) throws Throwable;
 
+	int getDepthMax(HashMap<String, String> params) throws Throwable;
+
 }

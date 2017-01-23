@@ -78,6 +78,36 @@
 		      CONNECT BY  INSTR(DEPTH_FULLNO, ',', 1, LEVEL-1) > 0)
 		GROUP BY SUB_NO)A INNER JOIN SUB B ON A.SUB_NO = B.NO
 	</select>
+	<select id="getDepthMax" parameterClass="java.util.HashMap" resultClass="Integer" >
+		SELECT MAX(DEPTH) DEPTH_MAX
+		FROM (SELECT SUB
+		      FROM (SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM OTH_SAL_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM OTH_SAL_CHIT
+		            UNION ALL
+		            SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM OTH_INC_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM OTH_INC_CHIT)
+		      WHERE 1=1
+		      AND TO_CHAR(DEAL_DATE,'YYYYMM') BETWEEN #startDate# AND #endDate#
+		      GROUP BY SUB) A INNER JOIN SUB B ON A.SUB = B.NO
+	</select>
 	<!-- Select sum(Money) money1,Listagg(name||','||money,',') within group(order by money) money from (select sum(money) money, B.name from sal_chit A inner join sub B on A.Creditor_no=B.no group by B.name) -->
 	<select id="getIncomeData" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
 	Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
