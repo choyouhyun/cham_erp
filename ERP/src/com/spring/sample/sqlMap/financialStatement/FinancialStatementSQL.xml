@@ -115,7 +115,7 @@
     From sal_chit A Inner Join Sub B
     on A.Creditor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
    union all
    Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -123,7 +123,7 @@
     From inc_chit A Inner Join Sub B
     on A.Debtor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
    union all
    Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -131,7 +131,7 @@
     From Oth_Inc_Chit A Inner Join Sub B
     on A.Debtor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
    union all
    Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -139,7 +139,7 @@
     From Oth_sal_Chit A Inner Join Sub B
     on A.Creditor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
     
 	
