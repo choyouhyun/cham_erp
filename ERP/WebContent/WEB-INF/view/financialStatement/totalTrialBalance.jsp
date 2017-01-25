@@ -13,8 +13,122 @@
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
 <style type="text/css">
-.result div{
-border: 1px solid;
+.result{
+border-left: 1px solid;
+border-right: 1px solid;
+border-top: 1px solid;
+margin: 0px;
+padding: 0px;
+font-size: 0;
+}
+.chit{
+display: inline-block;
+}
+.chitHead{
+display: inline-block;
+}
+
+.result{
+display: inline-block;
+width: 1004px;
+}
+.chitHead1{
+display: inline-block;
+width: 402px;
+}
+.chitHead1_1{
+border-bottom: 1px solid;
+border-right: 1px solid;
+font-size: 10pt;
+}
+.chitHead1_2{
+}
+.chitHead1_2_1{
+display: inline-block;
+border-bottom: 1px solid;
+border-right: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitHead1_2_2{
+display: inline-block;
+border-bottom: 1px solid;
+border-right: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitHead2{
+display: inline-block;
+width: 200px;
+}
+.chitHead2_1{
+border-bottom: 1px solid;
+font-size: 10pt;
+}
+.chitHead3{
+display: inline-block;
+width: 402px;
+}
+.chitHead3_1{
+border-bottom: 1px solid;
+border-left: 1px solid;
+font-size: 10pt;
+}
+.chitHead3_2{
+}
+.chitHead3_2_1{
+display: inline-block;
+border-bottom: 1px solid;
+border-left: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitHead3_2_2{
+display: inline-block;
+border-bottom: 1px solid;
+border-left: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitBody{
+display: inline-block;
+}
+.chitBody1{
+display: inline-block;
+border-bottom: 1px solid;
+border-right: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitBody2{
+display: inline-block;
+border-bottom: 1px solid;
+border-right: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitBody3{
+display: inline-block;
+border-bottom: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitBody4{
+display: inline-block;
+border-bottom: 1px solid;
+border-left: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+.chitBody5{
+display: inline-block;
+border-bottom: 1px solid;
+border-left: 1px solid;
+width: 200px;
+font-size: 10pt;
+}
+[name='depth_1']{
+
 }
 </style>
 <script type="text/javascript">
@@ -35,7 +149,8 @@ function searchAjax(){
 		data: params,
 		dataType: "json",
 		success: function(result){
-			
+			chitHead(result);
+			chitSub(result);
 		},
 		error: function(){
 			alert("totalTrialAjax에러");
@@ -46,46 +161,55 @@ function searchAjax(){
 function chitHead(e){
 	var html = "";
 	
-	html += "<table border='1px'>";
-	html += "	<thead>";
-	html += "		<tr>";
-	html += "			<td colspan='2'>차변</td>";
-	html += "			<td rowspan='2'>계정과목</td>";
-	html += "			<td colspan='2'>대변</td>";
-	html += "		</tr>";
-	html += "		<tr>";
-	html += "			<td>차변 잔액</td>";
-	html += "			<td>차변 금액</td>";
-	html += "			<td>대변 금액</td>";
-	html += "			<td>대변 잔액</td>";
-	html += "		</tr>";
-	html += "		</thead>";
-	html += "		<tbody id='resultTb'>";
-	html += "		</tbody>";
-	html += "</table>";
-
-	$("#resultChit").html(html);
+	html += "<div id='chit'>                                   ";
+	html += "<div class='chitHead'>                            ";
+	html += "	<div class='chitHead1'>                        ";
+	html += "		<div class='chitHead1_1'>차변</div>         ";
+	html += "		<div class='chitHead1_2'>                  ";
+	html += "			<div class='chitHead1_2_1'>차변 잔액</div> ";
+	html += "			<div class='chitHead1_2_2'>차변 금액</div> ";
+	html += "		</div>                                     ";
+	html += "	</div>                                         ";
+	html += "	<div class='chitHead2'>                        ";
+	html += "		<div class='chitHead2_1'>                  ";
+	html += "			계정과목                                   ";
+	html += "		</div>                                     ";
+	html += "	</div>                                         ";
+	html += "	<div class='chitHead3'>                        ";
+	html += "		<div class='chitHead3_1'>대변   </div>       ";
+	html += "		<div class='chitHead3_2'>                  ";
+	html += "			<div class='chitHead3_2_1'>대변 금액</div> ";
+	html += "			<div class='chitHead3_2_2'>대변 잔액</div> ";
+	html += "		</div>                                     ";
+	html += "	</div>                                         ";
+	html += "</div>                                            ";
+	html += "<div class='chitBody' id='chitBody'>";
+	html += "</div>";
+	
+	$("#result").html(html);
 }
 
 function chitSub(e){
 	var html = "";
 	for(var i = 0; i < e.depth; i++){
-		var depthCnt = 1;
 		for(var j = 0; j < e.sub.length; j++){
-			if(e.sub[j].DEPTH == depthCnt){
-				html += "<tr>";
-				html += "	<td>차변 잔액</td>";
-				html += "	<td>차변 금액</td>";
-				html += "	<td>" + e.sub[j].NAME + "</td>";
-				html += "	<td>대변 금액</td>";
-				html += "	<td>대변 잔액</td>";
-				html += "</tr>";
+			if(e.sub[j].DEPTH == (i+1)){
+				html += "<div id='sub_" + e.sub[j].NO + "'>                          ";
+				html += "	<div>                       ";
+				html += "		<div class='chitBody1' id='" + e.sub[j].NO + "_debBalance'>1</div>";
+				html += "		<div class='chitBody2' id='" + e.sub[j].NO + "_debTotal'>2</div>";
+				html += "		<div class='chitBody3' name='depth_" + e.sub[j].DEPTH + "'>" + e.sub[j].NAME + "</div>";
+				html += "		<div class='chitBody4' id='" + e.sub[j].NO + "_creBalance'>3</div>";
+				html += "		<div class='chitBody5' id='" + e.sub[j].NO + "_creTotal'>4</div>";
+				html += "	</div>                            ";
+				html += "</div>                               ";
 
-				if(depthCnt=1){
-					$("#resultTb").html(html);
+				if(i==0){
+					$("#chitBody").append(html);
 				}else{
-					$(e.sub[j].SUB_NO)
+					$("#sub_" + e.sub[j].SUB_NO).append(html);
 				}
+				html = "";
 			}
 		}
 	}
@@ -96,6 +220,8 @@ function chitMoney(e){
 }
 
 function chitTotal(e){
+
+}
 
 </script>
 <title>Insert title here</title>
@@ -116,34 +242,7 @@ function chitTotal(e){
 				</div>
 			</div>
 			<div id="result" class="result">
-				<div id="chit">
-					<div class="chitHead">
-						<div class="chitTitle">
-							<div calss="chitTitle_1">
-								차변
-							</div>
-							<div calss="chitTitle_1">
-								<div class="chitTitle_1_1">차변 잔액</div>
-								<div class="chitTitle_1_2">차변 금액</div>
-							</div>
-						</div>
-						<div>
-							계정과목
-						</div>
-						<div>
-							<div class="chitTitle">
-								<div calss="chitTitle_1">
-									대변
-								</div>
-								<div calss="chitTitle_1">
-									<div class="chitTitle_1_1">대변 금액</div>
-									<div class="chitTitle_1_2">대변 잔액</div>
-								</div>
-							</div>
-						</div>
-					</div>
-					<div class="chitBody">
-					</div>
+
 				</div>
 			</div>
 		</form>
