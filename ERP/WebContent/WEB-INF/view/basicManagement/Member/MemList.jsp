@@ -187,7 +187,7 @@ $(document).ready(function() {
 		$("input[name='acntNo']").val($(this).parent("tr").attr("name"));
 		$("#actionForm").attr("action", "MemRegister");
 		$("#actionForm").attr("target", "Edit");
-		$("#actionForm").attr("onsubmit", "window.open('../MemRegister', 'Edit', 'width=500, height=500');");
+		$("#actionForm").attr("onsubmit", "window.open('../MemRegister', 'Edit', 'left='+(screen.availWidth-1200)/2+',top='+(screen.availHeight-800)/2+', width=1200px,height=800px');");
 		$("#actionForm").submit(); 
 	});
 	$("#deleteBtn").on("click", function() {
@@ -338,7 +338,7 @@ $(document).ready(function(){
 			<div id="pagingArea"></div>
 			<br/>
 			<br/>
-				<input type="button" value="등록" id="registerBtn"  onclick="window.open('MemRegister','window_name','width=1715,height=800,location=no,status=no,scrollbars=yes');"  />
+				<input type="button" value="등록" id="registerBtn"  onclick="window.open('MemRegister','window_name','left='+(screen.availWidth-1200)/2+',top='+(screen.availHeight-800)/2+', width=1200px,height=800px');"  />
 				<input type="button" value="선택삭제" id="deleteBtn" />
 			<br/>
 		</div>

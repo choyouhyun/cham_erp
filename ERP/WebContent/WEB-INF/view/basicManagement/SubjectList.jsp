@@ -166,7 +166,7 @@ $(document).ready(function(){
 	$("#tb").on("click","A", function() {
 		var NO=$(this).attr('id');
 		var win=((screen.availWidth-350)/2);
-		window.open('SubjectRegister?NO2='+NO+'','popup','left='+win+'top='+win+',width=350px,height=330px');
+		window.open('SubjectRegister?NO2='+NO+'','popup','left='+(screen.availWidth-450)/2+',top='+(screen.availHeight-500)/2+', width=450px,height=500px');
 		/* refreshList($(this).attr('id')); */
 	});
 });
@@ -183,6 +183,7 @@ function subList() {
            html += "<tr>";
      		html += "<th><input type=\"checkbox\" name=\"checkBox\" value=\""+result.list[i].NO+"\"></th>";
      		html += "<td>" ;
+     		result.list[0].SUBSEC="";
      		for(var j=0; j<result.list[i].DEPTH;j++)
      			{html += "&nbsp;&nbsp;&nbsp;&nbsp;";}
      		html += "<a href=\"javascript:void(0);\" id=\""+result.list[i].NO+"\">-"+result.list[i].NAME + "</A></td>";
@@ -218,6 +219,23 @@ function checkDelete() {
 	   });
 }
 </script>
+
+<script type="text/javascript"> //전체 체크박스 선택,해제
+$(document).ready(function(){
+    
+    $("#checkAll").click(function(){
+        
+        if($("#checkAll").prop("checked")){
+            
+            $("input[type=checkbox]").prop("checked",true);
+            
+        }else{
+           
+            $("input[type=checkbox]").prop("checked",false);
+        }
+    });
+});
+</script>
 </head>
 <body>
 		<c:import url="/top"></c:import>
@@ -235,7 +253,7 @@ function checkDelete() {
 					</colgroup>
 					<thead>
 						<tr>
-							<th><input type="checkbox" /></th>
+							<th><input type="checkbox" id = "checkAll" /></th>
 							<th>[계정코드]계정명</th>
 							<th>대차구분</th>
 							<th>계정종류</th>
