@@ -81,6 +81,9 @@ $(document).ready(function(){
 	$("#subjectList").on("click", function(){
 		location.href="SubjectList";
 	});
+	$("#incomeStatement").on("click", function(){
+		location.href="incomeStatement";
+	});
 	/* 로그아웃 */
 	$("#logoutBtn").on("click", function() {
 		location.href="Logout";
