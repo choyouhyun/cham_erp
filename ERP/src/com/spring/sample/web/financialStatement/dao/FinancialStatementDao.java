@@ -60,10 +60,12 @@ public class FinancialStatementDao implements IFinancialStatementDao{
 	public int getDepthMax(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return (int) sqlMapClient.queryForObject("financialStatement.getDepthMax", params);
+
 	}
 	@Override
 	public ArrayList<HashMap<String, String>> getIncomeData(HashMap<String, String> params) throws Throwable{
 		// TODO Auto-generated method stub
 		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("financialStatement.getIncomeData",params);
+
 	}
 }
