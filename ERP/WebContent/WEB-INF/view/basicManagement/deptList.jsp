@@ -174,14 +174,14 @@ $(document).ready(function() {
 	});
 	
 	$("#registBtn").on("click", function() {
-		window.open('deptRegister','','left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+', width=660px,height=400px');
+		window.open('deptRegister','','width=400, height=400, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
 	$("#tb").on("click", "td", function() {
  		$("input[name='deptNo']").val($(this).parents("tr").attr("name"));
 		$("#actionForm").attr("action", "deptRegister");
 		$("#actionForm").attr("target", "deptRegister");
-		$("#actionForm").attr("onsubmit", "window.open('deptRegister', 'deptRegister', 'left='+(screen.availWidth-660)/2+',top='+(screen.availHeight-430)/2+', width=660px,height=400px')");
+		$("#actionForm").attr("onsubmit", "window.open('deptRegister', 'deptRegister', 'width=300, height=300');");
 		$("#actionForm").submit(); 
 	});
 	$("#deleteBtn").click(function() {
