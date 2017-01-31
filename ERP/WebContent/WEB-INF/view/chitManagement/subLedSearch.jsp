@@ -11,7 +11,6 @@
 </head>
 <body>
 <div class="bg">
-
 	<div class="range">
 		<div class="top">
 			<div class="logo">로곳</div>

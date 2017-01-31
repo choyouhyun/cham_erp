@@ -355,7 +355,7 @@ function updateOthInchit() {
 				<th>부서코드</th>
 				<td><input type="text" id="deptNoText" name="deptNoText" readonly="readonly"/></td>
 				<td><input type="text" id="deptNameText" readonly="readonly"/></td>
-				<td><input type="button" value="부서검색" id="deptBtn"/></td>				
+				<td><input type="button" value="부서검색 " id="deptBtn"/></td>				
 			</tr>
 			<tr>
 				<th>거래처코드</th>

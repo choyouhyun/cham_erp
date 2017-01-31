@@ -16,7 +16,6 @@
 .result{
 border-left: 1px solid;
 border-right: 1px solid;
-border-top: 1px solid;
 margin: 0px;
 padding: 0px;
 font-size: 0;
@@ -26,6 +25,7 @@ display: inline-block;
 }
 .chitHead{
 display: inline-block;
+border-top: 1px solid;
 }
 
 .result{
@@ -279,6 +279,7 @@ function chitTotal(e){
 				&nbsp
 				<input type="button" id="searchBtn" value="검색" />
 			</div>
+			<br/>
 			<div id="result" class="result">
 			</div>
 		</form>
