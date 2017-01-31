@@ -12,6 +12,7 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
+<<<<<<< HEAD
 <style type="text/css">
 .result{
 border-left: 1px solid;
@@ -246,28 +247,32 @@ function chitTotal(e){
 }
 
 </script>
+=======
+>>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp.git
 <title>Insert title here</title>
 </head>
 <body>
 	<c:import url="/top"></c:import>
 	<div class="contents"> 
 		<div id="conTitle">합계 잔액 시산표</div>
-		<form action="#" id="searchForm">
-			<div id="searchChit">
-				<div id="chitCal">
-					<span>날짜 : </span>
-					<input type="text" id="datepicker1" name="startDate" placeholder="기준 시작일"/>
-					<span> ~ </span>
-					<input type="text" id="datepicker2" name="endDate" placeholder="기준 종료일"/>
-					&nbsp
-					<input type="button" id="searchBtn" value="검색" />
-				</div>
+		<div id="searchChit">
+			<div id="chitCal">
+				<span>날짜 : </span>
+				<input type="text" placeholder="날짜선택"/>
+				<span> ~ </span>
+				<input type="text" placeholder="날짜선택"/>
+				&nbsp
+				<input type="button" id="searchBtn" value="검색" />
 			</div>
+<<<<<<< HEAD
 			<div id="result" class="result">
 
 				</div>
 			</div>
 		</form>
+=======
+		</div>
+>>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp.git
 	</div>
 	<c:import url="/bottom"></c:import>
 </body>

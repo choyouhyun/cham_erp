@@ -72,5 +72,4 @@ public class FinancialStatementDao implements IFinancialStatementDao{
 		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("financialStatement.getIncomeData",params);
 
 	}
-	
 }

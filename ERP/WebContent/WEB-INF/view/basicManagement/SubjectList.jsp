@@ -158,7 +158,7 @@ $(document).ready(function(){
 	
 	$("#regBtn").on("click", function() {
 		var win=((screen.availWidth-350)/2);
-  		window.open('SubjectRegister?NO2=null','popup','left='+(screen.availWidth-450)/2+',top='+(screen.availHeight-500)/2+', width=450px,height=500px'); 
+  		window.open('SubjectRegister?NO2=null','popup','left='+win+'top='+win+',width=350px,height=330px'); 
   	});
 	$("#delBtn").on("click", function() {
 		checkDelete();
@@ -183,6 +183,7 @@ function subList() {
            html += "<tr>";
      		html += "<th><input type=\"checkbox\" name=\"checkBox\" value=\""+result.list[i].NO+"\"></th>";
      		html += "<td>" ;
+     		result.list[0].SUBSEC="";
      		for(var j=0; j<result.list[i].DEPTH;j++)
      			{html += "&nbsp;&nbsp;&nbsp;&nbsp;";}
      		html += "<a href=\"javascript:void(0);\" id=\""+result.list[i].NO+"\">-"+result.list[i].NAME + "</A></td>";

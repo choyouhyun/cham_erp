@@ -12,5 +12,8 @@ public interface IFinancialStatementDao {
 	ArrayList<HashMap<String, Integer>> getTotalMoney(HashMap<String, String> params) throws Throwable;
 
 	int getDepthMax(HashMap<String, String> params) throws Throwable;
+	
+	ArrayList<HashMap<String, String>> getIncomeData(HashMap<String, String> params) throws Throwable;
+
 
 }

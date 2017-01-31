@@ -46,4 +46,23 @@ public class FinancialStatementController {
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
 		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
 	}
+	@RequestMapping(value="/incomeStatement")
+	public ModelAndView incomeStatement(HttpServletRequest request, ModelAndView modelAndView) {
+		modelAndView.setViewName("financialStatement/incomeStatement");
+		return modelAndView;
+	}
+	@RequestMapping(value="/getIncomeData")
+	public @ResponseBody ResponseEntity<String> getIncomeData(
+			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params) throws Throwable {
+		ObjectMapper mapper = new ObjectMapper();
+		HashMap<String, Object> modelMap = new HashMap<String, Object>();
+		HttpHeaders responseHeaders = new HttpHeaders();
+		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
+		ArrayList<HashMap<String, String>> list = iFinancialStatementService.getIncomeData(params);
+		params.put("year", Integer.toString(Integer.parseInt(params.get("year"))-1));
+		ArrayList<HashMap<String, String>> list2 = iFinancialStatementService.getIncomeData(params);
+		modelMap.put("list", list);
+		modelMap.put("list2", list2);
+		return new ResponseEntity<String>(mapper.writeValueAsString(modelMap), responseHeaders, HttpStatus.CREATED);
+	}
 }

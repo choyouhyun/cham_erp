@@ -219,7 +219,7 @@ $(document).ready(function(){
 		         });    
 		        return false; 
 			}else{
-				alert("계정명을 입력 해 주세요.");
+				alert("사원번호를 입력 해 주세요.");
 	               $("input[name='subName']").val("");
 	               $("input[name='subName']").focus();
 			}
