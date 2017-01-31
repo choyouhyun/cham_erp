@@ -98,38 +98,53 @@ display: inline-block;
 border-bottom: 1px solid;
 border-right: 1px solid;
 width: 200px;
+height: 36px;
 font-size: 10pt;
+vertical-align: top;
 }
 .chitBody2{
 display: inline-block;
 border-bottom: 1px solid;
 border-right: 1px solid;
 width: 200px;
+height: 36px;
 font-size: 10pt;
+vertical-align: top;
 }
 .chitBody3{
 display: inline-block;
 border-bottom: 1px solid;
 width: 200px;
+height: 36px;
 font-size: 10pt;
+vertical-align: top;
 }
 .chitBody4{
 display: inline-block;
 border-bottom: 1px solid;
 border-left: 1px solid;
 width: 200px;
+height: 36px;
 font-size: 10pt;
+vertical-align: top;
 }
 .chitBody5{
 display: inline-block;
 border-bottom: 1px solid;
 border-left: 1px solid;
 width: 200px;
+height: 36px;
+font-size: 10pt;
+vertical-align: top;
+}
+[name='SEC_0']{
+font-weight: bold;
+font-size: 15pt;
+}
+[name='SEC_1']{
 font-size: 10pt;
 }
-[name='depth_1']{
 
-}
 </style>
 <script type="text/javascript">
 $(function(){
@@ -167,7 +182,7 @@ function chitHead(e){
 	html += "		<div class='chitHead1_1'>차변</div>         ";
 	html += "		<div class='chitHead1_2'>                  ";
 	html += "			<div class='chitHead1_2_1'>차변 잔액</div> ";
-	html += "			<div class='chitHead1_2_2'>차변 금액</div> ";
+	html += "			<div class='chitHead1_2_2'>차변 금액</div> ";//시발 존나 하기 싫은데 아무도 안도와주네 진짜 시발 인생 좆같다
 	html += "		</div>                                     ";
 	html += "	</div>                                         ";
 	html += "	<div class='chitHead2'>                        ";
@@ -191,18 +206,25 @@ function chitHead(e){
 
 function chitSub(e){
 	var html = "";
-	for(var i = 0; i < e.depth; i++){
+
+ 	for(var i = 0; i < e.depth; i++){
 		for(var j = 0; j < e.sub.length; j++){
 			if(e.sub[j].DEPTH == (i+1)){
-				html += "<div id='sub_" + e.sub[j].NO + "'>                          ";
-				html += "	<div>                       ";
-				html += "		<div class='chitBody1' id='" + e.sub[j].NO + "_debBalance'>1</div>";
-				html += "		<div class='chitBody2' id='" + e.sub[j].NO + "_debTotal'>2</div>";
-				html += "		<div class='chitBody3' name='depth_" + e.sub[j].DEPTH + "'>" + e.sub[j].NAME + "</div>";
-				html += "		<div class='chitBody4' id='" + e.sub[j].NO + "_creBalance'>3</div>";
-				html += "		<div class='chitBody5' id='" + e.sub[j].NO + "_creTotal'>4</div>";
-				html += "	</div>                            ";
-				html += "</div>                               ";
+				var subNo = e.sub[j].NO;
+				html += "<div id='sub_" + e.sub[j].NO + "'>";
+				html += "	<div>";
+				while(debMoneyIter.hasNext()){
+					if(debMoneyIter.next() == e.sub[j].NO){
+						html += "		<div class='chitBody1' id='" + subNo + "_debBalance'>" + e.money[0].no_28 + "</div>";
+						html += "		<div class='chitBody2' id='" + subNo + "_debTotal'>2</div>";
+						break;
+					}
+				}
+				html += "		<div class='chitBody3' name='SEC_" + subNo + "'>" + e.sub[j].NAME + "</div>";
+				html += "		<div class='chitBody4' id='" + subNo + "_creBalance'>3</div>";
+				html += "		<div class='chitBody5' id='" + subNo + "_creTotal'>4</div>";
+				html += "	</div>";
+				html += "</div>";
 
 				if(i==0){
 					$("#chitBody").append(html);
