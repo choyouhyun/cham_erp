@@ -35,9 +35,6 @@ public class FinancialStatementController {
 		ArrayList<HashMap<String, Integer>> sub = iFinancialStatementService.getTotalSub(params);
 		ArrayList<HashMap<String, Integer>> money = iFinancialStatementService.getTotalMoney(params);
 		int depth = iFinancialStatementService.getDepthMax(params);
-		System.out.println(sub);
-		System.out.println(money);
-		System.out.println(depth);
 		modelMap.put("sub", sub);
 		modelMap.put("money", money);
 		modelMap.put("depth", depth);

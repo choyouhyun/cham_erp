@@ -12,7 +12,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js" type="text/javascript"></script>
 <script src="http://code.jquery.com/ui/1.8.18/jquery-ui.min.js" type="text/javascript"></script>
 <link rel="stylesheet" href="http://code.jquery.com/ui/1.8.18/themes/base/jquery-ui.css" type="text/css" media="all" />
-<<<<<<< HEAD
 <style type="text/css">
 .result{
 border-left: 1px solid;
@@ -138,16 +137,19 @@ height: 36px;
 font-size: 10pt;
 vertical-align: top;
 }
-[name='SEC_0']{
+[name='sec_0']{
 font-weight: bold;
 font-size: 15pt;
 }
-[name='SEC_1']{
+[name='sec_1']{
 font-size: 10pt;
 }
 
 </style>
 <script type="text/javascript">
+var totalDebMoney = 0;
+var totalCreMoney = 0;
+
 $(function(){
 	$("#datepicker1, #datepicker2" ).datepicker({
 		dateFormat: 'yymm'
@@ -167,6 +169,7 @@ function searchAjax(){
 		success: function(result){
 			chitHead(result);
 			chitSub(result);
+			chitTotal();
 		},
 		error: function(){
 			alert("totalTrialAjax에러");
@@ -183,7 +186,7 @@ function chitHead(e){
 	html += "		<div class='chitHead1_1'>차변</div>         ";
 	html += "		<div class='chitHead1_2'>                  ";
 	html += "			<div class='chitHead1_2_1'>차변 잔액</div> ";
-	html += "			<div class='chitHead1_2_2'>차변 금액</div> ";//시발 존나 하기 싫은데 아무도 안도와주네 진짜 시발 인생 좆같다
+	html += "			<div class='chitHead1_2_2'>차변 금액</div> ";
 	html += "		</div>                                     ";
 	html += "	</div>                                         ";
 	html += "	<div class='chitHead2'>                        ";
@@ -212,18 +215,28 @@ function chitSub(e){
 		for(var j = 0; j < e.sub.length; j++){
 			if(e.sub[j].DEPTH == (i+1)){
 				var subNo = e.sub[j].NO;
+				var creMoney = e.money[0][subNo];
+				var debMoney = e.money[1][subNo];
+				var decha = e.sub[j].DECHA;
+				if(e.sub[j].DEPTH == 1){
+					totalCreMoney += creMoney;
+					totalDebMoney += debMoney;
+				}
 				html += "<div id='sub_" + e.sub[j].NO + "'>";
 				html += "	<div>";
-				while(debMoneyIter.hasNext()){
-					if(debMoneyIter.next() == e.sub[j].NO){
-						html += "		<div class='chitBody1' id='" + subNo + "_debBalance'>" + e.money[0].no_28 + "</div>";
-						html += "		<div class='chitBody2' id='" + subNo + "_debTotal'>2</div>";
-						break;
-					}
+				if(decha == "차변"){
+					html += "		<div class='chitBody1' id='" + subNo + "_debBalance'>" + (debMoney - creMoney) + "</div>";
+				}else{
+					html += "		<div class='chitBody1' id='" + subNo + "_debBalance'></div>";
 				}
-				html += "		<div class='chitBody3' name='SEC_" + subNo + "'>" + e.sub[j].NAME + "</div>";
-				html += "		<div class='chitBody4' id='" + subNo + "_creBalance'>3</div>";
-				html += "		<div class='chitBody5' id='" + subNo + "_creTotal'>4</div>";
+				html += "		<div class='chitBody2' id='" + subNo + "_debTotal'>" + e.money[0][subNo] + "</div>";
+				html += "		<div class='chitBody3' name='sec_" + e.sub[j].SEC + "'>" + e.sub[j].NAME + "</div>";
+				html += "		<div class='chitBody4' id='" + subNo + "_creTotal'>" + e.money[1][subNo] + "</div>";
+				if(decha == "대변"){
+					html += "		<div class='chitBody5' id='" + subNo + "_creBalance'>" + (creMoney - debMoney) + "</div>";
+				}else{
+					html += "		<div class='chitBody5' id='" + subNo + "_creBalance'></div>";
+				}
 				html += "	</div>";
 				html += "</div>";
 
@@ -238,17 +251,18 @@ function chitSub(e){
 	}
 }
 
-function chitMoney(e){
-	
-}
-
 function chitTotal(e){
+	var html = "";
+	html += "		<div class='chitBody1'></div>";
+	html += "		<div class='chitBody2'>" + totalDebMoney + "</div>";
+	html += "		<div class='chitBody3' name='sec_0'>총합계</div>";
+	html += "		<div class='chitBody4'>" + totalCreMoney + "</div>";
+	html += "		<div class='chitBody5'></div>";
 
+	$("#chitBody").append(html);
 }
 
 </script>
-=======
->>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp.git
 <title>Insert title here</title>
 </head>
 <body>
@@ -256,23 +270,19 @@ function chitTotal(e){
 	<div class="contents"> 
 		<div id="conTitle">합계 잔액 시산표</div>
 		<div id="searchChit">
+		<form action="#" id="searchForm">
 			<div id="chitCal">
 				<span>날짜 : </span>
-				<input type="text" placeholder="날짜선택"/>
+				<input type="text" id="datepicker1" name="startDate" placeholder="날짜선택"/>
 				<span> ~ </span>
-				<input type="text" placeholder="날짜선택"/>
+				<input type="text" id="datepicker2" name="endDate" placeholder="날짜선택"/>
 				&nbsp
 				<input type="button" id="searchBtn" value="검색" />
 			</div>
-<<<<<<< HEAD
 			<div id="result" class="result">
-
-				</div>
 			</div>
 		</form>
-=======
 		</div>
->>>>>>> branch 'master' of https://github.com/choyouhyun/cham_erp.git
 	</div>
 	<c:import url="/bottom"></c:import>
 </body>

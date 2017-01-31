@@ -39,7 +39,7 @@
 		CONNECT BY PRIOR NO=SUB_NO) SUB ON CHIT.SUB = SUB.NO
 	</select>
 	<select id="getTotalSub" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" >
-		SELECT A.SUB_NO NO, B.NAME, B.DEPTH, B.SUB_NO, B.SEC
+		SELECT A.SUB_NO NO, B.NAME, B.DEPTH, B.SUB_NO, B.SEC, B.DECHA
 		FROM (SELECT SUB_NO
 		      FROM (SELECT TRIM(REGEXP_SUBSTR(DEPTH_FULLNO, '[^,]+', 1, LEVEL)) AS SUB_NO
 		      FROM (SELECT NO, DEPTH_FULLNO
