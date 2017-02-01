@@ -84,25 +84,6 @@ html {
 	
 }
 
-#deptNameText, #idNo{
-	width: 100px;
-}
-
-#NAME, #rankName {
-	width: 80px;
-}
- 
-#datepicker1{
-	width: 100px;
-}
-
-#Jumin1, #Jumin2{
-	width: 60px;
-}
-
-#bankName{
-	width: 80px;
-}
 
 #saveBtn,#clearBtn{
    border: 1px solid #ffffff;
@@ -260,7 +241,7 @@ function getMemList() {
 			dataType : "json",
 			data : params,
 			success : function(result) {
-				//alert("실행");
+				alert("실행");
 				$("#idNo").val(result.con.NO);
 				
 				$("#NAME").val(result.con.NAME);
@@ -338,7 +319,7 @@ function insertMem(){
      	});
      $(function() {
     		$("#searchBtn").click(function() {
-    			window.open("deptPopup?con=sub","sub" ,'left='+(screen.availWidth-500)/2+',top='+(screen.availHeight-700)/2+', width=500px,height=700px');
+    			window.open("deptPopup?con=sub","sub" ,'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
     		});
      });
      
@@ -432,9 +413,9 @@ function execDaumPostcode() {
 				<tr>
 					<th scope="row">주민등록번호</th>
 					<td scope="row" align="left">
-					<input type="text" maxlength="6" id="Jumin1" name="Jumin1"/>
+					<input type="text" maxlength="" id="Jumin1" name="Jumin1"/>
 					<span> - </span>
-					<input	type="text" maxlength="7" id="Jumin2" name="Jumin2"/>
+					<input	type="text" maxlength="" id="Jumin2" name="Jumin2"/>
 					<th scope="row">부서코드</th>
 					<td scope="row" align="left"><input type="text"
 						id="deptNameText" value=""> <input type="button" value="검색"
@@ -492,7 +473,7 @@ function execDaumPostcode() {
 						<input type="button" value="검색" id="searchBankBtn">  -->
 						계좌번호 : 
 						<input type="text" id="bankName" maxlength="">
-						예금주 : <input type="text" id="bankName" maxlength="" /></td>
+						예금주 : <input type="text" maxlength="" /></td>
 				</tr>
 				<tr>
 					<th scope="row">주소</th>

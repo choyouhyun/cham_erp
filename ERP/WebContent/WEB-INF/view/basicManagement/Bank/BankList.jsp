@@ -312,7 +312,7 @@ font-size: 20pt
 				</div>
 				<br /> 
 				<br /> 
-				<input type="button" value="신규등록" id="registerBtn" onclick="window.open('BankRegister', 'Edit', 'left='+(screen.availWidth-600)/2+',top='+(screen.availHeight-520)/2+', width=600px,height=520px');"/> 
+				<input type="button" value="신규등록" id="registerBtn" onclick="window.open('BankRegister', 'Edit', 'width=300, height=300');"/> 
 				</form>
 				</div>		
 		</div>

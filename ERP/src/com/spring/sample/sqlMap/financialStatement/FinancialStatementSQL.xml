@@ -39,7 +39,7 @@
 		CONNECT BY PRIOR NO=SUB_NO) SUB ON CHIT.SUB = SUB.NO
 	</select>
 	<select id="getTotalSub" parameterClass="java.util.HashMap" resultClass="java.util.HashMap" >
-		SELECT A.SUB_NO NO, B.NAME, B.DEPTH, B.SUB_NO
+		SELECT A.SUB_NO NO, B.NAME, B.DEPTH, B.SUB_NO, B.SEC, B.DECHA
 		FROM (SELECT SUB_NO
 		      FROM (SELECT TRIM(REGEXP_SUBSTR(DEPTH_FULLNO, '[^,]+', 1, LEVEL)) AS SUB_NO
 		      FROM (SELECT NO, DEPTH_FULLNO
@@ -78,6 +78,36 @@
 		      CONNECT BY  INSTR(DEPTH_FULLNO, ',', 1, LEVEL-1) > 0)
 		GROUP BY SUB_NO)A INNER JOIN SUB B ON A.SUB_NO = B.NO
 	</select>
+	<select id="getDepthMax" parameterClass="java.util.HashMap" resultClass="Integer" >
+		SELECT MAX(DEPTH) DEPTH_MAX
+		FROM (SELECT SUB
+		      FROM (SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM SAL_CHIT
+		            UNION ALL
+		            SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM INC_CHIT
+		            UNION ALL
+		            SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM OTH_SAL_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM OTH_SAL_CHIT
+		            UNION ALL
+		            SELECT DEBTOR_NO SUB, DEAL_DATE
+		            FROM OTH_INC_CHIT
+		            UNION ALL
+		            SELECT CREDITOR_NO SUB, DEAL_DATE
+		            FROM OTH_INC_CHIT)
+		      WHERE 1=1
+		      AND TO_CHAR(DEAL_DATE,'YYYYMM') BETWEEN #startDate# AND #endDate#
+		      GROUP BY SUB) A INNER JOIN SUB B ON A.SUB = B.NO
+	</select>
 	<!-- Select sum(Money) money1,Listagg(name||','||money,',') within group(order by money) money from (select sum(money) money, B.name from sal_chit A inner join sub B on A.Creditor_no=B.no group by B.name) -->
 	<select id="getIncomeData" resultClass="java.util.HashMap" parameterClass="java.util.HashMap">
 	Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -85,7 +115,7 @@
     From sal_chit A Inner Join Sub B
     on A.Creditor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
    union all
    Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -93,7 +123,7 @@
     From inc_chit A Inner Join Sub B
     on A.Debtor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
    union all
    Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -101,7 +131,7 @@
     From Oth_Inc_Chit A Inner Join Sub B
     on A.Debtor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
    union all
    Select sum(Money) money,Listagg(name||','||money,',') Within Group(Order by money) subMoney from(
@@ -109,7 +139,7 @@
     From Oth_sal_Chit A Inner Join Sub B
     on A.Creditor_No=B.no
     where 1=1
-   and To_char(DEAL_DATE,'YYYYMM') BETWEEN '201701' AND '201712'
+   and To_char(DEAL_DATE,'YYYYMM') BETWEEN #year#||'01' AND #year#||'12'
    Group By B.Name)
     
 	

@@ -180,7 +180,7 @@ $(document).ready(function(){
 		$("input[type='text']").each(function(){
 			var x=$("input[type='text']").size()-1;
     		if($(this).val() !=""){
-    			if($("#acntNo").val() !=""&&x==$("input[type='text']").index(this)){
+    			if($("#acntNo").val() !=""){
     				editBank();    			
 	        	}else{
 	        		if(x==$("input[type='text']").index(this)){
@@ -219,7 +219,7 @@ $(document).ready(function(){
 		         });    
 		        return false; 
 			}else{
-				alert("계좌번호를 입력 해 주세요.");
+				alert("사원번호를 입력 해 주세요.");
 	               $("input[name='ACNTNUM']").val("");
 	               $("input[name='ACNTNUM']").focus();
 			}

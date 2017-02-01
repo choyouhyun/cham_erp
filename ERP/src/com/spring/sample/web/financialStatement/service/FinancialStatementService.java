@@ -29,4 +29,17 @@ public class FinancialStatementService implements IFinancialStatementService{
 		// TODO Auto-generated method stub
 		return iFinancialStatementDao.getTotalMoney(params);
 	}
+
+	@Override
+	public int getDepthMax(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return iFinancialStatementDao.getDepthMax(params);
+	}
+	
+	@Override
+	public ArrayList<HashMap<String, String>> getIncomeData(HashMap<String, String> params) throws Throwable{
+		// TODO Auto-generated method stub
+		return iFinancialStatementDao.getIncomeData(params);
+		
+	}
 }

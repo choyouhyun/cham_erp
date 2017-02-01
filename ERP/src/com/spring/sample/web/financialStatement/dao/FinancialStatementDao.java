@@ -31,22 +31,22 @@ public class FinancialStatementDao implements IFinancialStatementDao{
 			String[] sub = chitSub.get(i).get("DEPTH_FULLNO").split(",");
 
 			for(int j = 0; j < sub.length; j++){
-				if(subDebMoney.get(sub[j]) == null){
-					subDebMoney.put(sub[j], Integer.parseInt(String.valueOf(chitSub.get(i).get("DEB_MONEY"))));
-				}else {
+				if(subDebMoney.containsKey(sub[j])){
 					subDebMoney.put(sub[j], subDebMoney.get(sub[j]) + Integer.parseInt(String.valueOf(chitSub.get(i).get("DEB_MONEY"))));
-				}
-				if(subCreMoney.get(sub[j]) == null){
-					subCreMoney.put(sub[j], Integer.parseInt(String.valueOf(chitSub.get(i).get("CRE_MONEY"))));
 				}else {
+					subDebMoney.put(sub[j], Integer.parseInt(String.valueOf(chitSub.get(i).get("DEB_MONEY"))));
+				}
+				if(subCreMoney.containsKey(sub[j])){
 					subCreMoney.put(sub[j], subCreMoney.get(sub[j]) + Integer.parseInt(String.valueOf(chitSub.get(i).get("CRE_MONEY"))));
+				}else {
+					subCreMoney.put(sub[j], Integer.parseInt(String.valueOf(chitSub.get(i).get("CRE_MONEY"))));
 				}
 			}
 		}
 		ArrayList<HashMap<String, Integer>> subMoney = new ArrayList<HashMap<String, Integer>>();
-		subMoney.add(subCreMoney);
 		subMoney.add(subDebMoney);
-		System.out.println(subMoney);
+		subMoney.add(subCreMoney);
+		System.out.println("계정 머니 DAO결과" + subMoney);
 		return subMoney;
 	}
 
@@ -54,5 +54,18 @@ public class FinancialStatementDao implements IFinancialStatementDao{
 	public ArrayList<HashMap<String, Integer>> getTotalSub(HashMap<String, String> params) throws Throwable {
 		// TODO Auto-generated method stub
 		return (ArrayList<HashMap<String, Integer>>) sqlMapClient.queryForList("financialStatement.getTotalSub", params);
+	}
+
+	@Override
+	public int getDepthMax(HashMap<String, String> params) throws Throwable {
+		// TODO Auto-generated method stub
+		return (int) sqlMapClient.queryForObject("financialStatement.getDepthMax", params);
+
+	}
+	@Override
+	public ArrayList<HashMap<String, String>> getIncomeData(HashMap<String, String> params) throws Throwable{
+		// TODO Auto-generated method stub
+		return (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("financialStatement.getIncomeData",params);
+
 	}
 }
