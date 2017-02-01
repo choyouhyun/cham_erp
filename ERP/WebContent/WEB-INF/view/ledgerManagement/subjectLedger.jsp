@@ -141,10 +141,11 @@ table.th{
 }
 .pull_left{
 	display: inline-block;
-	width: 916px;
+	width: 1100px;
 	text-align: left;
 	border-bottom: 1px solid #A7C942;
-	margin-bottom: 5px; 
+	margin-bottom: 5px;
+	padding-left : 3px; 
 	padding-bottom: 3px; 
 }
 .pull_right{

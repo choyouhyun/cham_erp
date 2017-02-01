@@ -227,20 +227,19 @@ $(document).ready(function() {
 	});
 	
 	$("#deptBtn").click(function() {
-		//window.open("deptPopup","dept",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
-		window.open("deptPopup","dept",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px', 'toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("deptPopup","dept",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
 	$("#cusBtn").click(function() {
-		window.open("customerPopup","cus",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px','toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("customerPopup","cus",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
 	$("#creBtn").click(function() {
-		window.open("subjectPopup?con=cre","cus",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px','toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("subjectPopup?con=cre","cus",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	})
 	
 	$("#debBtn").click(function() {
-		window.open("subjectPopup?con=deb","cus",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px','toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("subjectPopup?con=deb","cus",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	})
 	
 	//상세입력 부분

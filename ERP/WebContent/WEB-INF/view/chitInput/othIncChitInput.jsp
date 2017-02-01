@@ -73,7 +73,6 @@ html {
 	color:#153d73;
 	font-weight: bold;
 }
-
 /*세부내역 테이블 디자인  */
 .subtbl { 
     border-collapse: collapse;
@@ -225,20 +224,19 @@ $(document).ready(function() {
 	});
 	
 	$("#deptBtn").click(function() {
-		//window.open("deptPopup","dept",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
-		window.open("deptPopup","dept",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px', 'toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("deptPopup","dept",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
 	$("#cusBtn").click(function() {
-		window.open("customerPopup","cus",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px','toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("customerPopup","cus",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	});
 	
 	$("#creBtn").click(function() {
-		window.open("subjectPopup?con=cre","cus",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px','toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("subjectPopup?con=cre","cus",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	})
 	
 	$("#debBtn").click(function() {
-		window.open("subjectPopup?con=deb","cus",'left='+(screen.availWidth-520)/2+',top='+(screen.availHeight-700)/2+', width=520px,height=700px','toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
+		window.open("subjectPopup?con=deb","cus",'width=600, height=600, toolbar=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no');
 	})
 	
 	//상세입력 부분
@@ -369,7 +367,7 @@ function updateOthInchit() {
 				<th>부서코드</th>
 				<td><input type="text" id="deptNoText" name="deptNoText" readonly="readonly"/></td>
 				<td><input type="text" id="deptNameText" readonly="readonly"/></td>
-				<td><input type="button" value="부서검색" id="deptBtn"/></td>				
+				<td><input type="button" value="부서검색 " id="deptBtn"/></td>				
 			</tr>
 			<tr>
 				<th>거래처코드</th>
