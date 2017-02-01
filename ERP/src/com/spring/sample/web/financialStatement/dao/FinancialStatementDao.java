@@ -25,19 +25,22 @@ public class FinancialStatementDao implements IFinancialStatementDao{
 		// TODO Auto-generated method stub
 		HashMap<String, Integer> subDebMoney = new HashMap<String, Integer>();
 		HashMap<String, Integer> subCreMoney = new HashMap<String, Integer>();
-		ArrayList<HashMap<String, String>> chitSub = (ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("financialStatement.getTotalMoney", params);
+		ArrayList<HashMap<String, String>> chitSub = 
+				(ArrayList<HashMap<String, String>>) sqlMapClient.queryForList("financialStatement.getTotalMoney", params);
 		
 		for(int i = 0; i < chitSub.size(); i++){
 			String[] sub = chitSub.get(i).get("DEPTH_FULLNO").split(",");
 
 			for(int j = 0; j < sub.length; j++){
 				if(subDebMoney.containsKey(sub[j])){
-					subDebMoney.put(sub[j], subDebMoney.get(sub[j]) + Integer.parseInt(String.valueOf(chitSub.get(i).get("DEB_MONEY"))));
+					subDebMoney.put(sub[j], subDebMoney.get(sub[j]) + 
+							Integer.parseInt(String.valueOf(chitSub.get(i).get("DEB_MONEY"))));
 				}else {
 					subDebMoney.put(sub[j], Integer.parseInt(String.valueOf(chitSub.get(i).get("DEB_MONEY"))));
 				}
 				if(subCreMoney.containsKey(sub[j])){
-					subCreMoney.put(sub[j], subCreMoney.get(sub[j]) + Integer.parseInt(String.valueOf(chitSub.get(i).get("CRE_MONEY"))));
+					subCreMoney.put(sub[j], subCreMoney.get(sub[j]) + 
+							Integer.parseInt(String.valueOf(chitSub.get(i).get("CRE_MONEY"))));
 				}else {
 					subCreMoney.put(sub[j], Integer.parseInt(String.valueOf(chitSub.get(i).get("CRE_MONEY"))));
 				}

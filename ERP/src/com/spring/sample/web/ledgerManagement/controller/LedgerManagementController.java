@@ -40,9 +40,6 @@ public class LedgerManagementController {
 		ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getCusChit(params);
 		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getCusBeforeMoney(params);
 		ArrayList<HashMap<String,String>> subNo = iLedgerManagementService.getSubNo(params);
-		System.out.println(chit);
-		System.out.println(beforeMoney);
-		System.out.println(subNo);
 		modelMap.put("chit", chit);
 		modelMap.put("beforeMoney", beforeMoney);
 		modelMap.put("subNo", subNo);
@@ -68,9 +65,6 @@ public class LedgerManagementController {
 		ArrayList<HashMap<String,String>> chit = iLedgerManagementService.getChit(params);
 		ArrayList<HashMap<String,String>> beforeMoney = iLedgerManagementService.getBeforeMoney(params);
 		ArrayList<HashMap<String,String>> cusNo = iLedgerManagementService.getCusNo(params);
-		System.out.println(chit);
-		System.out.println(beforeMoney);
-		System.out.println(cusNo);
 		modelMap.put("chit", chit);
 		modelMap.put("beforeMoney", beforeMoney);
 		modelMap.put("cusNo", cusNo);
@@ -92,9 +86,7 @@ public class LedgerManagementController {
 		HashMap<String, Object> modelMap = new HashMap<String, Object>();
 		String type = params.get("subRadio");
 		ArrayList<HashMap<String, String>> chit = iLedgerManagementService.getIncSalChit(params);
-		System.out.println(chit);
 		ArrayList<HashMap<String, String>> month = iLedgerManagementService.getMonth(params);
-		System.out.println(month);
 		modelMap.put("chit", chit);
 		modelMap.put("month", month);
 		ObjectMapper mapper = new ObjectMapper();

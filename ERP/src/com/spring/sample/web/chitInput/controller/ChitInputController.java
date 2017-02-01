@@ -77,8 +77,9 @@ public class ChitInputController {
 	//매입 전표 입력 insert
 	@RequestMapping(value="/insertInc")
 	public @ResponseBody ResponseEntity<String> insertInc(
-			HttpServletRequest request, ModelAndView modelAndView, @RequestParam HashMap<String, String> params, @RequestParam(value="detailDate") List<String> date
-			, @RequestParam(value="detailName") List<String> name, @RequestParam(value="detailStan") List<String> stan,
+			HttpServletRequest request, ModelAndView modelAndView, 
+			@RequestParam HashMap<String, String> params, @RequestParam(value="detailDate") List<String> date,
+			@RequestParam(value="detailName") List<String> name, @RequestParam(value="detailStan") List<String> stan,
 			@RequestParam(value="detailAmnt") List<String> amnt, @RequestParam(value="detailPrice") List<String> price,
 			@RequestParam(value="detailEtc") List<String> etc) throws Throwable {
 		ObjectMapper mapper = new ObjectMapper();
@@ -98,7 +99,6 @@ public class ChitInputController {
 				res += iChitInputService.insertIncDetail(list);			
 			}
 		}
-		
 		modelMap.put("res", res);
 		HttpHeaders responseHeaders = new HttpHeaders();
 		responseHeaders.add("Content-Type", "text/json; charset=UTF-8");
