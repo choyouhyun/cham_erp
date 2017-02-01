@@ -16,7 +16,7 @@ body{
 }
 #ac input[type="text"] {
 	text-align: right;
-	font-size: 15pt;
+	font-size: 12pt;
 	width: 220px;
 	border: none;
 	
@@ -33,6 +33,7 @@ table {
 .content_{
 	display: inline-block;
 	text-align: left;
+	font-size: 12pt;
 }
 #tbl{
 	background-color:#A7C942;
@@ -48,8 +49,13 @@ table {
 }
 #ac th,td{
 	border: 1px solid #98bf21;
+}
+.tbHeader th {
+	text-align: center;
 }	
-
+#tbl td {
+	font-size: 10pt;
+}
 </style>
 
 <script type="text/javascript">
@@ -138,12 +144,16 @@ function getIncomeData(year) {
 <body>
 <c:import url="/top"></c:import>
 <div class="contents">
+		</br>
+		<div id="font">손익계산서</div>
+		</br>
+		</br>
 <div class="content_">
 <div style="display: inline-block;">
 <c:set var="now" value="<%=new java.util.Date()%>" /> 
 								<fmt:formatDate value="${now}" pattern="yyyy" var="yearStart" /> 
 								당기 선택 : 
-								<select onchange="aa(this.value)" style="font-size: 20pt;">
+								<select onchange="aa(this.value)" style="font-size: 15pt;">
 									<c:forEach begin="0" end="10" var="result" step="1">
 										<option value="<c:out value="${yearStart - result}" />">
 											<c:out value="${yearStart - result}" />년
@@ -152,7 +162,14 @@ function getIncomeData(year) {
 								</select>
 </div>								
 <table id="ac" border="0" align="center">
-	<tr>
+	<colgroup>
+		<col style="width:160px"/> <!-- 재무제표표시명 -->
+		<col span="2" style="width:150px"/> <!--당기 -->
+		<col style="width:160px"/> <!-- 공백 -->
+		<col span="2" style="width:150px"/> <!-- 전기 -->
+	</colgroup>
+	<thead>
+	<tr class="tbHeader">
 		<th id="tbl">재무제표표시명
 		</th>
 		<th colspan="2" id="tbl">
@@ -163,6 +180,7 @@ function getIncomeData(year) {
 		전기 (<b id="sysdate_1">2016</b>)
 		</th>
 	</tr>
+	</thead>
 	<tr id="sub0">
 		<th id="tbl">1.매출
 		</th>

@@ -70,14 +70,9 @@
 					    </ul>
 					 </li>
 					 <li><a href="#" id="current">재무재표</a><ul>
-					     <li id="statementOfPosition"><a href="#">합계잔액시산표</a></li>
-					     <li id="totalTrialBalance"><a href="#">재무상태표</a></li>
+					     <li id="totalTrialBalance"><a href="#">합계잔액시산표</a></li>
+					     <li ><a href="#">재무상태표</a></li>
 					     <li id="incomeStatement"><a href="#">손익계산서</a></li>
-					    </ul>
-					 </li>
-					 <li><a href="#" id="current">전기재무재표</a><ul>
-					     <li id="beforeFinancialStatement"><a href="#">전기분 재무재표</a></li>
-					     <li id="beforeProfitAndLoss"><a href="#">전기분 손익 계산서</a></li>
 					    </ul>
 					 </li>
 					 <li ><a href="#" id="current">게시판</a><ul>

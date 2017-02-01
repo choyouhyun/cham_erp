@@ -9,13 +9,6 @@ $(document).ready(function(){
 	$("#bbsPage").on("click", function(){
 		location.href="bbsList?cap=dept";
 	});
-	/*전기재무재표*/
-	$("#beforeFinancialStatement").on("click", function(){
-		location.href="BeforeFinancialStatement";
-	});
-	$("#beforeProfitAndLoss").on("click", function(){
-		location.href="BeforeProfitAndLoss";
-	});
 	/*장부관리*/
 	$("#customerLedger").on("click", function(){
 		location.href="customerLedger";
@@ -56,12 +49,9 @@ $(document).ready(function(){
 		location.href="salReList";
 	});*/
 	/*재무재표*/
-/*	$("#statementOfPosition").on("click", function(){
-		location.href="statementOfPosition";
-	});
 	$("#totalTrialBalance").on("click", function(){
 		location.href="totalTrialBalance";
-	});*/
+	});
 	/*기본관리*/
 	$("#companyRegister").on("click", function(){
 		location.href="ComInfo";

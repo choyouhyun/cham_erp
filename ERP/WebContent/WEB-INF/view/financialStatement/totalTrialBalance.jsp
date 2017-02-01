@@ -268,7 +268,10 @@ function chitTotal(e){
 <body>
 	<c:import url="/top"></c:import>
 	<div class="contents"> 
-		<div id="conTitle">합계 잔액 시산표</div>
+		</br>
+		<div id="font">합계잔액시산표</div>
+		</br>
+		</br>
 		<div id="searchChit">
 		<form action="#" id="searchForm">
 			<div id="chitCal">
